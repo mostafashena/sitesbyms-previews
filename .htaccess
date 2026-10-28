@@ -1,3 +1,4 @@
 RedirectMatch 404 /\.git
+RedirectMatch 404 \.sh$
 Options -Indexes
 DirectoryIndex index.html
