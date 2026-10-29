@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Peppertree | Tableside Fine Dining in Colorado Springs since 1983</title>
+<meta name="description" content="Steak Diane, Pepper Steak and Bananas Foster prepared at your table, with views over Colorado Springs. 888 W Moreno Ave. Open Monday to Saturday evenings.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,600;1,6..96,400&family=Manrope:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+/* Layout: dark candlelit dining room; centred menu-card typography; long horizontal "tableside" strip */
+:root{
+  --room:#1E0D10;      /* oxblood dining room */
+  --room-2:#2C1418;
+  --linen:#F6F0E8;     /* tablecloth */
+  --flame:#E38B3C;     /* flambé */
+  --brass:#C9A86A;
+  --ink:#1A1416;
+  --mist:#BFAFA9;
+  --serif:"Bodoni Moda",Didot,"Times New Roman",serif;
+  --sans:"Manrope",system-ui,-apple-system,Segoe UI,sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+body{margin:0;background:var(--room);color:var(--linen);font:400 17px/1.65 var(--sans);-webkit-font-smoothing:antialiased}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--flame);outline-offset:3px}
+h1,h2,h3{font-family:var(--serif);font-weight:400;margin:0;line-height:1.05;text-wrap:balance}
+p{margin:0}
+.wrap{width:min(1160px,100% - 40px);margin-inline:auto}
+.concept{background:#000;color:#a99;font-size:13px;text-align:center;padding:7px 16px}
+
+header{position:sticky;top:0;z-index:20;background:rgba(30,13,16,.94);backdrop-filter:blur(8px);border-bottom:1px solid rgba(201,168,106,.2)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:72px;gap:20px}
+.logo{font:400 26px/1 var(--serif);text-decoration:none;letter-spacing:.01em}
+.logo i{color:var(--brass);font-style:italic}
+.links{display:flex;gap:28px;font-size:15px}
+.links a{text-decoration:none;color:var(--mist)}
+.links a:hover{color:var(--linen)}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 26px;border-radius:2px;font:700 15px/1 var(--sans);letter-spacing:.04em;text-decoration:none;border:1px solid transparent;transition:background .2s,color .2s}
+.btn-flame{background:var(--flame);color:var(--ink)}
+.btn-flame:hover{background:#f19d52}
+.btn-line{border-color:rgba(246,240,232,.4)}
+.btn-line:hover{background:rgba(246,240,232,.08)}
+.nav .btn{min-height:42px;padding:0 18px}
+@media (max-width:880px){.links{display:none}}
+
+.hero{text-align:center;padding:84px 0 0}
+.since{color:var(--brass);font:italic 400 20px/1 var(--serif)}
+.hero h1{font-size:clamp(48px,8vw,104px);margin:22px auto 26px;max-width:12ch}
+.hero p{color:var(--mist);font-size:19px;max-width:44ch;margin:0 auto 36px}
+.cta{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
+.hero .ph{margin-top:64px;aspect-ratio:16/7;border-radius:2px}
+@media (max-width:640px){.hero .ph{aspect-ratio:4/3}}
+
+.ph{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;text-align:center;padding:16px;width:100%;max-width:100%;
+  background:repeating-linear-gradient(135deg,rgba(201,168,106,.07) 0 12px,transparent 12px 24px),var(--room-2);border:1px dashed rgba(201,168,106,.45);color:var(--linen)}
+.ph b{font:500 clamp(18px,2.2vw,26px)/1 var(--sans);font-variant-numeric:tabular-nums}
+.ph span{font-size:14px;color:var(--mist)}
+
+.facts{display:grid;grid-template-columns:repeat(3,1fr);border-bottom:1px solid rgba(201,168,106,.2)}
+.facts div{padding:30px 8px;text-align:center}
+.facts div+div{border-left:1px solid rgba(201,168,106,.2)}
+.facts b{display:block;font:400 30px/1.1 var(--serif);color:var(--linen)}
+.facts span{color:var(--mist);font-size:14px}
+@media (max-width:640px){.facts{grid-template-columns:1fr}.facts div+div{border-left:0;border-top:1px solid rgba(201,168,106,.2)}}
+
+section.block{padding:104px 0}
+.title{text-align:center;margin-bottom:56px}
+.title h2{font-size:clamp(38px,5vw,64px)}
+.title p{color:var(--mist);max-width:50ch;margin:16px auto 0}
+
+/* tableside strip */
+.table-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(201,168,106,.25);border:1px solid rgba(201,168,106,.25)}
+.dish{background:var(--room);padding:32px 26px;display:flex;flex-direction:column;gap:10px}
+.dish h3{font-size:28px}
+.dish p{color:var(--mist);font-size:15px;flex:1}
+.dish .price{font:600 15px/1 var(--sans);color:var(--flame);font-variant-numeric:tabular-nums}
+@media (max-width:980px){.table-strip{grid-template-columns:1fr 1fr}}
+@media (max-width:560px){.table-strip{grid-template-columns:1fr}}
+
+/* linen menu card */
+.linen{background:var(--linen);color:var(--ink)}
+.linen .title p{color:#6d5f5b}
+.card{max-width:820px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:48px 64px}
+.card h3{font-size:24px;padding-bottom:10px;border-bottom:1px solid #d8ccc0;margin-bottom:16px;font-style:italic}
+.card ul{list-style:none;margin:0;padding:0;display:grid;gap:14px}
+.card li{display:grid;grid-template-columns:1fr auto;gap:12px;align-items:baseline}
+.card li span{font-weight:500}
+.card li small{display:block;color:#6d5f5b;font-size:14px}
+.card li em{font-style:normal;font-variant-numeric:tabular-nums;font-weight:700}
+.linen .center{text-align:center;margin-top:52px}
+.btn-dark{background:var(--room);color:var(--linen)}
+@media (max-width:720px){.card{grid-template-columns:1fr}}
+
+/* split */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+.split .ph{aspect-ratio:4/5}
+.split h2{font-size:clamp(34px,4.4vw,54px);margin-bottom:20px}
+.split p{color:var(--mist);margin-bottom:16px;max-width:46ch}
+.split ul{color:var(--linen);padding-left:20px;margin:0 0 28px}
+@media (max-width:860px){.split{grid-template-columns:1fr;gap:36px}.split .ph{aspect-ratio:4/3}}
+
+/* visit */
+.visit{display:grid;grid-template-columns:1.1fr .9fr;gap:56px}
+.visit h2{font-size:clamp(34px,4.4vw,54px);margin-bottom:24px}
+.rows{display:grid;gap:0;border-top:1px solid rgba(201,168,106,.25)}
+.rows div{display:grid;grid-template-columns:140px 1fr;gap:16px;padding:16px 0;border-bottom:1px solid rgba(201,168,106,.25)}
+.rows dt,.rows b{color:var(--brass);font-weight:500}
+.rows a{text-decoration:none}
+.rows a:hover{text-decoration:underline}
+.visit .ph{aspect-ratio:1/1}
+.dress{margin-top:24px;color:var(--mist);font-size:15px}
+@media (max-width:860px){.visit{grid-template-columns:1fr}.rows div{grid-template-columns:110px 1fr}}
+
+footer{border-top:1px solid rgba(201,168,106,.2);padding:48px 0;color:var(--mist);font-size:14px}
+.foot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:24px;align-items:center}
+.foot nav{display:flex;flex-wrap:wrap;gap:20px}
+.foot a{text-decoration:none}
+.foot a:hover{color:var(--linen)}
+
+.mbar{display:none}
+@media (max-width:640px){
+  .mbar{display:grid;grid-template-columns:1fr 1fr;gap:8px;position:fixed;inset:auto 0 0;z-index:30;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:rgba(30,13,16,.97);border-top:1px solid rgba(201,168,106,.25)}
+  footer{padding-bottom:110px}
+  section.block{padding:76px 0}
+}
+</style>
+</head>
+<body>
+<div class="concept">Design concept prepared for The Peppertree by Sites By MS. Not the official website.</div>
+
+<header>
+  <div class="wrap nav">
+    <a class="logo" href="#top">The <i>Peppertree</i></a>
+    <nav class="links" aria-label="Main">
+      <a href="#tableside">Tableside</a>
+      <a href="#menu">Menu</a>
+      <a href="#occasions">Occasions</a>
+      <a href="#visit">Visit</a>
+    </nav>
+    <a class="btn btn-flame" href="https://peppertreecs.com/">Reserve</a>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap">
+      <p class="since">Colorado Springs, since 1983</p>
+      <h1>Dinner, finished at your table.</h1>
+      <p>Pepper Steak flambéed with brandy, Caesar tossed beside you, Bananas Foster set alight for dessert. A Colorado Springs icon for over forty years.</p>
+      <div class="cta">
+        <a class="btn btn-flame" href="https://peppertreecs.com/">Reserve a table</a>
+        <a class="btn btn-line" href="#menu">See the menu</a>
+      </div>
+      <div class="ph" role="img" aria-label="Photo placeholder, 1920 by 840 pixels"><b>1920 × 840</b><span>Pepper Steak being flambéed at the table, city lights behind</span></div>
+    </div>
+  </section>
+
+  <div class="wrap facts">
+    <div><b>1983</b><span>Serving Colorado Springs</span></div>
+    <div><b>Tableside</b><span>Steaks, salads and desserts</span></div>
+    <div><b>Top 100</b><span>Most Scenic Restaurants in America, OpenTable 2017</span></div>
+  </div>
+
+  <section class="block" id="tableside">
+    <div class="wrap">
+      <div class="title">
+        <h2>The tableside classics</h2>
+        <p>Prepared in front of you by our captains, the way fine dining used to be done.</p>
+      </div>
+      <div class="table-strip">
+        <div class="dish"><h3>Pepper Steak</h3><p>Center-cut filet with mango chutney and cracked pepper, flambéed with brandy.</p><span class="price">from $65</span></div>
+        <div class="dish"><h3>Steak Diane</h3><p>Center-cut filet in a demi-glace and cream sherry sauce.</p><span class="price">from $65</span></div>
+        <div class="dish"><h3>Caesar for two</h3><p>Tossed at your table, dressing made to order.</p><span class="price">$12.95 per person</span></div>
+        <div class="dish"><h3>Bananas Foster</h3><p>Caramelized bananas set alight, over vanilla bean ice cream.</p><span class="price">$16</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block linen" id="menu">
+    <div class="wrap">
+      <div class="title">
+        <h2>From the dinner menu</h2>
+        <p>Prime steaks, Colorado lamb and bison, and fresh seafood.</p>
+      </div>
+      <div class="card">
+        <div>
+          <h3>To begin</h3>
+          <ul>
+            <li><span>Escargot<small>Garlic, shallot and herb butter</small></span><em>$16</em></li>
+            <li><span>Pan fried crab cakes<small>Jumbo lump, raspberry horseradish</small></span><em>$26</em></li>
+            <li><span>Lobster bisque</span><em>$13.95</em></li>
+            <li><span>Seafood tower<small>Oysters, shrimp, lobster, snow crab</small></span><em>$130</em></li>
+          </ul>
+        </div>
+        <div>
+          <h3>Entrées</h3>
+          <ul>
+            <li><span>Beef Wellington<small>Mushroom duxelles, bordelaise</small></span><em>$92</em></li>
+            <li><span>Colorado bison strip<small>12 oz, bourbon demi-glace, blue cheese</small></span><em>$78</em></li>
+            <li><span>Double cut Colorado lamb chops<small>Rosemary port demi-glace</small></span><em>$88</em></li>
+            <li><span>Chilean sea bass<small>Lemon butter caper sauce</small></span><em>$62</em></li>
+          </ul>
+        </div>
+      </div>
+      <div class="center"><a class="btn btn-dark" href="https://peppertreecs.com/dinner-menu/">View the full dinner menu</a></div>
+    </div>
+  </section>
+
+  <section class="block" id="occasions">
+    <div class="wrap split">
+      <div class="ph" role="img" aria-label="Photo placeholder, 1000 by 1250 pixels"><b>1000 × 1250</b><span>Window table at dusk overlooking Colorado Springs</span></div>
+      <div>
+        <h2>For the evenings that matter</h2>
+        <p>Anniversaries, proposals, business dinners and birthdays. Tell us what you're celebrating when you book and we'll take care of the rest.</p>
+        <p>We support local farmers, source responsibly and give back to local charities.</p>
+        <ul><li>Window tables with views over the city</li><li>Gift cards for any amount</li><li>Smart dress code for a special night out</li></ul>
+        <div class="cta" style="justify-content:flex-start">
+          <a class="btn btn-flame" href="https://peppertreecs.com/">Reserve a table</a>
+          <a class="btn btn-line" href="https://peppertreecs.com/">Buy a gift card</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="visit" style="padding-top:0">
+    <div class="wrap visit">
+      <div>
+        <h2>Visit us</h2>
+        <dl class="rows" style="margin:0">
+          <div><dt>Open</dt><dd style="margin:0">Monday to Saturday evenings<br>Closed Sunday</dd></div>
+          <div><dt>Address</dt><dd style="margin:0">888 W Moreno Ave<br>Colorado Springs, CO 80905</dd></div>
+          <div><dt>Phone</dt><dd style="margin:0"><a href="tel:+17194714888">719 471 4888</a></dd></div>
+          <div><dt>Reservations</dt><dd style="margin:0">Book online through OpenTable or call us</dd></div>
+        </dl>
+        <p class="dress">Please review our dress code and conduct guidelines before your visit.</p>
+      </div>
+      <div class="ph" role="img" aria-label="Photo placeholder, 900 by 900 pixels"><b>900 × 900</b><span>Restaurant entrance at night</span></div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <span>© 2026 The Peppertree Restaurant. Concept redesign by Sites By MS. Photo areas show the image size to use.</span>
+    <nav aria-label="Social"><a href="https://peppertreecs.com/">Facebook</a><a href="https://peppertreecs.com/">Instagram</a><a href="https://peppertreecs.com/">OpenTable</a></nav>
+  </div>
+</footer>
+
+<div class="mbar">
+  <a class="btn btn-line" href="tel:+17194714888">Call</a>
+  <a class="btn btn-flame" href="https://peppertreecs.com/">Reserve</a>
+</div>
+<script src="/assets/concept-bar.js" data-name="The Peppertree" data-slug="peppertree" defer></script>
+</body>
+</html>

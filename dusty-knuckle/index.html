@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Dusty Knuckle Harringay | Bakery by Day, Pizza by Night</title>
+<meta name="description" content="Bakery and café by day, pizza and wine Thursday to Saturday nights. 429 Green Lanes, Harringay N4. Weekend bread pre-orders and local pizza delivery.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Work+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+/* Layout: day/night split. Flour-white "day" half, oven-dark "night" half; slab type stamped like a bread label */
+:root{
+  --flour:#F5F1EA;
+  --crust:#8A4B22;
+  --tomato:#D23C23;
+  --oven:#1F1813;
+  --ash:#6E655D;
+  --ember:#F2A33A;
+  --line:#E2D9CC;
+  --slab:"Alfa Slab One",Rockwell,Georgia,serif;
+  --body:"Work Sans",system-ui,-apple-system,Segoe UI,sans-serif;
+}
+*{box-sizing:border-box}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--flour);color:var(--oven);font:400 17px/1.6 var(--body);-webkit-font-smoothing:antialiased}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--tomato);outline-offset:3px}
+h1,h2,h3{font-family:var(--slab);font-weight:400;margin:0;line-height:1;text-wrap:balance}
+p{margin:0}
+.wrap{width:min(1180px,100% - 40px);margin-inline:auto}
+.concept{background:var(--oven);color:#bdb3a9;font-size:13px;text-align:center;padding:7px 16px}
+
+header{position:sticky;top:0;z-index:20;background:var(--flour);border-bottom:2px solid var(--oven)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:68px;gap:16px}
+.logo{font:400 22px/1 var(--slab);text-decoration:none;text-transform:uppercase;letter-spacing:.02em}
+.links{display:flex;gap:24px;font-weight:500;font-size:15px}
+.links a{text-decoration:none}
+.links a:hover{color:var(--tomato)}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:50px;padding:0 24px;font:700 16px/1 var(--body);text-decoration:none;border:2px solid currentColor;transition:background .15s,color .15s}
+.btn-red{background:var(--tomato);border-color:var(--tomato);color:#fff}
+.btn-red:hover{background:#b8311b}
+.btn-line:hover{background:var(--oven);color:var(--flour)}
+.nav .btn{min-height:42px;padding:0 16px;font-size:15px}
+@media (max-width:860px){.links{display:none}}
+
+.split{display:grid;grid-template-columns:1fr 1fr;min-height:0}
+.half{padding:64px max(20px,calc((100vw - 1180px)/2)) 64px 40px;display:flex;flex-direction:column;gap:20px}
+.day{padding-left:max(20px,calc((100vw - 1180px)/2));padding-right:40px}
+.night{background:var(--oven);color:var(--flour)}
+.tag{font:700 14px/1 var(--body);letter-spacing:.08em;text-transform:uppercase;color:var(--crust)}
+.night .tag{color:var(--ember)}
+.half h1,.half h2{font-size:clamp(44px,6vw,80px)}
+.half p{font-size:18px;max-width:34ch;color:var(--ash)}
+.night p{color:#c9bfb4}
+.half .ph{aspect-ratio:4/3;margin-top:8px}
+.half .btn-line{color:inherit}
+.hrs{font-weight:700;font-variant-numeric:tabular-nums}
+@media (max-width:860px){.split{grid-template-columns:1fr}.half,.day{padding:48px 20px}}
+
+.ph{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;text-align:center;padding:16px;width:100%;max-width:100%;
+  background:repeating-linear-gradient(135deg,rgba(138,75,34,.09) 0 12px,transparent 12px 24px),#EADFCF;color:var(--crust);border:2px dashed rgba(138,75,34,.4)}
+.ph b{font:400 clamp(20px,2.4vw,28px)/1 var(--slab);font-variant-numeric:tabular-nums}
+.ph span{font-size:14px;color:var(--ash)}
+.night .ph{background:repeating-linear-gradient(135deg,rgba(242,163,58,.08) 0 12px,transparent 12px 24px),#2C231C;color:var(--ember);border-color:rgba(242,163,58,.35)}
+.night .ph span{color:#c9bfb4}
+
+section.block{padding:88px 0}
+.head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:20px;margin-bottom:36px}
+.head h2{font-size:clamp(36px,5vw,60px)}
+.head p{color:var(--ash);max-width:42ch}
+
+.board{display:grid;grid-template-columns:repeat(3,1fr);border:2px solid var(--oven)}
+.col{padding:28px}
+.col+.col{border-left:2px solid var(--oven)}
+.col h3{font-size:26px;margin-bottom:4px}
+.col .when{font-size:14px;font-weight:700;color:var(--crust);margin-bottom:16px;display:block}
+.col ul{list-style:none;margin:0;padding:0}
+.col li{display:flex;justify-content:space-between;gap:12px;padding:10px 0;border-bottom:1px solid var(--line)}
+.col li em{font-style:normal;font-weight:700;font-variant-numeric:tabular-nums}
+@media (max-width:900px){.board{grid-template-columns:1fr}.col+.col{border-left:0;border-top:2px solid var(--oven)}}
+
+.preorder{background:var(--tomato);color:#fff}
+.pre-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:48px;align-items:center}
+.pre-grid h2{font-size:clamp(36px,5vw,60px)}
+.pre-grid p{font-size:18px;margin-top:14px;max-width:44ch}
+.steps{list-style:none;margin:0;padding:0;display:grid;gap:12px;counter-reset:s}
+.steps li{counter-increment:s;display:grid;grid-template-columns:40px 1fr;gap:12px;align-items:center;font-weight:500}
+.steps li::before{content:counter(s);font:400 22px/40px var(--slab);text-align:center;background:#fff;color:var(--tomato);border-radius:50%;width:40px;height:40px}
+.preorder .btn{color:#fff;border-color:#fff;margin-top:24px}
+.preorder .btn:hover{background:#fff;color:var(--tomato)}
+@media (max-width:860px){.pre-grid{grid-template-columns:1fr}}
+
+.youth{display:grid;grid-template-columns:.9fr 1.1fr;gap:56px;align-items:center}
+.youth .ph{aspect-ratio:1/1}
+.youth h2{font-size:clamp(34px,4.6vw,56px);margin-bottom:18px}
+.youth p{color:var(--ash);margin-bottom:22px;max-width:46ch}
+@media (max-width:860px){.youth{grid-template-columns:1fr}}
+
+.visit{border-top:2px solid var(--oven)}
+.v-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px}
+.v-grid h3{font-size:22px;margin-bottom:12px}
+.v-grid table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
+.v-grid td{padding:8px 0;border-bottom:1px solid var(--line)}
+.v-grid td:last-child{text-align:right;font-weight:700}
+.v-grid a{font-weight:700}
+@media (max-width:860px){.v-grid{grid-template-columns:1fr}}
+
+footer{background:var(--oven);color:#bdb3a9;padding:40px 0;font-size:14px}
+.foot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px}
+.foot nav{display:flex;flex-wrap:wrap;gap:18px}
+.foot a{text-decoration:none;color:var(--flour)}
+
+.mbar{display:none}
+@media (max-width:640px){
+  .mbar{display:grid;grid-template-columns:1fr 1fr;gap:8px;position:fixed;inset:auto 0 0;z-index:30;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:var(--flour);border-top:2px solid var(--oven)}
+  .mbar .btn{min-height:46px}
+  footer{padding-bottom:110px}
+  section.block{padding:64px 0}
+}
+</style>
+</head>
+<body>
+<div class="concept">Design concept prepared for The Dusty Knuckle by Sites By MS. Not the official website.</div>
+
+<header>
+  <div class="wrap nav">
+    <a class="logo" href="#top">The Dusty Knuckle</a>
+    <nav class="links" aria-label="Main"><a href="#menus">Menus</a><a href="#preorder">Weekend pre-order</a><a href="#youth">Youth Programme</a><a href="#visit">Visit</a></nav>
+    <a class="btn btn-red" href="https://www.thedustyknuckle.com/harringa-cafe">Order pizza</a>
+  </div>
+</header>
+
+<main id="top">
+  <div class="split">
+    <section class="half day" aria-labelledby="day-h">
+      <span class="tag">By day · 8am – 3:30pm</span>
+      <h1 id="day-h">Bread, coffee &amp; big sandwiches.</h1>
+      <p>Our Harringay bakery and café on Green Lanes. Breakfast, lunch and loaves baked every morning.</p>
+      <div><a class="btn btn-line" href="#menus">See the day menu</a></div>
+      <div class="ph" role="img" aria-label="Photo placeholder, 1000 by 750 pixels"><b>1000 × 750</b><span>Bakery counter with fresh loaves</span></div>
+    </section>
+    <section class="half night" aria-labelledby="night-h">
+      <span class="tag">By night · Thu – Sat from 5:30pm</span>
+      <h2 id="night-h">Pizza &amp; wine.</h2>
+      <p>Sourdough pizza, snacks and natural wine. Eat in, or get it delivered around Harringay.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:12px"><a class="btn btn-red" href="https://www.thedustyknuckle.com/harringa-cafe">Order delivery</a><a class="btn btn-line" href="https://www.thedustyknuckle.com/harringa-cafe">Book a table</a></div>
+      <div class="ph" role="img" aria-label="Photo placeholder, 1000 by 750 pixels"><b>1000 × 750</b><span>Pizza coming out of the oven</span></div>
+    </section>
+  </div>
+
+  <section class="block" id="menus">
+    <div class="wrap">
+      <div class="head"><h2>On the menu</h2><p>Kids eat free on pizza nights from 5:30 to 6:30pm: one kid's margherita per parent.</p></div>
+      <div class="board">
+        <div class="col"><h3>Breakfast</h3><span class="when">Weekdays 9 – 11am</span><ul><li><span>Granola, yoghurt &amp; fruit</span></li><li><span>Toast &amp; spreads</span></li><li><span>Breakfast sandwiches</span></li></ul></div>
+        <div class="col"><h3>Lunch</h3><span class="when">11:30am – 3pm</span><ul><li><span>Signature sandwiches</span><em>£11 – £12.50</em></li><li><span>Soups &amp; salads</span></li><li><span>Cakes &amp; pastries</span></li></ul></div>
+        <div class="col"><h3>Pizza night</h3><span class="when">Thu – Sat from 5:30pm</span><ul><li><span>Snacks &amp; starters</span><em>from £6</em></li><li><span>Margherita, Bianca, Nduja</span><em>up to £14</em></li><li><span>Natural wine by the glass</span></li></ul></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block preorder" id="preorder">
+    <div class="wrap pre-grid">
+      <div>
+        <h2>Weekend bread, saved for you.</h2>
+        <p>Pre-order your Saturday and Sunday loaves and pastries, then skip the queue. Collection only, 8:30am to 3pm.</p>
+        <a class="btn" href="https://www.thedustyknuckle.com/harringa-cafe">Pre-order for the weekend</a>
+      </div>
+      <ol class="steps">
+        <li>Order online by midnight on Friday</li>
+        <li>Choose Saturday or Sunday</li>
+        <li>Collect from Green Lanes, 8:30am – 3pm</li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="block" id="youth">
+    <div class="wrap youth">
+      <div class="ph" role="img" aria-label="Photo placeholder, 900 by 900 pixels"><b>900 × 900</b><span>Young bakers in the kitchen</span></div>
+      <div>
+        <h2>Every loaf supports our Youth Programme.</h2>
+        <p>The Dusty Knuckle trains and employs young people who face barriers to work. Buying your bread here helps fund it.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:12px"><a class="btn btn-red" href="https://www.thedustyknuckle.com/harringa-cafe">About the programme</a><a class="btn btn-line" href="https://www.thedustyknuckle.com/harringa-cafe">Donate</a></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block visit" id="visit">
+    <div class="wrap v-grid">
+      <div>
+        <h3>Opening hours</h3>
+        <table aria-label="Opening hours">
+          <tr><td>Mon – Wed, Sun</td><td>8am – 3:30pm</td></tr>
+          <tr><td>Thu – Sat</td><td>8am – 3:30pm</td></tr>
+          <tr><td>Thu – Sat pizza</td><td>5:30pm – 11pm</td></tr>
+        </table>
+      </div>
+      <div>
+        <h3>Find us</h3>
+        <p>429 Green Lanes<br>Harringay, London N4 1HA</p>
+        <p style="margin-top:10px"><a href="https://www.google.com/maps/search/?api=1&query=The+Dusty+Knuckle+429+Green+Lanes+London">Get directions</a></p>
+      </div>
+      <div>
+        <h3>Get in touch</h3>
+        <p><a href="mailto:haringeycafe@thedustyknuckle.com">haringeycafe@thedustyknuckle.com</a></p>
+        <p style="margin-top:10px">Also in Dalston and at our Highbury Fields van.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <span>© 2026 The Dusty Knuckle. Concept redesign by Sites By MS. Photo areas show the image size to use.</span>
+    <nav aria-label="Social"><a href="https://www.instagram.com/thedustyknuckle/">Instagram</a><a href="https://x.com/thedustyknuckle">X</a></nav>
+  </div>
+</footer>
+
+<div class="mbar">
+  <a class="btn btn-line" href="#preorder">Pre-order bread</a>
+  <a class="btn btn-red" href="https://www.thedustyknuckle.com/harringa-cafe">Order pizza</a>
+</div>
+<script src="/assets/concept-bar.js" data-name="The Dusty Knuckle" data-slug="dusty-knuckle" defer></script>
+</body>
+</html>

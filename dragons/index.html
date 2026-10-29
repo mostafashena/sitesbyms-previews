@@ -1,0 +1,355 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dragons Restaurant | Yum Cha in Wellington since 2007</title>
+<meta name="description" content="Handmade dim sum from the trolleys every lunch, Cantonese dinners every night. 25 Tory Street, Wellington. Seats 200, up to 130 dishes, BYO wine.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Young+Serif&family=Noto+Serif+TC:wght@900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --jade:#17332C;
+  --jade-2:#21463D;
+  --porcelain:#F4F3EE;
+  --cloth:#F1C232;
+  --bamboo:#B88A4A;
+  --seal:#B42B21;
+  --ink:#1C1E1D;
+  --muted:#5B615E;
+  --line:#D9D7CF;
+  --serif:"Young Serif",Georgia,serif;
+  --sans:"Figtree",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+  --han:"Noto Serif TC","Songti TC",serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+body{margin:0;background:var(--porcelain);color:var(--ink);font:400 17px/1.6 var(--sans);-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--cloth);outline-offset:3px;border-radius:4px}
+.wrap{width:min(1180px,100% - 40px);margin-inline:auto}
+h1,h2,h3{font-family:var(--serif);font-weight:400;line-height:1.1;margin:0}
+p{margin:0}
+
+/* concept bar */
+.concept{background:var(--ink);color:#cfd3d1;font-size:13px;text-align:center;padding:7px 16px}
+
+/* header */
+header{position:sticky;top:0;z-index:20;background:rgba(23,51,44,.96);backdrop-filter:blur(8px);color:#fff}
+.nav{display:flex;align-items:center;justify-content:space-between;height:68px;gap:24px}
+.brand{display:flex;align-items:baseline;gap:10px;text-decoration:none}
+.brand b{font:400 26px/1 var(--serif)}
+.brand span{font:900 15px/1 var(--han);color:var(--cloth);letter-spacing:.08em}
+.links{display:flex;gap:26px;font-size:15px}
+.links a{text-decoration:none;opacity:.85}
+.links a:hover{opacity:1}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:0 24px;border-radius:999px;font:600 16px/1 var(--sans);text-decoration:none;border:2px solid transparent;transition:transform .15s,background .15s}
+.btn:hover{transform:translateY(-1px)}
+.btn-cloth{background:var(--cloth);color:var(--ink)}
+.btn-ghost{border-color:rgba(255,255,255,.45);color:#fff}
+.btn-ghost:hover{background:rgba(255,255,255,.08)}
+.btn-ink{background:var(--jade);color:#fff}
+.nav .btn{min-height:42px;padding:0 18px;font-size:15px}
+@media (max-width:860px){.links{display:none}}
+
+/* hero */
+.hero{background:var(--jade);color:#fff;overflow:hidden}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center;padding:72px 0 88px}
+.status{display:inline-flex;align-items:center;gap:10px;font-size:15px;color:#d8e2de;margin-bottom:28px}
+.dot{width:10px;height:10px;border-radius:50%;background:#7a8a85;flex:none}
+.dot.open{background:#5fd18a;box-shadow:0 0 0 5px rgba(95,209,138,.18)}
+.hero h1{font-size:clamp(44px,6.4vw,84px);letter-spacing:-.01em}
+.hero p.lead{font-size:20px;line-height:1.55;color:#dfe7e4;max-width:30ch;margin:24px 0 36px}
+.cta{display:flex;flex-wrap:wrap;gap:12px}
+.photo{position:relative}
+.photo .frame{aspect-ratio:4/5;border-radius:200px 200px 18px 18px;overflow:hidden;background:var(--jade-2)}
+.photo .frame img{width:100%;height:100%;object-fit:cover}
+.sign{position:absolute;left:-34px;top:48px;background:var(--seal);color:#fff;padding:18px 12px;border-radius:6px;writing-mode:vertical-rl;font:900 34px/1 var(--han);letter-spacing:.18em;box-shadow:0 10px 30px rgba(0,0,0,.25)}
+.since{position:absolute;right:-12px;bottom:36px;background:var(--porcelain);color:var(--ink);border-radius:14px;padding:14px 18px;font-size:14px;line-height:1.35;max-width:190px}
+.since strong{display:block;font:400 22px/1.1 var(--serif)}
+@media (max-width:860px){
+  .hero-grid{grid-template-columns:1fr;gap:44px;padding:48px 0 64px}
+  .photo{max-width:420px;margin-left:34px}
+  .since{right:0}
+}
+
+/* tablecloth band */
+.cloth{background:var(--cloth);padding:56px 0}
+.cloth p{font:400 clamp(24px,3.2vw,38px)/1.3 var(--serif);max-width:28ch}
+.cloth .facts{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
+.cloth .facts span{border:1.5px solid var(--ink);border-radius:999px;padding:6px 14px;font-weight:600;font-size:15px}
+
+/* sections */
+section.block{padding:96px 0}
+.head{display:flex;justify-content:space-between;align-items:end;gap:24px;margin-bottom:48px}
+.head h2{font-size:clamp(34px,4.4vw,54px)}
+.head p{color:var(--muted);max-width:44ch}
+
+/* how it works */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1.5px solid var(--ink)}
+.step{padding:28px 28px 0 0}
+.step + .step{padding-left:28px;border-left:1px solid var(--line)}
+.step .n{font:400 46px/1 var(--serif);color:var(--bamboo)}
+.step h3{font-size:24px;margin:18px 0 10px}
+.step p{color:var(--muted)}
+@media (max-width:860px){.steps{grid-template-columns:1fr}.step,.step+.step{padding:24px 0;border-left:0;border-bottom:1px solid var(--line)}}
+
+/* menus */
+.menus{background:#fff}
+.menu-list{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
+.menu-list a{display:grid;grid-template-columns:1fr auto;align-items:center;gap:20px;padding:26px 4px;border-bottom:1px solid var(--line);text-decoration:none;transition:background .15s,padding .15s}
+.menu-list a:hover{background:var(--porcelain);padding-inline:16px}
+.menu-list b{font:400 clamp(24px,3vw,32px)/1.1 var(--serif)}
+.menu-list small{display:block;color:var(--muted);font-size:15px;margin-top:6px}
+.menu-list .when{font-size:14px;font-weight:600;color:var(--jade);white-space:nowrap}
+@media (max-width:560px){.menu-list a{grid-template-columns:1fr}.menu-list .when{white-space:normal}}
+
+/* feature */
+.feature{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+.feature img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:18px;background:var(--line)}
+.feature h2{font-size:clamp(32px,4vw,48px);margin-bottom:18px}
+.feature p{color:var(--muted);margin-bottom:16px;max-width:46ch}
+.feature ul{margin:0 0 28px;padding-left:20px;color:var(--ink)}
+.feature li{margin:4px 0}
+.feature.flip .ph{order:2}
+@media (max-width:860px){.feature{grid-template-columns:1fr;gap:32px}.feature.flip .ph{order:0}}
+
+/* image placeholders */
+.ph{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;text-align:center;padding:16px;
+  background:repeating-linear-gradient(135deg,rgba(184,138,74,.10) 0 12px,transparent 12px 24px),#E6E2D6;color:var(--jade);border:1.5px dashed var(--bamboo)}
+.ph b{font:600 clamp(20px,2.4vw,28px)/1 var(--sans);font-variant-numeric:tabular-nums}
+.ph span{font-size:14px;color:var(--muted)}
+.frame .ph{border-radius:inherit;background:repeating-linear-gradient(135deg,rgba(255,255,255,.05) 0 12px,transparent 12px 24px),var(--jade-2);color:#fff;border-color:rgba(241,194,50,.5)}
+.frame .ph span{color:#cfdad6}
+.ph-wide{aspect-ratio:4/3;height:auto;border-radius:18px}
+.ph-dark{background:repeating-linear-gradient(135deg,rgba(255,255,255,.05) 0 12px,transparent 12px 24px),var(--jade-2);color:#fff;border-color:rgba(241,194,50,.5)}
+.ph-dark span{color:#cfdad6}
+
+/* functions */
+.functions{background:var(--jade);color:#fff}
+.functions .feature p{color:#d2ddd9}
+.functions .feature ul{color:#fff}
+.members{margin-top:56px;padding-top:28px;border-top:1px solid rgba(255,255,255,.18);display:grid;grid-template-columns:auto 1fr;gap:24px;font-size:15px;color:#d2ddd9}
+.members b{color:var(--cloth);font-weight:600}
+@media (max-width:640px){.members{grid-template-columns:1fr}}
+
+/* visit */
+.visit-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px}
+.hours{width:100%;border-collapse:collapse;font-size:16px}
+.hours th{text-align:left;font:400 22px/1.2 var(--serif);padding:22px 0 8px}
+.hours td{padding:10px 0;border-bottom:1px solid var(--line)}
+.hours td:last-child{text-align:right;font-weight:600}
+.hours tr.today td{color:var(--seal)}
+.contact{margin-top:28px;display:grid;gap:8px}
+.contact a{font-weight:600;text-decoration:none}
+.contact a:hover{text-decoration:underline}
+.note{margin-top:20px;font-size:14px;color:var(--muted)}
+.map{border-radius:18px;overflow:hidden;min-height:380px;background:var(--line)}
+.map iframe{width:100%;height:100%;min-height:380px;border:0;display:block}
+@media (max-width:860px){.visit-grid{grid-template-columns:1fr;gap:40px}}
+
+/* footer */
+footer{background:var(--ink);color:#c9cdcb;padding:56px 0 40px;font-size:15px}
+.foot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:32px}
+.foot .brand b{color:#fff}
+.foot nav{display:flex;flex-wrap:wrap;gap:22px}
+.foot nav a{text-decoration:none}
+.foot nav a:hover{color:#fff}
+.legal{margin-top:40px;font-size:13px;color:#8d9391}
+
+/* mobile action bar */
+.mbar{display:none}
+@media (max-width:640px){
+  .mbar{display:grid;grid-template-columns:1fr 1fr;gap:8px;position:fixed;left:0;right:0;bottom:0;z-index:30;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:rgba(244,243,238,.97);border-top:1px solid var(--line)}
+  .mbar .btn{min-height:46px;font-size:15px}
+  footer{padding-bottom:110px}
+  section.block{padding:72px 0}
+  .head{display:block}.head p{margin-top:14px}
+}
+</style>
+</head>
+<body>
+
+<div class="concept">Design concept prepared for Dragons Restaurant by Sites By MS. Not the official website.</div>
+
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#top" aria-label="Dragons Restaurant home"><b>Dragons</b><span>聚港軒</span></a>
+    <nav class="links" aria-label="Main">
+      <a href="#yumcha">Yum cha</a>
+      <a href="#menus">Menus</a>
+      <a href="#functions">Functions</a>
+      <a href="#visit">Visit</a>
+    </nav>
+    <a class="btn btn-cloth" href="https://www.wellingtondragons.co.nz/reservations">Book a table</a>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <div class="status" id="status"><span class="dot"></span><span>Open 7 days, 25 Tory Street</span></div>
+        <h1>Wellington’s yum cha, since 2007.</h1>
+        <p class="lead">Trolleys of handmade dim sum every lunch, Cantonese banquets every night, and room for 200 around the table.</p>
+        <div class="cta">
+          <a class="btn btn-cloth" href="https://www.wellingtondragons.co.nz/reservations">Book a table</a>
+          <a class="btn btn-ghost" href="https://order.hungryhungry.com/dragonsrestaurant">Order takeaway</a>
+        </div>
+      </div>
+      <div class="photo">
+        <div class="frame">
+          <div class="ph" role="img" aria-label="Photo placeholder, 900 by 1125 pixels"><b>900 × 1125</b><span>Yum cha spread</span></div>
+        </div>
+        <div class="sign" aria-hidden="true">聚港軒</div>
+        <div class="since"><strong>Up to 130 dishes</strong>made by hand in our kitchen every day</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cloth" aria-label="About Dragons">
+    <div class="wrap">
+      <p>Round tables, yellow tablecloths and steaming bamboo baskets. Yum cha the old-school way, right in the CBD.</p>
+      <div class="facts"><span>Seats 200</span><span>Vegan &amp; gluten-free options</span><span>BYO wine</span><span>Fully licensed</span></div>
+    </div>
+  </section>
+
+  <section class="block" id="yumcha">
+    <div class="wrap">
+      <div class="head">
+        <h2>New to yum cha?</h2>
+        <p>“Yum cha” means “drink tea” in Cantonese. It’s a meal for sharing, so bring the family, the team or the whole group.</p>
+      </div>
+      <div class="steps">
+        <div class="step"><div class="n">1</div><h3>Take a seat, pour the tea</h3><p>Yum cha runs every lunch, seven days. Weekends get busy, so book ahead.</p></div>
+        <div class="step"><div class="n">2</div><h3>Point at what you like</h3><p>Trays and trolleys come past your table. Dumplings, buns, roast pork, tarts. Just point.</p></div>
+        <div class="step"><div class="n">3</div><h3>Share everything</h3><p>Every dish is made for the middle of the table. The price list is on every table.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block menus" id="menus">
+    <div class="wrap">
+      <div class="head">
+        <h2>Our menus</h2>
+        <p>Dumplings, Cantonese classics, seafood and plenty for vegetarians.</p>
+      </div>
+      <ul class="menu-list">
+        <li><a href="https://www.wellingtondragons.co.nz/blank"><span><b>Yum cha &amp; lunch</b><small>Steamed, pan-fried and deep-fried dim sum from the trolleys</small></span><span class="when">Daily from 11am</span></a></li>
+        <li><a href="https://www.wellingtondragons.co.nz/blank"><span><b>Dinner</b><small>Cantonese mains, roast meats and banquets</small></span><span class="when">Daily 5pm – 10pm</span></a></li>
+        <li><a href="https://www.wellingtondragons.co.nz/blank"><span><b>Seafood boil</b><small>Prawns, crab, crayfish tails and crawfish in garlic butter or cajun</small></span><span class="when">Dine in</span></a></li>
+        <li><a href="https://www.wellingtondragons.co.nz/blank"><span><b>Vegetarian &amp; gluten free</b><small>A full menu so nobody misses out</small></span><span class="when">Lunch &amp; dinner</span></a></li>
+        <li><a href="https://order.hungryhungry.com/dragonsrestaurant"><span><b>Yum cha at home</b><small>Your favourite dim sum, delivered day and night</small></span><span class="when">Order online</span></a></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="wrap feature">
+      <div class="ph ph-wide" role="img" aria-label="Photo placeholder, 1000 by 750 pixels"><b>1000 × 750</b><span>Seafood boil</span></div>
+      <div>
+        <h2>Seafood boil night</h2>
+        <p>Pick your favourites, choose garlic butter or cajun, then set your spice level. Made for family dinners, date nights and big group feasts.</p>
+        <ul><li>Prawns, crab, crayfish tails, crawfish</li><li>Your sauce, your spice level</li><li>Dine in only</li></ul>
+        <a class="btn btn-ink" href="https://www.wellingtondragons.co.nz/reservations">Book a seafood boil</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="block functions" id="functions">
+    <div class="wrap">
+      <div class="feature flip">
+        <div class="ph ph-wide ph-dark" role="img" aria-label="Photo placeholder, 1000 by 750 pixels"><b>1000 × 750</b><span>Dining room set for a function</span></div>
+        <div>
+          <h2>Functions &amp; catering</h2>
+          <p>Christmas parties, birthdays, banquets and corporate meetings. We look after the menu and the tables, for up to 200 guests in-house or delivered to your office.</p>
+          <ul><li>Ultimate Party Feast and finger food bundles</li><li>Vegetarian tasting platters</li><li>Private hire of the whole restaurant</li></ul>
+          <div class="cta">
+            <a class="btn btn-cloth" href="https://www.wellingtondragons.co.nz/shop">See catering packs</a>
+            <a class="btn btn-ghost" href="mailto:info@wellingtondragons.co.nz?subject=Function%20enquiry">Enquire about a function</a>
+          </div>
+        </div>
+      </div>
+      <div class="members">
+        <b>Staff discount</b>
+        <p>Weta Cave, Weta Digital, Xero, Te Papa, Fujifilm, Spark, Trade Me and ANZ staff get 10% off, Monday to Friday. Show your staff ID before paying. Not valid with set menus or large functions.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="visit">
+    <div class="wrap visit-grid">
+      <div>
+        <h2 style="font-size:clamp(34px,4.4vw,54px)">Find us</h2>
+        <table class="hours" aria-label="Opening hours">
+          <tr><th colspan="2">Yum cha lunch</th></tr>
+          <tr data-days="1,2,3,4,5"><td>Monday – Friday</td><td>11am – 2:30pm</td></tr>
+          <tr data-days="0,6"><td>Saturday – Sunday</td><td>10:30am – 2:30pm</td></tr>
+          <tr><th colspan="2">Dinner</th></tr>
+          <tr data-days="0,1,2,3,4,5,6" data-dinner><td>Every day</td><td>5pm – 10pm</td></tr>
+        </table>
+        <div class="contact">
+          <span>25 Tory Street, Te Aro, Wellington</span>
+          <a href="tel:+6443843288">04 384 3288</a>
+          <a href="mailto:info@wellingtondragons.co.nz">info@wellingtondragons.co.nz</a>
+        </div>
+        <p class="note">A 10% surcharge applies on public holidays. During private functions we may be closed to the public, so check our Facebook page for updates.</p>
+      </div>
+      <div class="map">
+        <iframe title="Map to Dragons Restaurant, 25 Tory Street" loading="lazy" src="https://www.google.com/maps?q=Dragons+Restaurant,+25+Tory+Street,+Te+Aro,+Wellington&output=embed"></iframe>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <a class="brand" href="#top"><b>Dragons</b><span>聚港軒</span></a>
+      <nav aria-label="Footer">
+        <a href="https://www.wellingtondragons.co.nz/gift-card-1">Gift vouchers</a>
+        <a href="https://www.wellingtondragons.co.nz/loyalty">Dragons Rewards</a>
+        <a href="https://www.facebook.com/WellingtonDragons/">Facebook</a>
+        <a href="https://www.instagram.com/dragons_wellington/">Instagram</a>
+      </nav>
+    </div>
+    <p class="legal">© 2026 Dragons Chinese Restaurant. Concept redesign by Sites By MS. Photo areas show the image size to use.</p>
+  </div>
+</footer>
+
+<div class="mbar">
+  <a class="btn btn-ink" href="tel:+6443843288">Call</a>
+  <a class="btn btn-cloth" href="https://www.wellingtondragons.co.nz/reservations">Book a table</a>
+</div>
+
+<script>
+(function(){
+  try{
+    var parts=new Intl.DateTimeFormat('en-NZ',{timeZone:'Pacific/Auckland',weekday:'short',hour:'2-digit',minute:'2-digit',hour12:false}).formatToParts(new Date());
+    var get=function(t){return (parts.find(function(p){return p.type===t})||{}).value};
+    var days={Sun:0,Mon:1,Tue:2,Wed:3,Thu:4,Fri:5,Sat:6};
+    var d=days[get('weekday')], m=(+get('hour')%24)*60+(+get('minute'));
+    var weekend=(d===0||d===6), lunchStart=weekend?630:660, lunchEnd=870, dinStart=1020, dinEnd=1320;
+    var fmt=function(x){var h=Math.floor(x/60),mm=x%60,ap=h>=12?'pm':'am';h=h%12||12;return h+(mm?':'+String(mm).padStart(2,'0'):'')+ap};
+    var text,open=false;
+    if(m>=lunchStart&&m<lunchEnd){open=true;text='Open now. Yum cha until 2:30pm'}
+    else if(m>=dinStart&&m<dinEnd){open=true;text='Open now. Dinner until 10pm'}
+    else if(m<lunchStart){text='Closed now. Yum cha from '+fmt(lunchStart)+' today'}
+    else if(m<dinStart){text='Closed now. Dinner from 5pm today'}
+    else{text='Closed now. Yum cha from '+fmt((d===5||d===6)?630:660)+' tomorrow'}
+    var s=document.getElementById('status');
+    s.querySelector('.dot').classList.toggle('open',open);
+    s.querySelector('span:last-child').textContent=text;
+    document.querySelectorAll('.hours tr[data-days]').forEach(function(r){
+      if(r.dataset.days.split(',').indexOf(String(d))>-1 && !r.hasAttribute('data-dinner')) r.classList.add('today');
+    });
+  }catch(e){}
+})();
+</script>
+<script src="/assets/concept-bar.js" data-name="Dragons Restaurant" data-slug="dragons" defer></script>
+</body>
+</html>

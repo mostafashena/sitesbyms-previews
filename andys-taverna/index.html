@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Andy's Greek Taverna | Camden since 1967</title>
+<meta name="description" content="Family-run Greek taverna on Pratt Street, Camden, since 1967. Kleftiko, moussaka, meze and sea bass flown in from Greece. Open every day from 12pm.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,700;1,7..72,400&family=Commissioner:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* Layout: whitewashed taverna with blue awnings. Awning-stripe header, Greek-key border, "since 1967" family story, meze table */
+:root{
+  --white:#FFFFFF;
+  --wash:#F4F7FB;      /* whitewash with a blue cast */
+  --aegean:#1B4F9C;
+  --deep:#0E2D5C;
+  --lemon:#F2C230;
+  --olive:#6A7A3A;
+  --ink:#16202E;
+  --muted:#5A6576;
+  --line:#DCE3EE;
+  --serif:"Literata",Georgia,serif;
+  --sans:"Commissioner",system-ui,-apple-system,Segoe UI,sans-serif;
+}
+*{box-sizing:border-box}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--white);color:var(--ink);font:400 17px/1.65 var(--sans);-webkit-font-smoothing:antialiased}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--lemon);outline-offset:3px}
+h1,h2,h3{font-family:var(--serif);font-weight:700;margin:0;line-height:1.05;text-wrap:balance}
+p{margin:0}
+.wrap{width:min(1140px,100% - 40px);margin-inline:auto}
+.concept{background:var(--ink);color:#c5ccd6;font-size:13px;text-align:center;padding:7px 16px}
+
+.awning{height:22px;background:repeating-linear-gradient(90deg,var(--aegean) 0 40px,var(--white) 40px 80px);border-bottom:1px solid var(--line)}
+header{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.96);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:70px;gap:16px}
+.logo{text-decoration:none;font:700 24px/1 var(--serif);color:var(--aegean)}
+.logo small{display:block;font:500 12px/1.4 var(--sans);color:var(--muted);letter-spacing:.08em}
+.links{display:flex;gap:26px;font-weight:500;font-size:15px}
+.links a{text-decoration:none;color:var(--muted)}
+.links a:hover{color:var(--aegean)}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:50px;padding:0 26px;border-radius:4px;font:600 16px/1 var(--sans);text-decoration:none;border:2px solid var(--aegean);transition:background .2s,color .2s}
+.btn-blue{background:var(--aegean);color:#fff}
+.btn-blue:hover{background:var(--deep);border-color:var(--deep)}
+.btn-out{color:var(--aegean)}
+.btn-out:hover{background:var(--wash)}
+.nav .btn{min-height:42px;padding:0 18px;font-size:15px}
+@media (max-width:860px){.links{display:none}}
+
+.hero{background:var(--wash);padding:64px 0 80px}
+.hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.since{display:inline-flex;align-items:center;gap:12px;font-weight:600;color:var(--aegean)}
+.since b{font:700 15px/1 var(--serif);background:var(--lemon);color:var(--ink);padding:8px 12px;border-radius:4px}
+.hero h1{font-size:clamp(46px,7vw,92px);margin:22px 0;color:var(--deep)}
+.hero h1 i{font-weight:400}
+.hero p{font-size:19px;color:var(--muted);max-width:38ch;margin-bottom:32px}
+.cta{display:flex;flex-wrap:wrap;gap:12px}
+.rating{margin-top:26px;font-size:15px;color:var(--muted)}
+.rating b{color:var(--ink)}
+.hero .ph{aspect-ratio:1/1;border-radius:4px}
+@media (max-width:860px){.hero-grid{grid-template-columns:1fr}.hero .ph{max-width:460px}}
+
+.key{height:18px;background:
+  linear-gradient(var(--aegean),var(--aegean)) 0 0/100% 3px no-repeat,
+  linear-gradient(var(--aegean),var(--aegean)) 0 100%/100% 3px no-repeat,
+  repeating-linear-gradient(90deg,var(--aegean) 0 3px,transparent 3px 18px,var(--aegean) 18px 21px,transparent 21px 36px);
+  opacity:.9}
+
+.ph{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;text-align:center;padding:16px;width:100%;max-width:100%;
+  background:repeating-linear-gradient(135deg,rgba(27,79,156,.07) 0 12px,transparent 12px 24px),#E3EBF6;color:var(--aegean);border:2px dashed rgba(27,79,156,.35)}
+.ph b{font:700 clamp(20px,2.4vw,28px)/1 var(--serif);font-variant-numeric:tabular-nums}
+.ph span{font-size:14px;color:var(--muted)}
+
+section.block{padding:92px 0}
+.head{text-align:center;max-width:640px;margin:0 auto 48px}
+.head h2{font-size:clamp(38px,5.4vw,64px);color:var(--deep)}
+.head p{color:var(--muted);margin-top:14px}
+
+.meze{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.set{border:1px solid var(--line);border-radius:4px;padding:26px;display:flex;flex-direction:column;gap:10px}
+.set h3{font-size:22px;color:var(--deep)}
+.set p{color:var(--muted);font-size:15px;flex:1}
+.set .pp{font:700 22px/1 var(--serif);color:var(--aegean);font-variant-numeric:tabular-nums}
+.set .pp small{font:500 13px/1 var(--sans);color:var(--muted)}
+@media (max-width:960px){.meze{grid-template-columns:1fr 1fr}}
+@media (max-width:540px){.meze{grid-template-columns:1fr}}
+
+.favs{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:72px}
+.favs .ph{aspect-ratio:4/3;border-radius:4px}
+.favs h3{font-size:26px;margin:18px 0 6px;color:var(--deep)}
+.favs p{color:var(--muted)}
+@media (max-width:860px){.favs{grid-template-columns:1fr}}
+
+.story{background:var(--deep);color:#fff}
+.story-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:64px;align-items:center}
+.story .ph{aspect-ratio:4/5;background:repeating-linear-gradient(135deg,rgba(255,255,255,.06) 0 12px,transparent 12px 24px),#1a3f78;color:#fff;border-color:rgba(255,255,255,.35)}
+.story .ph span{color:#c9d6ea}
+.story h2{font-size:clamp(38px,5vw,62px)}
+.story p{color:#c9d6ea;margin-top:18px;max-width:46ch;font-size:18px}
+.timeline{display:grid;grid-template-columns:auto 1fr;gap:12px 20px;margin-top:30px}
+.timeline dt{font:700 22px/1.1 var(--serif);color:var(--lemon);font-variant-numeric:tabular-nums}
+.timeline dd{margin:0;color:#e3eaf5}
+@media (max-width:860px){.story-grid{grid-template-columns:1fr}.story .ph{aspect-ratio:4/3}}
+
+.visit-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px}
+.visit-grid h3{font-size:24px;color:var(--deep);margin-bottom:10px}
+.visit-grid a{color:var(--aegean);font-weight:600;text-decoration:none}
+.visit-grid a:hover{text-decoration:underline}
+.visit-grid p{color:var(--muted)}
+@media (max-width:860px){.visit-grid{grid-template-columns:1fr}}
+
+footer{background:var(--wash);border-top:1px solid var(--line);color:var(--muted);padding:40px 0;font-size:14px}
+.foot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px}
+.foot nav{display:flex;flex-wrap:wrap;gap:18px}
+.foot a{text-decoration:none;color:var(--aegean);font-weight:500}
+
+.mbar{display:none}
+@media (max-width:640px){
+  .mbar{display:grid;grid-template-columns:1fr 1fr;gap:8px;position:fixed;inset:auto 0 0;z-index:30;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:rgba(255,255,255,.97);border-top:1px solid var(--line)}
+  .mbar .btn{min-height:46px}
+  footer{padding-bottom:110px}
+  section.block{padding:68px 0}
+}
+</style>
+</head>
+<body>
+<div class="concept">Design concept prepared for Andy's Greek Taverna by Sites By MS. Not the official website.</div>
+<div class="awning" role="presentation"></div>
+
+<header>
+  <div class="wrap nav">
+    <a class="logo" href="#top">Andy's Taverna<small>CAMDEN · SINCE 1967</small></a>
+    <nav class="links" aria-label="Main"><a href="#menu">Menu</a><a href="#story">Our story</a><a href="#visit">Visit</a></nav>
+    <a class="btn btn-blue" href="https://www.opentable.co.uk/andys-taverna">Book a table</a>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="since"><b>Est. 1967</b> Family-run on Pratt Street</span>
+        <h1>A little piece of Greece <i>in Camden.</i></h1>
+        <p>Homemade Greek food, generous portions and a warm welcome. Come as a guest, leave as family.</p>
+        <div class="cta">
+          <a class="btn btn-blue" href="https://www.opentable.co.uk/andys-taverna">Book a table</a>
+          <a class="btn btn-out" href="#menu">See the menu</a>
+        </div>
+        <p class="rating"><b>4.6 ★</b> from 860+ OpenTable diners · Tripadvisor Travellers' Choice</p>
+      </div>
+      <div class="ph" role="img" aria-label="Photo placeholder, 1000 by 1000 pixels"><b>1000 × 1000</b><span>Meze spread on a blue-and-white tablecloth</span></div>
+    </div>
+  </section>
+  <div class="key" role="presentation"></div>
+
+  <section class="block" id="menu">
+    <div class="wrap">
+      <div class="head"><h2>Share the table</h2><p>Not sure what to order? Let us bring a meze feast to the middle of the table, the Greek way.</p></div>
+      <div class="meze">
+        <div class="set"><h3>Andy's special meze</h3><p>Dips, cold and hot starters, grilled meats and kleftiko.</p><span class="pp">£21.95 <small>per person</small></span></div>
+        <div class="set"><h3>Fish meze</h3><p>A seafood feast, from kalamari to grilled fish.</p><span class="pp">£23.95 <small>per person</small></span></div>
+        <div class="set"><h3>Chef's mixed platter</h3><p>A grill platter made for two to share.</p><span class="pp">£33.95 <small>for two</small></span></div>
+        <div class="set"><h3>Fish platter</h3><p>Sea bass and sea bream flown in from Greece.</p><span class="pp">£35.95 <small>for two</small></span></div>
+      </div>
+      <div class="favs">
+        <div><div class="ph" role="img" aria-label="Photo placeholder, 800 by 600 pixels"><b>800 × 600</b><span>Kleftiko</span></div><h3>Kleftiko</h3><p>Leg of lamb slow-cooked until it falls apart, with roast potatoes.</p></div>
+        <div><div class="ph" role="img" aria-label="Photo placeholder, 800 by 600 pixels"><b>800 × 600</b><span>Moussaka</span></div><h3>Moussaka</h3><p>Layers of beef and aubergine under a thick béchamel crust.</p></div>
+        <div><div class="ph" role="img" aria-label="Photo placeholder, 800 by 600 pixels"><b>800 × 600</b><span>Trio of dips with bread</span></div><h3>The dips</h3><p>Tzatziki, houmous and taramosalata with warm bread.</p></div>
+      </div>
+      <div class="cta" style="justify-content:center;margin-top:48px">
+        <a class="btn btn-out" href="https://www.andystaverna.co.uk/">See the full menu</a>
+        <a class="btn btn-out" href="https://www.just-eat.co.uk/restaurants-andysgreektaverna-regentspark/menu">Order delivery</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="block story" id="story">
+    <div class="wrap story-grid">
+      <div class="ph" role="img" aria-label="Photo placeholder, 900 by 1125 pixels"><b>900 × 1125</b><span>The white front with blue awnings on Pratt Street</span></div>
+      <div>
+        <h2>Over fifty years of Greek hospitality</h2>
+        <p>Andy's opened its doors on Pratt Street in 1967. More than fifty years later it's still family-run, still cooking from scratch, and still the place Camden comes to celebrate.</p>
+        <dl class="timeline">
+          <dt>1967</dt><dd>Andy's opens just off Camden High Street</dd>
+          <dt>2017</dt><dd>Fifty years of serving Camden</dd>
+          <dt>2023</dt><dd>Tripadvisor Travellers' Choice Best of the Best, hidden gem</dd>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="visit">
+    <div class="wrap">
+      <div class="head"><h2>Come and eat with us</h2></div>
+      <div class="visit-grid">
+        <div><h3>Opening hours</h3><p>Open every day from 12pm<br>Lunch and dinner</p></div>
+        <div><h3>Find us</h3><p>23 Pratt Street, Camden<br>London NW1 0BG</p><p style="margin-top:8px">Camden Town and Mornington Crescent tube</p></div>
+        <div><h3>Bookings &amp; takeaway</h3><p><a href="tel:+442074859718">020 7485 9718</a></p><p><a href="mailto:reservations@andystaverna.com">reservations@andystaverna.com</a></p></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <span>© 2026 Andy's Greek Taverna. Concept redesign by Sites By MS. Photo areas show the image size to use.</span>
+    <nav aria-label="Links"><a href="https://www.opentable.co.uk/andys-taverna">OpenTable</a><a href="https://www.andystaverna.co.uk/">Facebook</a></nav>
+  </div>
+</footer>
+
+<div class="mbar">
+  <a class="btn btn-out" href="tel:+442074859718">Call</a>
+  <a class="btn btn-blue" href="https://www.opentable.co.uk/andys-taverna">Book a table</a>
+</div>
+<script src="/assets/concept-bar.js" data-name="Andy's Greek Taverna" data-slug="andys-taverna" defer></script>
+</body>
+</html>

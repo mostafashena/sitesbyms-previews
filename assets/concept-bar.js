@@ -18,7 +18,8 @@
 
   // View alert (one beacon per page load, never for the team or bots).
   if (slug && store('sbm_team') !== '1' && !/bot|crawl|spider|preview|fetch/i.test(navigator.userAgent)) {
-    var url = '/api/view.php?s=' + slug + '&r=' + encodeURIComponent(document.referrer.slice(0, 200));
+    var src = (location.search.match(/[?&]from=([a-z0-9-]{1,20})/) || [])[1] || '';
+    var url = '/api/view.php?s=' + slug + '&f=' + src + '&r=' + encodeURIComponent(document.referrer.slice(0, 200));
     if (navigator.sendBeacon) navigator.sendBeacon(url); else { var i = new Image(); i.src = url; }
   }
 

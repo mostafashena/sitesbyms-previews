@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>French Society | Parisian Bistro in West Hampstead</title>
+<meta name="description" content="A Parisian bistro on Mill Lane, West Hampstead, from the team behind Patron. Steak frites, duck confit and French wine. Dinner Tuesday to Sunday, weekend lunch.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Jost:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* Layout: 1920s Paris bistro. Candlelit bottle-green walls, white tablecloth "carte" with handwritten-feel italics, ardoise (chalkboard) for specials */
+:root{
+  --bottle:#18352B;
+  --nappe:#FBFAF6;     /* tablecloth */
+  --bordeaux:#7C1F2C;
+  --laiton:#B8975A;    /* brass rail */
+  --encre:#1B1B1A;
+  --gris:#626660;
+  --line:#E4E1D8;
+  --display:"DM Serif Display",Didot,Georgia,serif;
+  --body:"Jost",system-ui,-apple-system,Segoe UI,sans-serif;
+}
+*{box-sizing:border-box}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--nappe);color:var(--encre);font:400 17px/1.65 var(--body);-webkit-font-smoothing:antialiased}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--bordeaux);outline-offset:3px}
+h1,h2,h3{font-family:var(--display);font-weight:400;margin:0;line-height:1.02;text-wrap:balance}
+p{margin:0}
+.wrap{width:min(1140px,100% - 40px);margin-inline:auto}
+.concept{background:var(--encre);color:#c5c4bd;font-size:13px;text-align:center;padding:7px 16px}
+
+header{position:sticky;top:0;z-index:20;background:var(--bottle);color:var(--nappe);border-bottom:2px solid var(--laiton)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:72px;gap:16px}
+.logo{font:italic 400 28px/1 var(--display);text-decoration:none}
+.links{display:flex;gap:26px;font-size:15px}
+.links a{text-decoration:none;opacity:.8}
+.links a:hover{opacity:1}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 24px;border-radius:999px;font:500 15px/1 var(--body);text-decoration:none;border:1px solid currentColor;transition:background .2s,color .2s}
+.btn-bdx{background:var(--bordeaux);border-color:var(--bordeaux);color:#fff}
+.btn-bdx:hover{background:#651823}
+.btn-line:hover{background:rgba(255,255,255,.1)}
+.nav .btn{min-height:40px;padding:0 18px}
+@media (max-width:860px){.links{display:none}}
+
+.hero{background:var(--bottle);color:var(--nappe);padding:64px 0 96px;overflow:hidden}
+.hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center}
+.bienvenue{font:italic 400 24px/1 var(--display);color:var(--laiton)}
+.hero h1{font-size:clamp(52px,7.6vw,100px);margin:18px 0 24px}
+.hero p{color:#c7d3cd;font-size:19px;max-width:38ch;margin-bottom:32px}
+.cta{display:flex;flex-wrap:wrap;gap:12px}
+.mirror{position:relative}
+.mirror .ph{aspect-ratio:3/4;border-radius:999px 999px 6px 6px;outline:2px solid var(--laiton);outline-offset:10px}
+.ardoise{position:absolute;left:-40px;bottom:-30px;background:#22231F;color:#ECEAE3;padding:18px 22px;border:6px solid #6b4a2b;transform:rotate(-3deg);font-size:15px;line-height:1.5;max-width:230px;box-shadow:0 12px 30px rgba(0,0,0,.35)}
+.ardoise b{font:italic 400 22px/1.1 var(--display);display:block;margin-bottom:4px}
+@media (max-width:860px){.hero-grid{grid-template-columns:1fr}.mirror{max-width:400px;margin:20px auto 30px}.ardoise{left:-10px}}
+
+.ph{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;text-align:center;padding:16px;width:100%;max-width:100%;
+  background:repeating-linear-gradient(135deg,rgba(184,151,90,.1) 0 12px,transparent 12px 24px),#24493C;color:var(--nappe);border:1px dashed rgba(184,151,90,.55)}
+.ph b{font:500 clamp(18px,2.2vw,24px)/1 var(--body);font-variant-numeric:tabular-nums}
+.ph span{font-size:14px;color:#c7d3cd}
+.lite .ph{background:repeating-linear-gradient(135deg,rgba(24,53,43,.06) 0 12px,transparent 12px 24px),#ECE9E0;color:var(--bottle);border-color:rgba(24,53,43,.35)}
+.lite .ph span{color:var(--gris)}
+
+.press{border-bottom:1px solid var(--line)}
+.press .wrap{display:flex;flex-wrap:wrap;justify-content:center;gap:12px 48px;padding:28px 0;color:var(--gris);font-size:15px;text-align:center}
+.press b{color:var(--encre);font-family:var(--display);font-size:20px;font-weight:400}
+
+section.block{padding:96px 0}
+.carte{max-width:760px;margin:0 auto;text-align:center}
+.carte h2{font-size:clamp(44px,6vw,72px)}
+.carte .sub{color:var(--gris);margin:12px 0 44px}
+.carte h3{font:italic 400 26px/1 var(--display);color:var(--bordeaux);margin:36px 0 14px}
+.carte ul{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+.carte li{font-size:18px}
+.carte li small{display:block;color:var(--gris);font-size:15px}
+.carte .btn{margin-top:44px;color:var(--bottle)}
+.carte .btn:hover{background:var(--bottle);color:#fff}
+
+.split{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+.split .ph{aspect-ratio:4/3}
+.split h2{font-size:clamp(38px,5vw,60px);margin-bottom:18px}
+.split p{color:var(--gris);margin-bottom:14px;max-width:44ch}
+.split ul{padding-left:20px;margin:0 0 26px}
+@media (max-width:860px){.split{grid-template-columns:1fr}}
+
+.visit{background:var(--bottle);color:var(--nappe)}
+.v-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px}
+.v-grid h2{font-size:clamp(38px,5vw,60px);margin-bottom:22px}
+.hours{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
+.hours td{padding:12px 0;border-bottom:1px solid rgba(255,255,255,.18)}
+.hours td:last-child{text-align:right}
+.addr{display:grid;gap:10px;font-size:18px;align-content:start}
+.addr a{color:var(--laiton);text-decoration:none}
+.addr small{color:#c7d3cd;font-size:14px}
+@media (max-width:860px){.v-grid{grid-template-columns:1fr}}
+
+footer{background:var(--encre);color:#aaa9a2;padding:40px 0;font-size:14px}
+.foot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px}
+.foot a{text-decoration:none;color:var(--nappe)}
+
+.mbar{display:none}
+@media (max-width:640px){
+  .mbar{display:grid;grid-template-columns:1fr 1fr;gap:8px;position:fixed;inset:auto 0 0;z-index:30;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:var(--bottle)}
+  .mbar .btn{min-height:46px;color:var(--nappe)}
+  footer{padding-bottom:110px}
+  section.block{padding:68px 0}
+}
+</style>
+</head>
+<body>
+<div class="concept">Design concept prepared for French Society by Sites By MS. Not the official website.</div>
+
+<header>
+  <div class="wrap nav">
+    <a class="logo" href="#top">French Society</a>
+    <nav class="links" aria-label="Main"><a href="#carte">La carte</a><a href="#private">Private hire</a><a href="#visit">Visit</a></nav>
+    <a class="btn btn-bdx" href="https://www.opentable.co.uk/r/french-society-london">Book a table</a>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <p class="bienvenue">Bienvenue.</p>
+        <h1>A little corner of Paris on Mill Lane.</h1>
+        <p>Candlelight, white tablecloths and the classics done properly. From the team behind Patron in Kentish Town.</p>
+        <div class="cta">
+          <a class="btn btn-bdx" href="https://www.opentable.co.uk/r/french-society-london">Book a table</a>
+          <a class="btn btn-line" href="#carte">See la carte</a>
+        </div>
+      </div>
+      <div class="mirror">
+        <div class="ph" role="img" aria-label="Photo placeholder, 900 by 1200 pixels"><b>900 × 1200</b><span>Candlelit dining room</span></div>
+        <div class="ardoise"><b>Ce soir</b>Steak frites with Café de Paris butter. Ask about tonight's specials.</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="press">
+    <div class="wrap">
+      <span><b>4.8 / 5</b> from 199 OpenTable diners</span>
+      <span><b>“A neighbourhood gem”</b> say our guests</span>
+      <span><b>Dogs welcome</b> inside and out</span>
+    </div>
+  </div>
+
+  <section class="block" id="carte">
+    <div class="wrap carte">
+      <h2>La carte</h2>
+      <p class="sub">A short menu that changes with the season, cooked by head chef Louis Bird.</p>
+      <h3>Pour commencer</h3>
+      <ul>
+        <li>Escargots<small>Garlic and parsley butter</small></li>
+        <li>Smoked salmon<small>Sorrel cream</small></li>
+        <li>White asparagus<small>Nutmeg cream sauce</small></li>
+      </ul>
+      <h3>Plats</h3>
+      <ul>
+        <li>Steak frites<small>Hand-cut chips, Café de Paris butter</small></li>
+        <li>Duck confit<small>Confit potatoes</small></li>
+        <li>Moules à la crème</li>
+      </ul>
+      <h3>Desserts</h3>
+      <ul>
+        <li>Crème brûlée</li>
+        <li>Chocolate mousse</li>
+      </ul>
+      <a class="btn" href="https://www.opentable.co.uk/r/french-society-london">See the full menu &amp; wine list</a>
+    </div>
+  </section>
+
+  <section class="block lite" id="private" style="padding-top:0">
+    <div class="wrap split">
+      <div class="ph" role="img" aria-label="Photo placeholder, 1000 by 750 pixels"><b>1000 × 750</b><span>Long table set for a private party</span></div>
+      <div>
+        <h2>Celebrate chez nous</h2>
+        <p>Birthdays, weddings, company dinners and filming. Hire the semi-private area or the whole bistro.</p>
+        <ul><li>Bespoke canapés and set menus</li><li>Semi-private space for larger groups</li><li>Full restaurant hire</li></ul>
+        <a class="btn btn-bdx" href="mailto:bonjour@frenchsociety.co.uk?subject=Private%20hire%20enquiry">Enquire about private hire</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="block visit" id="visit">
+    <div class="wrap v-grid">
+      <div>
+        <h2>Opening hours</h2>
+        <table class="hours" aria-label="Opening hours">
+          <tr><td>Monday</td><td>Closed</td></tr>
+          <tr><td>Tuesday – Sunday dinner</td><td>6pm – 9:30pm</td></tr>
+          <tr><td>Saturday &amp; Sunday lunch</td><td>12pm – 3pm</td></tr>
+        </table>
+      </div>
+      <div class="addr">
+        <h2>Find us</h2>
+        <span>77 Mill Lane, West Hampstead<br>London NW6 1NB</span>
+        <a href="tel:+442035187540">020 3518 7540</a>
+        <a href="mailto:bonjour@frenchsociety.co.uk">bonjour@frenchsociety.co.uk</a>
+        <small>A short walk from West Hampstead station. Card only, no cash.</small>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <span>© 2026 French Society. Concept redesign by Sites By MS. Photo areas show the image size to use.</span>
+    <a href="https://www.instagram.com/frenchsocietylondon/">@frenchsocietylondon</a>
+  </div>
+</footer>
+
+<div class="mbar">
+  <a class="btn btn-line" href="tel:+442035187540">Call</a>
+  <a class="btn btn-bdx" href="https://www.opentable.co.uk/r/french-society-london">Book</a>
+</div>
+<script src="/assets/concept-bar.js" data-name="French Society" data-slug="french-society" defer></script>
+</body>
+</html>

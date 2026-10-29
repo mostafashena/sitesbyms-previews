@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Green Rooms | London's Arts Hotel, Wood Green</title>
+<meta name="description" content="Affordable rooms, a restaurant and bar, and event spaces in a restored 1925 Art Deco building opposite Wood Green tube. A social enterprise hotel for the arts.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Italiana&family=Karla:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+/* Layout: 1925 Art Deco power-company building. Deco green + brass; stepped "ziggurat" dividers; tube-journey strip */
+:root{
+  --deco:#0F3B2E;
+  --deco-2:#16503F;
+  --brass:#C7A55B;
+  --plaster:#F3F0E8;
+  --ink:#14211C;
+  --muted:#5B6862;
+  --line:#DCD6C6;
+  --display:"Italiana",Didot,Georgia,serif;
+  --body:"Karla",system-ui,-apple-system,Segoe UI,sans-serif;
+}
+*{box-sizing:border-box}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--plaster);color:var(--ink);font:400 17px/1.65 var(--body);-webkit-font-smoothing:antialiased}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--brass);outline-offset:3px}
+h1,h2,h3{font-family:var(--display);font-weight:400;margin:0;line-height:1.02;text-wrap:balance}
+p{margin:0}
+.wrap{width:min(1160px,100% - 40px);margin-inline:auto}
+.concept{background:#000;color:#b8c2bd;font-size:13px;text-align:center;padding:7px 16px}
+
+header{position:sticky;top:0;z-index:20;background:var(--deco);color:var(--plaster);border-bottom:1px solid rgba(199,165,91,.35)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:72px;gap:16px}
+.logo{font:400 28px/1 var(--display);letter-spacing:.14em;text-decoration:none}
+.links{display:flex;gap:26px;font-size:15px}
+.links a{text-decoration:none;opacity:.8}
+.links a:hover{opacity:1;color:var(--brass)}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:50px;padding:0 26px;font:700 15px/1 var(--body);letter-spacing:.06em;text-transform:uppercase;text-decoration:none;border:1px solid var(--brass);transition:background .2s,color .2s}
+.btn-brass{background:var(--brass);color:var(--deco)}
+.btn-brass:hover{background:#d8b76b}
+.btn-ghost{color:inherit}
+.btn-ghost:hover{background:rgba(199,165,91,.15)}
+.nav .btn{min-height:42px;padding:0 18px;font-size:13px}
+@media (max-width:880px){.links{display:none}}
+
+.hero{background:var(--deco);color:var(--plaster);padding:72px 0 0;text-align:center}
+.hero .kick{color:var(--brass);letter-spacing:.2em;text-transform:uppercase;font-size:13px;font-weight:700}
+.hero h1{font-size:clamp(52px,9vw,128px);margin:18px auto 22px;max-width:11ch}
+.hero p{color:#c9d4cf;font-size:19px;max-width:48ch;margin:0 auto 34px}
+.cta{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
+.arch{margin:64px auto 0;max-width:920px}
+.arch .ph{aspect-ratio:16/9;border-radius:460px 460px 0 0;border-bottom:0}
+.zig{height:28px;background:
+  linear-gradient(135deg,var(--deco) 25%,transparent 25%) -14px 0/28px 28px,
+  linear-gradient(225deg,var(--deco) 25%,transparent 25%) -14px 0/28px 28px,var(--plaster)}
+
+.ph{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;text-align:center;padding:16px;width:100%;max-width:100%;
+  background:repeating-linear-gradient(135deg,rgba(199,165,91,.1) 0 12px,transparent 12px 24px),var(--deco-2);color:var(--plaster);border:1px dashed rgba(199,165,91,.6)}
+.ph b{font:700 clamp(18px,2.2vw,24px)/1 var(--body);font-variant-numeric:tabular-nums}
+.ph span{font-size:14px;color:#c9d4cf}
+.light .ph{background:repeating-linear-gradient(135deg,rgba(15,59,46,.06) 0 12px,transparent 12px 24px),#E4E0D2;color:var(--deco);border-color:rgba(15,59,46,.35)}
+.light .ph span{color:var(--muted)}
+
+.journey{display:grid;grid-template-columns:repeat(3,1fr);text-align:center;border-bottom:1px solid var(--line)}
+.journey div{padding:30px 10px}
+.journey div+div{border-left:1px solid var(--line)}
+.journey b{display:block;font:400 44px/1 var(--display);color:var(--deco)}
+.journey span{color:var(--muted);font-size:15px}
+@media (max-width:640px){.journey{grid-template-columns:1fr}.journey div+div{border-left:0;border-top:1px solid var(--line)}}
+
+section.block{padding:96px 0}
+.head{text-align:center;max-width:640px;margin:0 auto 48px}
+.head h2{font-size:clamp(40px,5.6vw,72px);color:var(--deco)}
+.head p{color:var(--muted);margin-top:14px}
+
+.offer{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+.offer .ph{aspect-ratio:3/4}
+.offer h3{font-size:34px;color:var(--deco);margin:20px 0 8px}
+.offer p{color:var(--muted);margin-bottom:14px}
+.offer a{font-weight:700;color:var(--deco)}
+@media (max-width:860px){.offer{grid-template-columns:1fr}.offer .ph{aspect-ratio:4/3}}
+
+.story{background:var(--deco);color:var(--plaster)}
+.story-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+.story h2{font-size:clamp(40px,5vw,64px)}
+.story p{color:#c9d4cf;margin-top:18px;max-width:46ch}
+.story .ph{aspect-ratio:4/5}
+.story dl{display:grid;grid-template-columns:auto 1fr;gap:10px 20px;margin:28px 0 0}
+.story dt{color:var(--brass);font-weight:700}
+.story dd{margin:0;color:#c9d4cf}
+@media (max-width:860px){.story-grid{grid-template-columns:1fr}.story .ph{aspect-ratio:4/3}}
+
+.contact{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;text-align:center}
+.contact h3{font-size:28px;color:var(--deco);margin-bottom:10px}
+.contact a{font-weight:700;text-decoration:none}
+.contact a:hover{text-decoration:underline}
+@media (max-width:760px){.contact{grid-template-columns:1fr}}
+
+footer{background:var(--ink);color:#aab4af;padding:40px 0;font-size:14px}
+.foot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px}
+.foot nav{display:flex;gap:18px}
+.foot a{text-decoration:none;color:var(--plaster)}
+
+.mbar{display:none}
+@media (max-width:640px){
+  .mbar{display:grid;grid-template-columns:1fr 1fr;gap:8px;position:fixed;inset:auto 0 0;z-index:30;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:var(--deco)}
+  .mbar .btn{min-height:46px;color:var(--plaster)}
+  .mbar .btn-brass{color:var(--deco)}
+  footer{padding-bottom:110px}
+  section.block{padding:68px 0}
+}
+</style>
+</head>
+<body>
+<div class="concept">Design concept prepared for Green Rooms Hotel by Sites By MS. Not the official website.</div>
+
+<header>
+  <div class="wrap nav">
+    <a class="logo" href="#top">GREEN ROOMS</a>
+    <nav class="links" aria-label="Main"><a href="#stay">Rooms</a><a href="#stay">Food &amp; bar</a><a href="#stay">Spaces</a><a href="#story">Our story</a><a href="#contact">Contact</a></nav>
+    <a class="btn btn-brass" href="https://www.greenrooms.london/">Book now</a>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap">
+      <p class="kick">Wood Green, London N22</p>
+      <h1>London's arts hotel</h1>
+      <p>Affordable rooms, a restaurant and bar, and spaces for creative work, in a restored 1925 Art Deco building opposite Wood Green tube.</p>
+      <div class="cta">
+        <a class="btn btn-brass" href="https://www.greenrooms.london/">Check availability</a>
+        <a class="btn btn-ghost" href="#stay">Explore the hotel</a>
+      </div>
+      <div class="arch"><div class="ph" role="img" aria-label="Photo placeholder, 1840 by 1035 pixels"><b>1840 × 1035</b><span>The Art Deco façade on Station Road</span></div></div>
+    </div>
+  </section>
+  <div class="zig" role="presentation"></div>
+
+  <div class="wrap journey" aria-label="Journey times on the Piccadilly line">
+    <div><b>0 min</b><span>Wood Green tube is across the road</span></div>
+    <div><b>12 min</b><span>to King's Cross St Pancras</span></div>
+    <div><b>20 min</b><span>to the West End</span></div>
+  </div>
+
+  <section class="block light" id="stay">
+    <div class="wrap">
+      <div class="head"><h2>Stay, eat, create</h2><p>Built for artists, performers and anyone visiting London on a sensible budget.</p></div>
+      <div class="offer">
+        <div><div class="ph" role="img" aria-label="Photo placeholder, 900 by 1200 pixels"><b>900 × 1200</b><span>Corner room with vintage furniture</span></div><h3>Rooms</h3><p>Private rooms and dorms over four floors, furnished with vintage finds and pieces by Folk.</p><a href="https://www.greenrooms.london/">See rooms &amp; prices</a></div>
+        <div><div class="ph" role="img" aria-label="Photo placeholder, 900 by 1200 pixels"><b>900 × 1200</b><span>Busy bar in the evening</span></div><h3>Restaurant &amp; bar</h3><p>Breakfast for guests, plus a bar and kitchen open to the neighbourhood.</p><a href="https://www.greenrooms.london/">See the food menu</a></div>
+        <div><div class="ph" role="img" aria-label="Photo placeholder, 900 by 1200 pixels"><b>900 × 1200</b><span>Event space set for a talk</span></div><h3>Spaces for hire</h3><p>Rooms for rehearsals, workshops, launches and private events.</p><a href="https://www.greenrooms.london/">Enquire about a space</a></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block story" id="story">
+    <div class="wrap story-grid">
+      <div class="ph" role="img" aria-label="Photo placeholder, 1000 by 1250 pixels"><b>1000 × 1250</b><span>Lobby with original Deco details</span></div>
+      <div>
+        <h2>A social enterprise in a 1925 power station office</h2>
+        <p>Green Rooms was built in 1925 for the North Metropolitan Power and Electricity Company. Restored by architects SODA, it now runs as a social enterprise offering affordable places to stay for the creative community.</p>
+        <dl>
+          <dt>Built</dt><dd>1925, early Art Deco</dd>
+          <dt>Restored by</dt><dd>SODA architects</dd>
+          <dt>Partners</dt><dd>British Council, New Diorama, The Other Art Fair and more</dd>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <section class="block light" id="contact">
+    <div class="wrap">
+      <div class="head"><h2>Find us</h2></div>
+      <div class="contact">
+        <div><h3>Address</h3><p>13–27 Station Road<br>Wood Green, London N22 6UW</p></div>
+        <div><h3>Call</h3><p><a href="tel:+442088885317">020 8888 5317</a></p></div>
+        <div><h3>Email</h3><p><a href="mailto:info@greenrooms.london">info@greenrooms.london</a></p></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <span>© 2026 Green Rooms, operated by The Hotel Co Project Ltd. Concept redesign by Sites By MS. Photo areas show the image size to use.</span>
+    <nav aria-label="Social"><a href="https://www.facebook.com/GreenRoomsHotel/">Facebook</a><a href="https://www.greenrooms.london/">Instagram</a></nav>
+  </div>
+</footer>
+
+<div class="mbar">
+  <a class="btn btn-ghost" href="tel:+442088885317">Call</a>
+  <a class="btn btn-brass" href="https://www.greenrooms.london/">Book now</a>
+</div>
+<script src="/assets/concept-bar.js" data-name="Green Rooms" data-slug="green-rooms" defer></script>
+</body>
+</html>

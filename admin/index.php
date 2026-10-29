@@ -164,7 +164,7 @@ $open = array_values(array_filter($messages, fn($m) => !$m['handled']));
 $views = views_all();
 $week = array_filter($views, fn($v) => strtotime($v['at']) > time() - 7 * 86400);
 $bySlug = [];
-foreach ($views as $v) { $s = $v['slug']; $bySlug[$s] ??= ['n' => 0, 'last' => null, 'device' => '']; $bySlug[$s]['n']++; if (!$bySlug[$s]['last'] || strtotime($v['at']) > strtotime($bySlug[$s]['last'])) { $bySlug[$s]['last'] = $v['at']; $bySlug[$s]['device'] = $v['device']; } }
+foreach ($views as $v) { $s = $v['slug']; $bySlug[$s] ??= ['n' => 0, 'last' => null, 'device' => '', 'from' => '']; $bySlug[$s]['n']++; if (!$bySlug[$s]['last'] || strtotime($v['at']) > strtotime($bySlug[$s]['last'])) { $bySlug[$s]['last'] = $v['at']; $bySlug[$s]['device'] = $v['device']; } if (!$bySlug[$s]['from'] && str_starts_with((string)$v['ref'], 'via ')) $bySlug[$s]['from'] = substr($v['ref'], 4); }
 uasort($bySlug, fn($x, $y) => strtotime((string)$y['last']) <=> strtotime((string)$x['last']));
 $cfg = config();
 $typeLabel = ['booking' => 'Call request', 'question' => 'Question', 'concept' => 'Free concept request'];
@@ -215,7 +215,7 @@ if ($page === 'home') {
     echo '<div class="stats"><a href="?p=calls" class="stat"><b>' . count($upcoming) . '</b><span>Upcoming calls</span></a><a href="?p=messages" class="stat"><b>' . count($open) . '</b><span>Unanswered messages</span></a><a href="?p=views" class="stat"><b>' . count($week) . '</b><span>Concept views, last 7 days</span></a><a href="?p=views" class="stat"><b>' . count($bySlug) . '</b><span>Concepts opened</span></a></div>';
     echo '<div class="g2"><section class="card"><div class="ch"><h2>Next calls</h2><a href="?p=calls">All calls</a></div>' . ($upcoming ? implode('', array_map(fn($b) => booking_row($b, $howLabel), array_slice($upcoming, 0, 4))) : '<div class="empty">No calls booked yet.</div>') . '</section>';
     echo '<section class="card"><div class="ch"><h2>Latest concept views</h2><a href="?p=views">All views</a></div>';
-    if ($views) foreach (array_slice($views, 0, 6) as $v) echo '<div class="row"><div class="grow"><b>' . h($v['slug']) . '</b><small>' . h(ago($v['at'])) . ' · ' . h($v['device']) . '</small></div><a class="btn line sm" href="/' . h($v['slug']) . '/?team=1" target="_blank" rel="noopener">Open</a></div>';
+    if ($views) foreach (array_slice($views, 0, 6) as $v) echo '<div class="row"><div class="grow"><b>' . h($v['slug']) . '</b><small>' . h(ago($v['at'])) . ' · ' . h($v['device']) . (str_starts_with((string)$v['ref'], 'via ') ? ' · from ' . h(substr($v['ref'], 4) === 'ig' ? 'Instagram DM' : substr($v['ref'], 4)) : '') . '</small></div><a class="btn line sm" href="/' . h($v['slug']) . '/?team=1" target="_blank" rel="noopener">Open</a></div>';
     else echo '<div class="empty">No one has opened a concept yet. When a client opens their link, you\'ll see it here and get an email.</div>';
     echo '</section></div>';
     echo '<section class="card"><div class="ch"><h2>Unanswered messages</h2><a href="?p=messages">All messages</a></div>' . ($open ? implode('', array_map(fn($m) => msg_row($m, $typeLabel), array_slice($open, 0, 3))) : '<div class="empty">All caught up.</div>') . '</section>';
@@ -232,7 +232,7 @@ if ($page === 'messages') {
 }
 if ($page === 'views') {
     echo '<h1>Concept views</h1><p class="sub">Who has opened their concept. The first few hours are the best time to follow up.</p><section class="card">';
-    if ($bySlug) foreach ($bySlug as $s => $v) echo '<div class="row"><div class="grow"><b>' . h($s) . '</b><small>Last opened ' . h(ago($v['last'])) . ' · ' . h($v['device']) . '</small></div><span class="pill">' . $v['n'] . ($v['n'] === 1 ? ' view' : ' views') . '</span><a class="btn line sm" href="/' . h($s) . '/?team=1" target="_blank" rel="noopener">Open</a></div>';
+    if ($bySlug) foreach ($bySlug as $s => $v) echo '<div class="row"><div class="grow"><b>' . h($s) . '</b><small>Last opened ' . h(ago($v['last'])) . ' · ' . h($v['device']) . ($v['from'] ? ' · clicked from ' . h($v['from'] === 'ig' ? 'Instagram DM' : $v['from']) : '') . '</small></div><span class="pill">' . $v['n'] . ($v['n'] === 1 ? ' view' : ' views') . '</span><a class="btn line sm" href="/' . h($s) . '/?team=1" target="_blank" rel="noopener">Open</a></div>';
     else echo '<div class="empty">No views recorded yet.</div>';
     echo '</section><p class="sub">Your own visits are not counted once you have opened any concept with ?team=1 on that device.</p>';
 }
