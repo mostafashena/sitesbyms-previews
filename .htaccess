@@ -1,4 +1,8 @@
 RedirectMatch 404 /\.git
 RedirectMatch 404 \.sh$
+RedirectMatch 404 /api/_
 Options -Indexes
-DirectoryIndex index.html
+DirectoryIndex index.html index.php
+<FilesMatch "\.(jsonl?|md)$">
+  Require all denied
+</FilesMatch>

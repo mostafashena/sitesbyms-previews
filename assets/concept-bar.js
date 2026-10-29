@@ -42,7 +42,18 @@
     + '@media (max-width:760px){.sbm-bar{flex-wrap:wrap;gap:10px;padding:12px;bottom:calc(10px + env(safe-area-inset-bottom,0px));width:calc(100% - 20px)}.sbm-bar img{height:26px}.sbm-txt span{display:none}.sbm-txt b{font-size:14px}.sbm-acts{order:3;width:100%;display:grid;grid-template-columns:1fr 1fr}.sbm-btn{min-height:46px;padding:0 8px;font-size:14px}}'
     + '.sbm-pill{position:fixed;z-index:2147483000;right:calc(16px + env(safe-area-inset-right,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));background:#070F37;color:#FBF5ED;border:0;border-radius:999px;padding:10px 16px 10px 12px;display:flex;align-items:center;gap:8px;font-weight:700;font-size:14px;cursor:pointer;box-shadow:0 12px 30px rgba(7,15,55,.4)}'
     + '.sbm-pill img{height:20px;width:auto}'
-    + '.sbm-bar[hidden],.sbm-pill[hidden]{display:none!important}';
+    + '.sbm-bar[hidden],.sbm-pill[hidden]{display:none!important}'
+    + '.sbm-sheet-bg{position:fixed;inset:0;z-index:2147483600;background:rgba(7,15,55,.55);display:flex;align-items:center;justify-content:center;padding:16px;animation:sbmFade .2s ease-out}'
+    + '@keyframes sbmFade{from{opacity:0}to{opacity:1}}'
+    + '.sbm-sheet{background:#fff;border-radius:22px;width:100%;max-width:720px;max-height:calc(100vh - 32px);overflow:auto;box-shadow:0 30px 80px rgba(7,15,55,.45);font-family:"Plus Jakarta Sans",system-ui,sans-serif}'
+    + '.sbm-sheet-head{position:sticky;top:0;z-index:2;background:#FBF5ED;display:flex;align-items:center;gap:12px;padding:16px 16px 16px 22px;border-bottom:1px solid #EEEAF4}'
+    + '.sbm-sheet-head img{height:30px;width:auto}'
+    + '.sbm-sheet-head div{flex:1;min-width:0;line-height:1.35;color:#0E1430}'
+    + '.sbm-sheet-head b{display:block;font-size:16px;font-weight:800}'
+    + '.sbm-sheet-head span{display:block;font-size:13px;color:#5B6180}'
+    + '.sbm-close{background:#fff;border:1px solid #DCD8E8;width:44px;height:44px;border-radius:12px;display:grid;place-items:center;cursor:pointer;color:#0E1430;flex:0 0 auto}'
+    + '.sbm-sheet-body{padding:22px}'
+    + '@media (max-width:640px){.sbm-sheet-bg{align-items:flex-end;padding:0}.sbm-sheet{border-radius:22px 22px 0 0;max-height:92vh}.sbm-sheet-body{padding:18px 16px calc(22px + env(safe-area-inset-bottom,0px))}}';
   var st = document.createElement('style'); st.textContent = css; document.head.appendChild(st);
   if (!document.querySelector('link[href*="Plus+Jakarta+Sans"]')) {
     var lf = document.createElement('link'); lf.rel = 'stylesheet';
@@ -83,6 +94,29 @@
     requestAnimationFrame(function () { liftOthers(open ? bar.offsetHeight + 14 : 0); });
   }
   bar.querySelector('.sbm-x').onclick = function () { show(false); pill.focus(); };
+  bar.querySelector('.sbm-book').onclick = function (e) { e.preventDefault(); openBooking(); };
+  if (/[?&#]book\b/.test(location.search + location.hash)) setTimeout(openBooking, 600);
+
+  function openBooking() {
+    var prev = document.activeElement;
+    var bg = document.createElement('div'); bg.className = 'sbm-sheet-bg';
+    bg.innerHTML = '<div class="sbm-sheet" role="dialog" aria-modal="true" aria-label="Book a 15-minute call">'
+      + '<div class="sbm-sheet-head"><img src="/assets/brand/mark-sm-light.png" alt=""><div><b></b><span>Free, no obligation · video, WhatsApp or phone</span></div>'
+      + '<button type="button" class="sbm-close" aria-label="Close"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>'
+      + '<div class="sbm-sheet-body"></div></div>';
+    bg.querySelector('.sbm-sheet-head b').textContent = 'A 15-minute call about ' + name + "'s website";
+    document.body.appendChild(bg); document.documentElement.style.overflow = 'hidden';
+    function close() { bg.remove(); document.documentElement.style.overflow = ''; document.removeEventListener('keydown', key); if (prev && prev.focus) prev.focus(); }
+    function key(e) { if (e.key === 'Escape') close(); }
+    document.addEventListener('keydown', key);
+    bg.addEventListener('click', function (e) { if (e.target === bg) close(); });
+    bg.querySelector('.sbm-close').onclick = close;
+    bg.querySelector('.sbm-close').focus();
+    var body = bg.querySelector('.sbm-sheet-body');
+    function go() { window.SBMBooking.mount(body, { business: name, slug: slug }); }
+    if (window.SBMBooking) go();
+    else { var s = document.createElement('script'); s.src = '/assets/booking.js'; s.onload = go; s.onerror = function () { location.href = '/book/' + q; }; document.head.appendChild(s); }
+  }
   pill.onclick = function () { show(true); };
 
   function mount() {
