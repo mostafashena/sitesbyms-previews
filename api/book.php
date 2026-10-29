@@ -31,7 +31,7 @@ $c = config();
 $b = ['id' => 'b' . date('ymd') . bin2hex(random_bytes(3)), 'created' => gmdate('c'), 'start_ts' => $ts, 'length' => (int)$c['length'],
       'name' => $name, 'business' => $business, 'email' => $email, 'phone' => $phone, 'how' => $how, 'slug' => $slug,
       'meet' => $how === 'Video call (Google Meet)' ? (string)$c['meet_link'] : '', 'status' => 'booked'];
-append_line('bookings.jsonl', $b);
+booking_add($b);
 @unlink(data_dir() . '/ical_cache.json');
 
 $when = (new DateTime('@' . $ts))->setTimezone(new DateTimeZone(TZ))->format('l j F, H:i');

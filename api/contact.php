@@ -3,23 +3,19 @@
 // Emails the team, sends the visitor a short receipt, logs the submission outside public_html,
 // then redirects to /thanks/.
 declare(strict_types=1);
+require __DIR__ . '/_lib.php';
 
-const TEAM_TO   = 'hello@sitesbyms.com, m.and.s.design.develop@gmail.com';
-const FROM_ADDR = 'hello@sitesbyms.com';
 const MAX_FILE  = 5 * 1024 * 1024;
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') { header('Location: /'); exit; }
 
-$home    = getenv('HOME') ?: dirname(__DIR__, 2);
-$dataDir = $home . '/sitesbyms_data';
-if (!is_dir($dataDir)) @mkdir($dataDir, 0700, true);
 
 function field(string $k, int $max = 200): string {
     $v = trim((string)($_POST[$k] ?? ''));
     $v = str_replace(["\r", "\0"], '', $v);
     return mb_substr($v, 0, $max);
 }
-function oneLine(string $v): string { return trim(preg_replace('/[\r\n]+/', ' ', $v)); }
+function oneLine(string $v): string { return one_line($v); }
 function back(string $msg): void {
     http_response_code(400);
     echo '<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">'
@@ -32,13 +28,7 @@ function back(string $msg): void {
 // Spam trap: real visitors never fill this.
 if (field('website_url') !== '') { header('Location: /thanks/'); exit; }
 
-// Simple rate limit: 6 submissions per IP per hour.
-$ip = $_SERVER['REMOTE_ADDR'] ?? 'unknown';
-$rlFile = $dataDir . '/rate_' . md5($ip) . '.json';
-$now = time();
-$hits = is_file($rlFile) ? array_filter((array)json_decode((string)file_get_contents($rlFile), true), fn($t) => $t > $now - 3600) : [];
-if (count($hits) >= 6) back('Too many messages from this connection. Please try again in an hour, or message us on WhatsApp.');
-$hits[] = $now; file_put_contents($rlFile, json_encode(array_values($hits)));
+if (!rate_limit('contact', 6, 3600)) back('Too many messages from this connection. Please try again in an hour, or message us on WhatsApp.');
 
 $type     = in_array(field('type'), ['booking', 'question', 'concept'], true) ? field('type') : 'question';
 $name     = oneLine(field('name', 80));
@@ -88,34 +78,18 @@ $lines[] = '';
 $lines[] = 'Sent ' . gmdate('D j M Y, H:i') . ' UTC';
 $body = implode("\n", $lines);
 
-function sendMail(string $to, string $subject, string $text, string $replyTo, ?array $att): bool {
-    $headers = 'From: Sites By MS <' . FROM_ADDR . ">\r\n" . 'Reply-To: ' . $replyTo . "\r\n" . "MIME-Version: 1.0\r\n";
-    $subj = '=?UTF-8?B?' . base64_encode($subject) . '?=';
-    if (!$att) {
-        $headers .= "Content-Type: text/plain; charset=UTF-8\r\nContent-Transfer-Encoding: 8bit";
-        return @mail($to, $subj, $text, $headers, '-f' . FROM_ADDR);
-    }
-    $b = 'sbm' . bin2hex(random_bytes(8));
-    $headers .= "Content-Type: multipart/mixed; boundary=\"$b\"";
-    $msg  = "--$b\r\nContent-Type: text/plain; charset=UTF-8\r\nContent-Transfer-Encoding: 8bit\r\n\r\n$text\r\n";
-    $msg .= "--$b\r\nContent-Type: application/octet-stream; name=\"{$att['name']}\"\r\nContent-Transfer-Encoding: base64\r\n"
-          . "Content-Disposition: attachment; filename=\"{$att['name']}\"\r\n\r\n" . chunk_split(base64_encode($att['data'])) . "\r\n--$b--";
-    return @mail($to, $subj, $msg, $headers, '-f' . FROM_ADDR);
-}
-
-$ok = sendMail(TEAM_TO, $subject, $body, "$name <$email>", $att);
+$ok = send_mail(TEAM_TO, $subject, $body, "$name <$email>", $att ? [$att] : []);
 
 // Short receipt to the visitor.
 $receipt = $type === 'booking'
     ? "Hi $name,\n\nThanks for booking a call with Sites By MS. You asked for:\n$slot ($how)\n\nWe'll confirm by email within a few hours, with the call link.\n\nBest regards,\nSites By MS\nhello@sitesbyms.com · WhatsApp +44 7405 760048"
     : "Hi $name,\n\nThanks for your message. A real person will reply within one working day.\n\nBest regards,\nSites By MS\nhello@sitesbyms.com · WhatsApp +44 7405 760048";
-sendMail($email, $type === 'booking' ? 'We got your call request' : 'We got your message', $receipt, FROM_ADDR, null);
+send_mail($email, $type === 'booking' ? 'We got your call request' : 'We got your message', $receipt);
 
-// Log a copy (never in public_html).
-$log = ['at' => gmdate('c'), 'type' => $type, 'name' => $name, 'business' => $business, 'email' => $email, 'phone' => $phone,
-        'slot' => $slot, 'how' => $how, 'reply' => $reply, 'site' => $site, 'slug' => $slug, 'message' => $message,
-        'file' => $att['name'] ?? null, 'mailed' => $ok];
-file_put_contents($dataDir . '/submissions.jsonl', json_encode($log, JSON_UNESCAPED_UNICODE) . "\n", FILE_APPEND | LOCK_EX);
+// Save it for the team panel.
+message_add(['at' => gmdate('c'), 'type' => $type, 'name' => $name, 'business' => $business, 'email' => $email, 'phone' => $phone,
+    'slot' => $slot, 'how' => $how, 'reply' => $reply, 'site' => $site, 'slug' => $slug, 'message' => $message,
+    'file' => $att['name'] ?? null, 'mailed' => $ok]);
 
 $q = ['t' => $type, 'n' => $name];
 if ($type === 'booking') { $q['slot'] = $slot; $q['how'] = $how; }

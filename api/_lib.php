@@ -46,7 +46,7 @@ function config(): array {
         'length'     => 15,            // call length in minutes
         'weekdays'   => [1, 2, 3, 4, 5],
         'meet_link'  => '',            // optional fixed Google Meet link sent in invites
-    ], read_json('config.json', []));
+    ], (array)setting_get('config', read_json('config.json', [])));
 }
 
 function one_line(string $v): string { return trim(preg_replace('/[\r\n]+/', ' ', $v)); }
@@ -75,7 +75,7 @@ function send_mail(string $to, string $subject, string $text, string $replyTo = 
 /** Busy periods [startTs, endTs] from saved bookings and the team's Google Calendar feed. */
 function busy_periods(): array {
     $busy = [];
-    foreach (read_lines('bookings.jsonl') as $b) {
+    foreach (bookings_all() as $b) {
         if (($b['status'] ?? 'booked') === 'cancelled') continue;
         $s = (int)$b['start_ts']; $busy[] = [$s, $s + 60 * (int)($b['length'] ?? 15)];
     }
@@ -143,7 +143,7 @@ function build_slots(): array {
     return $days;
 }
 
-function ics_invite(array $b): string {
+function ics_invite(array $b, int $seq = 0): string {
     $fmt = fn(int $ts) => gmdate('Ymd\THis\Z', $ts);
     $esc = fn(string $s) => str_replace(["\\", ";", ",", "\n"], ["\\\\", "\\;", "\\,", "\\n"], $s);
     $desc = "15-minute call about your website with Sites By MS.\n"
@@ -152,7 +152,7 @@ function ics_invite(array $b): string {
           . "Need to change it? Reply to this email or WhatsApp +44 7405 760048.";
     return implode("\r\n", [
         'BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Sites By MS//Booking//EN', 'METHOD:REQUEST', 'BEGIN:VEVENT',
-        'UID:' . $b['id'] . '@sitesbyms.com', 'DTSTAMP:' . $fmt(time()), 'DTSTART:' . $fmt($b['start_ts']), 'DTEND:' . $fmt($b['start_ts'] + 60 * $b['length']),
+        'UID:' . $b['id'] . '@sitesbyms.com', 'SEQUENCE:' . $seq, 'DTSTAMP:' . $fmt(time()), 'DTSTART:' . $fmt($b['start_ts']), 'DTEND:' . $fmt($b['start_ts'] + 60 * $b['length']),
         'SUMMARY:' . $esc('Website call: ' . $b['business'] . ' × Sites By MS'),
         'DESCRIPTION:' . $esc($desc), 'LOCATION:' . $esc($b['meet'] ?: $b['how']),
         'ORGANIZER;CN=Sites By MS:mailto:' . FROM_ADDR,
@@ -169,4 +169,148 @@ function rate_limit(string $bucket, int $max, int $window): bool {
     if (count($hits) >= $max) return false;
     $hits[] = $now; file_put_contents($f, json_encode($hits));
     return true;
+}
+
+/* =====================================================================
+   Storage: MySQL when connected (Settings › Database), files until then.
+   ===================================================================== */
+
+function db_conf(): array { return read_json('db.json', []); }
+
+function db(): ?PDO {
+    static $pdo = false;
+    if ($pdo !== false) return $pdo;
+    $c = db_conf();
+    if (empty($c['name'])) return $pdo = null;
+    try { $pdo = db_connect($c); } catch (Throwable $e) { $pdo = null; }
+    return $pdo;
+}
+function db_connect(array $c): PDO {
+    $dsn = 'mysql:host=' . ($c['host'] ?: 'localhost') . ';dbname=' . $c['name'] . ';charset=utf8mb4';
+    return new PDO($dsn, $c['user'], $c['pass'], [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION, PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC, PDO::ATTR_EMULATE_PREPARES => false]);
+}
+
+function db_migrate(PDO $p): void {
+    $p->exec("CREATE TABLE IF NOT EXISTS users (
+        id INT AUTO_INCREMENT PRIMARY KEY, email VARCHAR(190) NOT NULL UNIQUE, name VARCHAR(120) NOT NULL,
+        role VARCHAR(20) NOT NULL DEFAULT 'member', password_hash VARCHAR(255) NOT NULL,
+        created_at DATETIME NOT NULL, last_login DATETIME NULL) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4");
+    $p->exec("CREATE TABLE IF NOT EXISTS bookings (
+        id VARCHAR(40) PRIMARY KEY, start_ts INT NOT NULL, length INT NOT NULL DEFAULT 15,
+        name VARCHAR(120) NOT NULL, business VARCHAR(160) NOT NULL, email VARCHAR(190) NOT NULL, phone VARCHAR(60) NOT NULL DEFAULT '',
+        how VARCHAR(40) NOT NULL, slug VARCHAR(80) NOT NULL DEFAULT '', meet VARCHAR(255) NOT NULL DEFAULT '',
+        meet_sent_at DATETIME NULL, status VARCHAR(20) NOT NULL DEFAULT 'booked', created_at DATETIME NOT NULL,
+        INDEX (start_ts)) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4");
+    $p->exec("CREATE TABLE IF NOT EXISTS messages (
+        id INT AUTO_INCREMENT PRIMARY KEY, type VARCHAR(20) NOT NULL, name VARCHAR(120) NOT NULL, business VARCHAR(160) NOT NULL,
+        email VARCHAR(190) NOT NULL, phone VARCHAR(60) NOT NULL DEFAULT '', slot VARCHAR(120) NOT NULL DEFAULT '', how VARCHAR(40) NOT NULL DEFAULT '',
+        reply VARCHAR(40) NOT NULL DEFAULT '', site VARCHAR(255) NOT NULL DEFAULT '', slug VARCHAR(80) NOT NULL DEFAULT '',
+        message TEXT NULL, file VARCHAR(200) NULL, mailed TINYINT NOT NULL DEFAULT 0, handled_at DATETIME NULL, created_at DATETIME NOT NULL,
+        INDEX (created_at)) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4");
+    $p->exec("CREATE TABLE IF NOT EXISTS concept_views (
+        id INT AUTO_INCREMENT PRIMARY KEY, slug VARCHAR(80) NOT NULL, device VARCHAR(20) NOT NULL, ref VARCHAR(255) NOT NULL DEFAULT '',
+        ip_hash VARCHAR(20) NOT NULL DEFAULT '', created_at DATETIME NOT NULL, INDEX (slug), INDEX (created_at)) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4");
+    $p->exec("CREATE TABLE IF NOT EXISTS settings (k VARCHAR(60) PRIMARY KEY, v MEDIUMTEXT NOT NULL) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4");
+}
+
+function dt(?string $iso): string { return gmdate('Y-m-d H:i:s', $iso ? strtotime($iso) : time()); }
+function iso(?string $dt): ?string { return $dt ? gmdate('c', strtotime($dt . ' UTC')) : null; }
+
+/** Copies the file-based records into MySQL once. Returns counts. */
+function db_import_files(PDO $p): array {
+    $n = ['bookings' => 0, 'messages' => 0, 'views' => 0];
+    $handled = read_json('handled.json', []);
+    foreach (read_lines('bookings.jsonl') as $b) {
+        $q = $p->prepare('INSERT IGNORE INTO bookings (id,start_ts,length,name,business,email,phone,how,slug,meet,status,created_at) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)');
+        $q->execute([$b['id'], $b['start_ts'], $b['length'] ?? 15, $b['name'], $b['business'], $b['email'], $b['phone'] ?? '', $b['how'], $b['slug'] ?? '', $b['meet'] ?? '', $b['status'] ?? 'booked', dt($b['created'] ?? null)]);
+        $n['bookings'] += $q->rowCount();
+    }
+    foreach (read_lines('submissions.jsonl') as $m) {
+        $k = $m['at'] . $m['email'];
+        $q = $p->prepare('INSERT INTO messages (type,name,business,email,phone,slot,how,reply,site,slug,message,file,mailed,handled_at,created_at) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)');
+        $q->execute([$m['type'], $m['name'], $m['business'], $m['email'], $m['phone'] ?? '', $m['slot'] ?? '', $m['how'] ?? '', $m['reply'] ?? '', $m['site'] ?? '', $m['slug'] ?? '', $m['message'] ?? '', $m['file'] ?? null, !empty($m['mailed']) ? 1 : 0, isset($handled[$k]) ? gmdate('Y-m-d H:i:s', $handled[$k]) : null, dt($m['at'])]);
+        $n['messages']++;
+    }
+    foreach (read_lines('views.jsonl') as $v) {
+        $p->prepare('INSERT INTO concept_views (slug,device,ref,ip_hash,created_at) VALUES (?,?,?,?,?)')->execute([$v['slug'], $v['device'], $v['ref'] ?? '', $v['ip'] ?? '', dt($v['at'])]);
+        $n['views']++;
+    }
+    foreach (['bookings.jsonl', 'submissions.jsonl', 'views.jsonl'] as $f) { $path = data_dir() . '/' . $f; if (is_file($path)) rename($path, $path . '.imported-' . date('Ymd-His')); }
+    $cfg = read_json('config.json', null);
+    if ($cfg) setting_set('config', $cfg);
+    return $n;
+}
+
+/* ---------- settings ---------- */
+function setting_get(string $k, $default = null) {
+    if ($p = db()) { $q = $p->prepare('SELECT v FROM settings WHERE k=?'); $q->execute([$k]); $v = $q->fetchColumn(); return $v === false ? $default : json_decode($v, true); }
+    return read_json('setting_' . $k . '.json', $default);
+}
+function setting_set(string $k, $v): void {
+    if ($p = db()) { $p->prepare('REPLACE INTO settings (k,v) VALUES (?,?)')->execute([$k, json_encode($v, JSON_UNESCAPED_UNICODE)]); return; }
+    if ($k === 'config') { write_json('config.json', $v); return; }
+    write_json('setting_' . $k . '.json', $v);
+}
+
+/* ---------- bookings ---------- */
+function bookings_all(): array {
+    if ($p = db()) return array_map(function ($r) { $r['start_ts'] = (int)$r['start_ts']; $r['length'] = (int)$r['length']; $r['created'] = iso($r['created_at']); return $r; }, $p->query('SELECT * FROM bookings ORDER BY start_ts')->fetchAll());
+    $rows = read_lines('bookings.jsonl'); usort($rows, fn($a, $b) => $a['start_ts'] <=> $b['start_ts']); return $rows;
+}
+function booking_get(string $id): ?array { foreach (bookings_all() as $b) if ($b['id'] === $id) return $b; return null; }
+function booking_add(array $b): void {
+    if ($p = db()) {
+        $p->prepare('INSERT INTO bookings (id,start_ts,length,name,business,email,phone,how,slug,meet,status,created_at) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)')
+          ->execute([$b['id'], $b['start_ts'], $b['length'], $b['name'], $b['business'], $b['email'], $b['phone'], $b['how'], $b['slug'], $b['meet'], $b['status'], dt($b['created'])]);
+        return;
+    }
+    append_line('bookings.jsonl', $b);
+}
+function booking_update(string $id, array $f): void {
+    if ($p = db()) {
+        $set = []; $vals = [];
+        foreach ($f as $k => $v) { if (!in_array($k, ['meet', 'status', 'meet_sent_at'], true)) continue; $set[] = "$k=?"; $vals[] = $v; }
+        if (!$set) return; $vals[] = $id;
+        $p->prepare('UPDATE bookings SET ' . implode(',', $set) . ' WHERE id=?')->execute($vals); return;
+    }
+    $out = '';
+    foreach (read_lines('bookings.jsonl') as $r) { if ($r['id'] === $id) $r = array_merge($r, $f); $out .= json_encode($r, JSON_UNESCAPED_UNICODE) . "\n"; }
+    file_put_contents(data_dir() . '/bookings.jsonl', $out, LOCK_EX);
+}
+
+/* ---------- messages ---------- */
+function messages_all(): array {
+    if ($p = db()) return array_map(function ($r) { $r['at'] = iso($r['created_at']); $r['handled'] = $r['handled_at'] !== null; return $r; }, $p->query('SELECT * FROM messages ORDER BY created_at DESC, id DESC')->fetchAll());
+    $handled = read_json('handled.json', []);
+    return array_map(function ($m) use ($handled) { $m['id'] = $m['at'] . $m['email']; $m['handled'] = isset($handled[$m['id']]); return $m; }, array_reverse(read_lines('submissions.jsonl')));
+}
+function message_add(array $m): void {
+    if ($p = db()) {
+        $p->prepare('INSERT INTO messages (type,name,business,email,phone,slot,how,reply,site,slug,message,file,mailed,created_at) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)')
+          ->execute([$m['type'], $m['name'], $m['business'], $m['email'], $m['phone'], $m['slot'], $m['how'], $m['reply'], $m['site'], $m['slug'], $m['message'], $m['file'], $m['mailed'] ? 1 : 0, dt($m['at'])]);
+        return;
+    }
+    append_line('submissions.jsonl', $m);
+}
+function message_handled(string $id, bool $done): void {
+    if ($p = db()) { $p->prepare('UPDATE messages SET handled_at=' . ($done ? 'UTC_TIMESTAMP()' : 'NULL') . ' WHERE id=?')->execute([(int)$id]); return; }
+    $hd = read_json('handled.json', []); if ($done) $hd[$id] = time(); else unset($hd[$id]); write_json('handled.json', $hd);
+}
+
+/* ---------- concept views ---------- */
+function views_all(): array {
+    if ($p = db()) return array_map(fn($r) => ['slug' => $r['slug'], 'device' => $r['device'], 'ref' => $r['ref'], 'at' => iso($r['created_at'])], $p->query('SELECT * FROM concept_views ORDER BY created_at DESC, id DESC LIMIT 2000')->fetchAll());
+    return array_reverse(read_lines('views.jsonl'));
+}
+function view_add(array $v): void {
+    if ($p = db()) { $p->prepare('INSERT INTO concept_views (slug,device,ref,ip_hash,created_at) VALUES (?,?,?,?,UTC_TIMESTAMP())')->execute([$v['slug'], $v['device'], $v['ref'], $v['ip']]); return; }
+    append_line('views.jsonl', $v);
+}
+
+/* ---------- users (need MySQL) ---------- */
+function users_all(): array { return ($p = db()) ? $p->query('SELECT id,email,name,role,created_at,last_login FROM users ORDER BY id')->fetchAll() : []; }
+function user_by_email(string $e): ?array { if (!($p = db())) return null; $q = $p->prepare('SELECT * FROM users WHERE email=?'); $q->execute([strtolower(trim($e))]); return $q->fetch() ?: null; }
+function user_by_id(int $id): ?array { if (!($p = db())) return null; $q = $p->prepare('SELECT * FROM users WHERE id=?'); $q->execute([$id]); return $q->fetch() ?: null; }
+function user_add(string $email, string $name, string $role, string $password): void {
+    db()->prepare('INSERT INTO users (email,name,role,password_hash,created_at) VALUES (?,?,?,?,UTC_TIMESTAMP())')->execute([strtolower(trim($email)), $name, $role, password_hash($password, PASSWORD_DEFAULT)]);
 }
