@@ -81,3 +81,22 @@ legend{font-weight:700;font-size:14px;margin-bottom:6px}
 .row{align-items:center}
 .row .grow{align-self:flex-start}
 .vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.tabs2{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:6px}
+.tabs2 a{background:#fff;border:1px solid var(--line);border-radius:999px;padding:8px 14px;font-weight:700;font-size:14px;text-decoration:none;color:var(--ink)}
+.tabs2 a i{font-style:normal;background:var(--violet);color:#fff;border-radius:999px;padding:0 7px;margin-left:4px;font-size:12px}
+.sec-h{margin:26px 0 12px}
+details.lead{padding:0}
+details.lead summary{list-style:none;display:flex;gap:10px;align-items:center;padding:16px 20px;cursor:pointer}
+details.lead summary::-webkit-details-marker{display:none}
+details.lead summary small{display:block;color:var(--muted-2);font-size:13px}
+details.lead summary::after{content:"+";font-size:22px;color:var(--violet);margin-left:4px}
+details.lead[open] summary::after{content:"–"}
+details.lead[open] summary{border-bottom:1px solid #EEEAF4}
+.leadform{display:grid;gap:12px;padding:16px 20px 20px}
+.leadform textarea{font:400 15px/1.6 "Plus Jakarta Sans",sans-serif;padding:12px;border:1.5px solid var(--line-2);border-radius:10px;width:100%;resize:vertical}
+.leadform textarea:focus{border-color:var(--violet);outline:none;box-shadow:0 0 0 3px rgba(133,87,252,.18)}
+.f2x{display:grid;grid-template-columns:1fr 1.4fr;gap:12px}
+@media (max-width:700px){.f2x{grid-template-columns:1fr}}
+.btn.subtle{margin-left:auto;color:var(--muted-2)}
+.pill.ok{background:var(--ok-bg);color:var(--ok)}
+ol.steps{margin:0;padding-left:20px;display:grid;gap:6px;font-size:15px}

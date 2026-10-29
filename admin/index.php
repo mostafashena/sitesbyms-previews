@@ -4,6 +4,7 @@
 // After: personal accounts (email + password). The first account is the owner.
 declare(strict_types=1);
 require __DIR__ . '/../api/_lib.php';
+require __DIR__ . '/../api/_google.php';
 
 $https = !empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off';
 session_name('sbm_admin');
@@ -23,7 +24,7 @@ function ago(?string $iso): string {
     if ($d < 86400) return floor($d / 3600) . ' h ago';
     $n = (int)floor($d / 86400); return $n . ($n === 1 ? ' day ago' : ' days ago');
 }
-function go(string $p = 'home', string $flash = ''): void { if ($flash) $_SESSION['flash'] = $flash; header('Location: /admin/?p=' . $p); exit; }
+function go(string $p = 'home', string $flash = '', bool $bad = false): void { if ($flash) { $_SESSION['flash'] = $flash; $_SESSION['flash_bad'] = $bad; } header('Location: /admin/?p=' . $p); exit; }
 function csrf_field(): string { return '<input type="hidden" name="csrf" value="' . h($_SESSION['csrf']) . '">'; }
 
 $_SESSION['csrf'] ??= bin2hex(random_bytes(16));
@@ -33,6 +34,9 @@ $page = preg_replace('/[^a-z]/', '', (string)($_GET['p'] ?? 'home')) ?: 'home';
 $err = '';
 
 $pdo = db();
+if (!$pdo && !empty(db_conf()['name'])) auth_page('Database not reachable', '<p class="err">The panel could not connect to MySQL, so nothing can be shown right now. Bookings and messages from the website are still saved and will appear here once it is back.</p><p class="hint">' . h($GLOBALS['db_error'] ?? '') . '</p><p><a class="btn" href="/admin/">Try again</a></p>');
+// Anything saved to files while the database was unreachable is moved in.
+if ($pdo) foreach (['bookings.jsonl', 'submissions.jsonl', 'views.jsonl'] as $f) if (is_file(data_dir() . '/' . $f)) { db_import_files($pdo); break; }
 $legacy = read_json('admin.json', []);
 $hasUsers = $pdo ? count(users_all()) > 0 : false;
 
@@ -93,22 +97,68 @@ if (!$me) {
 $isOwner = ($me['role'] ?? '') === 'owner';
 
 /* ---------- actions ---------- */
-if ($isPost && !$csrfOk) go($page, 'Your session expired. Please try again.');
+if ($isPost && !$csrfOk) go($page, 'Your session expired. Please try again.', true);
 if ($csrfOk) {
     $a = (string)($_POST['a'] ?? '');
     if ($a === 'done' || $a === 'undone') { message_handled((string)$_POST['k'], $a === 'done'); go($page); }
     if ($a === 'cancel') { booking_update((string)$_POST['id'], ['status' => 'cancelled']); go($page, 'Call cancelled. Remember to let the client know.'); }
     if ($a === 'meet') {
         $b = booking_get((string)$_POST['id']); $link = trim((string)$_POST['meet']);
-        if (!$b) go($page, 'That call no longer exists.');
-        if (!preg_match('#^https://[^\s<>"]+$#', $link)) go($page, 'Please paste the full link, starting with https://');
+        if (!$b) go($page, 'That call no longer exists.', true);
+        if (!preg_match('#^https://[^\s<>"]+$#', $link)) go($page, 'Please paste the full link, starting with https://', true);
         booking_update($b['id'], ['meet' => $link, 'meet_sent_at' => gmdate('Y-m-d H:i:s')]);
         $b['meet'] = $link; $b['how'] = 'Video call (Google Meet)';
         $when = london($b['start_ts'], 'l j F, H:i');
         $txt = "Hi {$b['name']},\n\nHere's the link for our call on $when (London time):\n\n$link\n\nJust click it a minute before the call. No app needed on a computer; on a phone, Google Meet may ask you to open its app.\n\nThe attached invite updates your calendar.\n\nSee you soon,\nSites By MS\nhello@sitesbyms.com · WhatsApp +44 7405 760048";
         $ics = ['name' => 'invite.ics', 'type' => 'text/calendar; charset=UTF-8; method=REQUEST', 'data' => ics_invite($b, 1)];
         $ok = send_mail($b['email'], "Your call link: $when", $txt, FROM_ADDR, [$ics]);
-        go($page, $ok ? 'Meet link sent to ' . $b['email'] . '.' : 'Saved, but the email could not be sent. Please send the link yourself.');
+        go($page, $ok ? 'Meet link sent to ' . $b['email'] . '.' : 'Saved, but the email could not be sent. Please send the link yourself.', !$ok);
+    }
+    if (in_array($a, ['osend', 'omark', 'oskip'], true)) {
+        $row = (int)$_POST['row']; $kind = $_POST['kind'] === 'followup' ? 'followup' : 'first';
+        $business = one_line((string)$_POST['business']); $slug = preg_replace('/[^a-z0-9-]/', '', (string)$_POST['slug']);
+        $today = (new DateTime('now', new DateTimeZone(TZ)))->format('Y-m-d');
+        try {
+            if ($a === 'oskip') { sheet_update_row($row, ['status' => 'Skip']); go('outreach', "$business moved to Skip."); }
+            $body = str_replace("\r", '', (string)$_POST['body']);
+            if (trim($body) === '') go('outreach', 'The message is empty.', true);
+            if ($a === 'osend') {
+                $to = strtolower(one_line((string)$_POST['to'])); $subject = one_line((string)$_POST['subject']);
+                if (!filter_var($to, FILTER_VALIDATE_EMAIL)) go('outreach', 'Please check the email address for ' . $business . '.', true);
+                if ($subject === '') go('outreach', 'Please add a subject for ' . $business . '.', true);
+                $reply = null;
+                if ($kind === 'followup') {
+                    foreach (outreach_all() as $o) if ((int)$o['row'] === $row && $o['kind'] === 'first' && !empty($o['mid'])) { $reply = $o['mid']; break; }
+                    if (stripos($subject, 're:') !== 0) $subject = 'Re: ' . $subject;
+                }
+                $mid = send_outreach($to, $subject, tracked_links($body, 'email'), $reply);
+                if (!$mid) go('outreach', 'The email to ' . $to . ' could not be sent. Nothing was changed.', true);
+                outreach_log(['row' => $row, 'slug' => $slug, 'business' => $business, 'kind' => $kind, 'channel' => 'Email', 'to' => $to, 'subject' => $subject, 'body' => $body, 'mid' => $mid, 'by' => (string)($me['email'] ?? 'team')]);
+                if ($kind === 'first') sheet_update_row($row, ['status' => 'Sent', 'sent' => $today, 'subject' => $subject, 'message' => $body, 'email' => $to]);
+                else sheet_update_row($row, ['reply' => 'Follow-up sent ' . $today, 'followup' => $body]);
+                go('outreach', ($kind === 'first' ? 'Sent to ' : 'Follow-up sent to ') . $to . '. The sheet is updated.');
+            }
+            // Instagram: the team sends it in the app, the panel records it.
+            outreach_log(['row' => $row, 'slug' => $slug, 'business' => $business, 'kind' => $kind, 'channel' => 'Instagram DM', 'to' => one_line((string)($_POST['to'] ?? '')), 'subject' => '', 'body' => $body, 'mid' => null, 'by' => (string)($me['email'] ?? 'team')]);
+            if ($kind === 'first') sheet_update_row($row, ['status' => 'Sent', 'sent' => $today, 'message' => $body]);
+            else sheet_update_row($row, ['reply' => 'Follow-up sent ' . $today, 'followup' => $body]);
+            go('outreach', "$business marked as sent. The sheet is updated.");
+        } catch (Throwable $e) { go('outreach', 'Sheet error: ' . $e->getMessage(), true); }
+    }
+    if ($a === 'gkey' && $isOwner) {
+        $raw = (string)($_POST['json'] ?? '');
+        if (!empty($_FILES['keyfile']['tmp_name']) && is_uploaded_file($_FILES['keyfile']['tmp_name'])) $raw = (string)file_get_contents($_FILES['keyfile']['tmp_name']);
+        $k = json_decode($raw, true);
+        if (!is_array($k) || empty($k['private_key']) || empty($k['client_email'])) go('settings', 'That is not a service account key file. Download the JSON key again and upload it.', true);
+        write_json('google-sa.json', ['client_email' => $k['client_email'], 'private_key' => $k['private_key'], 'project_id' => $k['project_id'] ?? '']);
+        @chmod(data_dir() . '/google-sa.json', 0600); @unlink(data_dir() . '/google-token.json');
+        try { $n = count(sheet_rows()); go('settings', "Connected to the leads sheet: $n rows read."); }
+        catch (Throwable $e) { go('settings', 'Key saved, but the sheet could not be read yet: ' . $e->getMessage() . ' Share the sheet with ' . $k['client_email'] . ' as Editor, then press Test.', true); }
+    }
+    if ($a === 'gtest') {
+        @unlink(data_dir() . '/google-token.json');
+        try { $n = count(sheet_rows()); go('settings', "Connected to the leads sheet: $n rows read."); }
+        catch (Throwable $e) { go('settings', 'Could not read the sheet: ' . $e->getMessage(), true); }
     }
     if ($a === 'settings') {
         $c = config();
@@ -138,7 +188,7 @@ if ($csrfOk) {
     }
     if ($a === 'deluser' && $isOwner && $pdo) {
         $id = (int)$_POST['id'];
-        if ($id === (int)$me['id']) go('team', "You can't remove your own account.");
+        if ($id === (int)$me['id']) go('team', "You can't remove your own account.", true);
         $pdo->prepare("DELETE FROM users WHERE id=? AND role<>'owner'")->execute([$id]); go('team', 'Account removed.');
     }
     if ($a === 'password') {
@@ -203,7 +253,7 @@ function msg_row(array $m, array $typeLabel): string {
 }
 
 /* ---------- pages ---------- */
-$nav = [['home', 'Overview'], ['calls', 'Calls'], ['messages', 'Messages'], ['views', 'Concept views']];
+$nav = [['home', 'Overview'], ['outreach', 'Outreach'], ['calls', 'Calls'], ['messages', 'Messages'], ['views', 'Concept views']];
 if ($pdo && $isOwner) $nav[] = ['team', 'Team'];
 $nav[] = ['settings', 'Settings'];
 
@@ -219,7 +269,63 @@ if ($page === 'home') {
     else echo '<div class="empty">No one has opened a concept yet. When a client opens their link, you\'ll see it here and get an email.</div>';
     echo '</section></div>';
     echo '<section class="card"><div class="ch"><h2>Unanswered messages</h2><a href="?p=messages">All messages</a></div>' . ($open ? implode('', array_map(fn($m) => msg_row($m, $typeLabel), array_slice($open, 0, 3))) : '<div class="empty">All caught up.</div>') . '</section>';
+    echo '<section class="card"><div class="ch"><h2>Outreach</h2><a href="?p=outreach">Open</a></div><p class="hint">Review the nightly messages and send them from here. The sheet updates itself.</p></section>';
     echo '<section class="card"><h2>Useful links</h2><div class="links"><a class="btn line" href="https://docs.google.com/spreadsheets/d/1NZFcaeoG7fR8--nepcmujsFJAZzfb4r1sCh-_3Lbs-s/edit" target="_blank" rel="noopener">Leads sheet</a><a class="btn line" href="/demo/" target="_blank">Client portal demo</a><a class="btn line" href="/" target="_blank">Website</a></div></section>';
+}
+if ($page === 'outreach') {
+    echo '<h1>Outreach</h1><p class="sub">Check each message, edit it if you like, and send. Emails go from hello@sitesbyms.com with a tracked link, and the leads sheet updates itself.</p>';
+    $rows = null; $gerr = '';
+    if (!google_key()) $gerr = 'setup';
+    else { try { $rows = sheet_rows(); } catch (Throwable $e) { $gerr = $e->getMessage(); } }
+    if ($gerr === 'setup') echo '<section class="card"><h2>Connect the leads sheet first</h2><p>The panel needs a Google key to read and update the sheet. It takes about 10 minutes, once.</p><a class="btn" href="?p=settings#google">Set it up</a></section>';
+    elseif ($gerr) echo '<section class="card"><h2>Could not read the sheet</h2><p class="err">' . h($gerr) . '</p><a class="btn line" href="?p=settings#google">Check the Google settings</a></section>';
+    else {
+        $seen = [];
+        foreach ($views as $v) { $sl = $v['slug']; if (!isset($seen[$sl])) $seen[$sl] = ['at' => $v['at'], 'from' => str_starts_with((string)$v['ref'], 'via ') ? substr($v['ref'], 4) : '', 'n' => 0]; $seen[$sl]['n']++; }
+        $tz = new DateTimeZone(TZ); $todayD = new DateTime('today', $tz);
+        $parseDate = function (string $d) use ($tz): ?DateTime {
+            if ($d === '') return null;
+            foreach (['Y-m-d', 'd/m/Y', 'm/d/Y', 'j M Y', 'd.m.Y'] as $f) { $x = DateTime::createFromFormat('!' . $f, $d, $tz); if ($x) return $x; }
+            $t = strtotime($d); return $t ? (new DateTime('@' . $t))->setTimezone($tz) : null;
+        };
+        $first = array_values(array_filter($rows, fn($r) => strcasecmp($r['status'], 'Review') === 0));
+        $follow = array_values(array_filter($rows, function ($r) use ($parseDate, $todayD) { if (strcasecmp($r['status'], 'Sent') !== 0 || $r['reply'] !== '') return false; $d = $parseDate($r['followup_date']); return $d && $d <= $todayD; }));
+        echo '<div class="tabs2"><a href="#ready">Ready to send <i>' . count($first) . '</i></a><a href="#followups">Follow-ups due <i>' . count($follow) . '</i></a><a href="#sent">Sent</a></div>';
+        $card = function (array $r, string $kind, int $i) use ($seen) {
+            $isMail = stripos($r['channel'], 'mail') !== false && $r['email'] !== '';
+            $slug = $r['slug']; $sv = $seen[$slug] ?? null;
+            $text = $kind === 'first' ? $r['message'] : $r['followup'];
+            $text = tracked_links($text, $isMail ? 'email' : 'ig');
+            $ig = preg_replace('#^@|^https?://(www\.)?instagram\.com/#', '', rtrim($r['instagram'], '/'));
+            $o = '<details class="card lead"' . ($i === 0 ? ' open' : '') . '><summary><div class="grow"><b>' . h($r['company']) . '</b><small>' . h($r['location']) . '</small></div>'
+                . ($sv ? '<span class="pill ok">Opened ' . h(ago($sv['at'])) . '</span>' : ($kind === 'followup' ? '<span class="pill grey">Not opened yet</span>' : ''))
+                . '<span class="pill' . ($isMail ? '' : ' grey') . '">' . ($isMail ? 'Email' : 'Instagram DM') . '</span></summary>'
+                . '<form method="post" class="leadform">' . csrf_field() . '<input type="hidden" name="row" value="' . (int)$r['_row'] . '"><input type="hidden" name="kind" value="' . $kind . '"><input type="hidden" name="business" value="' . h($r['company']) . '"><input type="hidden" name="slug" value="' . h($slug) . '">';
+            if ($isMail) $o .= '<div class="f2x"><label>To<input type="email" name="to" value="' . h($r['email']) . '" required></label><label>Subject<input name="subject" value="' . h($kind === 'followup' ? 'Re: ' . $r['subject'] : $r['subject']) . '" required></label></div>';
+            else $o .= '<input type="hidden" name="to" value="' . h($ig) . '"><p class="hint">Send this in Instagram, then press Mark as sent. ' . ($ig ? 'Account: <a href="https://instagram.com/' . h($ig) . '" target="_blank" rel="noopener">@' . h($ig) . '</a>' : 'No Instagram handle in the sheet.') . '</p>';
+            $o .= '<label>' . ($kind === 'first' ? 'Message' : 'Follow-up') . '<textarea name="body" rows="' . max(6, min(18, substr_count($text, "\n") + 3)) . '">' . h($text) . '</textarea></label>'
+                . ($r['issues'] ? '<p class="hint"><b>Issues we found:</b> ' . nl2br(h($r['issues'])) . '</p>' : '')
+                . '<div class="acts">'
+                . ($slug ? '<a class="btn line sm" href="/' . h($slug) . '/?team=1" target="_blank" rel="noopener">Open concept</a>' : '')
+                . ($isMail ? '<button class="btn sm" name="a" value="osend" onclick="return confirm(\'Send this email to ' . h($r['email']) . '?\')">' . ($kind === 'first' ? 'Send email' : 'Send follow-up') . '</button>'
+                           : '<button type="button" class="btn line sm" data-copy>Copy message</button>' . ($ig ? '<a class="btn line sm" href="https://ig.me/m/' . h($ig) . '" target="_blank" rel="noopener">Open Instagram chat</a>' : '') . '<button class="btn sm" name="a" value="omark">Mark as sent</button>')
+                . ($kind === 'first' ? '<button class="btn line sm subtle" name="a" value="oskip" onclick="return confirm(\'Move ' . h($r['company']) . ' to Skip?\')">Skip lead</button>' : '')
+                . '</div></form></details>';
+            return $o;
+        };
+        echo '<h2 id="ready" class="sec-h">Ready to send</h2>';
+        echo $first ? implode('', array_map($card, $first, array_fill(0, count($first), 'first'), array_keys($first))) : '<div class="card"><div class="empty">Nothing waiting. New messages appear here after the nightly run.</div></div>';
+        echo '<h2 id="followups" class="sec-h">Follow-ups due</h2>';
+        echo $follow ? implode('', array_map($card, $follow, array_fill(0, count($follow), 'followup'), array_keys($follow))) : '<div class="card"><div class="empty">No follow-ups due today.</div></div>';
+        echo '<h2 id="sent" class="sec-h">Sent from the panel</h2><section class="card">';
+        $log = outreach_all();
+        if ($log) foreach (array_slice($log, 0, 40) as $l) { $sv = $seen[$l['slug']] ?? null;
+            echo '<div class="row"><div class="grow"><b>' . h($l['business']) . '</b> · ' . h($l['kind'] === 'first' ? 'first message' : 'follow-up') . '<small>' . h($l['channel']) . ($l['to'] ? ' · ' . h($l['to']) : '') . ' · ' . h(ago($l['at'] ?? $l['sent_at'] ?? null)) . ($l['sent_by'] ?? '' ? ' · by ' . h($l['sent_by'] ?? '') : '') . '</small></div>'
+                . ($sv && strtotime($sv['at']) >= strtotime((string)($l['at'] ?? '')) ? '<span class="pill ok">Opened ' . h(ago($sv['at'])) . ($sv['from'] ? ' · ' . h($sv['from'] === 'ig' ? 'Instagram' : $sv['from']) : '') . '</span>' : '<span class="pill grey">Not opened yet</span>') . '</div>'; }
+        else echo '<div class="empty">Nothing sent from the panel yet.</div>';
+        echo '</section>';
+        echo '<script>document.querySelectorAll("[data-copy]").forEach(function(b){b.addEventListener("click",function(){var t=b.closest("form").querySelector("textarea");var done=function(){b.textContent="Copied ✓";setTimeout(function(){b.textContent="Copy message"},2000)};if(navigator.clipboard){navigator.clipboard.writeText(t.value).then(done,function(){t.select();document.execCommand("copy");done()})}else{t.select();document.execCommand("copy");done()}})})</script>';
+    }
 }
 if ($page === 'calls') {
     echo '<h1>Calls</h1><p class="sub">Every call clients have booked. Times are London time. For video calls: create a Meet link, paste it, and we email it to the client with an updated calendar invite.</p>';
@@ -254,6 +360,12 @@ if ($page === 'settings') {
             . '<label>Host <span class="hint">almost always localhost</span><input name="host" value="localhost"></label><button class="btn">Connect and set up</button></form>';
         echo '</section>';
     }
+    $gk = google_key();
+    echo '<section class="card" id="google"><h2>Leads sheet (Google)</h2>';
+    if ($gk) echo '<p>✓ Google key saved for <b>' . h($gk['client_email']) . '</b>. The leads sheet must be shared with this address as <b>Editor</b>.</p><form method="post">' . csrf_field() . '<input type="hidden" name="a" value="gtest"><button class="btn line">Test connection</button></form>';
+    else echo '<p class="hint">Lets the Outreach page read the leads sheet and mark rows as Sent. One-time setup:</p><ol class="steps"><li>Open <a href="https://console.cloud.google.com/projectcreate" target="_blank" rel="noopener">Google Cloud</a> with the m.and.s.design.develop account and create a project called <b>sitesbyms</b>.</li><li>Turn on the <a href="https://console.cloud.google.com/apis/library/sheets.googleapis.com" target="_blank" rel="noopener">Google Sheets API</a> for that project.</li><li>Go to <a href="https://console.cloud.google.com/iam-admin/serviceaccounts" target="_blank" rel="noopener">Service accounts</a> › Create service account › name <b>panel</b> › Done.</li><li>Open it › Keys › Add key › Create new key › <b>JSON</b>. A file downloads.</li><li>Upload that file below.</li><li>In the leads sheet, press Share and add the service account email (shown here after upload) as <b>Editor</b>.</li></ol>';
+    if ($isOwner) echo '<form method="post" enctype="multipart/form-data" class="stack">' . csrf_field() . '<input type="hidden" name="a" value="gkey"><label>' . ($gk ? 'Replace the key file' : 'Key file (.json)') . '<input type="file" name="keyfile" accept=".json,application/json"></label><button class="btn' . ($gk ? ' line' : '') . '">Upload key</button></form>';
+    echo '</section>';
     echo '<form class="card" method="post">' . csrf_field() . '<input type="hidden" name="a" value="settings"><h2>Calendar &amp; booking</h2>'
         . '<label>Google Calendar secret address (iCal)<input name="ical_url" value="' . h($cfg['ical_url']) . '" placeholder="https://calendar.google.com/calendar/ical/.../basic.ics"><span class="hint">With this, times that are busy in your Google Calendar show as Taken on the booking page.' . ($ical !== null ? ' ' . $ical . ' events read from the calendar just now.' : '') . '</span></label>'
         . '<div class="f3"><label>First bookable day<select name="days_ahead">' . implode('', array_map(fn($n) => '<option value="' . $n . '"' . ($n == $cfg['days_ahead'] ? ' selected' : '') . '>' . $n . ($n === 1 ? ' day' : ' days') . ' from today</option>', range(1, 7))) . '</select></label>'
@@ -263,8 +375,8 @@ if ($page === 'settings') {
     echo '<form class="card" method="post">' . csrf_field() . '<input type="hidden" name="a" value="password"><h2>Change ' . (!empty($me['legacy']) ? 'panel' : 'your') . ' password</h2><div class="f3"><label>Current password<input type="password" name="old" autocomplete="current-password"></label><label>New password<input type="password" name="new" autocomplete="new-password" minlength="10"></label></div><button class="btn line">Change password</button></form>';
 }
 $body = ob_get_clean();
-$flash = $_SESSION['flash'] ?? ''; unset($_SESSION['flash']);
-layout($page, $nav, $body, $err ?: $flash, (bool)$err, count($open), $me);
+$flash = $_SESSION['flash'] ?? ''; $flashBad = !empty($_SESSION['flash_bad']); unset($_SESSION['flash'], $_SESSION['flash_bad']);
+layout($page, $nav, $body, $err ?: $flash, $err ? true : $flashBad, count($open), $me);
 
 /* ---------- layout ---------- */
 function head(string $title): string {

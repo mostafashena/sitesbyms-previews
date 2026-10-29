@@ -182,7 +182,7 @@ function db(): ?PDO {
     if ($pdo !== false) return $pdo;
     $c = db_conf();
     if (empty($c['name'])) return $pdo = null;
-    try { $pdo = db_connect($c); } catch (Throwable $e) { $pdo = null; }
+    try { $pdo = db_connect($c); } catch (Throwable $e) { $pdo = null; $GLOBALS['db_error'] = $e->getMessage(); }
     return $pdo;
 }
 function db_connect(array $c): PDO {
