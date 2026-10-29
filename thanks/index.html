@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>Thank you · Sites By MS</title>
+<meta name="theme-color" content="#070F37">
+<link rel="icon" href="/assets/brand/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/site.css">
+</head>
+<body>
+<header class="site-head">
+  <div class="wrap bar">
+    <a class="brand" href="/"><img src="/assets/brand/mark-sm-dark.png" alt="" width="51" height="34"><span>Sites By <b>MS</b></span></a>
+  </div>
+</header>
+<main class="page">
+  <div class="wrap">
+    <div class="done">
+      <div class="badge"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
+      <h1 id="title" style="font-size:clamp(30px,4vw,40px);font-weight:800">Thank you.</h1>
+      <p class="lead" id="sub" style="margin:12px auto 32px">We've received your message and will reply within one working day.</p>
+    </div>
+    <div class="panel" id="bookingCard" hidden style="max-width:640px;margin:0 auto;display:grid;gap:18px">
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+        <div><div style="font-size:13px;color:var(--muted-2);font-weight:600;letter-spacing:.06em;text-transform:uppercase">Requested time</div>
+        <div id="slotText" style="font-size:22px;font-weight:800"></div>
+        <div id="howText" style="color:var(--muted)"></div></div>
+        <span class="pill warn">Waiting for confirmation</span>
+      </div>
+      <div style="border-top:1px solid #EEEAF4;padding-top:18px"><b>Before the call (optional)</b>
+        <div style="display:grid;gap:10px;margin-top:10px;font-size:15px;color:var(--muted)">
+          <span>✓ Have another look at your concept and note what you'd change.</span>
+          <span>✓ Think about what customers should do online: book, order, enquire.</span>
+          <span>✓ If you have a logo file or photos, keep them handy. No need to send them yet.</span>
+        </div>
+      </div>
+    </div>
+    <p style="text-align:center;margin-top:24px;font-size:14px;color:var(--muted-2)">Need anything first? WhatsApp +44 7405 760048 or hello@sitesbyms.com · <a href="/">Back to the site</a></p>
+  </div>
+</main>
+<script>
+(function(){
+  var q = new URLSearchParams(location.search), name = (q.get('n') || '').slice(0,60);
+  if (q.get('t') === 'booking') {
+    document.getElementById('title').textContent = name ? 'Thanks, ' + name + '. Your time is requested.' : 'Your time is requested.';
+    document.getElementById('sub').textContent = "We'll confirm by email within a few hours, with the call link.";
+    var c = document.getElementById('bookingCard'); c.hidden = false; c.style.display = 'grid';
+    document.getElementById('slotText').textContent = (q.get('slot') || '').slice(0,80);
+    document.getElementById('howText').textContent = '15 minutes · ' + (q.get('how') || '').slice(0,40);
+  } else if (name) {
+    document.getElementById('title').textContent = 'Thanks, ' + name + '. Your message is with us.';
+  }
+})();
+</script>
+</body>
+</html>

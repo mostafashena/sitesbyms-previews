@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ask a question · Sites By MS</title>
+<meta name="description" content="Ask us anything about your website, or request a free homepage concept.">
+<meta name="theme-color" content="#070F37">
+<link rel="icon" href="/assets/brand/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/site.css">
+</head>
+<body>
+<header class="site-head">
+  <div class="wrap bar">
+    <a class="brand" href="/"><img src="/assets/brand/mark-sm-dark.png" alt="" width="51" height="34"><span>Sites By <b>MS</b></span></a>
+    <div class="head-actions"><a class="btn btn-primary btn-sm" href="/book/">Book a call</a></div>
+  </div>
+</header>
+<main class="page">
+  <div class="wrap cols2">
+    <div class="side">
+      <p class="eyebrow" id="eyebrow">Ask a question</p>
+      <h1 id="h" style="font-size:clamp(32px,4vw,42px);font-weight:800">Not ready for a call? Just ask.</h1>
+      <p class="lead" style="font-size:17px">A real person replies, usually within one working day.</p>
+      <div style="display:grid;gap:12px;margin-top:24px">
+        <a class="info-card" href="https://wa.me/447405760048" style="text-decoration:none;color:inherit"><small>WhatsApp / Telegram</small><b>+44 7405 760048</b></a>
+        <a class="info-card" href="mailto:hello@sitesbyms.com" style="text-decoration:none;color:inherit"><small>Email</small><b>hello@sitesbyms.com</b></a>
+      </div>
+    </div>
+    <form class="main panel" id="askForm" method="post" action="/api/contact.php" enctype="multipart/form-data" novalidate style="display:grid;gap:16px">
+      <input type="hidden" name="type" id="type" value="question">
+      <input type="hidden" name="slug" id="slug">
+      <div class="hp" aria-hidden="true"><label>Leave empty<input name="website_url" tabindex="-1" autocomplete="off"></label></div>
+      <div class="f2">
+        <label class="field" for="name">Your name<input id="name" name="name" autocomplete="name" required></label>
+        <label class="field" for="business">Business<input id="business" name="business" autocomplete="organization" required></label>
+      </div>
+      <div class="f2">
+        <label class="field" for="email">Email<input id="email" name="email" type="email" autocomplete="email" required placeholder="you@business.com"></label>
+        <label class="field" for="reply">Reply by
+          <select id="reply" name="reply"><option>Email</option><option>WhatsApp</option><option>Phone call</option></select>
+        </label>
+      </div>
+      <label class="field" for="site" id="siteField" hidden>Your current website, Instagram or Google listing<input id="site" name="site" placeholder="www.yourbusiness.com or @yourbusiness"></label>
+      <label class="field" for="message"><span id="msgLabel">Your question</span><textarea id="message" name="message" required></textarea></label>
+      <label class="field" for="file" style="font-weight:500;color:var(--muted)"><span>Attach a file <span class="hint">· optional · logo, menu or photo, up to 5 MB</span></span><input id="file" name="file" type="file" accept=".jpg,.jpeg,.png,.pdf,.webp"></label>
+      <p class="error" id="err" role="alert" hidden></p>
+      <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:14px">
+        <span style="font-size:13px;color:var(--muted-2);max-width:30em">We only use your details to reply. See our <a href="/privacy/">privacy notice</a>.</span>
+        <button class="btn btn-primary" type="submit" id="submitBtn">Send question</button>
+      </div>
+    </form>
+  </div>
+</main>
+<script>
+(function(){
+  var q = new URLSearchParams(location.search);
+  if (q.get('b')) document.getElementById('business').value = q.get('b').slice(0,80);
+  if (q.get('s') && /^[a-z0-9-]+$/.test(q.get('s'))) document.getElementById('slug').value = q.get('s');
+  if (q.get('topic') === 'concept') {
+    document.getElementById('type').value = 'concept';
+    document.getElementById('eyebrow').textContent = 'Free concept';
+    document.getElementById('h').textContent = 'Get your homepage designed first.';
+    document.getElementById('siteField').hidden = false;
+    document.getElementById('msgLabel').textContent = 'Anything we should know? (optional)';
+    document.getElementById('message').placeholder = 'Bookings, online orders, events, a second language…';
+    document.getElementById('message').required = false;
+    document.getElementById('submitBtn').textContent = 'Request my free concept';
+  }
+  document.getElementById('askForm').addEventListener('submit', function(e){
+    var f = e.target, err = document.getElementById('err'), msg = '', file = f.file.files[0];
+    if (!f.name.value.trim()) msg = 'Please add your name.';
+    else if (!f.business.value.trim()) msg = 'Please add your business name.';
+    else if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(f.email.value.trim())) msg = 'Please check your email address.';
+    else if (f.message.required && !f.message.value.trim()) msg = 'Please write your question.';
+    else if (file && file.size > 5*1024*1024) msg = 'That file is larger than 5 MB. Please attach a smaller one or send it on WhatsApp.';
+    if (msg) { e.preventDefault(); err.textContent = msg; err.hidden = false; return; }
+    document.getElementById('submitBtn').textContent = 'Sending…';
+  });
+})();
+</script>
+</body>
+</html>

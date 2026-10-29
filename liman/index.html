@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Liman Restaurant – Turkish Mediterranean Grill, Angel</title>
+<meta name="description" content="Design concept for Liman, a Turkish Mediterranean restaurant at 60 Penton Street, Angel, London.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Karla:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--sea:#14324a;--sea-2:#1f4a68;--ember:#c8692e;--sand:#f6efe4;--ink:#1b1b1b;--muted:#6b6257;--line:#e2d6c3}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Karla',system-ui,sans-serif;color:var(--ink);background:var(--sand);line-height:1.6;font-size:17px}
+a{color:inherit}
+.concept{background:#070F37;color:#C9CCE0;font-size:12px;text-align:center;padding:7px 16px}
+.concept b{color:#FBF5ED}
+header{position:sticky;top:0;z-index:20;background:rgba(20,50,74,.96);backdrop-filter:blur(6px);color:#fff}
+.bar{max-width:1120px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:10px 20px;gap:16px}
+.brand{display:flex;align-items:center;text-decoration:none}
+.brand img{height:48px;width:auto;display:block}
+.wordmark{display:none;font-family:'Marcellus',serif;font-size:28px;letter-spacing:.32em;color:#fff}
+.wordmark small{display:block;font-family:'Karla',sans-serif;font-size:9px;letter-spacing:.42em;color:#e9c9a6;margin-top:-4px}
+.btn{display:inline-block;background:var(--ember);color:#fff;text-decoration:none;font-weight:700;letter-spacing:.08em;text-transform:uppercase;font-size:13px;padding:12px 22px;border-radius:2px}
+.btn:hover{background:#b25a24}
+.btn.ghost{background:transparent;border:1px solid rgba(255,255,255,.6)}
+.hero{position:relative;min-height:88vh;display:flex;align-items:flex-end;color:#fff;overflow:hidden;background:var(--sea)}
+.ph-hero{position:absolute;inset:14px;border:2px dashed rgba(255,255,255,.35);display:flex;align-items:flex-start;justify-content:flex-end;padding:14px;font-size:12px;color:rgba(255,255,255,.6);letter-spacing:.06em;background:radial-gradient(ellipse at 70% 30%,rgba(200,105,46,.35),transparent 55%),linear-gradient(180deg,var(--sea-2),var(--sea) 70%)}
+.hero-in{position:relative;max-width:1120px;width:100%;margin:0 auto;padding:0 28px 72px}
+.kicker{font-size:13px;letter-spacing:.3em;text-transform:uppercase;color:#f0c9a3}
+.hero h1{font-family:'Marcellus',serif;font-weight:400;font-size:clamp(64px,16vw,190px);line-height:.9;letter-spacing:.06em;margin:12px 0 18px}
+.hero p.lead{max-width:520px;font-size:19px;color:#e8e2d8}
+.hero .actions{margin-top:28px;display:flex;gap:12px;flex-wrap:wrap}
+.waves{height:22px;background:radial-gradient(circle at 11px -6px,transparent 13px,var(--sand) 14px) 0 0/22px 22px repeat-x;background-color:var(--sea);margin-top:-1px}
+section{max-width:1120px;margin:0 auto;padding:88px 24px}
+h2{font-family:'Marcellus',serif;font-weight:400;font-size:clamp(32px,5vw,48px);line-height:1.1;color:var(--sea)}
+.eyebrow{font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:var(--ember);font-weight:700;margin-bottom:12px}
+.about{display:grid;gap:40px}
+.about p{max-width:560px;color:#3a352f;margin-top:16px}
+.about .port{font-family:'Marcellus',serif;font-size:22px;color:var(--sea);border-left:3px solid var(--ember);padding-left:16px;margin-top:24px}
+.ph{border:2px dashed #b9a98f;color:var(--muted);display:flex;align-items:center;justify-content:center;text-align:center;font-size:13px;letter-spacing:.04em;padding:16px;background:repeating-linear-gradient(45deg,transparent 0 12px,rgba(185,169,143,.08) 12px 24px)}
+.ph.p1{aspect-ratio:4/5}
+.lunch{background:var(--sea);color:#fff;border-radius:4px;display:grid;position:relative;overflow:hidden}
+.lunch .l{padding:36px 30px}
+.lunch .r{padding:30px;border-top:2px dashed rgba(255,255,255,.35);display:flex;flex-direction:column;justify-content:center;align-items:flex-start;gap:8px}
+.lunch .price{font-family:'Marcellus',serif;font-size:64px;line-height:1;color:#f0c9a3}
+.lunch h3{font-family:'Marcellus',serif;font-weight:400;font-size:30px;margin-bottom:8px}
+.lunch p{color:#d8dee4}
+.menu{display:grid;gap:0;margin-top:36px;border-top:1px solid var(--line)}
+.item{display:grid;grid-template-columns:1fr auto;gap:4px 18px;padding:20px 0;border-bottom:1px solid var(--line)}
+.item b{font-family:'Marcellus',serif;font-weight:400;font-size:22px;color:var(--sea)}
+.item span.p{font-weight:700;color:var(--ember);font-size:18px}
+.item small{grid-column:1/-1;color:var(--muted);font-size:15px}
+.note{font-size:14px;color:var(--muted);margin-top:18px}
+.quote{background:#fff;border:1px solid var(--line);padding:56px 28px;text-align:center}
+.quote .stars{color:var(--ember);letter-spacing:.3em;font-size:18px}
+.quote .big{font-family:'Marcellus',serif;font-size:clamp(44px,8vw,80px);color:var(--sea);line-height:1;margin:10px 0}
+.visit{display:grid;gap:36px}
+.visit dl{display:grid;grid-template-columns:auto 1fr;gap:8px 24px;margin-top:20px}
+.visit dt{font-weight:700}
+.visit dd{color:#3a352f}
+.visit .ph{min-height:260px}
+footer{background:var(--sea);color:#c9d3dc;font-size:14px;padding:40px 24px 110px;text-align:center}
+footer .fw{font-family:'Marcellus',serif;letter-spacing:.32em;font-size:22px;color:#fff;margin-bottom:8px}
+.mbar{position:fixed;left:0;right:0;bottom:0;z-index:30;display:grid;grid-template-columns:1fr 1fr;background:var(--sea);border-top:1px solid rgba(255,255,255,.15)}
+.mbar a{text-align:center;padding:16px 8px;color:#fff;text-decoration:none;font-weight:700;letter-spacing:.08em;text-transform:uppercase;font-size:13px}
+.mbar a.book{background:var(--ember)}
+@media (min-width:820px){
+  .about{grid-template-columns:1.1fr .9fr;align-items:center}
+  .lunch{grid-template-columns:1.5fr 1fr}
+  .lunch .r{border-top:0;border-left:2px dashed rgba(255,255,255,.35)}
+  .menu{grid-template-columns:1fr 1fr;column-gap:56px}
+  .visit{grid-template-columns:1fr 1fr;align-items:start}
+  .mbar{display:none}
+  footer{padding-bottom:40px}
+}
+@media (max-width:819px){.bar .btn{padding:10px 16px}}
+</style>
+</head>
+<body>
+<div class="concept">Design concept prepared for Liman Restaurant by <b>Sites By MS</b>. Not the official website.</div>
+
+<header>
+  <div class="bar">
+    <a class="brand" href="#top" aria-label="Liman home">
+      <img src="https://www.liman.co.uk/images/LIMAN_LOGO_FINAL-ALT.png" alt="Liman Restaurant logo" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-block'">
+      <span class="wordmark">LIMAN<small>RESTAURANT</small></span>
+    </a>
+    <a class="btn" href="https://www.liman.co.uk/book-a-table.html">Book a table</a>
+  </div>
+</header>
+
+<main id="top">
+  <div class="hero">
+    <div class="ph-hero" aria-hidden="true">1920 × 1200 – Charcoal grill &amp; dining room at night</div>
+    <div class="hero-in">
+      <div class="kicker">Turkish Mediterranean · Angel, Islington</div>
+      <h1>Liman</h1>
+      <p class="lead">“Liman” means port in Turkish: a harbour on Penton Street for charcoal grills, meze and long dinners.</p>
+      <div class="actions">
+        <a class="btn" href="https://www.liman.co.uk/book-a-table.html">Book a table</a>
+        <a class="btn ghost" href="tel:02035836442">020 3583 6442</a>
+      </div>
+    </div>
+  </div>
+  <div class="waves" aria-hidden="true"></div>
+
+  <section class="about">
+    <div>
+      <div class="eyebrow">Our story</div>
+      <h2>Berivan in the dining room,<br>Niyazi in the kitchen.</h2>
+      <p>Liman is run by Berivan and Niyazi: Niyazi cooks, Berivan looks after the dining room. The menu leans on the charcoal grill, with lamb, chicken and fish cooked over the coals, a table of cold and hot meze, and Mediterranean plates alongside.</p>
+      <p class="port">“More than just a restaurant, Liman is an orchestra that appeals to your ears and heart.”</p>
+    </div>
+    <div class="ph p1">800 × 1000 – Berivan &amp; Niyazi at the pass</div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="lunch">
+      <div class="l">
+        <div class="eyebrow" style="color:#f0c9a3">Weekday lunch</div>
+        <h3>A starter and a main, with rice, salad and bread</h3>
+        <p>Monday to Friday, 12:00 – 15:00.</p>
+      </div>
+      <div class="r">
+        <div class="price">£14.90</div>
+        <a class="btn" href="https://www.liman.co.uk/book-a-table.html">Book lunch</a>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="eyebrow">From the à la carte</div>
+    <h2>Off the coals &amp; onto the table</h2>
+    <div class="menu">
+      <div class="item"><b>Adana Kofte</b><span class="p">£20.30</span><small>Minced lamb with mint, garlic and peppers, charcoal grilled; rice and salad</small></div>
+      <div class="item"><b>Lamb Chops</b><span class="p">£25.90</span><small>Seasoned chops, roast Cyprus potatoes, broccolini</small></div>
+      <div class="item"><b>Sea Bream</b><span class="p">£23.70</span><small>Whole, charcoal grilled, with spinach and creamy mash</small></div>
+      <div class="item"><b>Hummus Kavurma</b><span class="p">£9.00</span><small>Hummus topped with pan-fried lamb and pine nuts</small></div>
+      <div class="item"><b>Beef Vine Leaves</b><span class="p">£9.00</span><small>Chef’s special: stuffed with beef and bulgur, red wine sauce</small></div>
+      <div class="item"><b>Berrie’s Mix Meze</b><span class="p">£29.50 pp</span><small>Cold meze, halloumi, falafel, borek, kofte and vine leaves; min. 2 people</small></div>
+    </div>
+    <p class="note">Prices from Liman’s 2025 à la carte menu. Cover charge £2.50 per person (bread and chilli garlic sauce); no service charge.</p>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="quote">
+      <div class="stars" aria-hidden="true">★★★★★</div>
+      <div class="big">4.7</div>
+      <p>from 1,771 Google reviews</p>
+    </div>
+  </section>
+
+  <section class="visit" id="visit" style="padding-top:0">
+    <div>
+      <div class="eyebrow">Find the port</div>
+      <h2>60 Penton Street,<br>London N1 9PZ</h2>
+      <dl>
+        <dt>Mon – Sat</dt><dd>12:00 – 22:00</dd>
+        <dt>Sunday</dt><dd>12:00 – 21:00</dd>
+        <dt>Phone</dt><dd><a href="tel:02035836442">020 3583 6442</a></dd>
+      </dl>
+      <p style="margin-top:28px;display:flex;gap:12px;flex-wrap:wrap">
+        <a class="btn" href="https://www.liman.co.uk/book-a-table.html">Book a table</a>
+        <a class="btn" style="background:var(--sea)" href="https://www.google.com/maps/search/?api=1&amp;query=Liman+60+Penton+Street+London+N1+9PZ">Directions</a>
+      </p>
+    </div>
+    <div class="ph">1200 × 800 – Penton Street shopfront</div>
+  </section>
+</main>
+
+<footer>
+  <div class="fw">LIMAN</div>
+  <p>Turkish Mediterranean Restaurant · 60 Penton Street, Angel, London N1 9PZ · 020 3583 6442</p>
+  <p style="margin-top:6px"><a href="https://www.instagram.com/liman_kitchen/">Instagram @liman_kitchen</a></p>
+  <p style="margin-top:14px;font-size:12px;opacity:.7">Design concept by Sites By MS. Not the official website.</p>
+</footer>
+
+<nav class="mbar" aria-label="Quick actions">
+  <a href="tel:02035836442">Call</a>
+  <a class="book" href="https://www.liman.co.uk/book-a-table.html">Book</a>
+</nav>
+<script src="/assets/concept-bar.js" data-name="Liman" data-slug="liman" defer></script>
+</body>
+</html>

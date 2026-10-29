@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Book a 15-minute call · Sites By MS</title>
+<meta name="description" content="Pick a time for a free 15-minute call about your new website.">
+<meta name="theme-color" content="#070F37">
+<link rel="icon" href="/assets/brand/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/site.css">
+</head>
+<body>
+<header class="site-head">
+  <div class="wrap bar">
+    <a class="brand" href="/"><img src="/assets/brand/mark-sm-dark.png" alt="" width="51" height="34"><span>Sites By <b>MS</b></span></a>
+    <div class="head-actions"><a class="login" href="/ask/">Ask a question</a></div>
+  </div>
+</header>
+
+<main class="page">
+  <div class="wrap cols2">
+    <aside class="side">
+      <p class="eyebrow">15-minute call</p>
+      <h1 style="font-size:clamp(32px,4vw,42px);font-weight:800">Let's talk about your website.</h1>
+      <p class="lead" style="font-size:17px">A short, no-pressure chat. We'll walk through your concept and ask what your business needs.</p>
+      <div class="panel" style="padding:20px;margin-top:24px;display:grid;gap:14px">
+        <div class="icon-row"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><div><b>15 minutes</b><div style="font-size:14px;color:var(--muted-2)">Free, no obligation</div></div></div>
+        <div class="icon-row"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="3" y="6" width="13" height="12" rx="2"/><path d="M16 10l5-3v10l-5-3"/></svg></span><div><b>Video, WhatsApp or phone</b><div style="font-size:14px;color:var(--muted-2)">Whatever suits you</div></div></div>
+        <div style="border-top:1px solid #EEEAF4;padding-top:14px"><b style="font-size:15px">We'll cover</b>
+          <div style="display:grid;gap:6px;margin-top:8px;color:var(--muted);font-size:15px"><span>✓ What you think of your concept</span><span>✓ Bookings, orders, menus, languages</span><span>✓ Timeline and next steps</span></div>
+        </div>
+      </div>
+      <div id="forBiz" hidden style="margin-top:16px;display:flex;gap:12px;align-items:center;background:var(--navy);color:var(--cream);border-radius:14px;padding:14px 16px">
+        <span style="font-size:13px;color:#A9AECB">Booking for</span><b id="forBizName" style="font-size:15px"></b>
+        <a id="forBizLink" href="/" style="margin-left:auto;color:var(--violet-on-navy);font-weight:700;font-size:14px;text-decoration:none">View concept</a>
+      </div>
+    </aside>
+
+    <form class="main panel" id="bookForm" method="post" action="/api/contact.php" novalidate>
+      <input type="hidden" name="type" value="booking">
+      <input type="hidden" name="slug" id="slug">
+      <input type="hidden" name="slot" id="slot">
+      <div class="hp" aria-hidden="true"><label>Leave empty<input name="website_url" tabindex="-1" autocomplete="off"></label></div>
+
+      <div class="stepper"><span class="on" style="display:flex;gap:8px;align-items:center"><i>1</i>Pick a time</span><span style="width:32px;height:1px;background:var(--line-2)"></span><span style="display:flex;gap:8px;align-items:center"><i>2</i>Your details</span></div>
+
+      <div class="pick">
+        <div>
+          <div class="cal-head"><b id="monthLabel" style="font-size:18px"></b>
+            <div class="cal-nav"><button type="button" id="prevM" aria-label="Previous month">‹</button><button type="button" id="nextM" aria-label="Next month">›</button></div>
+          </div>
+          <div class="dow" aria-hidden="true"><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span></div>
+          <div class="days" id="days" role="group" aria-label="Choose a day"></div>
+          <p style="margin-top:12px;font-size:13px;color:var(--muted-2)">Highlighted days have free times.</p>
+        </div>
+        <div>
+          <b id="dayLabel" style="font-size:18px">Choose a day</b>
+          <p style="font-size:13px;color:var(--muted-2);margin-top:4px">Times in London (UK) time</p>
+          <div class="slots" id="slots" role="group" aria-label="Choose a time"></div>
+        </div>
+      </div>
+
+      <div style="border-top:1px solid #EEEAF4;margin-top:28px;padding-top:24px;display:grid;gap:14px">
+        <b style="font-size:18px">Your details</b>
+        <div class="f2">
+          <label class="field" for="name">Your name<input id="name" name="name" autocomplete="name" required></label>
+          <label class="field" for="business">Business<input id="business" name="business" autocomplete="organization" required></label>
+        </div>
+        <div class="f2">
+          <label class="field" for="email">Email<input id="email" name="email" type="email" autocomplete="email" required placeholder="you@business.com"></label>
+          <label class="field" for="phone"><span>Phone or WhatsApp <span class="hint">· optional</span></span><input id="phone" name="phone" type="tel" autocomplete="tel"></label>
+        </div>
+        <label class="field" for="how">How should we talk?
+          <select id="how" name="how"><option>Video call (Google Meet)</option><option>WhatsApp call</option><option>Phone call</option></select>
+        </label>
+        <p class="error" id="err" role="alert" hidden></p>
+        <div style="display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between;margin-top:6px">
+          <span class="summary" id="summary">Pick a day and time above.</span>
+          <button class="btn btn-primary" type="submit" id="submitBtn">Request this time</button>
+        </div>
+        <p style="font-size:13px;color:var(--muted-2)">We confirm by email within a few hours. Your details are only used for this call, see our <a href="/privacy/">privacy notice</a>.</p>
+      </div>
+    </form>
+  </div>
+</main>
+
+<script>
+(function(){
+  var q = new URLSearchParams(location.search);
+  var biz = q.get('b'), slug = q.get('s');
+  if (biz) {
+    document.getElementById('business').value = biz;
+    document.getElementById('forBizName').textContent = biz;
+    var box = document.getElementById('forBiz'); box.hidden = false; box.style.display = 'flex';
+    if (slug && /^[a-z0-9-]+$/.test(slug)) { document.getElementById('forBizLink').href = '/' + slug + '/'; document.getElementById('slug').value = slug; }
+    else document.getElementById('forBizLink').hidden = true;
+  }
+
+  var TIMES = ['10:00','11:30','14:00','15:30','17:00'];
+  var today = new Date(); today.setHours(0,0,0,0);
+  var first = new Date(today); first.setDate(first.getDate()+1);
+  var last = new Date(today); last.setDate(last.getDate()+21);
+  var view = new Date(first.getFullYear(), first.getMonth(), 1);
+  var chosenDay = null, chosenTime = null;
+  var months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  var dnames = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+
+  function open(d){ var w = d.getDay(); return d >= first && d <= last && w !== 0 && w !== 6; }
+  function same(a,b){ return a && b && a.getTime() === b.getTime(); }
+
+  function renderCal(){
+    document.getElementById('monthLabel').textContent = months[view.getMonth()] + ' ' + view.getFullYear();
+    var box = document.getElementById('days'); box.innerHTML = '';
+    var lead = (new Date(view.getFullYear(), view.getMonth(), 1).getDay() + 6) % 7;
+    for (var i=0;i<lead;i++) box.appendChild(document.createElement('span'));
+    var n = new Date(view.getFullYear(), view.getMonth()+1, 0).getDate();
+    for (var d=1; d<=n; d++){
+      var date = new Date(view.getFullYear(), view.getMonth(), d), el;
+      if (open(date)) {
+        el = document.createElement('button'); el.type='button'; el.textContent = d;
+        el.setAttribute('aria-pressed', same(date, chosenDay) ? 'true' : 'false');
+        el.setAttribute('aria-label', dnames[date.getDay()] + ' ' + d + ' ' + months[date.getMonth()]);
+        el.onclick = (function(dt){ return function(){ chosenDay = dt; chosenTime = null; renderCal(); renderSlots(); update(); }; })(date);
+      } else { el = document.createElement('span'); el.textContent = d; }
+      box.appendChild(el);
+    }
+    document.getElementById('prevM').disabled = view <= new Date(first.getFullYear(), first.getMonth(), 1);
+    document.getElementById('nextM').disabled = view >= new Date(last.getFullYear(), last.getMonth(), 1);
+  }
+  function renderSlots(){
+    var box = document.getElementById('slots'); box.innerHTML = '';
+    if (!chosenDay) return;
+    document.getElementById('dayLabel').textContent = dnames[chosenDay.getDay()] + ' ' + chosenDay.getDate() + ' ' + months[chosenDay.getMonth()];
+    TIMES.forEach(function(t){
+      var b = document.createElement('button'); b.type='button'; b.textContent = t;
+      b.setAttribute('aria-pressed', t === chosenTime ? 'true' : 'false');
+      b.onclick = function(){ chosenTime = t; renderSlots(); update(); };
+      box.appendChild(b);
+    });
+  }
+  function label(){ return dnames[chosenDay.getDay()].slice(0,3) + ' ' + chosenDay.getDate() + ' ' + months[chosenDay.getMonth()].slice(0,3) + ' · ' + chosenTime + ' London time'; }
+  function update(){
+    var s = document.getElementById('summary');
+    if (chosenDay && chosenTime) { s.textContent = label(); document.getElementById('slot').value = label(); }
+    else s.textContent = chosenDay ? 'Now pick a time.' : 'Pick a day and time above.';
+  }
+  document.getElementById('prevM').onclick = function(){ view = new Date(view.getFullYear(), view.getMonth()-1, 1); renderCal(); };
+  document.getElementById('nextM').onclick = function(){ view = new Date(view.getFullYear(), view.getMonth()+1, 1); renderCal(); };
+
+  document.getElementById('bookForm').addEventListener('submit', function(e){
+    var err = document.getElementById('err'), f = e.target, msg = '';
+    if (!chosenDay || !chosenTime) msg = 'Please pick a day and a time for the call.';
+    else if (!f.name.value.trim()) msg = 'Please add your name.';
+    else if (!f.business.value.trim()) msg = 'Please add your business name.';
+    else if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(f.email.value.trim())) msg = 'Please check your email address.';
+    if (msg) { e.preventDefault(); err.textContent = msg; err.hidden = false; return; }
+    err.hidden = true; document.getElementById('submitBtn').textContent = 'Sending…';
+  });
+  renderCal();
+})();
+</script>
+</body>
+</html>
