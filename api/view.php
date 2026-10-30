@@ -9,7 +9,8 @@ $slug = (string)($_GET['s'] ?? '');
 if (!preg_match('/^[a-z0-9-]{1,60}$/', $slug)) { http_response_code(204); exit; }
 $ua = substr((string)($_SERVER['HTTP_USER_AGENT'] ?? ''), 0, 200);
 if ($ua === '' || preg_match('/bot|crawl|spider|preview|fetch|monitor|curl|wget/i', $ua)) { http_response_code(204); exit; }
-if (is_team_visit()) { http_response_code(204); exit; }   // someone from the team (panel cookie or same network)
+// Team visits never count: panel cookie, team network, or a click that came from the panel.
+if (is_team_visit() || preg_match('#/admin#i', (string)($_GET['r'] ?? '') . ' ' . (string)($_SERVER['HTTP_REFERER'] ?? ''))) { http_response_code(204); exit; }
 if (!rate_limit('view', 30, 3600)) { http_response_code(204); exit; }
 
 $from = preg_match('/^[a-z0-9-]{1,20}$/', (string)($_GET['f'] ?? '')) ? (string)$_GET['f'] : '';

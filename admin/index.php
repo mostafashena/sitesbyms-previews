@@ -11,7 +11,7 @@ session_name('sbm_admin');
 session_set_cookie_params(['lifetime' => 0, 'path' => '/admin/', 'secure' => $https, 'httponly' => true, 'samesite' => 'Strict']);
 session_start();
 header('X-Frame-Options: DENY');
-header('Referrer-Policy: no-referrer');
+header('Referrer-Policy: same-origin');   // concept pages see the panel as referrer and skip counting
 header('X-Robots-Tag: noindex, nofollow');
 
 function h($s): string { return htmlspecialchars((string)$s, ENT_QUOTES, 'UTF-8'); }
@@ -114,6 +114,12 @@ if ($csrfOk) {
         $ok = send_mail($b['email'], "Your call link: $when", $txt, FROM_ADDR, [$ics]);
         go($page, $ok ? 'Meet link sent to ' . $b['email'] . '.' : 'Saved, but the email could not be sent. Please send the link yourself.', !$ok);
     }
+    if ($a === 'oseen' || $a === 'ounseen') {
+        $slug = preg_replace('/[^a-z0-9-]/', '', (string)$_POST['slug']);
+        if ($slug !== '' && $a === 'oseen') seen_add($slug, 'first', 'Instagram DM', 'manual');
+        if ($slug !== '' && $a === 'ounseen') { if ($pdo) { seen_migrate($pdo); $pdo->prepare("DELETE FROM message_seen WHERE slug=? AND how='manual'")->execute([$slug]); } }
+        go('results', $a === 'oseen' ? 'Marked as seen.' : 'Seen mark removed.');
+    }
     if (in_array($a, ['osend', 'omark', 'oskip'], true)) {
         $row = (int)$_POST['row']; $kind = $_POST['kind'] === 'followup' ? 'followup' : 'first';
         $business = one_line((string)$_POST['business']); $slug = preg_replace('/[^a-z0-9-]/', '', (string)$_POST['slug']);
@@ -131,7 +137,7 @@ if ($csrfOk) {
                     foreach (outreach_all() as $o) if ((int)$o['row'] === $row && $o['kind'] === 'first' && !empty($o['mid'])) { $reply = $o['mid']; break; }
                     if (stripos($subject, 're:') !== 0) $subject = 'Re: ' . $subject;
                 }
-                $mid = send_outreach($to, $subject, tracked_links($body, 'email'), $reply);
+                $mid = send_outreach($to, $subject, tracked_links($body, 'email'), $reply, $slug, $kind);
                 if (!$mid) go('outreach', 'The email to ' . $to . ' could not be sent. Nothing was changed.', true);
                 outreach_log(['row' => $row, 'slug' => $slug, 'business' => $business, 'kind' => $kind, 'channel' => 'Email', 'to' => $to, 'subject' => $subject, 'body' => $body, 'mid' => $mid, 'by' => (string)($me['email'] ?? 'team')]);
                 if ($kind === 'first') sheet_update_row($row, ['status' => 'Sent', 'sent' => $today, 'subject' => $subject, 'message' => $body, 'email' => $to]);
@@ -335,7 +341,7 @@ if ($page === 'calls') {
     if ($past) echo '<section class="card"><h2>Past and cancelled</h2>' . implode('', array_map(fn($b) => booking_row($b, $howLabel), array_slice($past, 0, 40))) . '</section>';
 }
 if ($page === 'results') {
-    echo '<h1>Results</h1><p class="sub">How each channel is doing: messages sent, how many people opened their concept, replies and calls. Your own team\'s clicks are not counted.</p>';
+    echo '<h1>Results</h1><p class="sub">How each channel is doing: messages sent, how many saw them, how many opened their concept, replies and calls. Your own team\'s clicks are not counted.</p>';
     $rows = null; $gerr = '';
     if (!google_key()) $gerr = 'The leads sheet is not connected yet (Settings › Leads sheet).';
     else { try { $rows = sheet_rows(); } catch (Throwable $e) { $gerr = $e->getMessage(); } }
@@ -346,28 +352,31 @@ if ($page === 'results') {
         $vs = []; foreach (array_reverse($views) as $v) $vs[$v['slug']][] = $v;      // oldest first
         $calls = []; foreach ($bookings as $b) if ($b['slug'] && $b['status'] !== 'cancelled') $calls[$b['slug']] = true;
         $isReply = fn($r) => $r['reply'] !== '' && stripos($r['reply'], 'follow-up sent') !== 0;
+        $seenAt = seen_map();
         $stat = []; $list = [];
         foreach ($sent as $r) {
-            $c = $chan($r); $stat[$c] ??= ['sent' => 0, 'opened' => 0, 'tracked' => 0, 'reply' => 0, 'call' => 0];
+            $c = $chan($r); $stat[$c] ??= ['sent' => 0, 'seen' => 0, 'opened' => 0, 'tracked' => 0, 'reply' => 0, 'call' => 0];
             $sv = $vs[$r['slug']] ?? []; $st = &$stat[$c];
-            $st['sent']++; if ($sv) $st['opened']++; if ($isReply($r)) $st['reply']++; if (isset($calls[$r['slug']])) $st['call']++;
+            $st['sent']++; if ($sv) $st['opened']++; if (isset($seenAt[$r['slug']]) || $sv) $st['seen']++; if ($isReply($r)) $st['reply']++; if (isset($calls[$r['slug']])) $st['call']++;
             if (array_filter($sv, fn($v) => str_starts_with((string)$v['ref'], 'via '))) $st['tracked']++;
             unset($st);
             $list[] = ['r' => $r, 'c' => $c, 'v' => $sv];
         }
         $pct = fn($a, $b) => $b ? round(100 * $a / $b) . '%' : '–';
         ksort($stat);
-        $tot = ['sent' => 0, 'opened' => 0, 'reply' => 0, 'call' => 0]; foreach ($stat as $st) foreach ($tot as $k => $_) $tot[$k] += $st[$k];
-        echo '<div class="stats"><div class="stat"><b>' . $tot['sent'] . '</b><span>Messages sent</span></div><div class="stat"><b>' . $pct($tot['opened'], $tot['sent']) . '</b><span>Opened their concept (' . $tot['opened'] . ')</span></div><div class="stat"><b>' . $tot['reply'] . '</b><span>Replies</span></div><div class="stat"><b>' . $tot['call'] . '</b><span>Calls booked</span></div></div>';
-        echo '<section class="card"><h2>By channel</h2><div class="tbl"><table><thead><tr><th>Channel</th><th>Sent</th><th>Opened</th><th>Click rate</th><th>Replies</th><th>Calls</th></tr></thead><tbody>';
-        foreach ($stat as $c => $st) echo '<tr><td><b>' . h($c) . '</b></td><td>' . $st['sent'] . '</td><td>' . $st['opened'] . '</td><td><b>' . $pct($st['opened'], $st['sent']) . '</b></td><td>' . $st['reply'] . '</td><td>' . $st['call'] . '</td></tr>';
-        echo '</tbody></table></div><p class="hint">Click rate = people who opened their concept ÷ messages sent. Visits from any browser or network where the panel is used are ignored automatically.</p></section>';
+        $tot = ['sent' => 0, 'seen' => 0, 'opened' => 0, 'reply' => 0, 'call' => 0]; foreach ($stat as $st) foreach ($tot as $k => $_) $tot[$k] += $st[$k];
+        echo '<div class="stats"><div class="stat"><b>' . $tot['sent'] . '</b><span>Messages sent</span></div><div class="stat"><b>' . $pct($tot['seen'], $tot['sent']) . '</b><span>View rate: saw the message (' . $tot['seen'] . ')</span></div><div class="stat"><b>' . $pct($tot['opened'], $tot['sent']) . '</b><span>Click rate: opened the concept (' . $tot['opened'] . ')</span></div><div class="stat"><b>' . $tot['reply'] . '</b><span>Replies</span></div><div class="stat"><b>' . $tot['call'] . '</b><span>Calls booked</span></div></div>';
+        echo '<section class="card"><h2>By channel</h2><div class="tbl"><table><thead><tr><th>Channel</th><th>Sent</th><th>Saw message</th><th>View rate</th><th>Opened concept</th><th>Click rate</th><th>Replies</th><th>Calls</th></tr></thead><tbody>';
+        foreach ($stat as $c => $st) echo '<tr><td><b>' . h($c) . '</b></td><td>' . $st['sent'] . '</td><td>' . $st['seen'] . '</td><td><b>' . $pct($st['seen'], $st['sent']) . '</b></td><td>' . $st['opened'] . '</td><td><b>' . $pct($st['opened'], $st['sent']) . '</b></td><td>' . $st['reply'] . '</td><td>' . $st['call'] . '</td></tr>';
+        echo '</tbody></table></div><p class="hint"><b>View rate</b> = saw the message ÷ sent. Email: counted when the email is opened (it carries a tiny image; some apps block images, so the real number can be a bit higher). Instagram: press <b>Mark seen</b> below when Instagram shows “Seen”. Anyone who opened the concept also counts as seen.<br><b>Click rate</b> = opened the concept ÷ sent. Visits from the panel, or from any browser or network where the panel is used, are never counted.</p></section>';
         usort($list, fn($a, $b) => [(int)!$a['v'], $b['r']['sent']] <=> [(int)!$b['v'], $a['r']['sent']]);
         echo '<section class="card"><h2>Every lead</h2>';
-        foreach ($list as $x) { $r = $x['r']; $v = $x['v']; $n = count($v); $last = $v ? end($v) : null;
+        foreach ($list as $x) { $r = $x['r']; $v = $x['v']; $n = count($v); $last = $v ? end($v) : null; $isIg = $x['c'] === 'Instagram DM'; $sa = $seenAt[$r['slug']] ?? null;
             echo '<div class="row"><div class="grow"><b>' . h($r['company']) . '</b><small>' . h($x['c']) . ' · sent ' . h($r['sent']) . ($isReply($r) ? ' · <b>replied:</b> ' . h(mb_substr($r['reply'], 0, 80)) : '') . '</small></div>'
-                . ($v ? '<span class="pill ok">Opened ' . h(ago($last['at'])) . ' · ' . $n . ($n === 1 ? ' view' : ' views') . '</span>' : '<span class="pill grey">Not opened</span>')
-                . ($r['slug'] ? '<a class="btn line sm" href="/' . h($r['slug']) . '/" target="_blank" rel="noopener">Concept</a>' : '') . '</div>'; }
+                . ($v ? '<span class="pill ok">Opened concept ' . h(ago($last['at'])) . ' · ' . $n . ($n === 1 ? ' view' : ' views') . '</span>'
+                      : ($sa ? '<span class="pill">Saw message ' . h(ago($sa)) . '</span>' : '<span class="pill grey">' . ($isIg ? 'Not seen yet' : 'Email not opened yet') . '</span>'))
+                . ($isIg && !$v && $r['slug'] ? '<form method="post">' . csrf_field() . '<input type="hidden" name="a" value="' . ($sa ? 'ounseen' : 'oseen') . '"><input type="hidden" name="slug" value="' . h($r['slug']) . '"><button class="btn line sm">' . ($sa ? 'Undo seen' : 'Mark seen') . '</button></form>' : '')
+                . ($r['slug'] ? '<a class="btn line sm" href="/' . h($r['slug']) . '/?team=1" target="_blank" rel="noopener">Concept</a>' : '') . '</div>'; }
         echo '</section>';
     }
 }

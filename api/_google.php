@@ -82,7 +82,7 @@ function sheet_update_row(int $row, array $cells): void {
 function tracked_links(string $text, string $from = 'email'): string {
     return preg_replace_callback('#(?:https?://)?sitesbyms\.com/([a-z0-9-]+)/?(\?from=[a-z0-9-]+)?#i', fn($m) => 'https://sitesbyms.com/' . strtolower($m[1]) . '/?from=' . $from, $text);
 }
-function text_to_html(string $text): string {
+function text_to_html(string $text, string $pixel = ''): string {
     $h = htmlspecialchars($text, ENT_QUOTES, 'UTF-8');
     $h = preg_replace_callback('#https?://[^\s<]+#', function ($m) {
         $url = html_entity_decode($m[0]); $label = preg_replace(['#^https?://#', '#/?\?from=[a-z0-9-]+$#', '#/$#'], '', $url);
@@ -90,19 +90,46 @@ function text_to_html(string $text): string {
     }, $h);
     $h = preg_replace('/([A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,})/', '<a href="mailto:$1" style="color:#5B2FE0">$1</a>', $h);
     return '<!doctype html><html><body style="margin:0;padding:0;background:#ffffff"><div style="font-family:Arial,Helvetica,sans-serif;font-size:15px;line-height:1.6;color:#1b1f33;max-width:600px">'
-        . nl2br($h, false) . '</div></body></html>';
+        . nl2br($h, false) . '</div>' . ($pixel ? '<img src="' . htmlspecialchars($pixel, ENT_QUOTES) . '" width="1" height="1" alt="" style="display:block;border:0;width:1px;height:1px">' : '') . '</body></html>';
 }
-/** Sends a plain + HTML email from hello@. Returns the Message-ID (for threading) or null. */
-function send_outreach(string $to, string $subject, string $text, ?string $inReplyTo = null): ?string {
+/** Sends a plain + HTML email from hello@ with a 1px image that tells us it was opened.
+ *  The team copy is a separate email without that image, so our own reading is never counted. Returns the Message-ID or null. */
+function send_outreach(string $to, string $subject, string $text, ?string $inReplyTo = null, string $slug = '', string $kind = 'first'): ?string {
     $mid = '<' . bin2hex(random_bytes(12)) . '@sitesbyms.com>';
-    $b = 'sbm' . bin2hex(random_bytes(8));
-    $headers = 'From: Sites By MS <' . FROM_ADDR . ">\r\nReply-To: " . FROM_ADDR . "\r\nBcc: m.and.s.design.develop@gmail.com\r\nMessage-ID: $mid\r\nMIME-Version: 1.0\r\n"
-             . ($inReplyTo ? "In-Reply-To: $inReplyTo\r\nReferences: $inReplyTo\r\n" : '')
-             . "Content-Type: multipart/alternative; boundary=\"$b\"";
-    $body = "--$b\r\nContent-Type: text/plain; charset=UTF-8\r\nContent-Transfer-Encoding: base64\r\n\r\n" . chunk_split(base64_encode($text))
-          . "--$b\r\nContent-Type: text/html; charset=UTF-8\r\nContent-Transfer-Encoding: base64\r\n\r\n" . chunk_split(base64_encode(text_to_html($text))) . "--$b--";
-    $ok = @mail($to, '=?UTF-8?B?' . base64_encode($subject) . '?=', $body, $headers, '-f' . FROM_ADDR);
+    $pixel = $slug ? 'https://sitesbyms.com/api/o.php?s=' . rawurlencode($slug) . '&k=' . $kind : '';
+    $build = function (string $html) use ($text, &$b) {
+        $b = 'sbm' . bin2hex(random_bytes(8));
+        return "--$b\r\nContent-Type: text/plain; charset=UTF-8\r\nContent-Transfer-Encoding: base64\r\n\r\n" . chunk_split(base64_encode($text))
+             . "--$b\r\nContent-Type: text/html; charset=UTF-8\r\nContent-Transfer-Encoding: base64\r\n\r\n" . chunk_split(base64_encode($html)) . "--$b--";
+    };
+    $head = fn(string $id, string $boundary) => 'From: Sites By MS <' . FROM_ADDR . ">\r\nReply-To: " . FROM_ADDR . "\r\nMessage-ID: $id\r\nMIME-Version: 1.0\r\n"
+             . ($inReplyTo ? "In-Reply-To: $inReplyTo\r\nReferences: $inReplyTo\r\n" : '') . "Content-Type: multipart/alternative; boundary=\"$boundary\"";
+    $subj = '=?UTF-8?B?' . base64_encode($subject) . '?=';
+    $body = $build(text_to_html($text, $pixel));
+    $ok = @mail($to, $subj, $body, $head($mid, $b), '-f' . FROM_ADDR);
+    if ($ok) {   // copy for the team inbox, no tracking image
+        $copy = $build(text_to_html("Sent to $to\n\n" . $text));
+        @mail('m.and.s.design.develop@gmail.com', '=?UTF-8?B?' . base64_encode('[Sent] ' . $subject) . '?=', $copy, $head('<' . bin2hex(random_bytes(12)) . '@sitesbyms.com>', $b), '-f' . FROM_ADDR);
+    }
     return $ok ? $mid : null;
+}
+
+/* ---------- "seen": email opened (tracking image) or Instagram marked Seen by the team ---------- */
+function seen_migrate(PDO $p): void {
+    $p->exec("CREATE TABLE IF NOT EXISTS message_seen (id INT AUTO_INCREMENT PRIMARY KEY, slug VARCHAR(80) NOT NULL, kind VARCHAR(20) NOT NULL DEFAULT 'first',
+        channel VARCHAR(30) NOT NULL, how VARCHAR(20) NOT NULL, created_at DATETIME NOT NULL, INDEX (slug)) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4");
+}
+function seen_add(string $slug, string $kind, string $channel, string $how): void {
+    $p = db(); if (!$p) { append_line('seen.jsonl', ['slug' => $slug, 'kind' => $kind, 'channel' => $channel, 'how' => $how, 'at' => gmdate('c')]); return; }
+    seen_migrate($p);
+    $p->prepare('INSERT INTO message_seen (slug,kind,channel,how,created_at) VALUES (?,?,?,?,UTC_TIMESTAMP())')->execute([$slug, $kind, $channel, $how]);
+}
+/** slug => first time the message was seen (ISO). */
+function seen_map(): array {
+    $p = db();
+    $rows = $p ? (function () use ($p) { seen_migrate($p); return array_map(fn($r) => ['slug' => $r['slug'], 'at' => iso($r['created_at'])], $p->query('SELECT slug, MIN(created_at) created_at FROM message_seen GROUP BY slug')->fetchAll()); })() : read_lines('seen.jsonl');
+    $m = []; foreach ($rows as $r) if (!isset($m[$r['slug']]) || strtotime($r['at']) < strtotime($m[$r['slug']])) $m[$r['slug']] = $r['at'];
+    return $m;
 }
 
 function outreach_migrate(PDO $p): void {
