@@ -212,7 +212,6 @@ if ($csrfOk) {
 }
 
 team_mark();
-try { stats_mail_maybe(); } catch (Throwable $e) {}
 
 /* ---------- data ---------- */
 $bookings = bookings_all();
