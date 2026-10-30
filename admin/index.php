@@ -205,6 +205,8 @@ if ($csrfOk) {
     }
 }
 
+team_mark();
+
 /* ---------- data ---------- */
 $bookings = bookings_all();
 $upcoming = array_values(array_filter($bookings, fn($b) => $b['status'] !== 'cancelled' && $b['start_ts'] > time() - 1800));
@@ -253,7 +255,7 @@ function msg_row(array $m, array $typeLabel): string {
 }
 
 /* ---------- pages ---------- */
-$nav = [['home', 'Overview'], ['outreach', 'Outreach'], ['calls', 'Calls'], ['messages', 'Messages'], ['views', 'Concept views']];
+$nav = [['home', 'Overview'], ['outreach', 'Outreach'], ['results', 'Results'], ['calls', 'Calls'], ['messages', 'Messages'], ['views', 'Concept views']];
 if ($pdo && $isOwner) $nav[] = ['team', 'Team'];
 $nav[] = ['settings', 'Settings'];
 
@@ -332,6 +334,43 @@ if ($page === 'calls') {
     echo '<section class="card"><h2>Upcoming</h2>' . ($upcoming ? implode('', array_map(fn($b) => booking_row($b, $howLabel, true), $upcoming)) : '<div class="empty">No upcoming calls.</div>') . '</section>';
     if ($past) echo '<section class="card"><h2>Past and cancelled</h2>' . implode('', array_map(fn($b) => booking_row($b, $howLabel), array_slice($past, 0, 40))) . '</section>';
 }
+if ($page === 'results') {
+    echo '<h1>Results</h1><p class="sub">How each channel is doing: messages sent, how many people opened their concept, replies and calls. Your own team\'s clicks are not counted.</p>';
+    $rows = null; $gerr = '';
+    if (!google_key()) $gerr = 'The leads sheet is not connected yet (Settings › Leads sheet).';
+    else { try { $rows = sheet_rows(); } catch (Throwable $e) { $gerr = $e->getMessage(); } }
+    if ($gerr) echo '<section class="card"><p class="err">' . h($gerr) . '</p></section>';
+    else {
+        $sent = array_values(array_filter($rows, fn($r) => $r['sent'] !== ''));
+        $chan = fn($r) => stripos($r['channel'], 'mail') !== false ? 'Email' : (stripos($r['channel'], 'insta') !== false ? 'Instagram DM' : ($r['channel'] ?: 'Other'));
+        $vs = []; foreach (array_reverse($views) as $v) $vs[$v['slug']][] = $v;      // oldest first
+        $calls = []; foreach ($bookings as $b) if ($b['slug'] && $b['status'] !== 'cancelled') $calls[$b['slug']] = true;
+        $isReply = fn($r) => $r['reply'] !== '' && stripos($r['reply'], 'follow-up sent') !== 0;
+        $stat = []; $list = [];
+        foreach ($sent as $r) {
+            $c = $chan($r); $stat[$c] ??= ['sent' => 0, 'opened' => 0, 'tracked' => 0, 'reply' => 0, 'call' => 0];
+            $sv = $vs[$r['slug']] ?? []; $st = &$stat[$c];
+            $st['sent']++; if ($sv) $st['opened']++; if ($isReply($r)) $st['reply']++; if (isset($calls[$r['slug']])) $st['call']++;
+            if (array_filter($sv, fn($v) => str_starts_with((string)$v['ref'], 'via '))) $st['tracked']++;
+            unset($st);
+            $list[] = ['r' => $r, 'c' => $c, 'v' => $sv];
+        }
+        $pct = fn($a, $b) => $b ? round(100 * $a / $b) . '%' : '–';
+        ksort($stat);
+        $tot = ['sent' => 0, 'opened' => 0, 'reply' => 0, 'call' => 0]; foreach ($stat as $st) foreach ($tot as $k => $_) $tot[$k] += $st[$k];
+        echo '<div class="stats"><div class="stat"><b>' . $tot['sent'] . '</b><span>Messages sent</span></div><div class="stat"><b>' . $pct($tot['opened'], $tot['sent']) . '</b><span>Opened their concept (' . $tot['opened'] . ')</span></div><div class="stat"><b>' . $tot['reply'] . '</b><span>Replies</span></div><div class="stat"><b>' . $tot['call'] . '</b><span>Calls booked</span></div></div>';
+        echo '<section class="card"><h2>By channel</h2><div class="tbl"><table><thead><tr><th>Channel</th><th>Sent</th><th>Opened</th><th>Click rate</th><th>Replies</th><th>Calls</th></tr></thead><tbody>';
+        foreach ($stat as $c => $st) echo '<tr><td><b>' . h($c) . '</b></td><td>' . $st['sent'] . '</td><td>' . $st['opened'] . '</td><td><b>' . $pct($st['opened'], $st['sent']) . '</b></td><td>' . $st['reply'] . '</td><td>' . $st['call'] . '</td></tr>';
+        echo '</tbody></table></div><p class="hint">Click rate = people who opened their concept ÷ messages sent. Visits from any browser or network where the panel is used are ignored automatically.</p></section>';
+        usort($list, fn($a, $b) => [(int)!$a['v'], $b['r']['sent']] <=> [(int)!$b['v'], $a['r']['sent']]);
+        echo '<section class="card"><h2>Every lead</h2>';
+        foreach ($list as $x) { $r = $x['r']; $v = $x['v']; $n = count($v); $last = $v ? end($v) : null;
+            echo '<div class="row"><div class="grow"><b>' . h($r['company']) . '</b><small>' . h($x['c']) . ' · sent ' . h($r['sent']) . ($isReply($r) ? ' · <b>replied:</b> ' . h(mb_substr($r['reply'], 0, 80)) : '') . '</small></div>'
+                . ($v ? '<span class="pill ok">Opened ' . h(ago($last['at'])) . ' · ' . $n . ($n === 1 ? ' view' : ' views') . '</span>' : '<span class="pill grey">Not opened</span>')
+                . ($r['slug'] ? '<a class="btn line sm" href="/' . h($r['slug']) . '/" target="_blank" rel="noopener">Concept</a>' : '') . '</div>'; }
+        echo '</section>';
+    }
+}
 if ($page === 'messages') {
     echo '<h1>Messages</h1><p class="sub">Questions and free concept requests from the website forms.</p>';
     echo '<section class="card">' . ($messages ? implode('', array_map(fn($m) => msg_row($m, $typeLabel), $messages)) : '<div class="empty">No messages yet.</div>') . '</section>';
@@ -340,7 +379,7 @@ if ($page === 'views') {
     echo '<h1>Concept views</h1><p class="sub">Who has opened their concept. The first few hours are the best time to follow up.</p><section class="card">';
     if ($bySlug) foreach ($bySlug as $s => $v) echo '<div class="row"><div class="grow"><b>' . h($s) . '</b><small>Last opened ' . h(ago($v['last'])) . ' · ' . h($v['device']) . ($v['from'] ? ' · clicked from ' . h($v['from'] === 'ig' ? 'Instagram DM' : $v['from']) : '') . '</small></div><span class="pill">' . $v['n'] . ($v['n'] === 1 ? ' view' : ' views') . '</span><a class="btn line sm" href="/' . h($s) . '/?team=1" target="_blank" rel="noopener">Open</a></div>';
     else echo '<div class="empty">No views recorded yet.</div>';
-    echo '</section><p class="sub">Your own visits are not counted once you have opened any concept with ?team=1 on that device.</p>';
+    echo '</section><p class="sub">Visits from any browser or network where someone is logged in to this panel are not counted.</p>';
 }
 if ($page === 'team' && $pdo && $isOwner) {
     echo '<h1>Team</h1><p class="sub">Everyone who can log in to this panel. Members can do everything except manage the team and the database.</p><section class="card">';

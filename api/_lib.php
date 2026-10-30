@@ -307,6 +307,19 @@ function view_add(array $v): void {
     append_line('views.jsonl', $v);
 }
 
+/* ---------- team devices (their visits are not counted as client views) ---------- */
+function ip_key(): string { return substr(hash('sha256', 'team|' . ($_SERVER['REMOTE_ADDR'] ?? '')), 0, 16); }
+/** Called on every panel page: remembers this browser (cookie) and this network (hashed IP, 30 days). */
+function team_mark(): void {
+    if (($_COOKIE['sbm_team'] ?? '') !== '1') setcookie('sbm_team', '1', ['expires' => time() + 400 * 86400, 'path' => '/', 'secure' => !empty($_SERVER['HTTPS']), 'httponly' => true, 'samesite' => 'Lax']);
+    $ips = read_json('team_ips.json', []); $k = ip_key();
+    if (time() - (int)($ips[$k] ?? 0) > 3600) { $ips[$k] = time(); $ips = array_filter($ips, fn($t) => $t > time() - 30 * 86400); write_json('team_ips.json', $ips); }
+}
+function is_team_visit(): bool {
+    if (($_COOKIE['sbm_team'] ?? '') === '1') return true;
+    $ips = read_json('team_ips.json', []); return (int)($ips[ip_key()] ?? 0) > time() - 30 * 86400;
+}
+
 /* ---------- users (need MySQL) ---------- */
 function users_all(): array { return ($p = db()) ? $p->query('SELECT id,email,name,role,created_at,last_login FROM users ORDER BY id')->fetchAll() : []; }
 function user_by_email(string $e): ?array { if (!($p = db())) return null; $q = $p->prepare('SELECT * FROM users WHERE email=?'); $q->execute([strtolower(trim($e))]); return $q->fetch() ?: null; }
