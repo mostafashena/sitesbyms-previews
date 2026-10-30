@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>STILL London | Vegan nail studio &amp; infrared sauna, Dalston</title>
+<meta name="description" content="A vegan, cruelty-free nail studio, wellness salon and infrared sauna at 450 Kingsland Road, Dalston, E8 4AE.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+/* Layout 8: minimal monochrome, hairline rules, lots of air. Words: calm, kind, unhurried. */
+:root{
+  --paper:#F7F6F3;
+  --ink:#141414;
+  --soft:#6B6862;
+  --rule:#CFCCC6;
+  --ash:#E9E7E2;
+  --serif:"Cormorant Garamond",Garamond,"Times New Roman",serif;
+  --sans:"Jost",system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--paper);color:var(--ink);font:300 17px/1.7 var(--sans);-webkit-font-smoothing:antialiased;padding-bottom:110px}
+a{color:inherit}
+:focus-visible{outline:1px solid var(--ink);outline-offset:4px}
+h1,h2,h3{font-family:var(--serif);font-weight:300;margin:0;line-height:1.05}
+p{margin:0}
+.wrap{width:min(1040px,100% - 32px);margin-inline:auto}
+.concept{background:var(--ink);color:#bdbab4;font-size:12px;letter-spacing:.04em;text-align:center;padding:7px 12px}
+header{position:sticky;top:0;z-index:20;background:rgba(247,246,243,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--rule)}
+.bar{display:flex;align-items:center;justify-content:space-between;height:68px}
+.mark{font-family:var(--sans);font-weight:400;font-size:20px;letter-spacing:.55em;text-decoration:none;padding-left:.1em}
+.mark small{display:block;font-size:9px;letter-spacing:.5em;color:var(--soft);margin-top:-2px}
+nav{display:none;gap:34px;font-size:12px;letter-spacing:.22em;text-transform:uppercase}
+nav a{text-decoration:none;color:var(--soft)}
+nav a:hover{color:var(--ink)}
+.btn{display:inline-block;border:1px solid var(--ink);padding:10px 22px;font-size:12px;letter-spacing:.24em;text-transform:uppercase;text-decoration:none;transition:background .3s,color .3s}
+.btn:hover{background:var(--ink);color:var(--paper)}
+@media(min-width:820px){nav{display:flex}}
+
+.hero{padding:76px 0 64px;text-align:center}
+.eyebrow{font-size:11px;letter-spacing:.38em;text-transform:uppercase;color:var(--soft)}
+.hero h1{font-size:clamp(54px,12vw,128px);letter-spacing:.02em;margin:26px 0 18px}
+.hero h1 em{font-style:italic;font-weight:300}
+.hero p.lede{font-family:var(--serif);font-size:clamp(20px,3vw,26px);font-style:italic;color:var(--soft);max-width:30ch;margin:0 auto}
+.rule{height:1px;background:var(--rule);border:0;margin:0}
+.vline{width:1px;height:56px;background:var(--rule);margin:36px auto}
+.ph{border:1px solid var(--rule);background:repeating-linear-gradient(135deg,transparent 0 11px,rgba(0,0,0,.035) 11px 12px),var(--ash);display:flex;align-items:center;justify-content:center;text-align:center;color:var(--soft);font-size:12px;letter-spacing:.18em;text-transform:uppercase;padding:16px}
+.hero .ph{aspect-ratio:16/7;margin-top:8px}
+
+section{padding:84px 0}
+.label{display:flex;align-items:baseline;gap:18px;margin-bottom:40px}
+.label span{font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--soft)}
+.label hr{flex:1;border:0;border-top:1px solid var(--rule);margin:0}
+.about{display:grid;gap:40px}
+.about h2{font-size:clamp(34px,5vw,52px)}
+.about p{color:#2e2c29;max-width:52ch}
+.about p+p{margin-top:16px}
+.about .ph{aspect-ratio:4/5}
+@media(min-width:820px){.about{grid-template-columns:1.1fr .9fr;align-items:center;gap:72px}}
+
+.menu{list-style:none;margin:0;padding:0;border-top:1px solid var(--ink)}
+.menu li{display:grid;grid-template-columns:1fr auto;gap:6px 20px;padding:22px 0;border-bottom:1px solid var(--rule)}
+.menu h3{font-size:clamp(24px,3.4vw,32px)}
+.menu .meta{grid-column:1;font-size:13px;color:var(--soft);letter-spacing:.06em}
+.menu .price{grid-row:1/span 2;grid-column:2;align-self:center;font-family:var(--serif);font-size:28px}
+.note{font-size:13px;color:var(--soft);margin-top:18px}
+
+.quote{text-align:center;padding:96px 0;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+.quote p{font-family:var(--serif);font-style:italic;font-size:clamp(28px,4.4vw,44px);line-height:1.2;max-width:22ch;margin:0 auto}
+.quote small{display:block;margin-top:22px;font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--soft)}
+
+.visit{display:grid;gap:0;border-top:1px solid var(--ink)}
+.visit > div{padding:28px 0;border-bottom:1px solid var(--rule)}
+.visit h3{font-size:13px;font-family:var(--sans);font-weight:400;letter-spacing:.28em;text-transform:uppercase;color:var(--soft);margin-bottom:12px}
+.visit p{font-family:var(--serif);font-size:24px;line-height:1.35}
+.visit a.link{font-family:var(--sans);font-size:13px;letter-spacing:.18em;text-transform:uppercase;display:inline-block;margin-top:12px}
+@media(min-width:820px){.visit{grid-template-columns:repeat(3,1fr)}.visit > div{padding:32px 28px;border-bottom:0;border-left:1px solid var(--rule)}.visit > div:first-child{border-left:0;padding-left:0}}
+
+footer{border-top:1px solid var(--rule);padding:48px 0 24px;text-align:center;font-size:12px;color:var(--soft);letter-spacing:.06em}
+footer .mark{display:inline-block;margin-bottom:16px;color:var(--ink)}
+</style>
+</head>
+<body>
+<div class="concept">Design concept prepared for STILL London by Sites By MS. Not the official website.</div>
+
+<header>
+  <div class="wrap bar">
+    <a class="mark" href="#top" aria-label="STILL London home">STILL<small>LONDON</small></a>
+    <nav aria-label="Main">
+      <a href="#about">Studio</a>
+      <a href="#treatments">Treatments</a>
+      <a href="#visit">Visit</a>
+    </nav>
+    <a class="btn" href="https://www.fresha.com/a/still-london-london-450-kingsland-road-zh3mmyzx">Book</a>
+  </div>
+</header>
+
+<main id="top">
+  <div class="wrap hero">
+    <p class="eyebrow">Nails &nbsp;·&nbsp; Wellness &nbsp;·&nbsp; Infrared sauna</p>
+    <h1>Be <em>still.</em></h1>
+    <p class="lede">A vegan, cruelty-free nail studio and sauna on Kingsland Road, Dalston.</p>
+    <div class="vline"></div>
+    <div class="ph">1600 × 700 – Quiet treatment room, soft daylight</div>
+  </div>
+
+  <hr class="rule">
+
+  <section id="about">
+    <div class="wrap">
+      <div class="label"><span>The studio</span><hr></div>
+      <div class="about">
+        <div>
+          <h2>A calm room on one of East London’s busiest roads.</h2>
+          <p style="margin-top:24px">STILL began in Dalston in 2019 as a nail studio built around vegan, cruelty-free products. Today it is a small wellness salon with two treatment rooms and an infrared sauna.</p>
+          <p>Come in for a manicure, a long pedicure or a quiet session in the sauna, and leave a little slower than you arrived.</p>
+        </div>
+        <div class="ph">800 × 1000 – Manicure table detail</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="treatments" style="padding-top:0">
+    <div class="wrap">
+      <div class="label"><span>Treatments</span><hr></div>
+      <ul class="menu">
+        <li><h3>Gel polish manicure</h3><span class="meta">45 minutes</span><span class="price">£44</span></li>
+        <li><h3>STILL luxury pedicure</h3><span class="meta">60 minutes · with polish</span><span class="price">£48</span></li>
+        <li><h3>STILL luxury pedicure, gel</h3><span class="meta">60 minutes · with gel polish</span><span class="price">£58</span></li>
+        <li><h3>Infrared sauna</h3><span class="meta">25 minutes</span><span class="price">£35</span></li>
+        <li><h3>Infrared sauna, long</h3><span class="meta">45 minutes</span><span class="price">£50</span></li>
+        <li><h3>BIAB &amp; custom nail art</h3><span class="meta">Priced on booking</span><span class="price">—</span></li>
+      </ul>
+      <p class="note">Prices as listed on STILL’s Fresha booking page. All products vegan and cruelty-free.</p>
+    </div>
+  </section>
+
+  <div class="quote">
+    <div class="wrap">
+      <p>Rated 5.0 on Fresha from more than 4,000 reviews.</p>
+      <small>And 4.8 on Google</small>
+    </div>
+  </div>
+
+  <section id="visit">
+    <div class="wrap">
+      <div class="label"><span>Visit</span><hr></div>
+      <div class="visit">
+        <div>
+          <h3>Address</h3>
+          <p>450 Kingsland Road<br>Dalston, London E8 4AE</p>
+          <a class="link" href="https://www.google.com/maps/dir/?api=1&amp;destination=STILL+London+450+Kingsland+Road+London+E8+4AE">Directions →</a>
+        </div>
+        <div>
+          <h3>Opening hours</h3>
+          <p>Open seven days.<br>Times vary by day.</p>
+          <a class="link" href="https://www.fresha.com/a/still-london-london-450-kingsland-road-zh3mmyzx">See live availability →</a>
+        </div>
+        <div>
+          <h3>Contact</h3>
+          <p><a href="tel:07871307808" style="text-decoration:none">07871 307808</a><br><a href="mailto:hello@still-london.com" style="text-decoration:none;font-size:20px">hello@still-london.com</a></p>
+          <a class="link" href="tel:07871307808">Call the studio →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span class="mark">STILL<small>LONDON</small></span>
+    <p>Vegan &amp; cruelty-free nail studio, wellness salon and infrared sauna · 450 Kingsland Road, E8 4AE</p>
+    <p style="margin-top:18px">Design concept by Sites By MS. Not the official website.</p>
+  </div>
+</footer>
+<script src="/assets/concept-bar.js" data-name="STILL London" data-slug="still-london" defer></script>
+</body>
+</html>

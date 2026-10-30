@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mr Salus Sporting Lab – Brixton | Sports Massage &amp; Gait Analysis</title>
+<meta name="description" content="Sports massage, deep tissue massage, injury rehab sessions and gait analysis with Massimo at Mr Salus Sporting Lab, Studio 7, 360 Coldharbour Lane, Brixton.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@500;700;800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* Layout 1: full-bleed image hero. Personality: hands-on, precise, athletic.
+   "Lab" feel: running-track lines, lane numbers, a single electric lime accent on graphite. */
+:root{
+  --graphite:#121619;
+  --slate:#1E2429;
+  --chalk:#F2F4F1;
+  --muted:#5D6670;
+  --line:#DCE1DD;
+  --lime:#C6F432;     /* lab accent */
+  --lime-ink:#1A2400;
+  --display:"Saira Condensed","Arial Narrow",sans-serif;
+  --body:"Manrope",system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--chalk);color:var(--graphite);font:400 17px/1.65 var(--body);-webkit-font-smoothing:antialiased}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--lime);outline-offset:3px}
+h1,h2,h3{font-family:var(--display);font-weight:800;text-transform:uppercase;margin:0;line-height:.92;letter-spacing:.01em}
+p{margin:0}
+.wrap{width:min(1180px,100% - 32px);margin-inline:auto}
+.concept{background:#000;color:#b9c0c6;font-size:13px;text-align:center;padding:7px 16px}
+
+header{position:sticky;top:0;z-index:30;background:rgba(18,22,25,.94);backdrop-filter:blur(8px);color:#fff}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:16px;height:68px}
+.brand{text-decoration:none;display:flex;align-items:center}
+.wordmark{display:inline-block;font:800 26px/1 var(--display);text-transform:uppercase;letter-spacing:.02em}
+.wordmark b{color:var(--lime);font-weight:800}
+.wordmark small{display:block;font:600 10px/1 var(--body);letter-spacing:.3em;color:#9aa3ab;margin-top:4px}
+.links{display:flex;gap:28px;font-size:14px;font-weight:600}
+.links a{text-decoration:none;color:#c7ced4}
+.links a:hover{color:var(--lime)}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 24px;font:700 15px/1 var(--body);text-decoration:none;background:var(--lime);color:var(--lime-ink);border-radius:999px;transition:transform .15s}
+.btn:hover{transform:translateY(-1px)}
+.btn-out{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.6)}
+.nav .btn{min-height:42px;padding:0 20px}
+@media (max-width:820px){.links{display:none}.wordmark{font-size:22px}}
+
+/* full-bleed hero */
+.hero{position:relative;min-height:88vh;display:flex;align-items:flex-end;color:#fff;overflow:hidden;background:var(--slate)}
+.hero .img{position:absolute;inset:0;display:flex;align-items:flex-start;justify-content:flex-end;padding:24px;font:600 14px/1.4 var(--body);color:rgba(255,255,255,.55);
+  background:
+   repeating-linear-gradient(90deg,transparent 0 calc(25% - 1px),rgba(255,255,255,.07) calc(25% - 1px) 25%),
+   linear-gradient(160deg,#2b333a 0%,#151a1e 70%);}
+.hero .img span{border:1px dashed rgba(255,255,255,.35);padding:8px 12px;border-radius:6px}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(10,12,14,.92) 0%,rgba(10,12,14,.25) 60%,transparent 100%)}
+.hero .wrap{position:relative;z-index:2;padding:0 0 64px}
+.lane{display:inline-flex;gap:10px;align-items:center;font:700 13px/1 var(--body);letter-spacing:.24em;text-transform:uppercase;color:var(--lime);margin-bottom:18px}
+.lane::before{content:"";width:34px;height:3px;background:var(--lime)}
+.hero h1{font-size:clamp(58px,11vw,150px);max-width:11ch}
+.hero h1 b{color:var(--lime);font-weight:800}
+.hero p{font-size:19px;color:#d3d9de;max-width:44ch;margin:22px 0 30px}
+.cta{display:flex;flex-wrap:wrap;gap:12px}
+
+/* about */
+.section{padding:84px 0}
+.about{display:grid;grid-template-columns:.9fr 1.1fr;gap:56px;align-items:start}
+.tag{font:700 12px/1 var(--body);letter-spacing:.24em;text-transform:uppercase;color:var(--muted);margin-bottom:14px}
+.about h2{font-size:clamp(42px,6vw,72px)}
+.about p+p{margin-top:16px}
+.about .lede{font-size:21px;font-weight:500}
+.ph{display:flex;align-items:center;justify-content:center;text-align:center;border:1.5px dashed #9da6ad;border-radius:14px;background:#e7ebe7;color:var(--muted);font:600 14px/1.4 var(--body);padding:20px}
+
+/* services: lanes */
+.dark{background:var(--graphite);color:#fff}
+.dark .tag{color:#8e98a1}
+.dark h2{font-size:clamp(42px,6vw,72px);margin-bottom:36px}
+.lanes{list-style:none;margin:0;padding:0;border-top:1px solid #2f373e}
+.lanes li{display:grid;grid-template-columns:70px 1fr 1.3fr;gap:20px;align-items:baseline;padding:24px 0;border-bottom:1px solid #2f373e}
+.lanes .no{font:800 34px/1 var(--display);color:var(--lime)}
+.lanes h3{font-size:34px}
+.lanes p{color:#aab3ba;font-size:16px}
+.lanes li:hover h3{color:var(--lime)}
+.small{margin-top:24px;font-size:14px;color:#8e98a1}
+
+/* visit */
+.visit{display:grid;grid-template-columns:1fr 1fr;gap:48px}
+.visit h2{font-size:clamp(42px,6vw,72px);margin-bottom:24px}
+.info{display:grid;gap:22px}
+.info h3{font:700 12px/1 var(--body);letter-spacing:.24em;color:var(--muted);margin-bottom:6px}
+.info .big{font:700 30px/1.15 var(--display);text-transform:uppercase;text-decoration:none}
+.info a.big{border-bottom:3px solid var(--lime)}
+.visit .ph{min-height:320px}
+
+footer{background:var(--graphite);color:#8e98a1;font-size:14px;padding:36px 0 130px}
+footer .row{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:center}
+footer .wordmark{color:#fff;font-size:22px}
+
+@media (max-width:820px){
+  .hero{min-height:82vh}
+  .about,.visit{grid-template-columns:1fr;gap:32px}
+  .lanes li{grid-template-columns:48px 1fr;gap:6px 14px}
+  .lanes li p{grid-column:2}
+  .section{padding:60px 0}
+  .visit .ph{min-height:220px}
+}
+</style>
+</head>
+<body>
+<div class="concept">Design concept prepared for Mr Salus Sporting Lab by Sites By MS. Not the official website.</div>
+
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#top" aria-label="Mr Salus Sporting Lab home"><span class="wordmark">Mr Salus <b>Lab</b><small>Sporting Lab · Brixton</small></span></a>
+    <nav class="links" aria-label="Main">
+      <a href="#about">The lab</a>
+      <a href="#services">Sessions</a>
+      <a href="#visit">Find us</a>
+    </nav>
+    <a class="btn" href="tel:07872566806">Call to book</a>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="img" aria-hidden="true"><span>1920 × 1080 – Massimo working on a runner’s calf in the Brixton studio</span></div>
+    <div class="wrap">
+      <span class="lane">Sports clinic &amp; gait lab</span>
+      <h1>Hands-on work for <b>people who move.</b></h1>
+      <p>Sports and deep tissue massage, rehab sessions and running gait analysis with Massimo, on Coldharbour Lane in Brixton.</p>
+      <div class="cta">
+        <a class="btn" href="tel:07872566806">Call 07872 566806</a>
+        <a class="btn btn-out" href="#services">See sessions</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="about">
+    <div class="wrap about">
+      <div>
+        <p class="tag">The lab</p>
+        <h2>Naples 2011.<br>London 2018.<br>Brixton.</h2>
+      </div>
+      <div>
+        <p class="lede">Mr Salus Sporting Lab is part sports clinic, part gait analysis lab, founded by sports therapist Massimo Terracciano.</p>
+        <p>Massimo opened his first clinic in Naples in 2011, moved to the UK and started the London clinic in 2018. Clients rate the lab 4.9 out of 5 from 176 reviews on Treatwell, and many of them mention Massimo by name for his knowledge and his hands-on approach to necks, shoulders and backs.</p>
+        <p>In Brixton you’ll find the lab at Studio 7, 360 Coldharbour Lane.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section dark" id="services">
+    <div class="wrap">
+      <p class="tag">Sessions</p>
+      <h2>Pick your lane</h2>
+      <ul class="lanes">
+        <li><span class="no">01</span><h3>Sports massage</h3><p>For training blocks, race build-ups and busy desk weeks.</p></li>
+        <li><span class="no">02</span><h3>Deep tissue massage</h3><p>Slow, firm work through tight muscle groups.</p></li>
+        <li><span class="no">03</span><h3>Back &amp; neck sessions</h3><p>Hands-on treatment focused on the back, neck and shoulders.</p></li>
+        <li><span class="no">04</span><h3>Injury rehab</h3><p>Rehabilitation sessions, including after hip surgery.</p></li>
+        <li><span class="no">05</span><h3>Gait &amp; running analysis</h3><p>A look at how you walk and run, with postural and running assessments.</p></li>
+        <li><span class="no">06</span><h3>Foot pressure scan</h3><p>A scan of how pressure moves through your feet.</p></li>
+      </ul>
+      <p class="small">Call or message to check availability and current prices.</p>
+    </div>
+  </section>
+
+  <section class="section" id="visit">
+    <div class="wrap visit">
+      <div>
+        <p class="tag">Find us</p>
+        <h2>On Coldharbour Lane</h2>
+        <div class="info">
+          <div><h3>Studio</h3><p class="big">Studio 7, 360 Coldharbour Lane<br>London SW9 8PL</p><p style="margin-top:8px"><a href="https://www.google.com/maps/dir/?api=1&amp;destination=360+Coldharbour+Lane+London+SW9+8PL">Get directions →</a></p></div>
+          <div><h3>Call or text</h3><a class="big" href="tel:07872566806">07872 566806</a></div>
+          <div><h3>Email</h3><a href="mailto:info@mrsalussportinglab.com">info@mrsalussportinglab.com</a></div>
+          <div><h3>Appointments</h3><p>By appointment only. Call or email to book a time.</p></div>
+        </div>
+      </div>
+      <div class="ph">900 × 700 – Treatment couch and gait-analysis set-up in Studio 7</div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap row">
+    <span class="wordmark">Mr Salus <b style="color:var(--lime)">Lab</b></span>
+    <span>Instagram: @mrsalussportinglab</span>
+    <span>Design concept by Sites By MS. Not the official website.</span>
+  </div>
+</footer>
+<script src="/assets/concept-bar.js" data-name="Mr Salus Sporting Lab" data-slug="mr-salus-sporting-lab" defer></script>
+</body>
+</html>

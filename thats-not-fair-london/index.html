@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>That's Not Fair London | Kids' &amp; Women's Clothing, Dalston Lane</title>
+<meta name="description" content="Well-made, timeless clothes for kids (and their grown-ups) at fair prices. 91 Dalston Lane, London E8 2NG.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* Layout 7: colour-block playful rounded. Words: fair, timeless, kid-led. */
+:root{
+  --cream:#FBF4E8;
+  --blue:#3E6FB0;     /* the little blue ride-on car */
+  --clay:#D9694A;
+  --mustard:#E8B43A;
+  --sage:#9CC2A4;
+  --pink:#F2C7C0;
+  --ink:#22262E;
+  --soft:#5B6170;
+  --r:28px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--cream);color:var(--ink);font:500 17px/1.6 "Quicksand",system-ui,sans-serif;padding-bottom:110px}
+a{color:inherit}
+h1,h2,h3{font-family:"Baloo 2",system-ui,sans-serif;line-height:1.02;margin:0;font-weight:800;letter-spacing:-.01em}
+p{margin:0}
+.wrap{width:min(1100px,100% - 32px);margin-inline:auto}
+.topbar{background:var(--ink);color:#e9e4da;font-size:13px;text-align:center;padding:7px 16px}
+
+header{position:sticky;top:0;z-index:20;background:var(--cream);border-bottom:3px solid var(--ink)}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:14px;height:72px}
+.word{display:inline-flex;align-items:baseline;gap:2px;font:800 26px/1 "Baloo 2",sans-serif;text-decoration:none}
+.word b{display:inline-block;background:var(--clay);color:#fff;border-radius:12px;padding:4px 10px 1px;transform:rotate(-3deg);margin-right:6px}
+.word small{font:700 12px/1 "Quicksand";letter-spacing:.18em;text-transform:uppercase;color:var(--blue);margin-left:6px}
+.btn{display:inline-flex;align-items:center;gap:8px;min-height:48px;padding:0 22px;border-radius:999px;border:3px solid var(--ink);background:var(--mustard);font:700 16px/1 "Quicksand";text-decoration:none;box-shadow:4px 4px 0 var(--ink);transition:transform .15s,box-shadow .15s}
+.btn:hover{transform:translate(2px,2px);box-shadow:2px 2px 0 var(--ink)}
+.btn.blue{background:var(--blue);color:#fff}
+.btn.white{background:#fff}
+
+.hero{padding:28px 0 18px}
+.grid{display:grid;gap:16px}
+.block{border:3px solid var(--ink);border-radius:var(--r);padding:28px}
+.h-main{background:var(--blue);color:#fff;position:relative;overflow:hidden}
+.h-main h1{font-size:clamp(46px,12vw,96px)}
+.h-main h1 span{color:var(--mustard)}
+.h-main p{max-width:30ch;margin-top:14px;font-size:19px}
+.h-main .btns{display:flex;flex-wrap:wrap;gap:12px;margin-top:24px}
+.dot{position:absolute;border-radius:50%;border:3px solid var(--ink)}
+.d1{width:120px;height:120px;background:var(--pink);right:-30px;top:-30px}
+.d2{width:60px;height:60px;background:var(--mustard);right:60px;bottom:-20px}
+.ph{display:grid;place-items:center;text-align:center;background:repeating-linear-gradient(45deg,#fff 0 14px,#f6ead6 14px 28px);border:3px dashed var(--ink);border-radius:var(--r);min-height:260px;padding:20px;font:700 15px/1.4 "Quicksand";color:var(--soft)}
+.sticker{display:flex;align-items:center;justify-content:center;text-align:center;background:var(--mustard);border-radius:50%;aspect-ratio:1;font:800 22px/1 "Baloo 2";transform:rotate(8deg);border:3px solid var(--ink);padding:16px}
+.mini{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(min-width:820px){
+  .hero .grid{grid-template-columns:1.35fr 1fr}
+  .h-main{grid-row:span 2;padding:44px}
+  .ph.tall{min-height:100%}
+}
+
+section{padding:46px 0}
+.label{display:inline-block;font:700 13px/1 "Quicksand";letter-spacing:.16em;text-transform:uppercase;background:#fff;border:2px solid var(--ink);border-radius:999px;padding:7px 14px;margin-bottom:16px}
+h2{font-size:clamp(34px,7vw,56px)}
+
+.about{background:var(--sage)}
+.about .grid{align-items:center}
+@media(min-width:820px){.about .grid{grid-template-columns:1fr 1.1fr}}
+.about p{font-size:18px;max-width:52ch}
+.about p+p{margin-top:12px}
+
+.shop ul{list-style:none;padding:0;margin:24px 0 0;display:grid;gap:14px;grid-template-columns:repeat(auto-fill,minmax(230px,1fr))}
+.shop li{border:3px solid var(--ink);border-radius:var(--r);padding:22px 22px 24px;min-height:150px;display:flex;flex-direction:column;justify-content:space-between}
+.shop li h3{font-size:28px}
+.shop li p{font-size:15px;color:var(--ink);margin-top:6px}
+.shop li:nth-child(1){background:var(--pink)}
+.shop li:nth-child(2){background:var(--mustard)}
+.shop li:nth-child(3){background:#fff}
+.shop li:nth-child(4){background:var(--sage)}
+.shop li:nth-child(5){background:var(--clay);color:#fff}
+.shop li:nth-child(5) p{color:#fff}
+.shop li:nth-child(6){background:var(--blue);color:#fff}
+.shop li:nth-child(6) p{color:#fff}
+.shop li span{font-size:28px}
+
+.love{background:var(--clay);color:#fff}
+.love blockquote{margin:0;font:700 clamp(26px,5vw,40px)/1.2 "Baloo 2";max-width:24ch}
+.love cite{display:block;margin-top:14px;font:600 15px "Quicksand";font-style:normal;opacity:.9}
+.love .grid{align-items:center}
+@media(min-width:820px){.love .grid{grid-template-columns:1.4fr 1fr}}
+
+.visit .grid{grid-template-columns:1fr}
+@media(min-width:820px){.visit .grid{grid-template-columns:1fr 1fr}}
+.visit .block{background:#fff}
+.visit .block.y{background:var(--mustard)}
+.visit h3{font-size:30px;margin-bottom:8px}
+.visit p{font-size:18px}
+.visit .btns{display:flex;flex-wrap:wrap;gap:12px;margin-top:18px}
+
+footer{background:var(--ink);color:#e9e4da;padding:34px 0 120px;font-size:15px}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px}
+footer a{color:var(--mustard)}
+</style>
+</head>
+<body>
+<div class="topbar">Design concept prepared for That's Not Fair London by Sites By MS. Not the official website.</div>
+
+<header>
+  <div class="wrap nav">
+    <a class="word" href="#top" aria-label="That's Not Fair London home"><b>That's</b>Not Fair<small>London</small></a>
+    <a class="btn" href="https://www.google.com/maps/dir/?api=1&amp;destination=That%27s+Not+Fair+91+Dalston+Lane+London+E8+2NG">Directions</a>
+  </div>
+</header>
+
+<main id="top">
+  <div class="wrap hero">
+    <div class="grid">
+      <div class="block h-main">
+        <div class="dot d1"></div><div class="dot d2"></div>
+        <h1>Good clothes. <span>Fair</span> prices.</h1>
+        <p>Well-made, timeless pieces for kids, chosen so they can find their own style. Plus a rail for the grown-ups.</p>
+        <div class="btns">
+          <a class="btn" href="#shop">See what we stock</a>
+          <a class="btn white" href="tel:02072414992">Call 020 7241 4992</a>
+        </div>
+      </div>
+      <div class="ph tall">1000 × 800 – Shop window on Dalston Lane</div>
+      <div class="mini">
+        <div class="sticker">91 Dalston Lane, E8</div>
+        <div class="block" style="background:var(--pink);display:grid;place-items:center;text-align:center"><div><strong style="font:800 40px/1 'Baloo 2'">4.9★</strong><br><span style="font-size:14px">73 Google reviews</span></div></div>
+      </div>
+    </div>
+  </div>
+
+  <section class="about">
+    <div class="wrap grid">
+      <div class="ph">800 × 800 – Kids' rail and the little blue ride-on car</div>
+      <div>
+        <span class="label">About the shop</span>
+        <h2>Fashion choices in kids' hands.</h2>
+        <p style="margin-top:16px">That's Not Fair takes classic pieces and makes them kid-friendly: good fabrics, timeless shapes and no shouty patterns, so children can put their own looks together.</p>
+        <p>Designer labels sit next to our own-brand goodies, and the prices are much kinder than you'd expect. Little ones can take the blue car for a spin while you browse.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="shop" id="shop">
+    <div class="wrap">
+      <span class="label">In the shop</span>
+      <h2>Have a rummage.</h2>
+      <ul>
+        <li><span>✿</span><div><h3>Own-brand pieces</h3><p>Our own kid-friendly takes on the classics.</p></div></li>
+        <li><span>★</span><div><h3>Designer kidswear</h3><p>Hand-picked labels at high-street prices.</p></div></li>
+        <li><span>☁</span><div><h3>Gilets</h3><p>Easy layers for school runs and parks.</p></div></li>
+        <li><span>〰</span><div><h3>Leggings</h3><p>Soft, hard-wearing everyday basics.</p></div></li>
+        <li><span>●</span><div><h3>T-shirts</h3><p>Simple tees to mix and match.</p></div></li>
+        <li><span>♥</span><div><h3>For the grown-ups</h3><p>A women's collection, same fair thinking.</p></div></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="love">
+    <div class="wrap grid">
+      <div>
+        <span class="label" style="color:var(--ink)">What parents say</span>
+        <blockquote>"Preposterously fair" price tags, and barely anything over £25.</blockquote>
+        <cite>Bablands, London family blog</cite>
+      </div>
+      <div class="ph" style="min-height:220px;background:repeating-linear-gradient(45deg,#fff 0 14px,#fbe3d9 14px 28px)">900 × 700 – Outfit of the week on a little model</div>
+    </div>
+  </section>
+
+  <section class="visit" id="visit">
+    <div class="wrap">
+      <span class="label">Come and visit</span>
+      <h2>Find us in Dalston.</h2>
+      <div class="grid" style="margin-top:22px">
+        <div class="block y">
+          <h3>Where</h3>
+          <p>91 Dalston Lane<br>London E8 2NG<br>A short walk from Dalston Kingsland station.</p>
+          <div class="btns"><a class="btn white" href="https://www.google.com/maps/dir/?api=1&amp;destination=That%27s+Not+Fair+91+Dalston+Lane+London+E8+2NG">Get directions</a></div>
+        </div>
+        <div class="block">
+          <h3>Call or message</h3>
+          <p>Ring ahead for today's opening times or to ask about a size.</p>
+          <div class="btns">
+            <a class="btn blue" href="tel:02072414992">020 7241 4992</a>
+            <a class="btn white" href="https://www.instagram.com/thats_not_fair_ldn/">Instagram</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>That's Not Fair London · 91 Dalston Lane, London E8 2NG · <a href="tel:02072414992">020 7241 4992</a></span>
+    <span>Design concept by Sites By MS. Not the official website.</span>
+  </div>
+</footer>
+<script src="/assets/concept-bar.js" data-name="That&#39;s Not Fair London" data-slug="thats-not-fair-london" defer></script>
+</body>
+</html>

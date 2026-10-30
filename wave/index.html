@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>WAVE – We Are Vegan Everything, Hackney</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;700;800&family=Epilogue:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--blush:#ffd9d2;--tomato:#ff4f2e;--ink:#1d1a19;--milk:#fff8f4;--leaf:#2e6b4a}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--milk);color:var(--ink);font-family:"Epilogue",system-ui,sans-serif;line-height:1.55;padding-bottom:110px;overflow-x:hidden}
+a{color:inherit}
+.topbar{background:var(--ink);color:#f3d6cf;font-size:12px;text-align:center;padding:7px 12px}
+header{position:sticky;top:0;z-index:30;display:flex;justify-content:space-between;align-items:center;padding:12px 18px;background:var(--milk);border-bottom:2px solid var(--ink)}
+.wm{font:800 26px/1 "Syne",sans-serif;letter-spacing:.02em;text-decoration:none}
+.wm sup{font:500 10px "Epilogue",sans-serif;letter-spacing:.14em;margin-left:6px;vertical-align:6px}
+.go{background:var(--tomato);color:#fff;font:700 14px "Syne",sans-serif;letter-spacing:.06em;text-transform:uppercase;padding:11px 18px;border-radius:999px;text-decoration:none;border:2px solid var(--ink)}
+.go:hover{background:var(--ink)}
+/* poster */
+.poster{background:var(--blush);border-bottom:2px solid var(--ink);padding:26px 18px 34px;position:relative;overflow:hidden}
+.poster .k{font:700 13px "Syne",sans-serif;letter-spacing:.18em;text-transform:uppercase}
+.big{font:800 clamp(96px,29vw,400px)/.78 "Syne",sans-serif;letter-spacing:-.05em;color:var(--tomato);margin:22px 0 14px -.04em;-webkit-text-stroke:2px var(--ink)}
+.stack{font:800 clamp(30px,8vw,84px)/.92 "Syne",sans-serif;letter-spacing:-.03em;text-transform:uppercase}
+.stack span{display:block}
+.stack span:nth-child(2){padding-left:12vw}
+.stack span:nth-child(3){color:var(--tomato);-webkit-text-stroke:1.5px var(--ink)}
+.pmeta{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
+.pill{border:2px solid var(--ink);border-radius:999px;padding:7px 14px;font-weight:500;font-size:14px;background:var(--milk)}
+.sun{position:absolute;right:-60px;top:40px;width:220px;aspect-ratio:1;border-radius:50%;border:2px solid var(--ink);background:repeating-linear-gradient(0deg,var(--tomato) 0 14px,transparent 14px 26px);opacity:.9}
+/* marquee-free ribbon (static) */
+.ribbon{background:var(--ink);color:var(--blush);font:700 clamp(18px,4vw,30px)/1 "Syne",sans-serif;text-transform:uppercase;padding:16px 18px;white-space:nowrap;overflow:hidden;letter-spacing:.02em}
+.wrap{max-width:1180px;margin:0 auto;padding:0 18px}
+section{padding:60px 0;border-bottom:2px solid var(--ink)}
+h2{font:800 clamp(44px,11vw,120px)/.88 "Syne",sans-serif;letter-spacing:-.04em;text-transform:uppercase;margin-bottom:26px}
+h2 em{font-style:normal;color:var(--tomato)}
+.about{display:grid;gap:26px}
+.about p{font-size:19px;max-width:40ch}
+.about p+p{margin-top:12px}
+.ph{border:2px dashed var(--ink);border-radius:26px;display:grid;place-items:center;text-align:center;padding:18px;font-weight:500;background:repeating-linear-gradient(45deg,transparent 0 12px,rgba(255,79,46,.08) 12px 14px);aspect-ratio:4/3}
+.menu{list-style:none;border-top:2px solid var(--ink)}
+.menu li{display:flex;justify-content:space-between;gap:16px;align-items:baseline;padding:18px 0;border-bottom:2px solid var(--ink)}
+.menu b{font:800 clamp(24px,5.5vw,54px)/1 "Syne",sans-serif;letter-spacing:-.03em;text-transform:uppercase}
+.menu span{font-size:14px;text-align:right;max-width:22ch;color:#5a514e}
+.menu li:hover b{color:var(--tomato)}
+.note{margin-top:18px;font-size:15px;color:#5a514e}
+.visit{background:var(--tomato);color:var(--ink)}
+.visit h2{color:var(--milk);-webkit-text-stroke:2px var(--ink)}
+.vgrid{display:grid;gap:18px}
+.vbox{background:var(--milk);border:2px solid var(--ink);border-radius:24px;padding:22px}
+.vbox h3{font:700 13px "Syne",sans-serif;letter-spacing:.16em;text-transform:uppercase;margin-bottom:8px}
+.vbox p{font-size:20px;font-weight:500}
+.vbox a{text-decoration-thickness:2px;text-underline-offset:4px}
+.score{font:800 64px/1 "Syne",sans-serif;letter-spacing:-.04em}
+footer{padding:30px 18px;text-align:center;font-size:14px}
+@media(min-width:860px){
+ header{padding:14px 36px}
+ .poster{padding:40px 36px 50px}
+ .sun{width:380px;right:-80px;top:60px}
+ .wrap{padding:0 36px}
+ section{padding:96px 0}
+ .about{grid-template-columns:1.1fr 1fr;align-items:end}
+ .vgrid{grid-template-columns:repeat(3,1fr)}
+}
+</style>
+</head>
+<body>
+<div class="topbar">Design concept prepared for WAVE by Sites By MS. Not the official website.</div>
+
+<header>
+ <a class="wm" href="#top">WAVE<sup>HACKNEY</sup></a>
+ <a class="go" href="https://www.google.com/maps/dir/?api=1&amp;destination=WAVE+11+Dispensary+Lane+London+E8+1FT">Directions</a>
+</header>
+
+<div class="poster" id="top">
+ <div class="sun" aria-hidden="true"></div>
+ <p class="k">We Are Vegan Everything · since 2019</p>
+ <div class="big" aria-hidden="true">WAVE</div>
+ <h1 class="stack"><span>We are</span><span>vegan</span><span>everything.</span></h1>
+ <div class="pmeta">
+  <span class="pill">11 Dispensary Lane, E8</span>
+  <span class="pill">Open every day</span>
+  <span class="pill">100% plant-based</span>
+ </div>
+</div>
+
+<div class="ribbon" aria-hidden="true">Pancakes ✺ Toasties ✺ Freakshakes ✺ Smoothie bowls ✺ Cupcakes ✺ Pancakes ✺ Toasties</div>
+
+<section>
+ <div class="wrap about">
+  <div>
+   <h2>Off <em>Mare</em> Street</h2>
+   <p>WAVE opened on Dispensary Lane in January 2019, from the people behind Cupcakes and Shhht: a bright, all-vegan café a few steps from Hackney Central.</p>
+   <p>Hot dishes made to order, sandwiches and toasties, pastries, cakes and properly inventive hot drinks. Come for brunch, stay for the cupcakes.</p>
+  </div>
+  <div class="ph">1000 × 750 – The counter: cakes, cupcakes and pastries</div>
+ </div>
+</section>
+
+<section>
+ <div class="wrap">
+  <h2>On the <em>menu</em></h2>
+  <ul class="menu">
+   <li><b>Pancakes</b><span>Banana, or gluten-free</span></li>
+   <li><b>Bircher bowl</b><span>For an easy breakfast</span></li>
+   <li><b>Smoothie bowls</b><span>Fruit-loaded</span></li>
+   <li><b>Toasties &amp; sandwiches</b><span>Lunch, done vegan</span></li>
+   <li><b>Freakshakes</b><span>Over the top, on purpose</span></li>
+   <li><b>Cupcakes &amp; brownies</b><span>From the Cupcakes and Shhht family</span></li>
+  </ul>
+  <p class="note">Full menu, prices and allergen info in store.</p>
+ </div>
+</section>
+
+<section class="visit">
+ <div class="wrap">
+  <h2>Come <em style="color:var(--ink);-webkit-text-stroke:0">say hi</em></h2>
+  <div class="vgrid">
+   <div class="vbox"><h3>Where</h3><p>11 Dispensary Lane<br>London E8 1FT</p><p style="font-size:15px;margin-top:10px"><a href="https://www.google.com/maps/dir/?api=1&amp;destination=WAVE+11+Dispensary+Lane+London+E8+1FT">Get directions</a></p></div>
+   <div class="vbox"><h3>When</h3><p>Open every day</p><p style="font-size:15px;margin-top:10px">Call <a href="tel:+447734253401">07734 253401</a> for today's hours</p></div>
+   <div class="vbox"><h3>Google</h3><p class="score">4.6</p><p style="font-size:15px">from 569 reviews</p></div>
+  </div>
+ </div>
+</section>
+
+<footer>
+ <p><b>WAVE</b> · 11 Dispensary Lane, London E8 1FT · <a href="tel:+447734253401">07734 253401</a> · <a href="mailto:management@weareveganeverything.com">management@weareveganeverything.com</a></p>
+ <p>Design concept by Sites By MS. Not the official website.</p>
+</footer>
+<script src="/assets/concept-bar.js" data-name="WAVE" data-slug="wave" defer></script>
+</body>
+</html>

@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Peck Peck | Fried &amp; Flame-Grilled Chicken, Mare Street Hackney</title>
+<meta name="description" content="Award-winning wings, buttermilk fried and flame-grilled chicken at 320 Mare Street, Hackney. Open daily from noon.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bowlby+One&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&display=swap" rel="stylesheet">
+<style>
+/* Layout 1: full-bleed image hero. Words: loud, saucy, neighbourly. */
+:root{
+  --yolk:#FFC629;
+  --red:#E1321B;
+  --black:#141210;
+  --bun:#FFF4D6;
+  --grey:#5d564c;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bun);color:var(--black);font:400 17px/1.55 "DM Sans",system-ui,sans-serif;padding-bottom:110px}
+a{color:inherit}
+h1,h2,h3{font-family:"Bowlby One",Impact,sans-serif;font-weight:400;margin:0;line-height:.95;text-transform:uppercase}
+p{margin:0}
+.wrap{width:min(1120px,100% - 32px);margin-inline:auto}
+.topbar{background:var(--black);color:var(--yolk);font:500 13px/1.4 "DM Sans";text-align:center;padding:7px 16px}
+
+header{position:sticky;top:0;z-index:30;background:var(--red);color:#fff;border-bottom:4px solid var(--black)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:68px;gap:12px}
+.logo{font:400 30px/1 "Bowlby One";text-decoration:none;text-transform:uppercase;letter-spacing:-.01em;display:flex;align-items:center;gap:8px}
+.logo .egg{width:22px;height:28px;background:var(--yolk);border:3px solid var(--black);border-radius:50% 50% 50% 50% / 60% 60% 40% 40%}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 22px;font:700 16px/1 "DM Sans";text-decoration:none;text-transform:uppercase;letter-spacing:.04em;border:3px solid var(--black);background:var(--yolk);color:var(--black);border-radius:6px;transition:transform .12s}
+.btn:hover{transform:rotate(-2deg) scale(1.03)}
+.btn.dark{background:var(--black);color:var(--yolk)}
+
+/* full-bleed hero */
+.hero{position:relative;min-height:calc(100svh - 100px);display:grid;align-items:end;overflow:hidden;
+  background:
+   linear-gradient(180deg,rgba(20,18,16,0) 30%,rgba(20,18,16,.75) 100%),
+   repeating-linear-gradient(135deg,#c9201a 0 40px,#d62a1c 40px 80px)}
+.hero .ph{position:absolute;inset:18px 18px auto auto;background:rgba(255,255,255,.12);color:#fff;border:2px dashed rgba(255,255,255,.6);padding:8px 12px;font:500 14px "DM Sans"}
+.hero .in{padding:0 0 48px;color:#fff;position:relative}
+.badge{display:inline-block;background:var(--yolk);color:var(--black);font:700 13px/1.2 "DM Sans";text-transform:uppercase;letter-spacing:.08em;padding:9px 14px;border:3px solid var(--black);transform:rotate(-3deg);margin-bottom:18px}
+.hero h1{font-size:clamp(64px,17vw,190px);color:var(--yolk);text-shadow:6px 6px 0 var(--black)}
+.hero p{font-size:20px;max-width:30ch;margin-top:16px}
+.hero .btns{display:flex;flex-wrap:wrap;gap:12px;margin-top:24px}
+
+.ticker{background:var(--yolk);border-block:4px solid var(--black);overflow:hidden;white-space:nowrap;font:400 22px/1 "Bowlby One";text-transform:uppercase;padding:14px 0}
+.ticker span{display:inline-block;padding-left:100%;animation:run 22s linear infinite}
+@keyframes run{to{transform:translateX(-100%)}}
+@media (prefers-reduced-motion:reduce){.ticker span{animation:none;padding-left:16px}}
+
+section{padding:64px 0}
+.eyebrow{font:700 14px/1 "DM Sans";letter-spacing:.14em;text-transform:uppercase;color:var(--red)}
+h2{font-size:clamp(40px,8vw,76px);margin-top:10px}
+
+.about .grid{display:grid;gap:28px}
+@media(min-width:860px){.about .grid{grid-template-columns:1.1fr 1fr;align-items:center}}
+.about p{font-size:19px;max-width:48ch;margin-top:16px}
+.award{background:var(--black);color:var(--yolk);padding:28px;border-radius:10px;transform:rotate(1.5deg)}
+.award h3{font-size:28px;line-height:1.05}
+.award p{color:#fff;font-size:16px;margin-top:10px}
+
+.menu{background:var(--black);color:var(--bun)}
+.menu .eyebrow{color:var(--yolk)}
+.menu ul{list-style:none;margin:30px 0 0;padding:0;display:grid;gap:14px;grid-template-columns:repeat(auto-fill,minmax(250px,1fr))}
+.menu li{background:var(--bun);color:var(--black);border-radius:10px;padding:22px;border-top:10px solid var(--red)}
+.menu li:nth-child(even){border-top-color:var(--yolk)}
+.menu li h3{font-size:24px;line-height:1}
+.menu li p{font-size:15px;color:var(--grey);margin-top:8px}
+.menu .tag{display:inline-block;margin-top:12px;font:700 12px/1 "DM Sans";text-transform:uppercase;letter-spacing:.08em;background:var(--red);color:#fff;padding:6px 9px;border-radius:4px}
+
+.visit .grid{display:grid;gap:22px;margin-top:28px}
+@media(min-width:860px){.visit .grid{grid-template-columns:1fr 1fr 1fr}}
+.card{background:#fff;border:4px solid var(--black);border-radius:10px;padding:24px;box-shadow:8px 8px 0 var(--red)}
+.card h3{font-size:24px;margin-bottom:10px}
+.card dl{display:grid;grid-template-columns:auto 1fr;gap:6px 14px;margin:0}
+.card dd{margin:0;text-align:right;font-weight:700}
+.card .btn{margin-top:16px}
+
+footer{background:var(--red);color:#fff;padding:34px 0 124px;border-top:4px solid var(--black)}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:14px;align-items:center}
+footer .logo{font-size:24px}
+</style>
+</head>
+<body>
+<div class="topbar">Design concept prepared for Peck Peck by Sites By MS. Not the official website.</div>
+
+<header>
+  <div class="wrap nav">
+    <a class="logo" href="#top"><span class="egg" aria-hidden="true"></span>Peck Peck</a>
+    <a class="btn" href="https://www.opentable.co.uk/r/peck-peck-greater-london">Book a table</a>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero" style="padding:0">
+    <span class="ph">1920 × 1200 – Wings dripping in Liquid Gold sauce</span>
+    <div class="wrap in">
+      <span class="badge">2 wins · London Wing Fest 2026</span>
+      <h1>Peck<br>Peck</h1>
+      <p>Buttermilk fried and flame-grilled chicken, 30 seconds from Hackney Central.</p>
+      <div class="btns">
+        <a class="btn" href="https://www.opentable.co.uk/r/peck-peck-greater-london">Book a table</a>
+        <a class="btn dark" href="#menu">See the menu</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="ticker" aria-hidden="true"><span>Liquid Gold ★ The Guv'nor ★ Sticky wings ★ Tenders ★ Boneless thighs ★ Flame-grilled ★ Liquid Gold ★ The Guv'nor ★</span></div>
+
+  <section class="about">
+    <div class="wrap grid">
+      <div>
+        <div class="eyebrow">Hackney's chicken shop</div>
+        <h2>Proper chicken, loud sauces.</h2>
+        <p>Peck Peck is run by Sal and Hakan on Mare Street, Hackney: buttermilk fried and flame-grilled chicken, homemade sides, beer, wine, cocktails and desserts, with vegan and veggie options too.</p>
+      </div>
+      <div class="award">
+        <h3>Best Wild Wing &amp; Best Buffalo Wing</h3>
+        <p>London Wing Fest, July 2026. The Guv'nor (made with Sutton &amp; Sons) and Liquid Gold took home the trophies.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="menu" id="menu">
+    <div class="wrap">
+      <div class="eyebrow">Order this</div>
+      <h2>The hits.</h2>
+      <ul>
+        <li><h3>Liquid Gold</h3><p>Buffalo wings with rendered chicken fat folded into our buffalo sauce.</p><span class="tag">Best Buffalo Wing</span></li>
+        <li><h3>The Guv'nor</h3><p>A fish-and-chips-inspired wing, made with Sutton &amp; Sons.</p><span class="tag">Best Wild Wing</span></li>
+        <li><h3>Sticky Wings</h3><p>Our sticky glazed wings.</p></li>
+        <li><h3>Tenders</h3><p>Buttermilk fried chicken tenders.</p></li>
+        <li><h3>Boneless Thighs</h3><p>Fried chicken thighs, bone out.</p></li>
+        <li><h3>Flame-grilled</h3><p>Our grilled chicken, straight off the flames.</p></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="visit" id="visit">
+    <div class="wrap">
+      <div class="eyebrow">Come hungry</div>
+      <h2>320 Mare Street.</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>Hours</h3>
+          <dl>
+            <dt>Mon – Thu</dt><dd>12pm – 10pm</dd>
+            <dt>Fri – Sat</dt><dd>12pm – 11pm</dd>
+            <dt>Sunday</dt><dd>12pm – 10pm</dd>
+          </dl>
+        </div>
+        <div class="card">
+          <h3>Find us</h3>
+          <p>320 Mare Street<br>Hackney, London E8 1HA<br>Next to Hackney Central station</p>
+          <a class="btn" href="https://www.google.com/maps/dir/?api=1&amp;destination=Peck+Peck+320+Mare+Street+London+E8+1HA">Directions</a>
+        </div>
+        <div class="card">
+          <h3>Call us</h3>
+          <p><a href="tel:02036432017">020 3643 2017</a><br><a href="mailto:manager@peckpeck.co.uk">manager@peckpeck.co.uk</a><br>Also in Bethnal Green.</p>
+          <a class="btn dark" href="tel:02036432017">Call now</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span class="logo"><span class="egg" aria-hidden="true"></span>Peck Peck</span>
+    <span>Design concept by Sites By MS. Not the official website.</span>
+  </div>
+</footer>
+<script src="/assets/concept-bar.js" data-name="Peck Peck" data-slug="peck-peck" defer></script>
+</body>
+</html>

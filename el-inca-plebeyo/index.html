@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>El Inca Plebeyo | Ecuadorian kitchen on Essex Road, Islington</title>
+<meta name="description" content="Ceviche, hornado, encebollado and plantain from Ecuadorian chef Jorge Pacheco. 162 Essex Road, Islington, London N1 8LY.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Yeseva+One&family=Alegreya+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+/* Layout 9: warm, textured, handmade. Woven Andean stripes, paper grain, hand-cut edges. Words: warm, proud, generous. */
+:root{
+  --paper:#F3E6CF;
+  --paper-2:#EAD7B5;
+  --ink:#2B1A10;
+  --terra:#B4462A;
+  --ochre:#D99A2B;
+  --andes:#2F5D50;
+  --plum:#6A2E3F;
+  --muted:#6E5A45;
+  --serif:"Yeseva One",Georgia,serif;
+  --sans:"Alegreya Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --grain:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .35 0 0 0 0 .22 0 0 0 0 .1 0 0 0 .16 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;color:var(--ink);font:400 19px/1.6 var(--sans);-webkit-font-smoothing:antialiased;padding-bottom:110px;
+  background:var(--grain),radial-gradient(ellipse at 20% 0%,#F8EEDB 0,transparent 60%),var(--paper)}
+a{color:inherit}
+:focus-visible{outline:2px dashed var(--terra);outline-offset:3px}
+h1,h2,h3{font-family:var(--serif);font-weight:400;margin:0;line-height:1.08}
+p{margin:0}
+.wrap{width:min(1080px,100% - 32px);margin-inline:auto}
+.concept{background:var(--ink);color:#f0dfc0;font-size:13px;text-align:center;padding:7px 12px}
+
+/* woven stripe used as a ribbon */
+.weave{height:16px;background:repeating-linear-gradient(90deg,var(--terra) 0 22px,var(--ochre) 22px 30px,var(--andes) 30px 50px,var(--paper) 50px 54px,var(--plum) 54px 72px,var(--ochre) 72px 78px);
+  -webkit-mask:repeating-linear-gradient(45deg,#000 0 3px,rgba(0,0,0,.75) 3px 5px);mask:repeating-linear-gradient(45deg,#000 0 3px,rgba(0,0,0,.75) 3px 5px)}
+
+header{position:sticky;top:0;z-index:20;background:var(--grain),var(--paper);box-shadow:0 6px 14px -10px rgba(43,26,16,.5)}
+.bar{display:flex;align-items:center;justify-content:space-between;gap:12px;height:66px}
+.wm{font-family:var(--serif);font-size:23px;text-decoration:none;line-height:1}
+.wm small{display:block;font-family:var(--sans);font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--terra);margin-top:4px}
+.bar nav{display:none;gap:24px;font-weight:500}
+.bar nav a{text-decoration:none}
+.bar nav a:hover{color:var(--terra)}
+.btn{display:inline-block;background:var(--terra);color:#FFF5E6;font-weight:700;text-decoration:none;padding:11px 20px;border-radius:40px 34px 42px 30px/30px 40px 32px 42px;box-shadow:2px 3px 0 var(--ink)}
+.btn:hover{background:var(--plum)}
+@media(min-width:820px){.bar nav{display:flex}}
+
+.hero{padding:56px 0 40px;display:grid;gap:34px;align-items:center}
+.stamp{display:inline-block;border:2px solid var(--andes);color:var(--andes);padding:6px 14px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;font-size:13px;transform:rotate(-2deg);border-radius:4px}
+.hero h1{font-size:clamp(50px,9vw,96px);margin:18px 0 18px;color:var(--ink)}
+.hero h1 span{color:var(--terra)}
+.hero p.lede{font-size:22px;max-width:34ch;color:#43301f}
+.hero .acts{display:flex;flex-wrap:wrap;gap:14px;margin-top:26px;align-items:center}
+.hero .acts a.plain{font-weight:700;text-underline-offset:4px}
+.ph{background:var(--grain),repeating-linear-gradient(-45deg,var(--paper-2) 0 14px,#E2CCA4 14px 28px);border:2px solid var(--ink);display:flex;align-items:center;justify-content:center;text-align:center;padding:18px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;font-size:13px;color:var(--muted)}
+.hero .ph{aspect-ratio:1/1;border-radius:46% 54% 50% 50%/48% 44% 56% 52%;transform:rotate(2deg);box-shadow:8px 10px 0 var(--ochre)}
+@media(min-width:880px){.hero{grid-template-columns:1.15fr .85fr;padding:80px 0 60px}}
+
+.torn{height:22px;background:var(--andes);-webkit-mask:radial-gradient(12px 10px at 12px 0,#0000 98%,#000) -12px 0/24px 100% repeat-x;mask:radial-gradient(12px 10px at 12px 0,#0000 98%,#000) -12px 0/24px 100% repeat-x}
+.about{background:var(--grain),var(--andes);color:#F4E8D2;padding:56px 0 64px}
+.about .wrap{display:grid;gap:32px}
+.about h2{font-size:clamp(34px,5vw,52px);color:#F7D58E}
+.about p+p{margin-top:14px}
+.about .ph{aspect-ratio:4/3;background:var(--grain),repeating-linear-gradient(45deg,#3B6E60 0 14px,#2A5448 14px 28px);color:#E6D6B8;border-color:#F4E8D2}
+@media(min-width:880px){.about .wrap{grid-template-columns:1fr 1fr;align-items:center;gap:56px}}
+.torn.bottom{transform:scaleY(-1)}
+
+.menu{padding:72px 0 40px}
+.menu h2{font-size:clamp(36px,6vw,60px);text-align:center}
+.menu .hand{text-align:center;font-style:italic;color:var(--muted);margin-top:6px}
+.plates{list-style:none;padding:0;margin:40px 0 0;display:grid;gap:18px}
+.plates li{background:var(--grain),#FBF3E3;border:2px solid var(--ink);padding:20px 22px;border-radius:14px 22px 16px 26px/22px 14px 24px 16px;box-shadow:4px 5px 0 var(--terra)}
+.plates li:nth-child(3n+2){box-shadow:4px 5px 0 var(--ochre);transform:rotate(-.6deg)}
+.plates li:nth-child(3n){box-shadow:4px 5px 0 var(--andes);transform:rotate(.5deg)}
+.plates h3{font-size:25px}
+.plates p{color:#4c3a29;margin-top:6px;font-size:17px}
+.plates .tag{display:inline-block;margin-top:10px;font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--terra)}
+@media(min-width:760px){.plates{grid-template-columns:repeat(2,1fr);gap:24px}}
+@media(min-width:1000px){.plates{grid-template-columns:repeat(3,1fr)}}
+.menu .note{text-align:center;color:var(--muted);font-size:16px;margin-top:26px}
+
+.visit{padding:40px 0 72px}
+.visit .card{background:var(--grain),#FBF3E3;border:2px solid var(--ink);border-radius:18px;padding:30px 22px;display:grid;gap:28px;position:relative}
+.visit h2{font-size:34px;margin-bottom:12px;color:var(--terra)}
+.hours{display:grid;grid-template-columns:auto 1fr;gap:4px 18px;margin:0}
+.hours dt{font-weight:700}
+.hours dd{margin:0}
+.visit .small{font-size:15px;color:var(--muted);margin-top:10px}
+.visit .row{display:flex;flex-wrap:wrap;gap:12px;margin-top:16px}
+.visit .row a.out{font-weight:700;border:2px solid var(--ink);padding:9px 16px;border-radius:30px;text-decoration:none}
+.visit .row a.out:hover{background:var(--ochre)}
+@media(min-width:820px){.visit .card{grid-template-columns:1fr 1fr;padding:44px 48px;gap:48px}}
+
+footer{background:var(--grain),var(--ink);color:#E8D5B4;padding:30px 0 30px;text-align:center;font-size:15px}
+footer .wm{color:#F7D58E;font-size:28px;display:inline-block;margin-bottom:8px}
+</style>
+</head>
+<body>
+<div class="concept">Design concept prepared for El Inca Plebeyo by Sites By MS. Not the official website.</div>
+
+<header>
+  <div class="wrap bar">
+    <a class="wm" href="#top">El Inca Plebeyo<small>Cocina ecuatoriana</small></a>
+    <nav aria-label="Main">
+      <a href="#story">Our story</a>
+      <a href="#menu">The menu</a>
+      <a href="#visit">Visit</a>
+    </nav>
+    <a class="btn" href="https://www.opentable.co.uk/r/el-inca-plebeyo-london">Book a table</a>
+  </div>
+  <div class="weave" aria-hidden="true"></div>
+</header>
+
+<main id="top">
+  <section class="wrap hero">
+    <div>
+      <span class="stamp">Essex Road · Islington</span>
+      <h1>Ecuador, <span>on a plate</span> to share.</h1>
+      <p class="lede">Bright ceviches, slow-roasted hornado and fried plantain, cooked by Ecuadorian chef Jorge Pacheco and made for sharing.</p>
+      <div class="acts">
+        <a class="btn" href="https://www.opentable.co.uk/r/el-inca-plebeyo-london">Book a table</a>
+        <a class="plain" href="tel:02077049393">or call 020 7704 9393</a>
+      </div>
+    </div>
+    <div class="ph">1000 × 1000 – Ceviche, top-down</div>
+  </section>
+
+  <div class="torn" aria-hidden="true"></div>
+  <section class="about" id="story">
+    <div class="wrap">
+      <div>
+        <h2>A neighbourhood table with Andean roots.</h2>
+        <p style="margin-top:18px">El Inca Plebeyo is an Ecuadorian restaurant led by chef Jorge Pacheco. The kitchen cooks the dishes of home: citrus-sharp ceviche, encebollado, meat from the grill and sweet fried plantain.</p>
+        <p>Plates are designed to share, so order a few and pass them round, with a cocktail, a glass from the wine list or a taste of Ecuadorian sugar-cane spirit.</p>
+      </div>
+      <div class="ph">1200 × 900 – Dining room, evening</div>
+    </div>
+  </section>
+  <div class="torn bottom" aria-hidden="true"></div>
+
+  <section class="wrap menu" id="menu">
+    <h2>From the kitchen</h2>
+    <p class="hand">A few favourites our guests come back for</p>
+    <ul class="plates">
+      <li><h3>Ceviche ecuatoriano</h3><p>Seafood in a bright citrus marinade, the Ecuadorian way.</p><span class="tag">A must-try</span></li>
+      <li><h3>Ceviche clásico</h3><p>The classic, with a spicy kick.</p><span class="tag">Picante</span></li>
+      <li><h3>Encebollado</h3><p>Ecuador’s much-loved fish and onion soup.</p><span class="tag">Popular</span></li>
+      <li><h3>Hornado</h3><p>Ecuadorian roast pork.</p><span class="tag">Guest favourite</span></li>
+      <li><h3>Pan-fried scallops</h3><p>Seared and simple.</p><span class="tag">From the sea</span></li>
+      <li><h3>From the grill</h3><p>Grilled meats served with fried plantain.</p><span class="tag">To share</span></li>
+    </ul>
+    <p class="note">Signature and classic cocktails, wines, beers and Ecuadorian sugar-cane spirits. Ask for the full menu and prices.</p>
+  </section>
+
+  <section class="wrap visit" id="visit">
+    <div class="card">
+      <div>
+        <h2>Opening hours</h2>
+        <dl class="hours">
+          <dt>Mon – Tue</dt><dd>4pm – 10pm</dd>
+          <dt>Wed – Thu</dt><dd>4pm – 11pm</dd>
+          <dt>Friday</dt><dd>3pm – 11pm</dd>
+          <dt>Saturday</dt><dd>12 noon – 11pm</dd>
+          <dt>Sunday</dt><dd>12 noon – 10pm</dd>
+        </dl>
+        <p class="small">Private dining and events: ask the team.</p>
+      </div>
+      <div>
+        <h2>Find us</h2>
+        <p style="font-size:22px">162 Essex Road<br>Islington, London N1 8LY</p>
+        <div class="row">
+          <a class="out" href="tel:02077049393">Call 020 7704 9393</a>
+          <a class="out" href="https://www.google.com/maps/dir/?api=1&amp;destination=El+Inca+Plebeyo+162+Essex+Road+London+N1+8LY">Directions</a>
+        </div>
+        <p class="small">Email: <a href="mailto:incaplebeyo162@gmail.com">incaplebeyo162@gmail.com</a></p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div class="weave" aria-hidden="true"></div>
+<footer>
+  <div class="wrap">
+    <span class="wm">El Inca Plebeyo</span>
+    <p>Ecuadorian restaurant · 162 Essex Road, London N1 8LY</p>
+    <p style="margin-top:12px;opacity:.85">Design concept by Sites By MS. Not the official website.</p>
+  </div>
+</footer>
+<script src="/assets/concept-bar.js" data-name="El Inca Plebeyo" data-slug="el-inca-plebeyo" defer></script>
+</body>
+</html>

@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>About the Bike | Bike Shop &amp; Workshop, Dalston Lane E8</title>
+<meta name="description" content="New and refurbished bikes, custom builds, parts, servicing and repairs at 124B Dalston Lane, London E8.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* Layout 3: big type poster. Honest, no-frills, friendly: bone paper, cobalt ink, one fluoro-yellow sticker */
+:root{
+  --bone:#F1EEE6;
+  --cobalt:#1B33D6;
+  --ink:#0E1030;
+  --sticker:#E9FF3B;
+  --mute:#4b4e6b;
+  --display:"Bebas Neue",Impact,sans-serif;
+  --body:"Work Sans",system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bone);color:var(--ink);font:400 17px/1.6 var(--body);padding-bottom:110px;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--cobalt);outline-offset:3px}
+.concept{background:var(--ink);color:#c8cae0;font-size:12px;text-align:center;padding:6px 16px}
+header{position:sticky;top:0;z-index:20;background:var(--cobalt);color:var(--bone)}
+.bar{max-width:1200px;margin:0 auto;padding:10px 16px;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.mark{font-family:var(--display);font-size:28px;line-height:1;letter-spacing:.04em;text-decoration:none;display:inline-block}
+.mark b{font-weight:400;background:var(--sticker);color:var(--ink);padding:0 6px;margin-left:4px}
+.btn{display:inline-block;font:600 15px/1 var(--body);text-decoration:none;padding:13px 18px;border-radius:999px;background:var(--sticker);color:var(--ink);white-space:nowrap}
+.btn.dark{background:var(--ink);color:var(--bone)}
+.wrap{max-width:1200px;margin:0 auto;padding:0 16px}
+.poster{padding:28px 0 24px;position:relative}
+.poster h1{font-family:var(--display);font-weight:400;margin:0;line-height:.82;font-size:clamp(88px,27vw,300px);letter-spacing:-.005em;color:var(--cobalt)}
+.poster h1 span{display:block}
+.poster h1 .out{color:transparent;-webkit-text-stroke:2px var(--cobalt)}
+.sticker{position:absolute;right:16px;top:44px;width:132px;height:132px;border-radius:50%;background:var(--sticker);display:flex;align-items:center;justify-content:center;text-align:center;font:600 13px/1.25 var(--body);padding:16px;transform:rotate(12deg);box-shadow:0 6px 0 var(--ink)}
+.lede{display:grid;gap:20px;border-top:3px solid var(--ink);padding-top:20px;margin-top:10px}
+.lede p{margin:0;font-size:19px;max-width:560px}
+.ctas{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.ph{border:2px dashed var(--cobalt);color:var(--cobalt);display:flex;align-items:center;justify-content:center;text-align:center;font:500 14px/1.4 var(--body);padding:16px;background:repeating-linear-gradient(90deg,rgba(27,51,214,.05) 0 2px,transparent 2px 22px)}
+.band{background:var(--ink);color:var(--bone);padding:52px 0;margin-top:40px}
+.band h2,.list h2,.visit h2{font-family:var(--display);font-weight:400;font-size:clamp(52px,13vw,120px);line-height:.85;margin:0 0 24px}
+.band h2{color:var(--sticker)}
+.band .cols{display:grid;gap:24px}
+.band p{margin:0 0 14px;max-width:560px;color:#dcdde8}
+.words{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.words span{border:1.5px solid var(--sticker);color:var(--sticker);border-radius:999px;padding:6px 14px;font:500 14px/1 var(--body)}
+.list{padding:56px 0 8px}
+.list h2{color:var(--cobalt)}
+.list ol{list-style:none;margin:0;padding:0;counter-reset:n}
+.list li{counter-increment:n;display:grid;grid-template-columns:56px 1fr;gap:4px 14px;border-top:2px solid var(--ink);padding:16px 0}
+.list li:last-child{border-bottom:2px solid var(--ink)}
+.list li::before{content:counter(n,decimal-leading-zero);font-family:var(--display);font-size:40px;line-height:1;color:var(--cobalt);grid-row:span 2}
+.list h3{font-family:var(--display);font-weight:400;font-size:clamp(30px,7vw,48px);line-height:1;margin:0;letter-spacing:.01em}
+.list p{margin:0;color:var(--mute)}
+.visit{padding:56px 0}
+.visit .grid{display:grid;gap:28px}
+.big{font-family:var(--display);font-size:clamp(44px,11vw,88px);line-height:.9;text-decoration:none;color:var(--cobalt);display:block}
+.visit p{margin:8px 0 18px}
+.note{background:var(--sticker);display:inline-block;padding:10px 14px;font-weight:500}
+footer{background:var(--cobalt);color:#dfe3ff;font-size:13px}
+footer .wrap{padding:22px 16px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 24px}
+@media(min-width:760px){
+  .sticker{width:170px;height:170px;font-size:15px;right:32px;top:60px}
+  .lede{grid-template-columns:1fr auto;align-items:end}
+  .band .cols{grid-template-columns:1.2fr 1fr;gap:56px;align-items:start}
+  .list .cols{display:grid;grid-template-columns:1fr 1.4fr;gap:56px;align-items:start}
+  .visit .grid{grid-template-columns:1fr 1fr;gap:56px}
+}
+</style>
+</head>
+<body>
+<div class="concept">Design concept prepared for About the Bike by Sites By MS. Not the official website.</div>
+
+<header>
+  <div class="bar">
+    <a class="mark" href="#top">About the <b>Bike</b></a>
+    <a class="btn" href="tel:02072542513">Call the workshop</a>
+  </div>
+</header>
+
+<main id="top">
+  <section class="wrap poster">
+    <h1><span>Fix it.</span><span class="out">Ride it.</span><span>Dalston.</span></h1>
+    <div class="sticker">124B Dalston Lane · E8</div>
+    <div class="lede">
+      <p>Bikes, parts and an honest workshop on Dalston Lane. Straight advice, no upselling, and your bike back on the road.</p>
+      <div class="ctas">
+        <a class="btn dark" href="tel:02072542513">020 7254 2513</a>
+        <a class="btn" href="#visit">Find the shop</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" aria-labelledby="about-h">
+    <div class="wrap cols">
+      <div>
+        <h2 id="about-h">All about<br>the bike.</h2>
+        <p>About the Bike is a neighbourhood bike shop and workshop a few minutes from Dalston Kingsland. Come in for a new or refurbished bike, the part you need, or a service on the one you already love.</p>
+        <p>Customers keep saying the same things: honest advice, fair prices and friendly people who don't try to sell you more than you need.</p>
+        <div class="words"><span>Honest</span><span>No-frills</span><span>Friendly</span></div>
+      </div>
+      <div class="ph" style="aspect-ratio:4/5;border-color:var(--sticker);color:var(--sticker)">900 × 1100 – Mechanic at the workstand in the Dalston Lane shop</div>
+    </div>
+  </section>
+
+  <section class="wrap list" aria-labelledby="list-h">
+    <div class="cols">
+      <h2 id="list-h">What we<br>do.</h2>
+      <ol>
+        <li><h3>Servicing</h3><p>Drivetrain, brakes and a proper once-over to keep you rolling.</p></li>
+        <li><h3>Repairs</h3><p>Punctures, gears, brakes and wheels, sorted in the workshop.</p></li>
+        <li><h3>New bikes</h3><p>Ask in the shop about current models and sizes.</p></li>
+        <li><h3>Refurbished bikes</h3><p>Pre-loved bikes, checked over and ready to ride.</p></li>
+        <li><h3>Custom builds</h3><p>Tell us how you ride and we will build the bike around it.</p></li>
+        <li><h3>Parts &amp; accessories</h3><p>The bits that keep you going, from tubes to lights.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="wrap visit" id="visit" aria-labelledby="visit-h">
+    <div class="grid">
+      <div>
+        <h2 id="visit-h" style="color:var(--ink)">Come by.</h2>
+        <a class="big" href="tel:02072542513">020 7254 2513</a>
+        <p><a href="mailto:info@aboutthe.bike">info@aboutthe.bike</a><br>124B Dalston Lane, London E8 1NG<br>Near Dalston Kingsland station</p>
+        <div class="ctas">
+          <a class="btn dark" href="https://www.google.com/maps/dir/?api=1&amp;destination=About+the+Bike+124B+Dalston+Lane+London+E8+1NG" target="_blank" rel="noopener">Get directions</a>
+        </div>
+      </div>
+      <div>
+        <h3 style="font-family:var(--display);font-weight:400;font-size:40px;margin:0 0 10px">Opening hours</h3>
+        <p class="note">Call the shop on 020 7254 2513 for today's opening times.</p>
+        <div class="ph" style="aspect-ratio:16/9;margin-top:20px">1200 × 675 – Shopfront on Dalston Lane</div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>About the Bike · 124B Dalston Lane, London E8 1NG</span>
+    <span>Design concept by Sites By MS. Not the official website.</span>
+  </div>
+</footer>
+<script src="/assets/concept-bar.js" data-name="About the Bike" data-slug="about-the-bike" defer></script>
+</body>
+</html>

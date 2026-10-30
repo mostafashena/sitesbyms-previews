@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Hidden Sounds – Records upstairs on Ridley Road, Dalston</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#111110;--paper:#ecebe4;--sig:#ff5a1f;--dim:#8a8981;--line:#2b2b28}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font-family:"Space Grotesk",system-ui,sans-serif;line-height:1.5;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+.mono{font-family:"Space Mono",monospace}
+.topbar{background:var(--ink);color:#b9b8b0;font:12px/1.4 "Space Mono",monospace;text-align:center;padding:7px 12px}
+header{position:sticky;top:0;z-index:20;background:var(--ink);color:var(--paper);display:flex;align-items:center;justify-content:space-between;padding:12px 18px;border-bottom:1px solid var(--line)}
+.wm{font:700 22px/1 "Space Grotesk",sans-serif;letter-spacing:-.02em;text-decoration:none;display:flex;align-items:center;gap:10px}
+.wm i{width:22px;height:22px;border-radius:50%;background:radial-gradient(circle,var(--sig) 0 22%,var(--ink) 23% 30%,#3a3a36 31% 100%);display:inline-block;border:1px solid #555}
+.wm span{font-weight:400;color:var(--sig)}
+.btn{font:700 13px/1 "Space Mono",monospace;text-transform:uppercase;letter-spacing:.06em;background:var(--sig);color:var(--ink);text-decoration:none;padding:12px 16px;border-radius:2px;white-space:nowrap}
+.btn:hover{background:var(--paper)}
+/* split */
+.split{display:grid;grid-template-columns:1fr}
+.side{background:var(--ink);color:var(--paper);padding:48px 22px 56px;position:relative;overflow:hidden}
+.side h1{font-size:clamp(46px,13vw,104px);line-height:.88;letter-spacing:-.045em;font-weight:700}
+.side h1 em{font-style:normal;color:var(--sig)}
+.side .sub{margin-top:22px;max-width:30ch;color:#c9c8bf;font-size:17px}
+.coord{margin-top:30px;font:12px/1.7 "Space Mono",monospace;color:var(--dim);text-transform:uppercase;letter-spacing:.08em}
+.coord b{color:var(--paper);font-weight:400}
+.disc{width:min(78vw,380px);aspect-ratio:1;border-radius:50%;margin:40px auto 0;background:
+ radial-gradient(circle,var(--ink) 0 3%,var(--sig) 3.5% 17%,#1a1a18 17.5% 19%,transparent 19.5%),
+ repeating-radial-gradient(circle,#1c1c1a 0 2px,#262624 2px 3px);
+ box-shadow:0 0 0 1px #333,0 30px 60px rgba(0,0,0,.5);animation:spin 9s linear infinite;position:relative}
+.disc:after{content:"HIDDEN SOUNDS · 33⅓";position:absolute;inset:0;display:grid;place-items:center;font:700 9px "Space Mono",monospace;color:var(--ink);letter-spacing:.1em;transform:translateY(26px)}
+@media (prefers-reduced-motion:reduce){.disc{animation:none}}
+@keyframes spin{to{transform:rotate(360deg)}}
+.main{padding:0 22px 120px}
+section{padding:46px 0;border-bottom:1px solid #cfcdc4}
+.label{font:12px/1 "Space Mono",monospace;text-transform:uppercase;letter-spacing:.12em;color:var(--sig);margin-bottom:18px;display:flex;gap:10px}
+.label:before{content:"";width:22px;height:1px;background:var(--ink);align-self:center}
+h2{font-size:clamp(28px,6vw,40px);line-height:1.05;letter-spacing:-.03em;margin-bottom:16px}
+p{max-width:58ch}
+p+p{margin-top:12px}
+.crates{list-style:none;margin-top:8px;border-top:2px solid var(--ink)}
+.crates li{display:grid;grid-template-columns:44px 1fr;gap:12px;padding:16px 0;border-bottom:1px solid #cfcdc4;align-items:baseline}
+.crates .n{font:12px "Space Mono",monospace;color:var(--dim)}
+.crates b{font-size:20px;letter-spacing:-.01em;display:block}
+.crates small{font:13px "Space Mono",monospace;color:#5f5e58}
+.ph{border:1.5px dashed #9b9a92;background:repeating-linear-gradient(135deg,transparent 0 10px,rgba(0,0,0,.035) 10px 11px);display:grid;place-items:center;text-align:center;font:13px "Space Mono",monospace;color:#6d6c65;padding:16px;aspect-ratio:3/2;margin-top:24px}
+.rating{display:flex;align-items:baseline;gap:14px;margin-top:22px}
+.rating strong{font-size:56px;letter-spacing:-.04em;line-height:1}
+.rating span{font:13px "Space Mono",monospace;color:#5f5e58}
+.find{display:grid;gap:22px;margin-top:6px}
+.find dt{font:12px "Space Mono",monospace;text-transform:uppercase;letter-spacing:.1em;color:var(--dim)}
+.find dd{font-size:19px;margin-top:4px}
+.find a{text-decoration:none;border-bottom:2px solid var(--sig)}
+.steps{counter-reset:s;list-style:none;margin-top:20px;font:14px/1.6 "Space Mono",monospace}
+.steps li{counter-increment:s;padding-left:34px;position:relative;margin-bottom:8px}
+.steps li:before{content:"0" counter(s);position:absolute;left:0;color:var(--sig)}
+footer{padding:30px 0 0;font:12px/1.7 "Space Mono",monospace;color:#5f5e58}
+@media(min-width:900px){
+ .split{grid-template-columns:44% 56%}
+ .side{position:sticky;top:61px;height:calc(100vh - 61px);padding:56px 48px;display:flex;flex-direction:column;justify-content:space-between}
+ .disc{position:absolute;width:420px;right:-170px;bottom:-140px;margin:0}
+ .main{padding:0 64px 130px}
+ section{padding:70px 0}
+ .find{grid-template-columns:1fr 1fr}
+}
+</style>
+</head>
+<body>
+<div class="topbar">Design concept prepared for Hidden Sounds by Sites By MS. Not the official website.</div>
+
+<header>
+ <a class="wm" href="#top"><i aria-hidden="true"></i>hidden<span>sounds</span></a>
+ <a class="btn" href="https://www.google.com/maps/dir/?api=1&amp;destination=Hidden+Sounds+89+Ridley+Road+London+E8+2NH">Directions</a>
+</header>
+
+<div class="split" id="top">
+ <aside class="side">
+  <div>
+   <p class="mono" style="font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--sig);margin-bottom:22px">Record shop · Dalston E8</p>
+   <h1>Up the stairs.<br>Into the <em>hidden</em> sounds.</h1>
+   <p class="sub">A first-floor record shop tucked above Ridley Road market. Dig through crates that go from dub-techno to jazz and back again.</p>
+  </div>
+  <p class="coord"><b>89 Ridley Road</b> · London E8 2NH<br>1st floor · 250 m from Dalston Kingsland</p>
+  <div class="disc" aria-hidden="true"></div>
+ </aside>
+
+ <main class="main">
+  <section>
+   <div class="label">Side A / About</div>
+   <h2>Not tied to one genre. Tied to finding something different.</h2>
+   <p>Hidden Sounds began on Cambridge Heath Road and now lives upstairs in the middle of Ridley Road market, literally hidden from the street.</p>
+   <p>The idea has stayed the same: no single style, just records that feel different and unique, picked by people who listen to all of them.</p>
+   <div class="ph">1200 × 800 – The shop floor: crates, listening deck and sound system</div>
+  </section>
+
+  <section>
+   <div class="label">Side B / In the crates</div>
+   <h2>What you'll dig through</h2>
+   <ul class="crates">
+    <li><span class="n">A1</span><div><b>Dub-techno</b><small>deep, slow, heavy on the low end</small></div></li>
+    <li><span class="n">A2</span><div><b>Jazz</b><small>from the bins and the new arrivals</small></div></li>
+    <li><span class="n">A3</span><div><b>Prog-rock</b><small>for the long-player crowd</small></div></li>
+    <li><span class="n">B1</span><div><b>Experimental &amp; ambient</b><small>the properly hidden stuff</small></div></li>
+    <li><span class="n">B2</span><div><b>Vintage finds, all genres</b><small>second-hand records worth the dig</small></div></li>
+    <li><span class="n">B3</span><div><b>Listening sessions &amp; live sets</b><small>played on the in-store sound system</small></div></li>
+   </ul>
+  </section>
+
+  <section>
+   <div class="label">Run-out groove / Word of mouth</div>
+   <h2>Diggers keep coming back.</h2>
+   <div class="rating"><strong>4.9</strong><span>Google rating<br>from 30 reviews</span></div>
+  </section>
+
+  <section>
+   <div class="label">Liner notes / Find us</div>
+   <h2>How to find the stairs</h2>
+   <dl class="find">
+    <div><dt>Address</dt><dd>89 Ridley Road (1st floor)<br>London E8 2NH</dd></div>
+    <div><dt>Phone</dt><dd><a href="tel:+447454978906">07454 978906</a></dd></div>
+    <div><dt>Opening times</dt><dd>Check today's times on Instagram <a href="https://www.instagram.com/hiddensounds_london/">@hiddensounds_london</a></dd></div>
+    <div><dt>Nearest station</dt><dd>Dalston Kingsland</dd></div>
+   </dl>
+   <ol class="steps">
+    <li>Walk into Ridley Road market from Kingsland High Street.</li>
+    <li>Look for number 89.</li>
+    <li>Go up the stairs. Follow the bass.</li>
+   </ol>
+   <p style="margin-top:22px"><a class="btn" href="https://www.google.com/maps/dir/?api=1&amp;destination=Hidden+Sounds+89+Ridley+Road+London+E8+2NH">Get directions</a></p>
+  </section>
+
+  <footer>
+   <p>Hidden Sounds · 89 Ridley Road, London E8 2NH · <a href="tel:+447454978906">07454 978906</a></p>
+   <p>Design concept by Sites By MS. Not the official website.</p>
+  </footer>
+ </main>
+</div>
+<script src="/assets/concept-bar.js" data-name="Hidden Sounds" data-slug="hidden-sounds" defer></script>
+</body>
+</html>

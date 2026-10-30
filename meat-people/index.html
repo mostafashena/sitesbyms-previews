@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Meat People – Steakhouse, 4-6 Essex Road, Islington</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
+<style>
+:root{--tile:#1f4a43;--tile-dk:#143430;--cream:#f2ead9;--ink:#1e1b17;--brass:#c49a4a;--ember:#c4482b;--mute:#62594d}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--cream);color:var(--ink);font-family:'Source Serif 4',serif;font-size:18px;line-height:1.6;padding-bottom:110px}
+.topbar{background:var(--ink);color:#e8dfcc;font-size:12.5px;text-align:center;padding:6px 14px}
+header{position:sticky;top:0;z-index:30;background:var(--tile-dk);color:var(--cream);border-bottom:3px solid var(--brass)}
+.hwrap{max-width:1160px;margin:0 auto;padding:10px 18px;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.mark{font-family:'Anton',sans-serif;font-size:28px;letter-spacing:.02em;color:var(--cream);text-decoration:none;text-transform:uppercase;line-height:1}
+.mark span{color:var(--brass)}
+.btn{font-family:'Anton',sans-serif;text-transform:uppercase;letter-spacing:.06em;font-size:16px;display:inline-block;text-decoration:none;
+  background:var(--ember);color:#fff;padding:12px 20px;border-radius:0}
+.btn.alt{background:transparent;border:2px solid var(--cream);color:var(--cream);padding:10px 18px}
+/* full-bleed hero */
+.hero{position:relative;min-height:88vh;display:flex;align-items:flex-end;color:var(--cream);overflow:hidden}
+.hero .ph{position:absolute;inset:0;border:0;
+  background:
+   linear-gradient(180deg,rgba(20,52,48,.25) 0%,rgba(20,20,18,.85) 100%),
+   repeating-linear-gradient(90deg,rgba(242,234,217,.05) 0 1px,transparent 1px 64px),
+   repeating-linear-gradient(0deg,rgba(242,234,217,.05) 0 1px,transparent 1px 64px),
+   #2a2a26;
+  display:flex;align-items:flex-start;justify-content:flex-end;padding:22px;font-size:13px;color:rgba(242,234,217,.6)}
+.hero-in{position:relative;z-index:2;max-width:1160px;margin:0 auto;width:100%;padding:0 18px 56px}
+.est{font-size:15px;letter-spacing:.24em;text-transform:uppercase;color:var(--brass)}
+h1,h2,h3{font-family:'Anton',sans-serif;font-weight:400;text-transform:uppercase;line-height:.95;margin:0}
+h1{font-size:clamp(64px,16vw,170px);letter-spacing:-.005em;margin:10px 0 16px}
+.hero p{max-width:30em;font-size:20px;margin:0 0 26px;color:#e8dfcc}
+.cta{display:flex;gap:12px;flex-wrap:wrap}
+.wrap{max-width:1160px;margin:0 auto;padding:0 18px}
+section{padding:64px 0}
+h2{font-size:clamp(40px,8vw,72px);margin-bottom:20px}
+h2 span{color:var(--ember)}
+.about{display:grid;gap:30px}
+.about p{margin:0 0 14px;max-width:34em}
+.about .tilebox{background:var(--tile);color:var(--cream);padding:30px 28px;position:relative;
+  background-image:linear-gradient(45deg,rgba(255,255,255,.04) 25%,transparent 25%,transparent 75%,rgba(255,255,255,.04) 75%),linear-gradient(45deg,rgba(255,255,255,.04) 25%,transparent 25%,transparent 75%,rgba(255,255,255,.04) 75%);
+  background-size:36px 36px;background-position:0 0,18px 18px;border:2px solid var(--brass)}
+.tilebox h3{font-size:30px;color:var(--brass);margin-bottom:10px}
+.tilebox p{margin:0;color:#e8dfcc}
+.cuts{background:var(--ink);color:var(--cream)}
+.cuts ul{list-style:none;margin:0;padding:0;display:grid;gap:0}
+.cuts li{padding:20px 0;border-bottom:1px solid #3a352e;display:flex;gap:18px;align-items:baseline}
+.cuts li b{font-family:'Anton',sans-serif;font-weight:400;font-size:clamp(28px,5vw,40px);text-transform:uppercase;letter-spacing:.01em;min-width:0}
+.cuts li em{color:#b8ad97;font-size:17px}
+.cuts .lead{color:#b8ad97;max-width:34em;margin:0 0 20px}
+.visit{display:grid;gap:26px}
+.visit .box{border:2px solid var(--ink);padding:28px 26px;background:#fbf6ea}
+.visit h3{font-size:32px;margin-bottom:12px}
+.visit p{margin:0 0 10px}
+.tel{font-family:'Anton',sans-serif;font-size:34px;color:var(--ember);text-decoration:none}
+.visit .btn{margin-top:8px}
+.ph2{border:2px dashed #b9ad94;background:#ebe1cc;color:var(--mute);display:flex;align-items:center;justify-content:center;text-align:center;padding:18px;min-height:280px;font-size:15px}
+footer{background:var(--tile-dk);color:#d9d0bd;text-align:center;padding:34px 18px 40px;font-size:15px}
+footer .mark{display:inline-block;margin-bottom:8px}
+footer a{color:var(--brass)}
+@media(min-width:800px){
+  .about{grid-template-columns:1.2fr .9fr;align-items:center}
+  .cuts ul{grid-template-columns:1fr 1fr;column-gap:48px}
+  .visit{grid-template-columns:1fr 1fr}
+}
+</style>
+</head>
+<body>
+<div class="topbar">Design concept prepared for Meat People by Sites By MS. Not the official website.</div>
+
+<header>
+  <div class="hwrap">
+    <a class="mark" href="#top">Meat <span>People</span></a>
+    <a class="btn" href="tel:02073595361">Book a table</a>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero" style="padding:0">
+    <div class="ph">1920 × 1080 – Steak coming off the grill, the tiled dining room behind</div>
+    <div class="hero-in">
+      <div class="est">4-6 Essex Road · Islington</div>
+      <h1>Meat<br>People</h1>
+      <p>A neighbourhood steakhouse by Angel, cooking rib-eye, onglet and short ribs over the grill, with chimichurri on the side.</p>
+      <div class="cta">
+        <a class="btn" href="tel:02073595361">Call to book</a>
+        <a class="btn alt" href="#cuts">What we cook</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="wrap about">
+      <div>
+        <h2>Come for <span>the meat.</span><br>Stay for the people.</h2>
+        <p>Meat People sits in a 1920s Grade II listed building on Essex Road, a couple of minutes from Angel station. The tiled ceiling, wood panelling and steel-framed windows are all part of dinner here.</p>
+        <p>The kitchen takes its cue from Argentina and Spain: good cuts, cooked on the grill, with chimichurri and small plates alongside.</p>
+      </div>
+      <div class="tilebox">
+        <h3>Bigger table?</h3>
+        <p>We take private bookings for larger groups, with a set menu built around your party. Give us a call to talk it through.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="cuts" id="cuts">
+    <div class="wrap">
+      <h2 style="color:var(--cream)">From <span>the grill</span></h2>
+      <p class="lead">A taste of the menu. Ask the team about today's cuts.</p>
+      <ul>
+        <li><b>Rib-eye</b></li>
+        <li><b>Onglet</b></li>
+        <li><b>Short ribs</b><em>with chimichurri</em></li>
+        <li><b>Chateaubriand</b><em>for sharing</em></li>
+        <li><b>Fillet &amp; bavette</b></li>
+        <li><b>Empanadas</b><em>&amp; small plates</em></li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="visit">
+    <div class="wrap visit">
+      <div class="box">
+        <h3>Find us</h3>
+        <p>4-6 Essex Road<br>Islington, London N1 8LN</p>
+        <p>Nearest station: Angel</p>
+        <p><a class="tel" href="tel:02073595361">020 7359 5361</a></p>
+        <p>Open for lunch and dinner. Call us for today's times and to book.</p>
+        <a class="btn" href="https://www.google.com/maps/dir/?api=1&amp;destination=Meat+People+4-6+Essex+Road+London+N1+8LN" target="_blank" rel="noopener">Get directions</a>
+      </div>
+      <div class="ph2">1200 × 800 – Grade II dining room with the tiled ceiling</div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="mark">Meat <span>People</span></div>
+  <div>4-6 Essex Road, London N1 8LN · <a href="mailto:info@meatpeople.co.uk">info@meatpeople.co.uk</a></div>
+  <p>Design concept by Sites By MS. Not the official website.</p>
+</footer>
+<script src="/assets/concept-bar.js" data-name="Meat People" data-slug="meat-people" defer></script>
+</body>
+</html>

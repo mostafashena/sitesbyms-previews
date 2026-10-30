@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tanakatsu | Japanese Katsu Restaurant, Angel</title>
+<meta name="description" content="Japanese katsu, katsudon, teriyaki and sushi at 10 Wakley Street, Angel, London EC1V. Katsu sandos at lunchtime.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+/* Layout 2: split screen. Left: deep indigo noren with golden panko accent, fixed on desktop. Right: rice-paper content */
+:root{
+  --indigo:#1C2541;
+  --indigo2:#24305A;
+  --panko:#E2A93B;
+  --rice:#F7F3EA;
+  --ink:#1A1A1A;
+  --soft:#5B5B5B;
+  --line:#E3DCCB;
+  --serif:"Shippori Mincho",Georgia,serif;
+  --sans:"Zen Kaku Gothic New",system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--rice);color:var(--ink);font:400 16px/1.75 var(--sans);-webkit-font-smoothing:antialiased}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--panko);outline-offset:3px}
+.concept{background:#0f1426;color:#a9b0c8;font-size:12px;text-align:center;padding:6px 16px;position:relative;z-index:30}
+header{position:sticky;top:0;z-index:20;background:var(--indigo);color:var(--rice);border-bottom:3px solid var(--panko)}
+.bar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 16px}
+.mark{font-family:var(--serif);font-weight:800;font-size:24px;letter-spacing:.06em;text-decoration:none;display:inline-flex;align-items:center;gap:10px}
+.mark i{display:inline-block;width:12px;height:12px;border-radius:50%;background:var(--panko)}
+.btn{display:inline-block;background:var(--panko);color:var(--indigo);text-decoration:none;font:700 14px/1 var(--sans);letter-spacing:.08em;padding:13px 18px;border-radius:3px;white-space:nowrap}
+.btn.line{background:transparent;color:inherit;border:1px solid currentColor}
+.split{display:grid}
+.left{background:var(--indigo);color:var(--rice);padding:44px 20px 48px;position:relative;overflow:hidden}
+.left::after{content:"";position:absolute;right:-90px;bottom:-90px;width:260px;height:260px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#f0c25e,var(--panko) 55%,#b8801f);opacity:.95}
+.left .in{position:relative;z-index:1;max-width:520px}
+.eyebrow{font:500 12px/1 var(--sans);letter-spacing:.28em;text-transform:uppercase;color:var(--panko)}
+h1{font-family:var(--serif);font-weight:800;font-size:clamp(48px,13vw,96px);line-height:1;margin:18px 0 16px;letter-spacing:.02em}
+.left p{font-size:18px;color:#d8dcea;margin:0 0 26px;max-width:420px}
+.left .ctas{display:flex;flex-wrap:wrap;gap:10px}
+.left .facts{margin-top:36px;font-size:14px;color:#b8bfd6;border-top:1px solid #3a4670;padding-top:16px;max-width:360px}
+.right{padding:0 20px 120px}
+.right section{padding:48px 0;border-bottom:1px solid var(--line);max-width:620px}
+h2{font-family:var(--serif);font-weight:700;font-size:clamp(28px,6vw,40px);line-height:1.2;margin:10px 0 16px;color:var(--indigo)}
+.ph{border:1px dashed #b9b09b;background:repeating-linear-gradient(0deg,#efe9dc 0 1px,transparent 1px 12px);color:#6d675a;display:flex;align-items:center;justify-content:center;text-align:center;font-size:14px;padding:16px}
+.dishes{list-style:none;margin:0;padding:0}
+.dishes li{padding:18px 0;border-top:1px solid var(--line);display:grid;grid-template-columns:28px 1fr;gap:0 14px}
+.dishes li::before{content:"";width:12px;height:12px;border-radius:50%;background:var(--panko);margin-top:10px}
+.dishes h3{font-family:var(--serif);font-weight:700;font-size:21px;margin:0;color:var(--indigo)}
+.dishes p{grid-column:2;margin:2px 0 0;color:var(--soft);font-size:15px}
+.badge{display:inline-block;background:var(--indigo);color:var(--panko);font-size:11px;letter-spacing:.14em;text-transform:uppercase;padding:3px 8px;margin-left:8px;vertical-align:middle;border-radius:2px}
+.hours{width:100%;border-collapse:collapse}
+.hours td{padding:10px 0;border-bottom:1px solid var(--line)}
+.hours td:last-child{text-align:right;font-weight:500}
+.contact a.big{font-family:var(--serif);font-weight:700;font-size:28px;color:var(--indigo);text-decoration:none;display:block}
+.small{font-size:13px;color:var(--soft)}
+footer{font-size:13px;color:var(--soft);padding:28px 0 0;max-width:620px}
+@media(min-width:960px){
+  .split{grid-template-columns:44% 56%}
+  .left{position:sticky;top:0;height:100vh;display:flex;align-items:center;padding:40px 48px}
+  .right{padding:0 56px 130px}
+  header{display:none}
+  .left .topmark{display:flex}
+}
+.topmark{display:none;position:absolute;top:28px;left:48px;right:48px;justify-content:space-between;align-items:center;z-index:2}
+</style>
+</head>
+<body>
+<div class="concept">Design concept prepared for Tanakatsu by Sites By MS. Not the official website.</div>
+
+<header>
+  <div class="bar">
+    <a class="mark" href="#top"><i></i>TANAKATSU</a>
+    <a class="btn" href="https://www.opentable.co.uk/r/tanakatsu-london" target="_blank" rel="noopener">Book a table</a>
+  </div>
+</header>
+
+<div class="split" id="top">
+  <aside class="left">
+    <div class="topmark">
+      <span class="mark"><i></i>TANAKATSU</span>
+      <a class="btn" href="https://www.opentable.co.uk/r/tanakatsu-london" target="_blank" rel="noopener">Book a table</a>
+    </div>
+    <div class="in">
+      <div class="eyebrow">Japanese katsu · Angel</div>
+      <h1>Golden,<br>crisp,<br>katsu.</h1>
+      <p>A small, friendly Japanese restaurant on Wakley Street, a short walk from Angel. Katsu curry, katsudon, teriyaki and sushi, and katsu sandos at lunchtime.</p>
+      <div class="ctas">
+        <a class="btn" href="https://www.opentable.co.uk/r/tanakatsu-london" target="_blank" rel="noopener">Book a table</a>
+        <a class="btn line" href="tel:01213894111">Call</a>
+      </div>
+      <div class="facts">10 Wakley Street, London EC1V 7LT<br>Tripadvisor 4.8 from 171 reviews</div>
+    </div>
+  </aside>
+
+  <main class="right">
+    <section aria-labelledby="about-h">
+      <div class="eyebrow">About us</div>
+      <h2 id="about-h">Run by Joe and Koko</h2>
+      <p>Tanakatsu is a neighbourhood katsu restaurant run by Joe and Koko. The menu is short and focused: cutlets breaded in panko and fried until golden, with Japanese curry, rice bowls, teriyaki and a little sushi and sashimi alongside.</p>
+      <p>Guests keep coming back for the katsu sandwich and the warm, friendly service.</p>
+      <div class="ph" style="aspect-ratio:3/2;margin-top:24px">1200 × 800 – Katsu curry with rice, from above</div>
+    </section>
+
+    <section aria-labelledby="menu-h">
+      <div class="eyebrow">On the menu</div>
+      <h2 id="menu-h">What to order</h2>
+      <ul class="dishes">
+        <li><h3>Katsu sando <span class="badge">Lunch</span></h3><p>Pork or chicken katsu with katsu sauce, served with mixed salad. Lunchtimes only.</p></li>
+        <li><h3>Katsu curry</h3><p>Crisp katsu with Japanese curry sauce and rice.</p></li>
+        <li><h3>Katsudon</h3><p>Katsu on a rice bowl.</p></li>
+        <li><h3>Teriyaki</h3><p>Teriyaki dishes for something without the crumb.</p></li>
+        <li><h3>Sushi &amp; sashimi</h3><p>A small selection alongside the katsu.</p></li>
+      </ul>
+      <p class="small" style="margin-top:14px">Ask for today's menu and prices when you book or call.</p>
+    </section>
+
+    <section id="visit" aria-labelledby="visit-h">
+      <div class="eyebrow">Visit</div>
+      <h2 id="visit-h">Find us near Angel</h2>
+      <div class="contact">
+        <a class="big" href="tel:01213894111">0121 389 4111</a>
+        <p style="margin:4px 0 0"><a href="mailto:info@tanakatsu.co.uk">info@tanakatsu.co.uk</a><br>10 Wakley Street, London EC1V 7LT</p>
+      </div>
+      <table class="hours" aria-label="Opening hours" style="margin:22px 0">
+        <tr><td>Monday – Saturday</td><td>12:00 – 16:00 · 17:00 – 21:30</td></tr>
+        <tr><td>Sunday</td><td>Closed</td></tr>
+      </table>
+      <div style="display:flex;flex-wrap:wrap;gap:10px">
+        <a class="btn" style="background:var(--indigo);color:var(--rice)" href="https://www.opentable.co.uk/r/tanakatsu-london" target="_blank" rel="noopener">Book on OpenTable</a>
+        <a class="btn line" style="color:var(--indigo)" href="https://www.google.com/maps/dir/?api=1&amp;destination=Tanakatsu+10+Wakley+Street+London+EC1V+7LT" target="_blank" rel="noopener">Directions</a>
+      </div>
+      <div class="ph" style="aspect-ratio:16/9;margin-top:28px">1200 × 675 – Tanakatsu shopfront on Wakley Street</div>
+    </section>
+
+    <footer>
+      <p>Tanakatsu · 10 Wakley Street, London EC1V 7LT · Instagram <a href="https://www.instagram.com/tanakatsulondon/">@tanakatsulondon</a></p>
+      <p>Design concept by Sites By MS. Not the official website.</p>
+    </footer>
+  </main>
+</div>
+<script src="/assets/concept-bar.js" data-name="Tanakatsu" data-slug="tanakatsu" defer></script>
+</body>
+</html>

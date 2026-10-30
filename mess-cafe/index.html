@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mess Cafe | All-Day Breakfast, Amhurst Road Hackney</title>
+<meta name="description" content="Hearty all-day breakfasts, burgers and vegan and veggie options at 38 Amhurst Road, Hackney. Open from 7am.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;900&family=Courier+Prime:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+/* Layout 4: centred printed menu card, greasy-spoon style. Words: hearty, friendly, no-fuss. */
+:root{
+  --formica:#CFE3DA;
+  --card:#FFFDF6;
+  --ink:#1E1B18;
+  --red:#C8321E;      /* ketchup */
+  --yellow:#F2B705;   /* mustard */
+  --faint:#7A736A;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;color:var(--ink);font:400 17px/1.6 "Courier Prime",ui-monospace,monospace;padding-bottom:110px;
+  background-color:var(--formica);
+  background-image:radial-gradient(rgba(30,27,24,.07) 1px,transparent 1.5px),radial-gradient(rgba(255,255,255,.5) 1px,transparent 1.5px);
+  background-size:14px 14px,22px 22px;background-position:0 0,7px 9px}
+a{color:inherit}
+p{margin:0}
+.topbar{background:var(--ink);color:#e8e2d6;font:400 13px/1.4 "Courier Prime";text-align:center;padding:7px 16px}
+
+header{position:sticky;top:0;z-index:30;background:var(--red);color:#fff;box-shadow:0 2px 0 var(--ink)}
+.nav{width:min(760px,100% - 32px);margin:auto;display:flex;align-items:center;justify-content:space-between;height:62px;gap:12px}
+.sign{font:900 26px/1 "Archivo",sans-serif;text-transform:uppercase;letter-spacing:.04em;text-decoration:none}
+.sign span{font:400 14px "Courier Prime";text-transform:none;letter-spacing:0;opacity:.9;margin-left:6px}
+.call{display:inline-flex;align-items:center;min-height:44px;padding:0 18px;background:var(--yellow);color:var(--ink);font:700 15px/1 "Archivo";text-transform:uppercase;letter-spacing:.06em;text-decoration:none;border:2px solid var(--ink);border-radius:4px}
+.call:hover{background:#fff}
+
+/* the card */
+.card{width:min(720px,100% - 24px);margin:28px auto 0;background:var(--card);padding:42px 28px 36px;box-shadow:0 1px 0 #d9d2c2,0 18px 40px rgba(30,27,24,.18);position:relative;border-top:10px solid var(--red)}
+.card::before{content:"";position:absolute;inset:10px;border:2px solid var(--ink);pointer-events:none}
+.card::after{content:"";position:absolute;left:10px;right:10px;top:16px;border-top:1px solid var(--ink)}
+@media(min-width:640px){.card{padding:56px 60px 48px}}
+.center{text-align:center}
+.est{font:700 13px/1 "Archivo";letter-spacing:.3em;text-transform:uppercase;color:var(--faint)}
+h1{font:900 clamp(64px,17vw,120px)/.9 "Archivo",sans-serif;text-transform:uppercase;letter-spacing:-.02em;margin:14px 0 0}
+h1 small{display:block;font:400 clamp(16px,4vw,22px)/1.3 "Courier Prime";letter-spacing:.2em;margin-top:10px}
+.lead{max-width:40ch;margin:20px auto 0}
+.stars{margin:16px auto 0;display:inline-block;background:var(--yellow);padding:4px 12px;font-weight:700;transform:rotate(-1.5deg)}
+.rule{border:0;border-top:2px dashed var(--ink);margin:34px 0}
+h2{font:900 22px/1 "Archivo";text-transform:uppercase;letter-spacing:.18em;text-align:center;margin:0 0 22px}
+h2::before,h2::after{content:"\2605";color:var(--red);margin:0 12px;font-size:16px;vertical-align:2px}
+
+.menu{list-style:none;margin:0;padding:0}
+.menu li{padding:12px 0}
+.menu .row{display:flex;align-items:baseline;gap:8px;font:700 19px/1.3 "Courier Prime";text-transform:uppercase}
+.menu .row .dots{flex:1;border-bottom:2px dotted var(--ink);transform:translateY(-4px)}
+.menu .row b{font-weight:700;color:var(--red);font-size:15px;white-space:nowrap}
+.menu .desc{color:var(--faint);font-size:15px;margin-top:4px}
+
+.ph{display:grid;place-items:center;text-align:center;min-height:220px;border:2px dashed var(--faint);color:var(--faint);font-size:15px;padding:16px;background:repeating-linear-gradient(0deg,#fff 0 24px,#f6f0e2 24px 25px)}
+
+.quote{text-align:center;font-style:italic;font-size:19px;max-width:36ch;margin:0 auto}
+.quote cite{display:block;font:700 13px "Archivo";font-style:normal;letter-spacing:.12em;text-transform:uppercase;margin-top:10px;color:var(--faint)}
+
+.hours{width:100%;max-width:380px;margin:0 auto;border-collapse:collapse;font-size:18px}
+.hours td{padding:6px 0}
+.hours td:last-child{text-align:right;font-weight:700}
+.note{text-align:center;font-size:14px;color:var(--faint);margin-top:10px}
+.addr{text-align:center;font-size:19px;line-height:1.6}
+.btns{display:flex;justify-content:center;flex-wrap:wrap;gap:10px;margin-top:18px}
+.btn{display:inline-flex;align-items:center;min-height:46px;padding:0 20px;border:2px solid var(--ink);font:700 15px/1 "Archivo";text-transform:uppercase;letter-spacing:.06em;text-decoration:none;background:var(--card)}
+.btn.red{background:var(--red);color:#fff}
+.btn:hover{background:var(--yellow);color:var(--ink)}
+.thanks{text-align:center;font:900 20px "Archivo";text-transform:uppercase;letter-spacing:.2em;margin-top:30px}
+
+footer{text-align:center;padding:30px 16px 124px;font-size:14px;color:var(--ink)}
+</style>
+</head>
+<body>
+<div class="topbar">Design concept prepared for Mess Cafe by Sites By MS. Not the official website.</div>
+
+<header>
+  <div class="nav">
+    <a class="sign" href="#top">Mess<span>cafe · E8</span></a>
+    <a class="call" href="tel:02089853194">Call</a>
+  </div>
+</header>
+
+<main id="top">
+  <article class="card">
+    <div class="center">
+      <div class="est">38 Amhurst Road · Hackney</div>
+      <h1>Mess<small>— Cafe —</small></h1>
+      <p class="lead">Big breakfasts all day, burgers, and proper vegan and veggie plates. Tea's on, pull up a chair.</p>
+      <div class="stars">★ 4.6 on Google · 648 reviews</div>
+    </div>
+
+    <hr class="rule">
+
+    <h2>Today's Menu</h2>
+    <ul class="menu">
+      <li><div class="row">The Mess Breakfast<span class="dots"></span><b>all day</b></div><p class="desc">Crispy bacon, egg, sausage, grilled mushroom, fried potato and grilled tomato, with toast and tea or coffee.</p></li>
+      <li><div class="row">Vegan Jumbo Breakfast<span class="dots"></span><b>vegan</b></div><p class="desc">The full plate, done vegan: plenty of beans and seasoned scrambled tofu.</p></li>
+      <li><div class="row">Veggie Breakfasts<span class="dots"></span><b>veggie</b></div><p class="desc">Meat-free plates, ask at the counter.</p></li>
+      <li><div class="row">Burgers<span class="dots"></span><b>lunch</b></div><p class="desc">For when it's past breakfast o'clock.</p></li>
+      <li><div class="row">Avocado on the side<span class="dots"></span><b>add-on</b></div><p class="desc">Add it to any breakfast.</p></li>
+      <li><div class="row">Tea, Coffee &amp; Toast<span class="dots"></span><b>always</b></div><p class="desc">The way every good morning starts.</p></li>
+    </ul>
+
+    <hr class="rule">
+
+    <div class="ph">700 × 450 – The Mess Breakfast, from above</div>
+
+    <hr class="rule">
+
+    <p class="quote">"I honestly can't think of any places doing it better than this full English."<cite>Fat Gay Vegan blog, Oct 2025</cite></p>
+
+    <hr class="rule">
+
+    <h2>Opening Hours</h2>
+    <table class="hours" aria-label="Opening hours">
+      <tr><td>Monday – Saturday</td><td>7am – 5pm</td></tr>
+      <tr><td>Sunday</td><td>8am – 4pm</td></tr>
+    </table>
+    <p class="note">Hours can vary, give us a ring to check.</p>
+
+    <hr class="rule">
+
+    <h2>Find Us</h2>
+    <p class="addr">38 Amhurst Road<br>Hackney, London E8 1JN<br><a href="tel:02089853194">020 8985 3194</a></p>
+    <p class="note">Between Hackney Downs and Hackney Central stations.</p>
+    <div class="btns">
+      <a class="btn red" href="tel:02089853194">Call the cafe</a>
+      <a class="btn" href="https://www.google.com/maps/dir/?api=1&amp;destination=Mess+Cafe+38+Amhurst+Road+London+E8+1JN">Directions</a>
+      <a class="btn" href="https://www.instagram.com/themesscafe/">Instagram</a>
+    </div>
+
+    <p class="thanks">Thank you · Come again</p>
+  </article>
+</main>
+
+<footer>
+  <p>Design concept by Sites By MS. Not the official website.</p>
+</footer>
+<script src="/assets/concept-bar.js" data-name="Mess Cafe" data-slug="mess-cafe" defer></script>
+</body>
+</html>

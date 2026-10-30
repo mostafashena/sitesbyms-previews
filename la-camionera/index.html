@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>La Camionera – Café by day, wine bar by night, Well Street E9</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root{--day:#f4ddc4;--terra:#c5532f;--night:#1b2559;--wine:#7a1f3d;--cream:#fff6ea;--ink:#20141a}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--cream);color:var(--ink);font-family:"Bricolage Grotesque",system-ui,sans-serif;line-height:1.5;padding-bottom:110px}
+a{color:inherit}
+.serif{font-family:"Instrument Serif",serif;font-weight:400}
+.topbar{background:var(--wine);color:#ffe3d6;font-size:12.5px;text-align:center;padding:7px 12px}
+header{position:sticky;top:0;z-index:20;display:grid;grid-template-columns:1fr auto;align-items:center;padding:12px 18px;background:var(--cream);border-bottom:1px solid #e6d3bf}
+.wm{text-decoration:none;font:800 24px/1 "Bricolage Grotesque",sans-serif;letter-spacing:-.03em;color:var(--wine)}
+.wm i{font:italic 400 26px "Instrument Serif",serif;letter-spacing:0;color:var(--terra);margin-right:2px}
+.dir{background:var(--wine);color:var(--cream);text-decoration:none;font-weight:600;font-size:15px;padding:11px 18px;border-radius:6px}
+.dir:hover{background:var(--night)}
+/* day / night split */
+.dn{display:grid;grid-template-columns:1fr}
+.half{padding:44px 22px 40px;min-height:62vh;display:flex;flex-direction:column;justify-content:space-between;gap:28px;position:relative;overflow:hidden}
+.day{background:var(--day);color:var(--ink)}
+.night{background:var(--night);color:#f1e9ff}
+.tag{font:600 12px "Bricolage Grotesque",sans-serif;letter-spacing:.2em;text-transform:uppercase}
+.day .tag{color:var(--terra)}.night .tag{color:#f4a38a}
+.half h1,.half h2{font:400 clamp(52px,12vw,112px)/.9 "Instrument Serif",serif;letter-spacing:-.02em}
+.half h1 b,.half h2 b{font:800 .62em/1 "Bricolage Grotesque",sans-serif;letter-spacing:-.04em;display:block;margin-bottom:.12em}
+.half p{max-width:34ch;font-size:18px}
+.time{font:italic 400 30px "Instrument Serif",serif}
+.sunmoon{position:absolute;width:150px;aspect-ratio:1;border-radius:50%;right:-30px;top:30px}
+.day .sunmoon{background:var(--terra);opacity:.9}
+.night .sunmoon{background:radial-gradient(circle at 70% 35%,transparent 0 38%,#f6e7c8 39%);opacity:.9}
+.intro{display:grid;grid-template-columns:1fr;border-bottom:1px solid #e6d3bf}
+.intro .l{padding:46px 22px 10px}
+.intro .r{padding:10px 22px 46px}
+.intro h3{font:400 clamp(34px,6vw,54px)/1.02 "Instrument Serif",serif}
+.intro h3 i{color:var(--terra)}
+.intro p{font-size:18px;max-width:52ch}
+.intro p+p{margin-top:12px}
+.ph{border:1.5px dashed currentColor;border-radius:4px;display:grid;place-items:center;text-align:center;padding:18px;font-size:14px;opacity:.85}
+/* offer: split list */
+.offer{display:grid;grid-template-columns:1fr}
+.offer .col{padding:44px 22px}
+.offer .a{background:var(--wine);color:#ffe9dd}
+.offer .b{background:var(--cream)}
+.offer h4{font:400 40px/1 "Instrument Serif",serif;margin-bottom:18px}
+.offer ul{list-style:none}
+.offer li{padding:14px 0;border-top:1px solid currentColor;display:flex;justify-content:space-between;gap:12px;align-items:baseline;font-size:19px;font-weight:600}
+.offer li span{font:italic 400 18px "Instrument Serif",serif;opacity:.85;text-align:right}
+.hh{display:inline-block;margin-top:22px;background:#f4a38a;color:var(--ink);padding:10px 16px;border-radius:999px;font-weight:600}
+.visit{display:grid;grid-template-columns:1fr}
+.visit .info{padding:46px 22px}
+.visit h4{font:400 clamp(40px,7vw,64px)/1 "Instrument Serif",serif;margin-bottom:20px;color:var(--wine)}
+.visit dl{display:grid;gap:16px}
+.visit dt{font:600 12px sans-serif;letter-spacing:.18em;text-transform:uppercase;color:var(--terra)}
+.visit dd{font-size:19px}
+.visit .map{background:var(--day);padding:22px;min-height:280px;display:grid}
+footer{background:var(--night);color:#d8d2ee;text-align:center;padding:30px 20px;font-size:14px}
+@media(min-width:880px){
+ header{padding:14px 34px}
+ .dn{grid-template-columns:3fr 2fr}
+ .half{min-height:calc(100vh - 92px);padding:60px 48px}
+ .night{padding-top:120px}
+ .intro{grid-template-columns:2fr 3fr}
+ .intro .l,.intro .r{padding:80px 48px}
+ .offer{grid-template-columns:1fr 1fr}
+ .offer .col{padding:80px 48px}
+ .visit{grid-template-columns:2fr 3fr}
+ .visit .info{padding:80px 48px}
+ .visit .map{padding:40px}
+}
+</style>
+</head>
+<body>
+<div class="topbar">Design concept prepared for La Camionera by Sites By MS. Not the official website.</div>
+
+<header>
+ <a class="wm" href="#top"><i>La</i> Camionera</a>
+ <a class="dir" href="https://www.google.com/maps/dir/?api=1&amp;destination=La+Camionera+243+Well+St+London+E9+6RG">Directions</a>
+</header>
+
+<div class="dn" id="top">
+ <div class="half day">
+  <div class="sunmoon" aria-hidden="true"></div>
+  <span class="tag">By day · café</span>
+  <h1><b>La Camionera</b>coffee, pastries &amp; a seat in the sun</h1>
+  <div>
+   <p>A Mediterranean-style bar, seen through a London lens, on Well Street in Hackney. Walk-ins welcome.</p>
+   <p class="time" style="margin-top:12px">Café by day, wine bar by night</p>
+  </div>
+ </div>
+ <div class="half night">
+  <div class="sunmoon" aria-hidden="true"></div>
+  <span class="tag">By night · wine bar</span>
+  <h2><b>243 Well St</b>wine, cocktails &amp; small plates</h2>
+  <div>
+   <p>Happy hour 4 to 7pm, then glasses to share and plates to pass around until late.</p>
+  </div>
+ </div>
+</div>
+
+<section class="intro">
+ <div class="l"><h3>A bar the <i>community</i> built.</h3></div>
+ <div class="r">
+  <p>La Camionera started as a fortnightly pop-up in the basement of Off Broadway. When it was time to find a home of its own, the community crowdfunded £100,000, and the bar opened on Well Street three months later.</p>
+  <p>Today it's a FLINTA-owned lesbian café and wine bar, run by Alex and Clara, open to everyone who wants a good glass and a warm room.</p>
+  <div class="ph" style="aspect-ratio:16/9;margin-top:26px;color:var(--wine)">1400 × 790 – The bar: wooden seating, glass pendants and paintings</div>
+ </div>
+</section>
+
+<section class="offer">
+ <div class="col a">
+  <h4 class="serif">At the bar</h4>
+  <ul>
+   <li>Wine <span>the heart of the bar</span></li>
+   <li>Cocktails <span>for the evening</span></li>
+   <li>Small plates <span>made for sharing</span></li>
+  </ul>
+  <span class="hh">Happy hour · 4–7pm</span>
+ </div>
+ <div class="col b">
+  <h4 class="serif" style="color:var(--wine)">Around it</h4>
+  <ul>
+   <li>Coffee &amp; pastries <span>by day</span></li>
+   <li>Outdoor seating <span>on Well Street</span></li>
+   <li>Events <span>wine tastings, life drawing, reading club</span></li>
+  </ul>
+ </div>
+</section>
+
+<section class="visit">
+ <div class="info">
+  <h4>Come by</h4>
+  <dl>
+   <div><dt>Address</dt><dd>243 Well Street<br>London E9 6RG</dd></div>
+   <div><dt>Hours</dt><dd>Happy hour 4–7pm<br>Latest times on Instagram @camionera.e9</dd></div>
+   <div><dt>Getting here</dt><dd>About 500 m from Homerton station</dd></div>
+   <div><dt>Say hello</dt><dd><a href="mailto:info@lacamionera.com">info@lacamionera.com</a> · <a href="https://www.instagram.com/camionera.e9/">@camionera.e9</a></dd></div>
+  </dl>
+  <p style="margin-top:26px"><a class="dir" href="https://www.google.com/maps/dir/?api=1&amp;destination=La+Camionera+243+Well+St+London+E9+6RG">Get directions</a></p>
+ </div>
+ <div class="map"><div class="ph" style="color:var(--wine)">1200 × 900 – Outside La Camionera on Well Street</div></div>
+</section>
+
+<footer>
+ <p>La Camionera · 243 Well St, London E9 6RG</p>
+ <p>Design concept by Sites By MS. Not the official website.</p>
+</footer>
+<script src="/assets/concept-bar.js" data-name="La Camionera" data-slug="la-camionera" defer></script>
+</body>
+</html>

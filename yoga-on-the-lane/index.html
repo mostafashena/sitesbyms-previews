@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Yoga on the Lane – Vinyasa yoga on Shacklewell Lane, Dalston</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..700,100;1,9..144,300..700,100&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#f4ebdc; --paper2:#ecdfca; --ink:#3b2f27; --soft:#6d5d50;
+  --clay:#b8603e; --clay-dk:#93452a; --sage:#7f8b62; --line:#d6c3a6;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; color:var(--ink); font-family:'Nunito Sans',sans-serif; font-size:17px; line-height:1.65;
+  background-color:var(--paper);
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .35 0 0 0 0 .25 0 0 0 0 .15 0 0 0 .09 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),
+    radial-gradient(ellipse at 15% 10%, rgba(184,96,62,.10), transparent 55%),
+    radial-gradient(ellipse at 90% 60%, rgba(127,139,98,.12), transparent 50%);
+  padding-bottom:110px;
+}
+.topbar{background:var(--ink);color:#f4ebdc;font-size:12.5px;text-align:center;padding:6px 14px;letter-spacing:.02em}
+a{color:var(--clay-dk)}
+header{
+  position:sticky;top:0;z-index:20;background:rgba(244,235,220,.94);backdrop-filter:blur(6px);
+  border-bottom:1.5px dashed var(--line);
+}
+.hwrap{max-width:1040px;margin:0 auto;padding:12px 18px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.mark{font-family:'Fraunces',serif;font-variation-settings:"SOFT" 100;font-weight:500;font-size:22px;color:var(--ink);text-decoration:none;line-height:1.05;display:flex;align-items:center;gap:10px}
+.mark i{font-style:italic;color:var(--clay);font-weight:400}
+.mark svg{flex:none}
+.btn{
+  display:inline-block;background:var(--clay);color:#fff8ef;text-decoration:none;font-weight:700;font-size:15px;
+  padding:11px 20px;border-radius:255px 18px 225px 15px/15px 225px 18px 255px;
+  box-shadow:3px 3px 0 var(--clay-dk);transition:transform .15s;
+}
+.btn:hover{transform:translate(-1px,-1px)}
+.btn.ghost{background:transparent;color:var(--ink);box-shadow:none;border:1.5px solid var(--ink)}
+.wrap{max-width:1040px;margin:0 auto;padding:0 18px}
+
+.hero{padding:54px 0 40px}
+.hero-grid{display:grid;gap:34px}
+.eyebrow{font-size:13px;text-transform:uppercase;letter-spacing:.16em;color:var(--sage);font-weight:700}
+h1,h2,h3{font-family:'Fraunces',serif;font-variation-settings:"SOFT" 100;font-weight:400;line-height:1.08;margin:0}
+h1{font-size:clamp(42px,9vw,78px);letter-spacing:-.01em}
+h1 em{color:var(--clay);font-weight:300}
+.lede{font-size:19px;color:var(--soft);max-width:34em;margin:20px 0 26px}
+.cta{display:flex;flex-wrap:wrap;gap:12px}
+.ph{
+  background:repeating-linear-gradient(-45deg,rgba(184,96,62,.07) 0 10px,transparent 10px 20px),var(--paper2);
+  border:2px dashed var(--line);border-radius:30px 6px 30px 6px;color:var(--soft);
+  display:flex;align-items:center;justify-content:center;text-align:center;font-size:14px;padding:18px;
+}
+.hero .ph{aspect-ratio:4/5;transform:rotate(1.2deg);box-shadow:8px 10px 0 rgba(127,139,98,.25)}
+
+.squiggle{display:block;margin:10px auto;width:160px;height:18px}
+
+section{padding:46px 0}
+h2{font-size:clamp(32px,6vw,48px);margin-bottom:16px}
+h2 em{color:var(--clay);font-style:italic}
+.about{display:grid;gap:30px;align-items:center}
+.about p{margin:0 0 14px;max-width:36em}
+.note{
+  background:#fbf5ea;border:1px solid var(--line);padding:22px 24px;border-radius:4px;
+  transform:rotate(-1deg);box-shadow:0 10px 24px -14px rgba(59,47,39,.35);position:relative;font-size:16px
+}
+.note:before{content:"";position:absolute;top:-12px;left:42%;width:90px;height:24px;background:rgba(127,139,98,.45);transform:rotate(3deg)}
+.note b{font-family:'Fraunces',serif;font-weight:500;font-size:20px;display:block;margin-bottom:6px}
+
+.classes{list-style:none;margin:0;padding:0;display:grid;gap:16px}
+.classes li{
+  background:#fbf5ea;border:1.5px solid var(--line);padding:20px 22px;
+  border-radius:22px 6px 22px 6px;position:relative
+}
+.classes li:nth-child(odd){transform:rotate(-.4deg)}
+.classes li:nth-child(even){transform:rotate(.5deg)}
+.classes h3{font-size:24px;margin-bottom:6px}
+.classes h3 span{color:var(--clay)}
+.classes p{margin:0;color:var(--soft);font-size:16px}
+
+.visit{display:grid;gap:22px}
+.card{background:var(--ink);color:#f4ebdc;border-radius:26px 8px 26px 8px;padding:28px 26px}
+.card h3{font-size:28px;margin-bottom:10px;color:#f4ebdc}
+.card a{color:#f2b493}
+.card p{margin:0 0 12px}
+.card .btn{margin-top:6px}
+
+footer{border-top:1.5px dashed var(--line);padding:30px 0 40px;text-align:center;color:var(--soft);font-size:14px}
+footer .mark{justify-content:center;margin-bottom:8px}
+
+@media (min-width:760px){
+  .hero-grid{grid-template-columns:1.25fr .9fr;align-items:center}
+  .about{grid-template-columns:1.2fr .9fr}
+  .classes{grid-template-columns:1fr 1fr}
+  .visit{grid-template-columns:1fr 1fr}
+}
+</style>
+</head>
+<body>
+<div class="topbar">Design concept prepared for Yoga on the Lane by Sites By MS. Not the official website.</div>
+
+<header>
+  <div class="hwrap">
+    <a class="mark" href="#top" aria-label="Yoga on the Lane home">
+      <svg width="34" height="34" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="17" fill="none" stroke="#b8603e" stroke-width="2.2" stroke-dasharray="3 2.2"/><path d="M8 26c5-6 9-6 12-1s8 5 12-1" fill="none" stroke="#7f8b62" stroke-width="2.4" stroke-linecap="round"/></svg>
+      <span>Yoga <i>on the</i> Lane</span>
+    </a>
+    <a class="btn" href="mailto:yogaonthelane@gmail.com?subject=Booking%20a%20class">Book a class</a>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <div class="eyebrow">Shacklewell Lane · Dalston · since 2012</div>
+        <h1>Unroll your mat <em>on the lane.</em></h1>
+        <p class="lede">A small neighbourhood studio for vinyasa flow, open to every level, with classes for pregnancy, new parents with their babies, and kids.</p>
+        <div class="cta">
+          <a class="btn" href="mailto:yogaonthelane@gmail.com?subject=Booking%20a%20class">Book a class</a>
+          <a class="btn ghost" href="#classes">See the classes</a>
+        </div>
+      </div>
+      <div class="ph">800 × 1000 – The studio room, mats laid out in morning light</div>
+    </div>
+  </section>
+
+  <svg class="squiggle" viewBox="0 0 160 18" aria-hidden="true"><path d="M2 9c13-10 26 10 39 0s26 10 39 0 26 10 39 0 26 10 39 0" fill="none" stroke="#b8603e" stroke-width="2" stroke-linecap="round"/></svg>
+
+  <section id="about">
+    <div class="wrap about">
+      <div>
+        <h2>A studio <em>with roots</em></h2>
+        <p>Yoga on the Lane was founded in 2012 by Naomi Annand, who came to yoga from a life in dance. The studio sits at 105 Shacklewell Lane, a few minutes' walk from Rectory Road.</p>
+        <p>Classes centre on vinyasa flow: moving with the breath, at a pace that suits the people in the room. Beginners are welcome, and there are courses and workshops for anyone who wants to go a little deeper.</p>
+      </div>
+      <div class="note">
+        <b>New to yoga?</b>
+        Start with a beginners' course or an all-levels flow. Just drop us a line and we'll help you pick the right class.
+      </div>
+    </div>
+  </section>
+
+  <section id="classes">
+    <div class="wrap">
+      <h2>What's <em>on the mat</em></h2>
+      <ul class="classes">
+        <li><h3>Vinyasa <span>flow</span></h3><p>The heart of the studio: flowing, breath-led classes for all levels.</p></li>
+        <li><h3>Pregnancy <span>yoga</span></h3><p>Classes for mums-to-be, with time to move, breathe and meet others.</p></li>
+        <li><h3>Parent <span>&amp; baby</span></h3><p>Bring your little one along; babies are welcome in these classes.</p></li>
+        <li><h3>Kids <span>yoga</span></h3><p>Playful classes for children, run at the studio.</p></li>
+        <li><h3>Beginners' <span>courses</span></h3><p>A gentle introduction to the basics over a short course.</p></li>
+        <li><h3>Workshops <span>&amp; restorative</span></h3><p>Slower, deeper sessions and occasional workshops.</p></li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="visit">
+    <div class="wrap visit">
+      <div class="card">
+        <h3>Find the studio</h3>
+        <p>105 Shacklewell Lane<br>London E8 2EB</p>
+        <p>Nearest station: Rectory Road (around 600 m)</p>
+        <p>Class times change by season. Email us for this week's timetable: <a href="mailto:yogaonthelane@gmail.com">yogaonthelane@gmail.com</a></p>
+        <a class="btn" href="https://www.google.com/maps/dir/?api=1&amp;destination=105+Shacklewell+Lane+London+E8+2EB" target="_blank" rel="noopener">Get directions</a>
+      </div>
+      <div class="ph" style="min-height:280px">1200 × 800 – Shacklewell Lane studio entrance</div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="mark"><span>Yoga <i>on the</i> Lane</span></div>
+  <div>105 Shacklewell Lane, London E8 2EB · <a href="https://www.instagram.com/yogaonthelane/" target="_blank" rel="noopener">@yogaonthelane</a></div>
+  <p>Design concept by Sites By MS. Not the official website.</p>
+</footer>
+<script src="/assets/concept-bar.js" data-name="Yoga on the Lane" data-slug="yoga-on-the-lane" defer></script>
+</body>
+</html>

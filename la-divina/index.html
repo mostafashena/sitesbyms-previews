@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>La Divina – Italian restaurant, 134 Upper Street, Islington</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+:root{--table:#3a0f17;--table2:#2a0910;--card:#fbf4e6;--ink:#2b1a14;--wine:#7b1426;--gold:#b48a3c;--gold-lt:#d8b66a;--mute:#6f5a4c}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:'EB Garamond',serif;font-size:19px;line-height:1.55;color:var(--ink);
+  background:radial-gradient(ellipse at 50% 0%,#55162a 0%,var(--table) 45%,var(--table2) 100%) fixed;padding-bottom:110px}
+.topbar{background:#1c0509;color:#e9d6b4;font-family:'EB Garamond',serif;font-size:13.5px;text-align:center;padding:6px 14px;letter-spacing:.02em}
+header{position:sticky;top:0;z-index:20;background:rgba(42,9,16,.94);backdrop-filter:blur(6px);border-bottom:1px solid rgba(216,182,106,.35)}
+.hwrap{max-width:900px;margin:0 auto;padding:12px 18px;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.mark{font-family:'Cinzel',serif;color:var(--gold-lt);text-decoration:none;font-size:22px;letter-spacing:.18em;font-weight:600;white-space:nowrap}
+.btn{font-family:'Cinzel',serif;letter-spacing:.14em;font-size:13.5px;font-weight:600;text-decoration:none;display:inline-block;
+  color:var(--table2);background:linear-gradient(180deg,#e2c37b,#b48a3c);padding:11px 18px;border:1px solid #f0d998;border-radius:2px}
+.btn.wine{background:var(--wine);color:#fbf4e6;border-color:var(--wine)}
+.card{max-width:720px;margin:34px auto 0;background:var(--card);position:relative;padding:22px;
+  box-shadow:0 30px 80px -20px rgba(0,0,0,.6);
+  background-image:radial-gradient(ellipse at 50% 30%,rgba(255,255,255,.6),transparent 70%)}
+.frame{border:1.5px solid var(--gold);outline:1px solid var(--gold);outline-offset:-7px;padding:44px 26px 40px;text-align:center;position:relative}
+.key{height:14px;margin:0 auto;max-width:100%;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='14'%3E%3Cpath d='M0 13h6V3h12v8h-6V7h-2v6h18' fill='none' stroke='%23b48a3c' stroke-width='1.4'/%3E%3C/svg%3E") repeat-x center}
+.crest{margin:26px auto 10px;display:block}
+h1{font-family:'Cinzel',serif;font-weight:700;color:var(--wine);font-size:clamp(46px,11vw,78px);letter-spacing:.12em;line-height:1;margin:0}
+.sub{font-family:'Cinzel',serif;letter-spacing:.38em;font-size:13px;color:var(--gold);margin:12px 0 0}
+.tag{font-style:italic;font-size:22px;color:var(--mute);margin:20px auto 26px;max-width:24em}
+.cta{display:flex;flex-wrap:wrap;justify-content:center;gap:12px}
+.cta .btn.ghost{background:transparent;color:var(--wine);border-color:var(--wine)}
+.orn{display:flex;align-items:center;justify-content:center;gap:12px;margin:40px 0 18px;color:var(--gold)}
+.orn:before,.orn:after{content:"";height:1px;width:70px;background:linear-gradient(90deg,transparent,var(--gold))}
+.orn:after{transform:scaleX(-1)}
+h2{font-family:'Cinzel',serif;font-weight:600;font-size:24px;letter-spacing:.24em;color:var(--wine);margin:0 0 16px}
+.about p{max-width:30em;margin:0 auto 12px}
+.menu{list-style:none;margin:0 auto;padding:0;max-width:30em;text-align:left}
+.menu li{padding:12px 0;border-bottom:1px dotted #cdb48a}
+.menu li:last-child{border-bottom:0}
+.row{display:flex;align-items:baseline;gap:8px}
+.row b{font-family:'Cinzel',serif;font-weight:600;font-size:17px;letter-spacing:.06em;color:var(--ink)}
+.row i{flex:1;border-bottom:1px dotted #b8a07a;transform:translateY(-4px)}
+.row span{font-family:'Cinzel',serif;color:var(--wine);font-size:16px;white-space:nowrap}
+.menu small{display:block;font-style:italic;color:var(--mute);font-size:16.5px}
+.ph{border:1px dashed var(--gold);background:repeating-linear-gradient(45deg,#f5ead4 0 8px,#f9f0df 8px 16px);color:var(--mute);font-style:italic;
+  display:flex;align-items:center;justify-content:center;padding:16px;font-size:15.5px;aspect-ratio:3/2;margin:24px auto 0;max-width:520px}
+.visit p{margin:0 0 8px}
+.visit a{color:var(--wine)}
+.tel{font-family:'Cinzel',serif;font-size:24px;letter-spacing:.08em;text-decoration:none}
+.fine{font-size:15px;color:var(--mute);font-style:italic}
+footer{text-align:center;color:#e3cfa8;font-size:15px;padding:34px 18px 40px}
+footer .mark{display:inline-block;margin-bottom:8px}
+@media(max-width:480px){.frame{padding:36px 14px 32px}.card{padding:12px;margin-top:18px}.mark{font-size:18px;letter-spacing:.12em}}
+</style>
+</head>
+<body>
+<div class="topbar">Design concept prepared for La Divina Italian Restaurant by Sites By MS. Not the official website.</div>
+
+<header>
+  <div class="hwrap">
+    <a class="mark" href="#top">LA DIVINA</a>
+    <a class="btn" href="tel:02086164149">Book a table</a>
+  </div>
+</header>
+
+<main id="top">
+  <article class="card">
+    <div class="frame">
+      <div class="key"></div>
+      <svg class="crest" width="120" height="58" viewBox="0 0 120 58" aria-hidden="true">
+        <g fill="none" stroke="#b48a3c" stroke-width="1.3">
+          <path d="M60 50C40 48 24 36 18 14"/><path d="M60 50c20-2 36-14 42-36"/>
+        </g>
+        <g fill="#b48a3c">
+          <ellipse cx="22" cy="20" rx="5" ry="2.2" transform="rotate(-60 22 20)"/><ellipse cx="27" cy="29" rx="5" ry="2.2" transform="rotate(-45 27 29)"/>
+          <ellipse cx="35" cy="37" rx="5" ry="2.2" transform="rotate(-30 35 37)"/><ellipse cx="45" cy="44" rx="5" ry="2.2" transform="rotate(-15 45 44)"/>
+          <ellipse cx="98" cy="20" rx="5" ry="2.2" transform="rotate(60 98 20)"/><ellipse cx="93" cy="29" rx="5" ry="2.2" transform="rotate(45 93 29)"/>
+          <ellipse cx="85" cy="37" rx="5" ry="2.2" transform="rotate(30 85 37)"/><ellipse cx="75" cy="44" rx="5" ry="2.2" transform="rotate(15 75 44)"/>
+        </g>
+        <text x="60" y="34" text-anchor="middle" font-family="Cinzel,serif" font-size="20" fill="#7b1426" font-weight="700">LD</text>
+      </svg>
+      <h1>La Divina</h1>
+      <p class="sub">CUCINA ITALIANA · UPPER STREET</p>
+      <p class="tag">Pizza, pasta and risotto, served with an Italian welcome a short walk from Highbury &amp; Islington.</p>
+      <div class="cta">
+        <a class="btn wine" href="tel:02086164149">Call to book</a>
+        <a class="btn ghost" href="#menu">See the menu</a>
+      </div>
+
+      <div class="orn">✦</div>
+      <section class="about">
+        <h2>BENVENUTI</h2>
+        <p>La Divina is an Italian restaurant at 134 Upper Street, in the heart of Islington. Come for a set lunch, a long dinner with friends, or a plate of pasta before the match.</p>
+        <p>The whole restaurant can also be hired for celebrations and private events.</p>
+        <div class="ph">1200 × 800 – Dining room with candles on the tables</div>
+      </section>
+
+      <div class="orn">✦</div>
+      <section id="menu">
+        <h2>IL MENU</h2>
+        <ul class="menu">
+          <li><div class="row"><b>Pranzo · set lunch</b><i></i><span>from £17.95</span></div><small>Two or three courses at lunchtime</small></li>
+          <li><div class="row"><b>Pizza</b></div><small>Including the Toscana</small></li>
+          <li><div class="row"><b>Pasta</b></div><small>Classic Italian pasta dishes</small></li>
+          <li><div class="row"><b>Risotto</b></div><small>A choice of Italian risotto</small></li>
+          <li><div class="row"><b>Da asporto · takeaway</b></div><small>Order to take home, or through delivery apps</small></li>
+          <li><div class="row"><b>Matchday</b></div><small>Arsenal matchday offers for fans heading to the game</small></li>
+        </ul>
+      </section>
+
+      <div class="orn">✦</div>
+      <section class="visit" id="visit">
+        <h2>VIENI A TROVARCI</h2>
+        <p>134 Upper Street<br>London N1 1QP</p>
+        <p><a class="tel" href="tel:02086164149">020 8616 4149</a></p>
+        <p>Open every day from 11am</p>
+        <p class="fine">Call us for evening closing times and to reserve a table.</p>
+        <p style="margin-top:18px"><a class="btn" href="https://www.google.com/maps/dir/?api=1&amp;destination=La+Divina+134+Upper+Street+London+N1+1QP" target="_blank" rel="noopener">Get directions</a></p>
+      </section>
+      <div class="key" style="margin-top:36px"></div>
+    </div>
+  </article>
+</main>
+
+<footer>
+  <div class="mark">LA DIVINA</div>
+  <div>134 Upper Street, London N1 1QP · <a href="mailto:info@ladivina.co.uk" style="color:#d8b66a">info@ladivina.co.uk</a></div>
+  <p>Design concept by Sites By MS. Not the official website.</p>
+</footer>
+<script src="/assets/concept-bar.js" data-name="La Divina Italian Restaurant" data-slug="la-divina" defer></script>
+</body>
+</html>

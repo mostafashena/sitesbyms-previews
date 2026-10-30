@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Hương – Vegan Vietnamese Café, 190 Well Street, Hackney</title>
+<meta name="description" content="Design concept for Huong, a vegan Vietnamese café at 190 Well Street, Hackney, London E9.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gelasio:ital,wght@0,400;0,600;1,400&family=Be+Vietnam+Pro:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#f3ead8;--paper2:#ead9bd;--ink:#2f2a22;--leaf:#3f6b4f;--leaf-d:#2d5039;--lotus:#d77a8a;--clay:#b8643c;--muted:#6f6555}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Be Vietnam Pro',system-ui,sans-serif;font-weight:300;color:var(--ink);line-height:1.65;font-size:16px;
+  background-color:var(--paper);
+  background-image:
+    radial-gradient(rgba(120,90,50,.07) 1px,transparent 1.4px),
+    radial-gradient(rgba(120,90,50,.05) 1px,transparent 1.2px),
+    radial-gradient(ellipse at 10% 0%,rgba(215,122,138,.12),transparent 45%),
+    radial-gradient(ellipse at 90% 30%,rgba(63,107,79,.10),transparent 50%);
+  background-size:7px 7px,11px 11px,100% 100%,100% 100%;background-position:0 0,3px 5px,0 0,0 0}
+a{color:inherit}
+.concept{background:var(--leaf-d);color:#efe5cf;font-size:12px;text-align:center;padding:6px 16px}
+header{position:sticky;top:0;z-index:20;background:rgba(243,234,216,.95);backdrop-filter:blur(4px);border-bottom:2px dashed rgba(63,107,79,.45)}
+.wrap{max-width:1020px;margin:0 auto;padding:0 18px}
+.bar{display:flex;align-items:center;justify-content:space-between;gap:12px;height:66px}
+.wordmark{display:inline-flex;align-items:center;gap:10px;text-decoration:none;font-family:'Gelasio',Georgia,serif;font-size:27px;font-weight:600;color:var(--leaf-d)}
+.wordmark svg{width:34px;height:34px}
+.wordmark small{font-family:'Be Vietnam Pro',sans-serif;font-weight:400;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);display:block;margin-top:-4px}
+.btn{display:inline-block;background:var(--leaf);color:#fbf5e8;text-decoration:none;font-weight:600;font-size:14px;padding:11px 18px;border-radius:30px 26px 32px 24px / 24px 30px 26px 32px;box-shadow:2px 3px 0 var(--leaf-d);white-space:nowrap}
+.btn:hover{background:var(--clay);box-shadow:2px 3px 0 #8a4727}
+.btn.soft{background:#fbf5e8;color:var(--leaf-d);box-shadow:2px 3px 0 rgba(45,80,57,.5);border:1.5px solid var(--leaf-d)}
+.hero{padding:44px 0 30px;display:grid;gap:30px;align-items:center}
+.hello{font-family:'Gelasio',serif;font-style:italic;color:var(--clay);font-size:19px}
+.hero h1{font-family:'Gelasio',Georgia,serif;font-weight:400;font-size:clamp(38px,7.6vw,68px);line-height:1.06;margin:8px 0 16px}
+.hero h1 em{color:var(--leaf)}
+.hero p{max-width:44ch;color:#4a4237}
+.acts{display:flex;flex-wrap:wrap;gap:12px;margin-top:24px}
+.ph{background:repeating-linear-gradient(-45deg,rgba(255,255,255,.35) 0 9px,transparent 9px 18px),var(--paper2);border:2px dashed rgba(111,101,85,.55);color:var(--muted);display:flex;align-items:center;justify-content:center;text-align:center;font-size:12.5px;padding:16px}
+.photo{aspect-ratio:4/5;border-radius:180px 180px 14px 14px;transform:rotate(1.2deg);box-shadow:6px 8px 0 rgba(63,107,79,.18)}
+.torn{height:22px;background:
+  radial-gradient(circle at 10px -2px,transparent 12px,var(--leaf) 13px) 0 0/22px 22px repeat-x}
+.about{background:var(--leaf);color:#f3ead8;padding:46px 0 52px}
+.about .wrap{display:grid;gap:26px}
+.about h2,.offer h2,.visit h2{font-family:'Gelasio',serif;font-weight:400;font-size:clamp(28px,4.6vw,40px);line-height:1.12}
+.about p{max-width:58ch;color:#e6ecd8}
+.about p+p{margin-top:12px}
+.stamp{justify-self:start;border:2px solid #f3ead8;border-radius:50%;width:150px;height:150px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;transform:rotate(-8deg);font-size:12px;letter-spacing:.12em;text-transform:uppercase}
+.stamp b{font-family:'Gelasio',serif;font-size:38px;letter-spacing:0;font-weight:600;line-height:1}
+.torn.b{transform:rotate(180deg)}
+.offer{padding:50px 0}
+.cards{display:grid;gap:16px;margin-top:22px}
+.card{background:#fbf5e8;padding:20px 20px 22px;border-radius:6px;box-shadow:0 1px 0 rgba(0,0,0,.04),3px 4px 0 rgba(184,100,60,.18);position:relative}
+.card:nth-child(odd){transform:rotate(-.6deg)}
+.card:nth-child(even){transform:rotate(.7deg)}
+.card::before{content:"";position:absolute;top:-9px;left:50%;width:64px;height:18px;margin-left:-32px;background:rgba(215,122,138,.45);transform:rotate(-3deg)}
+.card h3{font-family:'Gelasio',serif;font-weight:600;font-size:21px;color:var(--leaf-d);margin-bottom:4px}
+.card p{font-size:14.5px;color:#5a5144}
+.visit{padding:20px 0 50px}
+.visit .grid{display:grid;gap:18px;margin-top:20px}
+.paper{background:#fbf5e8;border:1.5px solid rgba(111,101,85,.35);border-radius:8px;padding:20px 22px}
+.paper h3{font-family:'Gelasio',serif;font-weight:600;font-size:20px;margin-bottom:8px;color:var(--clay)}
+table{width:100%;border-collapse:collapse;font-size:15px}
+td{padding:7px 0;border-bottom:1px dashed rgba(111,101,85,.4)}
+td:last-child{text-align:right}
+.note{font-size:13px;color:var(--muted);margin-top:10px}
+.map{aspect-ratio:16/10;border-radius:10px;margin-top:16px}
+footer{border-top:2px dashed rgba(63,107,79,.45);padding:22px 0 130px;font-size:13px;color:var(--muted)}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px}
+@media(min-width:760px){
+  .hero{grid-template-columns:1.2fr 1fr;padding:64px 0 40px}
+  .about .wrap{grid-template-columns:1fr 2fr;align-items:center}
+  .stamp{justify-self:center}
+  .cards{grid-template-columns:repeat(2,1fr)}
+  .visit .grid{grid-template-columns:1fr 1fr}
+}
+</style>
+</head>
+<body>
+<div class="concept">Design concept prepared for Huong by Sites By MS. Not the official website.</div>
+
+<header>
+  <div class="wrap bar">
+    <a class="wordmark" href="#top" aria-label="Huong home">
+      <svg viewBox="0 0 40 40" aria-hidden="true"><path d="M20 8c3 4 4 8 0 15-4-7-3-11 0-15z" fill="#d77a8a"/><path d="M20 23c-6-1-10-5-12-10 6 0 10 3 12 10zM20 23c6-1 10-5 12-10-6 0-10 3-12 10z" fill="#e9a3ae"/><path d="M7 27c4 4 22 4 26 0" stroke="#3f6b4f" stroke-width="2.4" fill="none" stroke-linecap="round"/></svg>
+      <span>Hương<small>Vegan Vietnamese · Well St</small></span>
+    </a>
+    <a class="btn" href="https://www.google.com/maps/dir/?api=1&amp;destination=Huong%2C+190+Well+Street%2C+London+E9+6QT" target="_blank" rel="noopener">Directions</a>
+  </div>
+</header>
+
+<main id="top">
+  <section class="wrap hero">
+    <div>
+      <p class="hello">Xin chào, Well Street</p>
+      <h1>Vegan Vietnamese cooking, <em>made with care.</em></h1>
+      <p>A small, friendly café at 190 Well Street in Hackney, cooking plant-based Vietnamese food from lunch into the evening. Eat in, or take it home.</p>
+      <div class="acts">
+        <a class="btn" href="https://www.google.com/maps/dir/?api=1&amp;destination=Huong%2C+190+Well+Street%2C+London+E9+6QT" target="_blank" rel="noopener">Get directions</a>
+        <a class="btn soft" href="#visit">Opening hours</a>
+      </div>
+    </div>
+    <div class="ph photo">800 × 1000 – A bowl from the kitchen, shot from above</div>
+  </section>
+
+  <div class="torn" aria-hidden="true"></div>
+  <section class="about" id="about">
+    <div class="wrap">
+      <div class="stamp" aria-label="4.9 stars on Google"><b>4.9</b>on Google<br>86 reviews</div>
+      <div>
+        <h2>A little corner of Vietnam on Well Street</h2>
+        <p style="margin-top:12px">Hương is a café for anyone who loves Vietnamese food, vegan or not. Everything on the menu is plant-based, and you can eat in or take away.</p>
+        <p>Neighbours and visitors have given Hương 4.9 stars on Google. Pop in for a quiet lunch, or come back in the evening on Thursdays, Fridays and Saturdays.</p>
+      </div>
+    </div>
+  </section>
+  <div class="torn b" aria-hidden="true"></div>
+
+  <section class="wrap offer" id="offer">
+    <h2>What you'll find here</h2>
+    <div class="cards">
+      <div class="card"><h3>Vegan Vietnamese food</h3><p>A fully plant-based Vietnamese menu.</p></div>
+      <div class="card"><h3>Lunch</h3><p>Open for lunch Tuesday to Sunday (closed Mondays).</p></div>
+      <div class="card"><h3>Evenings</h3><p>Open into the evening on Thursdays, Fridays and Saturdays.</p></div>
+      <div class="card"><h3>Eat in or take away</h3><p>Sit down with us, or take your food home.</p></div>
+    </div>
+  </section>
+
+  <section class="wrap visit" id="visit">
+    <h2>Come and visit</h2>
+    <div class="grid">
+      <div class="paper">
+        <h3>Opening hours</h3>
+        <table aria-label="Opening hours">
+          <tr><td>Monday</td><td>Closed</td></tr>
+          <tr><td>Tuesday – Wednesday</td><td>12pm – 5pm</td></tr>
+          <tr><td>Thursday</td><td>12pm – 10pm</td></tr>
+          <tr><td>Friday – Saturday</td><td>Lunch &amp; evening</td></tr>
+          <tr><td>Sunday</td><td>11am – 8pm</td></tr>
+        </table>
+        <p class="note">Hours can change, so check our Instagram <a href="https://www.instagram.com/huong.cafe190/" target="_blank" rel="noopener">@huong.cafe190</a> before a special trip.</p>
+      </div>
+      <div class="paper">
+        <h3>Find us</h3>
+        <p style="font-family:'Gelasio',serif;font-size:21px;line-height:1.35">190 Well Street<br>Hackney, London E9 6QT</p>
+        <p style="margin-top:14px"><a class="btn" href="https://www.google.com/maps/dir/?api=1&amp;destination=Huong%2C+190+Well+Street%2C+London+E9+6QT" target="_blank" rel="noopener">Directions</a></p>
+        <div class="ph map">800 × 500 – The café front on Well Street</div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Hương · 190 Well Street, London E9 6QT · <a href="https://www.instagram.com/huong.cafe190/" target="_blank" rel="noopener">@huong.cafe190</a></span>
+    <span>Design concept by Sites By MS. Not the official website.</span>
+  </div>
+</footer>
+<script src="/assets/concept-bar.js" data-name="Huong" data-slug="huong" defer></script>
+</body>
+</html>

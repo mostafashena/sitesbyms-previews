@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Saponara | Pizzeria &amp; deli on Prebend Street, Islington, since 1989</title>
+<meta name="description" content="Family-run Italian pizzeria and deli at 23 Prebend Street, Islington, since 1989. Fresh pasta every day, Roman-style pizza and Italian produce.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lobster+Two:ital,wght@0,400;0,700;1,700&family=Cabin:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* Layout 7: colour-block, playful, rounded. Southern Italian lemons and majolica blue. Words: family, cheerful, made-fresh. */
+:root{
+  --lemon:#FFD84A;
+  --cobalt:#1F4FA8;
+  --sky:#CFE2FF;
+  --coral:#F2674A;
+  --basil:#2E8B57;
+  --cream:#FFF8E8;
+  --ink:#1A1D33;
+  --script:"Lobster Two",cursive;
+  --sans:"Cabin",system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+body{margin:0;background:var(--cream);color:var(--ink);font:400 18px/1.6 var(--sans);-webkit-font-smoothing:antialiased;padding-bottom:110px}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--coral);outline-offset:3px}
+h1,h2,h3{font-family:var(--script);font-weight:700;margin:0;line-height:1.02}
+p{margin:0}
+.wrap{width:min(1120px,100% - 32px);margin-inline:auto}
+.concept{background:var(--ink);color:#f3ecd6;font-size:13px;text-align:center;padding:7px 12px}
+
+header{position:sticky;top:0;z-index:20;padding:10px 0;background:var(--cream)}
+.bar{display:flex;align-items:center;justify-content:space-between;gap:12px;background:var(--cobalt);color:#fff;border-radius:999px;padding:8px 8px 8px 22px}
+.wm{font-family:var(--script);font-weight:700;font-style:italic;font-size:28px;text-decoration:none;line-height:1}
+.wm span{color:var(--lemon)}
+.bar nav{display:none;gap:22px;font-weight:600}
+.bar nav a{text-decoration:none}
+.bar nav a:hover{color:var(--lemon)}
+.btn{display:inline-block;background:var(--lemon);color:var(--ink);font-weight:700;text-decoration:none;padding:12px 20px;border-radius:999px;transition:transform .15s}
+.btn:hover{transform:translateY(-2px) rotate(-1deg)}
+@media(min-width:820px){.bar nav{display:flex}}
+
+.hero{display:grid;gap:16px;margin-top:10px}
+.block{border-radius:34px;padding:34px 26px;position:relative;overflow:hidden}
+.hero .main{background:var(--lemon)}
+.hero .main::after{content:"";position:absolute;right:-60px;bottom:-60px;width:200px;height:200px;border-radius:50%;background:var(--basil);opacity:.9}
+.pill{display:inline-block;background:var(--ink);color:var(--lemon);border-radius:999px;padding:6px 14px;font-weight:700;font-size:14px;letter-spacing:.06em}
+.hero h1{font-size:clamp(56px,11vw,124px);margin:16px 0 14px;position:relative;z-index:1}
+.hero h1 i{color:var(--coral)}
+.hero p.lede{font-size:21px;max-width:30ch;position:relative;z-index:1}
+.hero .acts{display:flex;flex-wrap:wrap;gap:12px;margin-top:24px;position:relative;z-index:1}
+.btn.dark{background:var(--ink);color:#fff}
+.btn.ghost{background:transparent;border:2.5px solid var(--ink)}
+.ph{border-radius:28px;background:repeating-radial-gradient(circle at 30% 30%,rgba(255,255,255,.35) 0 6px,transparent 6px 22px),var(--sky);display:flex;align-items:center;justify-content:center;text-align:center;padding:18px;font-weight:700;color:var(--cobalt);font-size:14px;letter-spacing:.06em;text-transform:uppercase;border:3px dashed var(--cobalt)}
+.hero .ph{min-height:280px}
+@media(min-width:900px){.hero{grid-template-columns:1.35fr 1fr}.hero .main{padding:56px 48px}.hero .ph{min-height:auto}}
+
+.since{display:grid;gap:16px;margin-top:16px}
+.since .num{background:var(--coral);color:#fff;text-align:center}
+.since .num b{display:block;font-family:var(--script);font-size:clamp(80px,14vw,150px);line-height:.9}
+.since .num span{font-weight:700;letter-spacing:.12em;text-transform:uppercase;font-size:14px}
+.since .story{background:var(--cobalt);color:#fff}
+.since .story h2{font-size:clamp(36px,5vw,54px);color:var(--lemon)}
+.since .story p{margin-top:14px;max-width:52ch;color:#E6EEFF}
+@media(min-width:900px){.since{grid-template-columns:1fr 2fr}.since .num{display:flex;flex-direction:column;justify-content:center}.since .story{padding:48px}}
+
+.menu{margin-top:16px;background:#fff;border:3px solid var(--ink)}
+.menu .top{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:12px}
+.menu h2{font-size:clamp(42px,7vw,72px);color:var(--cobalt)}
+.menu .top p{font-weight:600;color:var(--basil)}
+.chips{list-style:none;padding:0;margin:28px 0 0;display:grid;gap:14px}
+.chips li{border-radius:24px;padding:22px 22px}
+.chips li:nth-child(1){background:var(--lemon)}
+.chips li:nth-child(2){background:var(--sky)}
+.chips li:nth-child(3){background:#FFD9CF}
+.chips li:nth-child(4){background:#D3F0DE}
+.chips li:nth-child(5){background:var(--lemon)}
+.chips li:nth-child(6){background:var(--sky)}
+.chips h3{font-size:30px}
+.chips p{font-size:16px;margin-top:4px}
+@media(min-width:720px){.chips{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:1000px){.chips{grid-template-columns:repeat(3,1fr)}.menu{padding:48px}}
+.menu .small{font-size:15px;margin-top:20px;color:#454866}
+
+.press{margin-top:16px;background:var(--basil);color:#fff;text-align:center}
+.press p{font-family:var(--script);font-size:clamp(30px,4.8vw,50px);line-height:1.15;max-width:22ch;margin:0 auto}
+.press small{display:block;margin-top:14px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;font-size:13px;color:#D3F0DE}
+
+.visit{display:grid;gap:16px;margin-top:16px}
+.visit .hrs{background:var(--lemon)}
+.visit .where{background:var(--ink);color:#fff}
+.visit h2{font-size:42px;margin-bottom:14px}
+.visit .where h2{color:var(--lemon)}
+.hours{display:grid;grid-template-columns:auto 1fr;gap:6px 20px;margin:0;font-size:19px}
+.hours dt{font-weight:700}
+.hours dd{margin:0}
+.visit .row{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
+.visit .small{font-size:15px;margin-top:12px;opacity:.85}
+@media(min-width:860px){.visit{grid-template-columns:1fr 1fr}.visit .block{padding:44px}}
+
+footer{margin-top:16px;background:var(--cobalt);color:#E6EEFF;border-radius:34px 34px 0 0;padding:34px 0 30px;text-align:center;font-size:15px}
+footer .wm{font-size:40px;color:#fff;display:inline-block;margin-bottom:6px}
+</style>
+</head>
+<body>
+<div class="concept">Design concept prepared for Saponara by Sites By MS. Not the official website.</div>
+
+<header>
+  <div class="wrap bar">
+    <a class="wm" href="#top">Sapo<span>nara</span></a>
+    <nav aria-label="Main">
+      <a href="#story">Our story</a>
+      <a href="#menu">Menu</a>
+      <a href="#visit">Visit</a>
+    </nav>
+    <a class="btn" href="tel:02072262771">Call to book</a>
+  </div>
+</header>
+
+<main id="top" class="wrap">
+  <section class="hero">
+    <div class="block main">
+      <span class="pill">Pizzeria &amp; deli · Islington</span>
+      <h1>Pizza, pasta <i>&amp;</i> amore.</h1>
+      <p class="lede">Fresh pasta every day, pizza from dough made each morning and a deli full of Italy, on a quiet corner of Prebend Street.</p>
+      <div class="acts">
+        <a class="btn dark" href="tel:02072262771">Call 020 7226 2771</a>
+        <a class="btn ghost" href="https://www.google.com/maps/dir/?api=1&amp;destination=Saponara+23+Prebend+Street+London+N1+8PF">Directions</a>
+      </div>
+    </div>
+    <div class="ph">900 × 900 – Pizza fresh from the oven</div>
+  </section>
+
+  <section class="since" id="story">
+    <div class="block num"><b>1989</b><span>Family-run since December</span></div>
+    <div class="block story">
+      <h2>A real family affair.</h2>
+      <p>The Saponara brothers opened their pizzeria and deli on Prebend Street in December 1989, and it has fed the neighbourhood ever since.</p>
+      <p>The pizzaiolo makes fresh dough every morning, the kitchen rolls pasta daily, and the shelves are stocked with wine, olive oil and pasta brought directly from Italy. Eat in, sit outside when the sun is out, or take a little Italy home.</p>
+    </div>
+  </section>
+
+  <section class="block menu" id="menu">
+    <div class="top">
+      <h2>Fatto in casa</h2>
+      <p>Made fresh, every day</p>
+    </div>
+    <ul class="chips">
+      <li><h3>Pizza</h3><p>Roman-style, from dough made fresh each morning.</p></li>
+      <li><h3>Tortelloni</h3><p>Fresh filled pasta, a guest favourite.</p></li>
+      <li><h3>Ravioloni</h3><p>Big, generous ravioli, made in-house.</p></li>
+      <li><h3>Pappardelle</h3><p>Wide ribbons with the sauce of the day.</p></li>
+      <li><h3>Italian wines</h3><p>A short list, all from Italy.</p></li>
+      <li><h3>The deli</h3><p>Olive oil, pasta and produce, mostly straight from Italy.</p></li>
+    </ul>
+    <p class="small">Sauces change with the day. Ask the team what’s on and for prices.</p>
+  </section>
+
+  <section class="block press">
+    <p>Roman-style pizza that The Infatuation rates among London’s very best.</p>
+    <small>The Infatuation · and 4.7 from 570+ Google reviews</small>
+  </section>
+
+  <section class="visit" id="visit">
+    <div class="block hrs">
+      <h2>When we’re open</h2>
+      <dl class="hours">
+        <dt>Tue – Sat</dt><dd>5:30pm – 10pm</dd>
+        <dt>Sun – Mon</dt><dd>Closed</dd>
+      </dl>
+      <p class="small">Please call to book a table.</p>
+    </div>
+    <div class="block where">
+      <h2>Find us</h2>
+      <p style="font-size:22px">23 Prebend Street<br>Islington, London N1 8PF</p>
+      <p class="small">A few minutes’ walk from Essex Road station and Angel.</p>
+      <div class="row">
+        <a class="btn" href="tel:02072262771">Call 020 7226 2771</a>
+        <a class="btn ghost" style="border-color:#fff;color:#fff" href="https://www.google.com/maps/dir/?api=1&amp;destination=Saponara+23+Prebend+Street+London+N1+8PF">Directions</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span class="wm">Saponara</span>
+    <p>Pizzeria &amp; deli · 23 Prebend Street, London N1 8PF · Instagram @saponaralondon</p>
+    <p style="margin-top:10px">Design concept by Sites By MS. Not the official website.</p>
+  </div>
+</footer>
+<script src="/assets/concept-bar.js" data-name="Saponara" data-slug="saponara" defer></script>
+</body>
+</html>

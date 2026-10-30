@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Bookmongers – Second-hand Bookshop, Coldharbour Lane, Brixton</title>
+<meta name="description" content="Design concept for Bookmongers, the second-hand and remainder bookshop at 439 Coldharbour Lane, Brixton, since 1992.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Public+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--black:#151412;--yellow:#f6c915;--cream:#fbf6e6;--paper:#fffdf6;--ink:#1d1b17;--muted:#6a6352;--line:#e3dbc2}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Public Sans',system-ui,sans-serif;color:var(--ink);background:var(--paper);line-height:1.6;font-size:16px}
+a{color:inherit}
+.concept{background:var(--yellow);color:var(--black);font-size:12px;text-align:center;padding:6px 16px;font-weight:500}
+header{position:sticky;top:0;z-index:20;background:var(--black);color:var(--yellow);border-bottom:4px solid var(--yellow)}
+.wrap{max-width:1120px;margin:0 auto;padding:0 18px}
+.bar{display:flex;align-items:center;justify-content:space-between;gap:14px;height:66px}
+.brand{text-decoration:none}
+.wordmark{display:inline-block;font-family:'Libre Baskerville',Georgia,serif;font-weight:700;font-size:22px;letter-spacing:.14em;text-transform:uppercase;color:var(--yellow);line-height:1}
+.wordmark small{display:block;font-family:'Public Sans',sans-serif;font-weight:500;font-size:9.5px;letter-spacing:.34em;color:#d8d2bf;margin-top:5px}
+.go{display:inline-block;background:var(--yellow);color:var(--black);text-decoration:none;font-weight:700;font-size:13px;letter-spacing:.06em;text-transform:uppercase;padding:11px 16px;border-radius:2px;white-space:nowrap}
+.go:hover{background:#fff}
+/* storefront hero */
+.front{background:var(--black);color:#f4efdc;padding:34px 0 0}
+.front .wrap{display:grid;gap:26px}
+.front h1{font-family:'Libre Baskerville',Georgia,serif;font-weight:400;font-size:clamp(34px,7vw,64px);line-height:1.08}
+.front h1 em{color:var(--yellow)}
+.front p{max-width:48ch;color:#cfc8b2}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.chip{border:1px solid #4a463d;color:#e8e1c9;font-size:12.5px;padding:6px 11px;border-radius:999px}
+.window{border:2px dashed #5a5446;background:repeating-linear-gradient(90deg,#1f1d19 0 34px,#25221d 34px 38px);color:#bdb59c;display:flex;align-items:center;justify-content:center;text-align:center;font-size:12.5px;padding:18px;aspect-ratio:3/2;letter-spacing:.04em}
+.awning{height:22px;margin-top:34px;background:repeating-linear-gradient(90deg,var(--yellow) 0 44px,var(--black) 44px 88px)}
+/* shelves grid */
+.shelves{padding:52px 0 40px;background:var(--cream)}
+.head{display:flex;justify-content:space-between;align-items:end;gap:16px;flex-wrap:wrap;margin-bottom:22px}
+.head h2{font-family:'Libre Baskerville',serif;font-weight:400;font-size:clamp(26px,4.4vw,38px);line-height:1.15}
+.head p{color:var(--muted);font-size:14px;max-width:36ch}
+.grid{display:grid;grid-template-columns:1fr;gap:16px}
+.tile{background:var(--paper);border:1px solid var(--line);border-radius:4px;overflow:hidden;display:flex;flex-direction:column}
+.spine{height:120px;display:flex;align-items:flex-end;gap:5px;padding:16px 16px 0;border-bottom:3px solid var(--black)}
+.spine i{display:block;width:16px;border-radius:2px 2px 0 0}
+.tile .body{padding:16px 18px 20px;flex:1;display:flex;flex-direction:column}
+.tag{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.tile h3{font-family:'Libre Baskerville',serif;font-size:20px;font-weight:400;margin:6px 0 6px}
+.tile p{font-size:14.5px;color:#4b463b;flex:1}
+.tile a.more{margin-top:14px;font-weight:700;font-size:13px;text-decoration:none;border-bottom:2px solid var(--yellow);align-self:flex-start}
+.tile.feature{background:var(--black);color:#f4efdc;border-color:var(--black)}
+.tile.feature p{color:#cfc8b2}
+.tile.feature .tag{color:var(--yellow)}
+.tile.feature .spine{border-color:var(--yellow)}
+/* about */
+.about{padding:56px 0;display:grid;gap:28px}
+.about h2{font-family:'Libre Baskerville',serif;font-weight:400;font-size:clamp(26px,4.4vw,38px);line-height:1.15;margin-bottom:12px}
+.about p{max-width:60ch;color:#3c372d}
+.about p+p{margin-top:12px}
+.ph{border:2px dashed var(--line);background:var(--cream);color:var(--muted);display:flex;align-items:center;justify-content:center;text-align:center;font-size:12.5px;padding:16px;aspect-ratio:4/3}
+blockquote{border-left:6px solid var(--yellow);padding:6px 0 6px 18px;margin-top:22px;font-family:'Libre Baskerville',serif;font-style:italic;font-size:18px;line-height:1.5}
+blockquote cite{display:block;font-family:'Public Sans',sans-serif;font-style:normal;font-size:12.5px;color:var(--muted);margin-top:8px;letter-spacing:.04em}
+/* visit */
+.visit{background:var(--black);color:#f4efdc;padding:52px 0}
+.visit .wrap{display:grid;gap:26px}
+.visit h2{font-family:'Libre Baskerville',serif;font-weight:400;font-size:clamp(26px,4.4vw,38px);color:var(--yellow)}
+.card{border:1px solid #3d3a32;border-radius:4px;padding:18px 20px}
+.card .tag{color:#a9a28c}
+.card p{font-size:17px;margin-top:6px}
+.card a{text-decoration:none;border-bottom:2px solid var(--yellow)}
+.card small{display:block;color:#a9a28c;font-size:13px;margin-top:8px}
+footer{background:var(--black);color:#a9a28c;font-size:13px;padding:22px 0 130px;border-top:1px solid #2e2b25}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px}
+@media(min-width:720px){
+  .front .wrap{grid-template-columns:1.1fr 1fr;align-items:center}
+  .grid{grid-template-columns:repeat(2,1fr)}
+  .about{grid-template-columns:1.3fr 1fr;align-items:center}
+  .visit .wrap{grid-template-columns:1fr 1fr 1fr 1fr;align-items:start}
+  .visit h2{grid-column:1/-1}
+}
+@media(min-width:1000px){.grid{grid-template-columns:repeat(4,1fr)}.tile.feature{grid-column:span 2}}
+</style>
+</head>
+<body>
+<div class="concept">Design concept prepared for Bookmongers by Sites By MS. Not the official website.</div>
+
+<header>
+  <div class="wrap bar">
+    <a class="brand" href="#top" aria-label="Bookmongers home"><span class="wordmark">Bookmongers<small>COLDHARBOUR LANE · SINCE 1992</small></span></a>
+    <a class="go" href="https://www.google.com/maps/dir/?api=1&amp;destination=Bookmongers%2C+439+Coldharbour+Lane%2C+London+SW9+8LN" target="_blank" rel="noopener">Directions</a>
+  </div>
+</header>
+
+<main id="top">
+  <section class="front">
+    <div class="wrap">
+      <div>
+        <h1>Second-hand books on Coldharbour Lane, <em>since 1992.</em></h1>
+        <p style="margin-top:16px">Shelves of second-hand and remaindered books that change all the time, a minute from Brixton station. Come in for one book, leave with three.</p>
+        <div class="chips">
+          <span class="chip">Fiction &amp; non-fiction</span>
+          <span class="chip">Remainders</span>
+          <span class="chip">New books to order</span>
+          <span class="chip">★ 4.8 on Google</span>
+        </div>
+      </div>
+      <div class="window">1200 × 800 – The yellow-and-black shopfront on Coldharbour Lane</div>
+    </div>
+    <div class="awning" aria-hidden="true"></div>
+  </section>
+
+  <section class="shelves">
+    <div class="wrap">
+      <div class="head">
+        <h2>On the shelves</h2>
+        <p>The stock turns over often, so there's always something new to find.</p>
+      </div>
+      <div class="grid">
+        <article class="tile feature">
+          <div class="spine" aria-hidden="true"><i style="height:70%;background:#f6c915"></i><i style="height:92%;background:#e9e1c6"></i><i style="height:60%;background:#b9472f"></i><i style="height:84%;background:#f6c915"></i><i style="height:76%;background:#5d7c6a"></i><i style="height:98%;background:#e9e1c6"></i><i style="height:66%;background:#3e5b8a"></i><i style="height:88%;background:#f6c915"></i><i style="height:72%;background:#e9e1c6"></i><i style="height:94%;background:#b9472f"></i></div>
+          <div class="body">
+            <span class="tag">In the shop</span>
+            <h3>Second-hand fiction &amp; non-fiction</h3>
+            <p>An eclectic, well-organised (and slightly overflowing) mix of used books across fiction and non-fiction. Take your time and have a proper browse.</p>
+          </div>
+        </article>
+        <article class="tile">
+          <div class="spine" aria-hidden="true"><i style="height:64%;background:#151412"></i><i style="height:86%;background:#f6c915"></i><i style="height:74%;background:#c9bf9f"></i><i style="height:92%;background:#151412"></i><i style="height:58%;background:#b9472f"></i></div>
+          <div class="body">
+            <span class="tag">In the shop</span>
+            <h3>Remainders</h3>
+            <p>New-condition remaindered titles alongside the second-hand stock.</p>
+          </div>
+        </article>
+        <article class="tile">
+          <div class="spine" aria-hidden="true"><i style="height:80%;background:#3e5b8a"></i><i style="height:68%;background:#f6c915"></i><i style="height:95%;background:#151412"></i><i style="height:72%;background:#5d7c6a"></i><i style="height:86%;background:#c9bf9f"></i></div>
+          <div class="body">
+            <span class="tag">Order online</span>
+            <h3>New books in print</h3>
+            <p>Want something brand new? Order it through the Bookmongers shop on Bookshop.org.</p>
+            <a class="more" href="https://uk.bookshop.org/shop/Bookmongers" target="_blank" rel="noopener">Browse on Bookshop.org</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap about" id="about">
+    <div>
+      <h2>A Brixton fixture for over thirty years</h2>
+      <p>Patrick Kelly opened Bookmongers on Coldharbour Lane in May 1992, after coming to London from Boston. More than three decades on, the yellow-and-black shopfront is still one of Brixton's best-loved independents.</p>
+      <p>The stock comes from all over and changes week to week, so regulars drop in often. Ask Patrick if you're looking for something in particular.</p>
+      <blockquote>“The owner Patrick is friendly and has encyclopaedic knowledge of whatever he's currently stocking.”<cite>Time Out</cite></blockquote>
+    </div>
+    <div class="ph">800 × 600 – Inside the shop: shelves and stacks</div>
+  </section>
+
+  <section class="visit" id="visit">
+    <div class="wrap">
+      <h2>Visit the shop</h2>
+      <div class="card"><span class="tag">Address</span><p>439 Coldharbour Lane<br>Brixton, London SW9 8LN</p><small>About a minute's walk from Brixton station</small></div>
+      <div class="card"><span class="tag">Opening hours</span><p>10.30am – 6.30pm</p><small>Open Sundays too. Call ahead before a special trip.</small></div>
+      <div class="card"><span class="tag">Phone</span><p><a href="tel:02077384225">020 7738 4225</a></p><small>Ask about a title before you come in</small></div>
+      <div class="card"><span class="tag">Find us</span><p><a href="https://www.google.com/maps/dir/?api=1&amp;destination=Bookmongers%2C+439+Coldharbour+Lane%2C+London+SW9+8LN" target="_blank" rel="noopener">Get directions</a></p><small><a href="mailto:book.mongers80@gmail.com">book.mongers80@gmail.com</a></small></div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Bookmongers · 439 Coldharbour Lane, London SW9 8LN · 020 7738 4225</span>
+    <span>Design concept by Sites By MS. Not the official website.</span>
+  </div>
+</footer>
+<script src="/assets/concept-bar.js" data-name="Bookmongers" data-slug="bookmongers" defer></script>
+</body>
+</html>

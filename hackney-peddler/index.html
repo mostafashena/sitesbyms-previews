@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Hackney Peddler | Classic Steel Bikes &amp; Workshop, Stoke Newington Road</title>
+<meta name="description" content="Refurbished classic steel bikes, custom builds, restorations and servicing at 89 Stoke Newington Road, London N16.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* Layout 5: storefront grid. Workshop bench feel: chalk white, steel black, enamel-red price tags */
+:root{
+  --chalk:#F3F0E8;
+  --steel:#151617;
+  --grease:#4A4C4F;
+  --enamel:#D7261E;
+  --brass:#C9A24A;
+  --rule:#D9D4C7;
+  --display:"Archivo Black",Impact,sans-serif;
+  --body:"IBM Plex Sans",system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--chalk);color:var(--steel);font:400 16px/1.6 var(--body);padding-bottom:110px;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--enamel);outline-offset:3px}
+.concept{background:var(--steel);color:#bdbdb6;font-size:12px;text-align:center;padding:6px 16px;letter-spacing:.02em}
+header{position:sticky;top:0;z-index:20;background:var(--chalk);border-bottom:3px solid var(--steel)}
+.bar{max-width:1120px;margin:0 auto;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.mark{font-family:var(--display);font-size:20px;line-height:1;text-decoration:none;text-transform:uppercase;letter-spacing:.01em;display:inline-block}
+.mark small{display:block;font:500 10px/1.2 var(--body);letter-spacing:.24em;color:var(--grease);margin-top:4px}
+.mark span{color:var(--enamel)}
+.btn{display:inline-block;background:var(--enamel);color:#fff;text-decoration:none;font:600 15px/1 var(--body);padding:13px 18px;border-radius:2px;white-space:nowrap}
+.btn.ghost{background:transparent;color:var(--steel);border:2px solid var(--steel)}
+.wrap{max-width:1120px;margin:0 auto;padding:0 16px}
+.hero{padding:44px 0 28px;display:grid;gap:24px}
+.kicker{font:600 12px/1 var(--body);letter-spacing:.24em;text-transform:uppercase;color:var(--grease)}
+h1{font-family:var(--display);font-weight:400;font-size:clamp(40px,10vw,92px);line-height:.92;margin:12px 0 18px;text-transform:uppercase;letter-spacing:-.01em}
+h1 em{font-style:normal;color:var(--enamel)}
+.hero p{max-width:540px;font-size:18px;margin:0 0 22px;color:#2e3033}
+.ctas{display:flex;gap:10px;flex-wrap:wrap}
+.ph{background:repeating-linear-gradient(135deg,#e6e1d4 0 14px,#ece8dd 14px 28px);border:2px dashed #9b968a;display:flex;align-items:center;justify-content:center;text-align:center;color:#5a5750;font:500 14px/1.4 var(--body);padding:16px}
+.hero .ph{aspect-ratio:3/2}
+h2{font-family:var(--display);font-weight:400;font-size:clamp(28px,6vw,44px);line-height:1;text-transform:uppercase;margin:0 0 6px}
+.sechead{display:flex;justify-content:space-between;align-items:end;gap:16px;border-bottom:3px solid var(--steel);padding-bottom:12px;margin:48px 0 0}
+.sechead p{margin:0;color:var(--grease);font-size:14px;max-width:320px}
+.grid{display:grid;grid-template-columns:1fr;gap:0;border-left:1px solid var(--rule)}
+.tile{border-right:1px solid var(--rule);border-bottom:1px solid var(--rule);padding:22px 18px 24px;background:var(--chalk);position:relative;display:flex;flex-direction:column;gap:10px;transition:background .2s}
+.tile:hover{background:#fff}
+.tag{align-self:flex-start;background:var(--steel);color:#fff;font:600 11px/1 var(--body);letter-spacing:.16em;text-transform:uppercase;padding:6px 8px;position:relative}
+.tag.red{background:var(--enamel)}
+.tile h3{font-family:var(--display);font-weight:400;font-size:22px;line-height:1.05;text-transform:uppercase;margin:6px 0 0}
+.tile p{margin:0;color:#3a3c40;font-size:15px}
+.tile .no{position:absolute;top:18px;right:18px;font-family:var(--display);color:var(--rule);font-size:28px;line-height:1}
+.tile .ph{aspect-ratio:4/3;margin-bottom:6px}
+.about{display:grid;gap:24px;padding:48px 0 8px}
+.about blockquote{margin:0;font-family:var(--display);font-size:clamp(24px,5vw,36px);line-height:1.1;text-transform:uppercase}
+.about blockquote span{color:var(--enamel)}
+.about p{margin:0 0 14px;font-size:17px}
+.visit{margin-top:48px;background:var(--steel);color:#f1efe9}
+.visit .wrap{display:grid;gap:28px;padding-top:44px;padding-bottom:44px}
+.visit h2{color:#fff}
+.hours{width:100%;border-collapse:collapse;font-size:16px}
+.hours td{padding:9px 0;border-bottom:1px solid #34363a}
+.hours td:last-child{text-align:right;font-weight:500}
+.visit a.line{display:block;font-family:var(--display);font-size:clamp(22px,5vw,30px);text-decoration:none;margin:10px 0 4px;color:#fff}
+.visit .addr{color:#c9c6bd;margin:0 0 20px}
+.visit .btn.ghost{color:#fff;border-color:#fff}
+.small{font-size:13px;color:#9d9a92}
+footer{background:var(--steel);color:#9d9a92;border-top:1px solid #34363a;font-size:13px}
+footer .wrap{padding:22px 16px;display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-between}
+@media(min-width:640px){.grid{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:900px){
+  .mark{font-size:24px}
+  .hero{grid-template-columns:1.1fr .9fr;align-items:center;padding:64px 0 36px}
+  .grid{grid-template-columns:repeat(3,1fr)}
+  .about{grid-template-columns:1fr 1fr;gap:56px}
+  .visit .wrap{grid-template-columns:1fr 1fr;gap:56px}
+}
+</style>
+</head>
+<body>
+<div class="concept">Design concept prepared for The Hackney Peddler by Sites By MS. Not the official website.</div>
+
+<header>
+  <div class="bar">
+    <a class="mark" href="#top" aria-label="The Hackney Peddler home">The Hackney <span>Peddler</span><small>Bikes · Builds · Repairs</small></a>
+    <a class="btn" href="tel:02030959789">Call the shop</a>
+  </div>
+</header>
+
+<main id="top">
+  <section class="wrap hero">
+    <div>
+      <div class="kicker">89 Stoke Newington Road · N16</div>
+      <h1>Classic steel,<br><em>rebuilt</em> to ride.</h1>
+      <p>Refurbished classic steel bikes, custom builds to your spec, full restorations and an honest workshop for whatever you ride. Just up from Dalston Kingsland.</p>
+      <div class="ctas">
+        <a class="btn" href="tel:02030959789">Call 020 3095 9789</a>
+        <a class="btn ghost" href="#shop">See what we do</a>
+      </div>
+    </div>
+    <div class="ph">1200 × 800 – Shop floor with refurbished steel frames on the wall</div>
+  </section>
+
+  <section class="wrap" id="shop" aria-labelledby="shop-h">
+    <div class="sechead">
+      <h2 id="shop-h">On the shop floor</h2>
+      <p>Pop in, call, or email for current stock and workshop times.</p>
+    </div>
+    <div class="grid">
+      <article class="tile">
+        <div class="ph">600 × 450 – A refurbished steel road bike</div>
+        <span class="tag red">For sale</span>
+        <h3>Refurbished classic steel bikes</h3>
+        <p>Vintage frames stripped back and fully rebuilt by experienced mechanics, ready to ride out the door.</p>
+      </article>
+      <article class="tile">
+        <div class="ph">600 × 450 – Custom build on the workstand</div>
+        <span class="tag">Built to order</span>
+        <h3>Custom builds</h3>
+        <p>Pick a frame, choose the parts, and we build the bike to your spec.</p>
+      </article>
+      <article class="tile">
+        <span class="no">03</span>
+        <span class="tag">Workshop</span>
+        <h3>Full restorations</h3>
+        <p>Bring back a bike with history. Stripped down, rebuilt and finished in the workshop.</p>
+      </article>
+      <article class="tile">
+        <span class="no">04</span>
+        <span class="tag">Finishing</span>
+        <h3>Powder coating</h3>
+        <p>A fresh, tough finish for your frame as part of a rebuild or on its own.</p>
+      </article>
+      <article class="tile">
+        <span class="no">05</span>
+        <span class="tag">Workshop</span>
+        <h3>Servicing</h3>
+        <p>From hub gears to bleeding hydraulic disc brakes, on everything from old steel to modern carbon.</p>
+      </article>
+      <article class="tile">
+        <span class="no">06</span>
+        <span class="tag">Workshop</span>
+        <h3>Repairs</h3>
+        <p>Punctures, brakes, gears and the rest. Call ahead to check workshop availability.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="wrap about" aria-labelledby="about-h">
+    <blockquote>Fixing up old bikes <span>since 2013.</span></blockquote>
+    <div>
+      <h2 id="about-h" class="kicker" style="font-family:var(--body);font-size:12px;margin-bottom:14px">About the shop</h2>
+      <p>The Hackney Peddler started in 2013 in Hackney Downs Studios, born out of a love for fixing up vintage bikes. Today the shop lives at 89 Stoke Newington Road, with frames on the walls and a workshop out back.</p>
+      <p>Whether you want a classic steel bike that has already been brought back to life, or you have one at home that needs the same treatment, this is the place to start.</p>
+    </div>
+  </section>
+
+  <section class="visit" id="visit" aria-labelledby="visit-h">
+    <div class="wrap">
+      <div>
+        <h2 id="visit-h">Visit the shop</h2>
+        <a class="line" href="tel:02030959789">020 3095 9789</a>
+        <a class="line" style="font-size:18px;font-family:var(--body);font-weight:500" href="mailto:hello@thehackneypeddler.co.uk">hello@thehackneypeddler.co.uk</a>
+        <p class="addr">89 Stoke Newington Road, London N16 8AA</p>
+        <a class="btn" href="https://www.google.com/maps/dir/?api=1&amp;destination=The+Hackney+Peddler+89+Stoke+Newington+Road+London+N16+8AA" target="_blank" rel="noopener">Get directions</a>
+      </div>
+      <div>
+        <table class="hours" aria-label="Opening hours">
+          <tr><td>Monday – Friday</td><td>10:00 – 19:00</td></tr>
+          <tr><td>Saturday</td><td>10:00 – 18:00</td></tr>
+          <tr><td>Sunday</td><td>Closed</td></tr>
+        </table>
+        <p class="small">Give the shop a call before bringing a bike in.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© The Hackney Peddler · 89 Stoke Newington Road, London N16 8AA</span>
+    <span>Design concept by Sites By MS. Not the official website.</span>
+  </div>
+</footer>
+<script src="/assets/concept-bar.js" data-name="The Hackney Peddler" data-slug="hackney-peddler" defer></script>
+</body>
+</html>

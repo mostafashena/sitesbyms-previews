@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mangia Bene | Italian trattoria &amp; pizzeria on Chapel Market, Islington</title>
+<meta name="description" content="Home-made pasta, Neapolitan pizza and Italian wine at Mangia Bene, 18 Chapel Market, Islington, London N1 9EZ.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sorts+Mill+Goudy:ital@0;1&family=Josefin+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+/* Layout 4: centred printed menu card on a gingham trattoria tablecloth. Words: homely, generous, unpretentious. */
+:root{
+  --cloth:#B3261E;      /* pomodoro red */
+  --cloth-dk:#8E1C16;
+  --card:#FFF9EC;
+  --ink:#2A1A12;
+  --basil:#3E6B35;
+  --olive:#7C8A3A;
+  --gold:#B8862E;
+  --muted:#7A6555;
+  --serif:"Sorts Mill Goudy",Georgia,"Times New Roman",serif;
+  --sans:"Josefin Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;color:var(--ink);font:400 18px/1.6 var(--serif);-webkit-font-smoothing:antialiased;padding-bottom:110px;
+  background-color:#F4EDE0;
+  background-image:
+    linear-gradient(90deg,rgba(179,38,30,.55) 50%,transparent 50%),
+    linear-gradient(rgba(179,38,30,.55) 50%,transparent 50%);
+  background-size:44px 44px;}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--basil);outline-offset:3px}
+h1,h2,h3{font-weight:400;margin:0}
+p{margin:0}
+.concept{background:var(--ink);color:#f1e3c8;font:400 12px/1.4 var(--sans);letter-spacing:.04em;text-align:center;padding:8px 12px}
+
+header{position:sticky;top:0;z-index:20;background:var(--cloth-dk);color:var(--card);box-shadow:0 2px 0 var(--gold)}
+.bar{width:min(760px,100% - 32px);margin:auto;display:flex;align-items:center;justify-content:space-between;height:60px}
+.wm{font-family:var(--serif);font-style:italic;font-size:26px;text-decoration:none}
+.btn{font:700 13px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;text-decoration:none;background:var(--card);color:var(--cloth-dk);padding:12px 18px;border-radius:2px}
+.btn:hover{background:#fff}
+
+.card{width:min(760px,100% - 24px);margin:28px auto 0;background:var(--card);padding:14px;box-shadow:0 18px 40px rgba(60,10,5,.35)}
+.inner{border:2px solid var(--basil);outline:1px solid var(--basil);outline-offset:-8px;padding:44px 22px 40px;text-align:center}
+@media(min-width:640px){.inner{padding:60px 64px 52px}}
+
+.flag{display:flex;justify-content:center;gap:0;margin:0 auto 22px;width:72px;height:6px}
+.flag i{flex:1}.flag i:nth-child(1){background:var(--basil)}.flag i:nth-child(2){background:#fff;border-top:1px solid #e8dcc6;border-bottom:1px solid #e8dcc6}.flag i:nth-child(3){background:var(--cloth)}
+.over{font:600 12px/1 var(--sans);letter-spacing:.34em;text-transform:uppercase;color:var(--basil)}
+h1{font-style:italic;font-size:clamp(60px,15vw,108px);line-height:.95;color:var(--cloth);margin:14px 0 8px}
+.sub{font:600 13px/1.5 var(--sans);letter-spacing:.24em;text-transform:uppercase}
+.orn{display:block;margin:26px auto;width:180px;height:24px}
+.lede{font-style:italic;font-size:22px;line-height:1.45;max-width:30ch;margin:0 auto}
+
+.ph{margin:30px auto 0;border:1px dashed var(--muted);background:repeating-linear-gradient(45deg,#f6ecd8 0 10px,#f1e5cd 10px 20px);aspect-ratio:3/2;display:flex;align-items:center;justify-content:center;font:600 12px/1.4 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--muted);padding:16px}
+
+.sec{margin-top:44px}
+.sec h2{font:700 15px/1 var(--sans);letter-spacing:.4em;text-transform:uppercase;color:var(--basil);display:flex;align-items:center;gap:14px;justify-content:center}
+.sec h2::before,.sec h2::after{content:"";height:1px;width:44px;background:var(--gold)}
+.sec p.body{margin-top:18px;max-width:46ch;margin-inline:auto}
+
+.dishes{list-style:none;padding:0;margin:22px 0 0}
+.dishes li{padding:14px 0;border-bottom:1px dotted #c9b79a}
+.dishes li:last-child{border-bottom:0}
+.dishes h3{font-size:25px;font-style:italic;color:var(--cloth-dk)}
+.dishes p{font-size:16px;color:var(--muted)}
+.small{font:400 13px/1.5 var(--sans);letter-spacing:.04em;color:var(--muted);margin-top:14px}
+
+.hours{display:grid;grid-template-columns:auto auto;justify-content:center;gap:6px 24px;margin-top:18px;font-size:19px}
+.hours dt{font:600 14px/1.9 var(--sans);letter-spacing:.14em;text-transform:uppercase;text-align:right}
+.hours dd{margin:0;text-align:left}
+.addr{font-size:22px;margin-top:16px}
+.links{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-top:20px}
+.links a{font:700 13px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;text-decoration:none;border:1.5px solid var(--cloth);color:var(--cloth);padding:12px 16px}
+.links a.fill{background:var(--cloth);color:var(--card)}
+
+.sign{font-style:italic;font-size:24px;color:var(--cloth);margin-top:44px}
+footer{width:min(760px,100% - 24px);margin:0 auto 40px;background:var(--ink);color:#e9dcc3;text-align:center;font:400 13px/1.6 var(--sans);letter-spacing:.04em;padding:18px 14px}
+</style>
+</head>
+<body>
+<div class="concept">Design concept prepared for Mangia Bene by Sites By MS. Not the official website.</div>
+
+<header>
+  <div class="bar">
+    <a class="wm" href="#top">Mangia Bene</a>
+    <a class="btn" href="https://www.opentable.co.uk/r/mangia-bene-london">Book a table</a>
+  </div>
+</header>
+
+<main id="top">
+  <article class="card">
+    <div class="inner">
+      <div class="flag" aria-hidden="true"><i></i><i></i><i></i></div>
+      <p class="over">Trattoria · Pizzeria</p>
+      <h1>Mangia Bene</h1>
+      <p class="sub">18 Chapel Market · Islington</p>
+
+      <svg class="orn" viewBox="0 0 180 24" aria-hidden="true" fill="none" stroke="#3E6B35" stroke-width="1.3">
+        <path d="M4 12h58M118 12h58"/>
+        <path d="M90 4c-6 0-10 4-10 8s4 8 10 8 10-4 10-8-4-8-10-8z" stroke="#B3261E"/>
+        <path d="M66 12c4-6 9-7 12-6M66 12c4 6 9 7 12 6M114 12c-4-6-9-7-12-6M114 12c-4 6-9 7-12 6"/>
+        <circle cx="90" cy="12" r="2.4" fill="#B3261E" stroke="none"/>
+      </svg>
+
+      <p class="lede">Home-made pasta, Neapolitan pizza and an Italian wine list, on Islington’s busy market street.</p>
+
+      <div class="ph">1200 × 800 – Fresh pasta on the pass, open kitchen</div>
+
+      <section class="sec" id="about">
+        <h2>Benvenuti</h2>
+        <p class="body">Mangia Bene means “eat well”, and that is the whole idea. Behind white walls and exposed brick, the open kitchen turns out freshly made pasta, pizzas from the oven and Italian classics, with tables outside when the weather allows. A lovely, unpretentious local, loved for its friendly service and great value.</p>
+      </section>
+
+      <section class="sec" id="menu">
+        <h2>Dalla cucina</h2>
+        <ul class="dishes">
+          <li><h3>Linguine allo scoglio</h3><p>Linguine with seafood</p></li>
+          <li><h3>Fresh home-made pasta</h3><p>The dish our guests mention most</p></li>
+          <li><h3>Neapolitan pizza</h3><p>From the oven, classic toppings</p></li>
+          <li><h3>Fegato burro e salvia</h3><p>Calves’ liver with butter and sage</p></li>
+          <li><h3>Pollo spinaci e mozzarella</h3><p>Chicken fillet, spinach and mozzarella in a tomato cream sauce</p></li>
+          <li><h3>Risotto al pollo</h3><p>Chicken risotto</p></li>
+        </ul>
+        <p class="small">Antipasti, Italian wines, aperitivi, liqueurs and coffee too. Ask for today’s menu and prices.</p>
+      </section>
+
+      <section class="sec" id="visit">
+        <h2>Orari</h2>
+        <dl class="hours">
+          <dt>Mon – Sat</dt><dd>12 noon – 11pm</dd>
+          <dt>Sunday</dt><dd>12 noon – 10pm</dd>
+        </dl>
+        <p class="addr">18 Chapel Market, London N1 9EZ</p>
+        <p class="small">A short walk from Angel station.</p>
+        <div class="links">
+          <a class="fill" href="tel:02072782825">Call 020 7278 2825</a>
+          <a href="https://www.google.com/maps/dir/?api=1&amp;destination=Mangia+Bene+18+Chapel+Market+London+N1+9EZ">Directions</a>
+          <a href="https://www.opentable.co.uk/r/mangia-bene-london">Book online</a>
+        </div>
+      </section>
+
+      <p class="sign">Buon appetito!</p>
+    </div>
+  </article>
+</main>
+
+<footer>
+  <p>Mangia Bene · 18 Chapel Market, Islington, London N1 9EZ · <a href="mailto:info@mangiabene.uk">info@mangiabene.uk</a></p>
+  <p style="margin-top:6px">Design concept by Sites By MS. Not the official website.</p>
+</footer>
+<script src="/assets/concept-bar.js" data-name="Mangia Bene" data-slug="mangiabene" defer></script>
+</body>
+</html>

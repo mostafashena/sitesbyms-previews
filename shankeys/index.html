@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Shankeys – Indian Food &amp; Irish Booze, Well Street, Hackney</title>
+<meta name="description" content="Design concept for Shankeys, the Irish-Indian restaurant and cocktail bar at 221 Well Street, Hackney, London E9.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Red+Hat+Text:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#f4ecdc;--ink:#16261d;--green:#0f4a32;--saffron:#e08a1e;--rust:#b24a1c;--muted:#5d5a4d;--rule:#16261d}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Red Hat Text',system-ui,sans-serif;color:var(--ink);background:var(--paper);line-height:1.62;font-size:16.5px}
+a{color:inherit}
+.concept{background:var(--ink);color:#e9dfc8;font-size:12px;text-align:center;padding:6px 16px}
+header{position:sticky;top:0;z-index:20;background:var(--paper);border-bottom:3px double var(--rule)}
+.wrap{max-width:1140px;margin:0 auto;padding:0 18px}
+.bar{display:flex;align-items:center;justify-content:space-between;gap:12px;height:62px}
+.wordmark{display:inline-block;font-family:'Young Serif',Georgia,serif;font-size:26px;color:var(--green);text-decoration:none;letter-spacing:.01em}
+.wordmark i{font-style:normal;color:var(--saffron)}
+.btn{display:inline-block;background:var(--green);color:#f4ecdc;text-decoration:none;font-weight:700;font-size:13.5px;letter-spacing:.04em;padding:11px 18px;border-radius:0;white-space:nowrap}
+.btn:hover{background:var(--rust)}
+.btn.alt{background:transparent;color:var(--ink);border:1.5px solid var(--ink)}
+/* masthead */
+.masthead{padding:26px 0 0}
+.dateline{display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px;font-size:11.5px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;border-top:1.5px solid var(--rule);border-bottom:1.5px solid var(--rule);padding:7px 0}
+.title{font-family:'Young Serif',Georgia,serif;font-size:clamp(64px,17vw,190px);line-height:.9;color:var(--green);text-align:center;padding:18px 0 10px;letter-spacing:-.02em}
+.title span{color:var(--saffron)}
+.kicker{text-align:center;font-family:'Young Serif',serif;font-size:clamp(19px,3.4vw,27px);padding:0 0 18px;border-bottom:3px double var(--rule)}
+/* feature */
+.feature{display:grid;gap:28px;padding:30px 0 40px;border-bottom:1.5px solid var(--rule)}
+.ph{border:1.5px dashed var(--muted);background:repeating-linear-gradient(45deg,#ece2cd 0 10px,#f4ecdc 10px 20px);color:var(--muted);display:flex;align-items:center;justify-content:center;text-align:center;font-size:12.5px;padding:16px}
+.ph.lead{aspect-ratio:4/3}
+.ph.tall{aspect-ratio:3/4}
+.caption{font-size:12.5px;font-style:italic;color:var(--muted);margin-top:8px;border-top:1px solid var(--rule);padding-top:6px}
+.cols{column-gap:30px;column-rule:1px solid rgba(22,38,29,.35)}
+.cols p{margin-bottom:12px;break-inside:avoid-column}
+.cols p.drop::first-letter{font-family:'Young Serif',serif;float:left;font-size:66px;line-height:.82;padding:6px 8px 0 0;color:var(--rust)}
+.label{font-size:11.5px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--rust)}
+h2{font-family:'Young Serif',Georgia,serif;font-weight:400;font-size:clamp(28px,4.8vw,44px);line-height:1.08;margin:6px 0 16px;color:var(--green)}
+.pull{font-family:'Young Serif',serif;font-size:clamp(22px,3.6vw,30px);line-height:1.25;border-top:3px solid var(--saffron);border-bottom:3px solid var(--saffron);padding:16px 0;margin:6px 0 18px;color:var(--ink)}
+/* menu section */
+.menu{display:grid;gap:28px;padding:40px 0;border-bottom:1.5px solid var(--rule)}
+.dishes{list-style:none;border-top:1.5px solid var(--rule)}
+.dishes li{padding:14px 0;border-bottom:1px dotted var(--muted)}
+.dishes h3{font-family:'Young Serif',serif;font-weight:400;font-size:21px;line-height:1.25}
+.dishes p{font-size:14.5px;color:var(--muted)}
+.aside{background:var(--green);color:#f1e7d1;padding:22px 22px 24px}
+.aside h3{font-family:'Young Serif',serif;font-weight:400;font-size:24px;color:#f6c27a;margin-bottom:10px}
+.aside p{font-size:15px}
+.aside p+p{margin-top:10px}
+/* visit */
+.visit{display:grid;gap:26px;padding:40px 0 48px}
+.box{border:1.5px solid var(--rule);padding:18px 20px}
+.box h3{font-family:'Young Serif',serif;font-weight:400;font-size:22px;margin-bottom:8px;color:var(--green)}
+.box table{width:100%;border-collapse:collapse;font-size:15px}
+.box td{padding:6px 0;border-bottom:1px dotted var(--muted)}
+.box td:last-child{text-align:right}
+.box small{display:block;margin-top:10px;font-size:13px;color:var(--muted)}
+.box a{font-weight:700}
+footer{border-top:3px double var(--rule);padding:22px 0 130px;font-size:13px;color:var(--muted)}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px}
+@media(min-width:780px){
+  .feature{grid-template-columns:1.05fr 1.6fr}
+  .cols{columns:2}
+  .menu{grid-template-columns:1.6fr 1fr}
+  .visit{grid-template-columns:repeat(3,1fr)}
+}
+</style>
+</head>
+<body>
+<div class="concept">Design concept prepared for Shankeys by Sites By MS. Not the official website.</div>
+
+<header>
+  <div class="wrap bar">
+    <a class="wordmark" href="#top" aria-label="Shankeys home">Shankeys<i>.</i></a>
+    <a class="btn" href="https://www.instagram.com/shankeys.hackney/" target="_blank" rel="noopener">Book a table</a>
+  </div>
+</header>
+
+<main id="top" class="wrap">
+  <div class="masthead">
+    <div class="dateline"><span>221 Well Street · Hackney E9</span><span>Indian food · Irish booze</span></div>
+    <h1 class="title">Shankeys<span>.</span></h1>
+    <p class="kicker">Chaat, spuds and Kerrygold cocktails in an old Hackney bookies.</p>
+  </div>
+
+  <section class="feature" id="story">
+    <figure>
+      <div class="ph lead">1000 × 750 – The dining room on Well Street, evening</div>
+      <figcaption class="caption">Once a bookmaker's office, now the cosiest room on Well Street.</figcaption>
+    </figure>
+    <div>
+      <p class="label">The story</p>
+      <h2>Two cultures, one small room</h2>
+      <div class="cols">
+        <p class="drop">Shankeys brings together two things that turn out to belong together: the Indian cooking of chef Sacha Henry and the Irish hospitality, and cocktails, of Eoghan Shankey, who learned his trade behind the bar at Milk &amp; Honey.</p>
+        <p>It started as a pop-up in 2022, did well enough to find a permanent home, and settled into a former bookies on Well Street, a few minutes' walk from Homerton station.</p>
+        <p>The menu is short and changes often. Expect colourful small plates, something to share, a single pudding and a drinks list where Irish butter and whiskey meet Indian spice.</p>
+        <p>Eoghan does much of the table work himself, so it feels less like a restaurant and more like being looked after at a very good party.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="menu" id="menu">
+    <div>
+      <p class="label">From the kitchen &amp; the bar</p>
+      <h2>Favourites people come back for</h2>
+      <ul class="dishes">
+        <li><h3>Chaat potatoes</h3><p>Crispy potatoes, Bombay onions, honey and naga curry sauce.</p></li>
+        <li><h3>Crispy potatoes, Szechuan scallion ghee</h3><p>The spud, Shankeys-style.</p></li>
+        <li><h3>Cauli cheese</h3><p>An Irish comfort classic, given the Shankeys treatment.</p></li>
+        <li><h3>Buttered spuds</h3><p>Because there is no such thing as too many potatoes.</p></li>
+        <li><h3>Oysters</h3><p>An optional first course before the small plates.</p></li>
+        <li><h3>Kerrygold butter cocktails</h3><p>Eoghan's bar list, where Irish butter meets the cocktail shaker.</p></li>
+      </ul>
+    </div>
+    <aside class="aside">
+      <h3>A note on the menu</h3>
+      <p>The menu changes often, so the dishes above are favourites rather than a fixed list. Vegetarian and vegan dishes are on the menu too.</p>
+      <p>For tonight's menu and a table, send us a message on Instagram.</p>
+      <p style="margin-top:16px"><a class="btn" style="background:#e08a1e;color:#16261d" href="https://www.instagram.com/shankeys.hackney/" target="_blank" rel="noopener">@shankeys.hackney</a></p>
+      <div class="ph tall" style="margin-top:20px;border-color:#6f8f7c;background:repeating-linear-gradient(45deg,#14563b 0 10px,#0f4a32 10px 20px);color:#cfe0d4">600 × 800 – Cocktail on the bar</div>
+    </aside>
+  </section>
+
+  <section class="visit" id="visit">
+    <div class="box">
+      <h3>Opening hours</h3>
+      <table aria-label="Opening hours">
+        <tr><td>Wednesday – Friday</td><td>6pm – 10.30pm</td></tr>
+        <tr><td>Saturday</td><td>3pm – 10.30pm</td></tr>
+        <tr><td>Sunday – Tuesday</td><td>Closed</td></tr>
+      </table>
+      <small>Check Instagram for the latest hours before you come.</small>
+    </div>
+    <div class="box">
+      <h3>Find us</h3>
+      <p>221 Well Street<br>Hackney, London E9 6RG</p>
+      <small>About 550m from Homerton station.</small>
+      <p style="margin-top:12px"><a href="https://www.google.com/maps/dir/?api=1&amp;destination=Shankeys%2C+221+Well+Street%2C+London+E9+6RG" target="_blank" rel="noopener">Get directions →</a></p>
+    </div>
+    <div class="box">
+      <h3>Book</h3>
+      <p>It's a small room, so booking ahead is a good idea. Send us a message to book a table.</p>
+      <p style="margin-top:14px"><a class="btn alt" href="https://www.instagram.com/shankeys.hackney/" target="_blank" rel="noopener">Message on Instagram</a></p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Shankeys · 221 Well Street, London E9 6RG · Indian food &amp; Irish booze</span>
+    <span>Design concept by Sites By MS. Not the official website.</span>
+  </div>
+</footer>
+<script src="/assets/concept-bar.js" data-name="Shankeys" data-slug="shankeys" defer></script>
+</body>
+</html>

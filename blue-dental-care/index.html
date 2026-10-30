@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Blue Dental Care – NHS Dental Practice, Stockwell Road, Brixton</title>
+<meta name="description" content="Design concept for Blue Dental Care, an independent NHS dental practice at 232 Stockwell Road, Brixton, London SW9 9SU.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500&family=Crimson+Pro:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#111316;--grey:#5d636b;--rule:#d7dade;--paper:#ffffff;--soft:#f5f6f7;--blue:#1d4f9c}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Lexend',system-ui,sans-serif;font-weight:300;color:var(--ink);background:var(--paper);line-height:1.6;font-size:16px;padding-bottom:110px}
+a{color:inherit}
+.concept{font-size:11.5px;text-align:center;padding:6px 16px;border-bottom:1px solid var(--rule);color:var(--grey);letter-spacing:.02em}
+header{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.97);border-bottom:1px solid var(--ink)}
+.wrap{max-width:1040px;margin:0 auto;padding:0 20px}
+.bar{display:flex;align-items:center;justify-content:space-between;gap:16px;height:68px}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none}
+.brand img{height:44px;width:auto;display:block}
+.wordmark{display:inline-block;font-weight:400;font-size:19px;letter-spacing:.04em}
+.wordmark .dot{display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--blue);margin-right:9px;vertical-align:1px}
+.wordmark span{color:var(--grey);font-weight:300}
+nav{display:none;gap:28px;font-size:13px;letter-spacing:.08em;text-transform:uppercase}
+nav a{text-decoration:none;color:var(--grey)}
+nav a:hover{color:var(--ink)}
+.call{display:inline-block;text-decoration:none;font-size:13px;font-weight:400;letter-spacing:.08em;text-transform:uppercase;padding:10px 16px;border:1px solid var(--ink);color:var(--ink);white-space:nowrap}
+.call:hover{background:var(--ink);color:#fff}
+.label{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--grey)}
+.serif{font-family:'Crimson Pro',Georgia,serif}
+.hero{padding:56px 0 40px}
+.hero .label b{color:var(--blue);font-weight:400}
+.hero h1{font-family:'Crimson Pro',Georgia,serif;font-weight:400;font-size:clamp(40px,8.4vw,84px);line-height:1.02;letter-spacing:-.01em;margin:18px 0 22px;max-width:14ch}
+.hero h1 em{color:var(--blue)}
+.hero p.lead{max-width:46ch;color:var(--grey);font-size:17px}
+.actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.btn{display:inline-block;text-decoration:none;font-size:13px;font-weight:400;letter-spacing:.08em;text-transform:uppercase;padding:14px 22px;background:var(--ink);color:#fff;border:1px solid var(--ink)}
+.btn.line{background:transparent;color:var(--ink)}
+.btn:hover{background:var(--blue);border-color:var(--blue);color:#fff}
+.ph{border:1px solid var(--rule);background:repeating-linear-gradient(135deg,var(--soft) 0 12px,#fff 12px 24px);display:flex;align-items:center;justify-content:center;text-align:center;color:var(--grey);font-size:12px;letter-spacing:.06em;padding:16px}
+.ph.hero-img{aspect-ratio:16/7;margin-top:44px}
+section{border-top:1px solid var(--rule)}
+.row{display:grid;gap:18px;padding:48px 0}
+.row h2{font-family:'Crimson Pro',Georgia,serif;font-weight:400;font-size:clamp(28px,4.6vw,40px);line-height:1.1}
+.row p{max-width:58ch;color:#2c3036}
+.row p+p{margin-top:12px}
+.figures{display:flex;gap:0;border-top:1px solid var(--rule);margin-top:24px}
+.figures div{flex:1;padding:14px 14px 0 0}
+.figures div+div{border-left:1px solid var(--rule);padding-left:14px}
+.figures strong{display:block;font-family:'Crimson Pro',serif;font-weight:400;font-size:30px;line-height:1.1}
+.figures span{font-size:12px;color:var(--grey)}
+ol.care{list-style:none;border-top:1px solid var(--ink)}
+ol.care li{display:grid;grid-template-columns:44px 1fr;gap:6px 12px;padding:18px 0;border-bottom:1px solid var(--rule)}
+ol.care li .n{font-size:12px;color:var(--blue);padding-top:6px;letter-spacing:.1em}
+ol.care h3{font-family:'Crimson Pro',serif;font-weight:500;font-size:23px;line-height:1.2}
+ol.care p{grid-column:2;color:var(--grey);font-size:14.5px}
+.note{font-size:13px;color:var(--grey);margin-top:16px}
+table{width:100%;border-collapse:collapse;font-size:15px}
+td{padding:11px 0;border-bottom:1px solid var(--rule)}
+td:last-child{text-align:right;color:#2c3036}
+tr.closed td:last-child{color:var(--grey)}
+.contact dl{display:grid;gap:18px}
+.contact dt{margin-bottom:2px}
+.contact dd{font-family:'Crimson Pro',serif;font-size:22px;line-height:1.3}
+.contact dd a{text-decoration:none;border-bottom:1px solid var(--blue)}
+.ph.map{aspect-ratio:4/3}
+footer{border-top:1px solid var(--ink);padding:28px 0 40px;font-size:13px;color:var(--grey)}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
+@media(min-width:760px){
+  nav{display:flex}
+  .row{grid-template-columns:260px 1fr;gap:40px;padding:64px 0}
+  .row.split3{grid-template-columns:260px 1fr 1fr}
+  .hero{padding:80px 0 56px}
+}
+</style>
+</head>
+<body>
+<div class="concept">Design concept prepared for Blue Dental Care by Sites By MS. Not the official website.</div>
+
+<header>
+  <div class="wrap bar">
+    <a class="brand" href="#top" aria-label="Blue Dental Care home">
+      <span class="wordmark"><i class="dot"></i>Blue Dental <span>Care</span></span>
+    </a>
+    <nav aria-label="Main">
+      <a href="#about">Practice</a>
+      <a href="#care">Care</a>
+      <a href="#hours">Hours</a>
+      <a href="#visit">Visit</a>
+    </nav>
+    <a class="call" href="tel:02072743085">Call 020 7274 3085</a>
+  </div>
+</header>
+
+<main id="top">
+  <div class="wrap hero">
+    <p class="label">232 Stockwell Road · Brixton · <b>NHS &amp; independent</b></p>
+    <h1>Your neighbourhood dentist on <em>Stockwell Road.</em></h1>
+    <p class="lead">An independent dental surgery that has looked after families in Brixton and Stockwell for over fifty years. Check-ups, hygienist visits and treatment, close to home.</p>
+    <div class="actions">
+      <a class="btn" href="tel:02072743085">Call to book</a>
+      <a class="btn line" href="https://www.google.com/maps/dir/?api=1&amp;destination=Blue+Dental+Care%2C+232+Stockwell+Road%2C+London+SW9+9SU" target="_blank" rel="noopener">Directions</a>
+    </div>
+    <div class="ph hero-img">1600 × 700 – Practice front on Stockwell Road</div>
+  </div>
+
+  <section id="about">
+    <div class="wrap row">
+      <p class="label">The practice</p>
+      <div>
+        <h2>Fifty years in the same community.</h2>
+        <p style="margin-top:14px">Blue Dental Care is an independent NHS dental surgery on Stockwell Road, a short walk from Brixton and Stockwell stations. Our team of dentists, hygienists and dental nurses sees adults and children for everyday NHS dental care, alongside hygienist appointments and cosmetic treatment.</p>
+        <p>New NHS patients are welcome when spaces are available. Give us a call and the reception team will tell you what is open right now.</p>
+        <div class="figures">
+          <div><strong>50+</strong><span>years in the community</span></div>
+          <div><strong>4.7</strong><span>on Google, from 896 reviews</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="care">
+    <div class="wrap row">
+      <p class="label">Care</p>
+      <div>
+        <h2>What we offer</h2>
+        <ol class="care" style="margin-top:20px">
+          <li><span class="n">01</span><h3>NHS check-ups &amp; treatment</h3><p>Routine examinations and treatment for adults and children under the NHS.</p></li>
+          <li><span class="n">02</span><h3>Hygienist appointments</h3><p>Professional cleaning and advice on looking after your teeth and gums at home.</p></li>
+          <li><span class="n">03</span><h3>Gum treatment</h3><p>Assessment and care for your gums, with your dentist and hygienist working together.</p></li>
+          <li><span class="n">04</span><h3>Cosmetic dentistry</h3><p>Ask at your next visit about the cosmetic options available at the practice.</p></li>
+        </ol>
+        <p class="note">NHS charges are set nationally. Call us to ask about fees for any treatment.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="hours">
+    <div class="wrap row">
+      <p class="label">Opening hours</p>
+      <div>
+        <h2>When we're open</h2>
+        <table style="margin-top:18px" aria-label="Opening hours">
+          <tr><td>Monday</td><td>9am – 1pm · 2pm – 8pm</td></tr>
+          <tr><td>Tuesday</td><td>9am – 1pm · 2pm – 8pm</td></tr>
+          <tr><td>Wednesday</td><td>9am – 1pm · 2pm – 8pm</td></tr>
+          <tr><td>Thursday</td><td>9am – 1pm · 2pm – 5pm</td></tr>
+          <tr><td>Friday</td><td>9am – 1pm · 2pm – 5pm</td></tr>
+          <tr class="closed"><td>Saturday &amp; Sunday</td><td>Closed</td></tr>
+        </table>
+        <p class="note">Closed 1pm – 2pm for lunch. In a dental emergency outside these hours, call NHS 111.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="visit" class="contact">
+    <div class="wrap row split3">
+      <p class="label">Visit</p>
+      <dl>
+        <div><dt class="label">Address</dt><dd>232 Stockwell Road<br>Brixton, London SW9 9SU</dd></div>
+        <div><dt class="label">Phone</dt><dd><a href="tel:02072743085">020 7274 3085</a></dd></div>
+        <div><dt class="label">Email</dt><dd><a href="mailto:mail@bluedentalcare.co.uk">mail@bluedentalcare.co.uk</a></dd></div>
+        <div><a class="btn line" href="https://www.google.com/maps/dir/?api=1&amp;destination=Blue+Dental+Care%2C+232+Stockwell+Road%2C+London+SW9+9SU" target="_blank" rel="noopener">Get directions</a></div>
+      </dl>
+      <div class="ph map">800 × 600 – Waiting room and reception</div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Blue Dental Care · 232 Stockwell Road, London SW9 9SU · 020 7274 3085</span>
+    <span>Design concept by Sites By MS. Not the official website.</span>
+  </div>
+</footer>
+<script src="/assets/concept-bar.js" data-name="Blue Dental Care" data-slug="blue-dental-care" defer></script>
+</body>
+</html>
