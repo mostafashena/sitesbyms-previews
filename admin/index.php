@@ -120,35 +120,51 @@ if ($csrfOk) {
         if ($slug !== '' && $a === 'ounseen') { if ($pdo) { seen_migrate($pdo); $pdo->prepare("DELETE FROM message_seen WHERE slug=? AND how='manual'")->execute([$slug]); } }
         go('results', $a === 'oseen' ? 'Marked as seen.' : 'Seen mark removed.');
     }
-    if (in_array($a, ['osend', 'omark', 'oskip'], true)) {
+    if (in_array($a, ['osend', 'omark', 'oskip', 'oskipch'], true)) {
         $row = (int)$_POST['row']; $kind = $_POST['kind'] === 'followup' ? 'followup' : 'first';
         $business = one_line((string)$_POST['business']); $slug = preg_replace('/[^a-z0-9-]/', '', (string)$_POST['slug']);
         $today = (new DateTime('now', new DateTimeZone(TZ)))->format('Y-m-d');
+        $by = (string)($me['email'] ?? 'team');
         try {
             if ($a === 'oskip') { sheet_update_row($row, ['status' => 'Skip']); go('outreach', "$business moved to Skip."); }
-            $body = str_replace("\r", '', (string)$_POST['body']);
-            if (trim($body) === '') go('outreach', 'The message is empty.', true);
+            $lead = null; foreach (sheet_rows() as $x) if ($x['_row'] === $row) { $lead = $x; break; }
+            if (!$lead) go('outreach', "Could not find $business in the sheet any more. Nothing was sent.", true);
+            $channels = lead_channels($lead); $both = count($channels) > 1;
+            $body = str_replace("\r", '', (string)($_POST['body'] ?? ''));
+            if ($a !== 'oskipch' && trim($body) === '') go('outreach', 'The message is empty.', true);
+            $cells = []; $did = '';
             if ($a === 'osend') {
                 $to = strtolower(one_line((string)$_POST['to'])); $subject = one_line((string)$_POST['subject']);
                 if (!filter_var($to, FILTER_VALIDATE_EMAIL)) go('outreach', 'Please check the email address for ' . $business . '.', true);
                 if ($subject === '') go('outreach', 'Please add a subject for ' . $business . '.', true);
                 $reply = null;
                 if ($kind === 'followup') {
-                    foreach (outreach_all() as $o) if ((int)$o['row'] === $row && $o['kind'] === 'first' && !empty($o['mid'])) { $reply = $o['mid']; break; }
+                    foreach (outreach_all() as $o) if ((int)$o['row'] === $row && $o['kind'] === 'first' && $o['channel'] === 'Email' && !empty($o['mid'])) { $reply = $o['mid']; break; }
                     if (stripos($subject, 're:') !== 0) $subject = 'Re: ' . $subject;
                 }
                 $mid = send_outreach($to, $subject, tracked_links($body, 'email'), $reply, $slug, $kind);
                 if (!$mid) go('outreach', 'The email to ' . $to . ' could not be sent. Nothing was changed.', true);
-                outreach_log(['row' => $row, 'slug' => $slug, 'business' => $business, 'kind' => $kind, 'channel' => 'Email', 'to' => $to, 'subject' => $subject, 'body' => $body, 'mid' => $mid, 'by' => (string)($me['email'] ?? 'team')]);
-                if ($kind === 'first') sheet_update_row($row, ['status' => 'Sent', 'sent' => $today, 'subject' => $subject, 'message' => $body, 'email' => $to]);
-                else sheet_update_row($row, ['reply' => 'Follow-up sent ' . $today, 'followup' => $body]);
-                go('outreach', ($kind === 'first' ? 'Sent to ' : 'Follow-up sent to ') . $to . '. The sheet is updated.');
+                outreach_log(['row' => $row, 'slug' => $slug, 'business' => $business, 'kind' => $kind, 'channel' => 'Email', 'to' => $to, 'subject' => $subject, 'body' => $body, 'mid' => $mid, 'by' => $by]);
+                if ($kind === 'first') $cells += ['subject' => $subject, 'message' => $body, 'email' => $to]; else $cells['followup'] = $body;
+                $did = ($kind === 'first' ? 'Email sent to ' : 'Follow-up email sent to ') . $to . '.';
+            } elseif ($a === 'omark') {   // Instagram: the team sends it in the app, the panel records it
+                outreach_log(['row' => $row, 'slug' => $slug, 'business' => $business, 'kind' => $kind, 'channel' => 'Instagram DM', 'to' => one_line((string)($_POST['to'] ?? '')), 'subject' => '', 'body' => $body, 'mid' => null, 'by' => $by]);
+                $cells[$both ? ($kind === 'first' ? 'ig_message' : 'ig_followup') : ($kind === 'first' ? 'message' : 'followup')] = $body;
+                $did = "Instagram DM to $business marked as sent.";
+            } else {
+                $ch = $_POST['channel'] === 'Email' ? 'Email' : 'Instagram DM';
+                outreach_log(['row' => $row, 'slug' => $slug, 'business' => $business, 'kind' => $kind . '-skip', 'channel' => $ch, 'to' => '', 'subject' => '', 'body' => '(skipped)', 'mid' => null, 'by' => $by]);
+                $did = "$ch skipped for $business.";
             }
-            // Instagram: the team sends it in the app, the panel records it.
-            outreach_log(['row' => $row, 'slug' => $slug, 'business' => $business, 'kind' => $kind, 'channel' => 'Instagram DM', 'to' => one_line((string)($_POST['to'] ?? '')), 'subject' => '', 'body' => $body, 'mid' => null, 'by' => (string)($me['email'] ?? 'team')]);
-            if ($kind === 'first') sheet_update_row($row, ['status' => 'Sent', 'sent' => $today, 'message' => $body]);
-            else sheet_update_row($row, ['reply' => 'Follow-up sent ' . $today, 'followup' => $body]);
-            go('outreach', "$business marked as sent. The sheet is updated.");
+            $done = lead_done($row, $kind);
+            $left = array_values(array_diff($channels, array_keys($done)));
+            $anySent = in_array('sent', $done, true);
+            if ($kind === 'first') {
+                if ($anySent && $lead['sent'] === '') $cells['sent'] = $today;
+                if (!$left) $cells['status'] = $anySent ? 'Sent' : 'Skip';
+            } elseif (!$left && $anySent) $cells['reply'] = 'Follow-up sent ' . $today;
+            if ($cells) sheet_update_row($row, $cells);
+            go('outreach', $did . ($left ? ' Still to do: ' . implode(' and ', $left) . '.' : ' All done, the sheet is updated.'));
         } catch (Throwable $e) { go('outreach', 'Sheet error: ' . $e->getMessage(), true); }
     }
     if ($a === 'gkey' && $isOwner) {
@@ -299,27 +315,33 @@ if ($page === 'outreach') {
         $first = array_values(array_filter($rows, fn($r) => strcasecmp($r['status'], 'Review') === 0));
         $follow = array_values(array_filter($rows, function ($r) use ($parseDate, $todayD) { if (strcasecmp($r['status'], 'Sent') !== 0 || $r['reply'] !== '') return false; $d = $parseDate($r['followup_date']); return $d && $d <= $todayD; }));
         echo '<div class="tabs2"><a href="#ready">Ready to send <i>' . count($first) . '</i></a><a href="#followups">Follow-ups due <i>' . count($follow) . '</i></a><a href="#sent">Sent</a></div>';
-        $card = function (array $r, string $kind, int $i) use ($seen) {
-            $isMail = stripos($r['channel'], 'mail') !== false && $r['email'] !== '';
+        $log = outreach_all();
+        $card = function (array $r, string $kind, int $i) use ($seen, $log) {
             $slug = $r['slug']; $sv = $seen[$slug] ?? null;
-            $text = $kind === 'first' ? $r['message'] : $r['followup'];
-            $text = tracked_links($text, $isMail ? 'email' : 'ig');
+            $channels = lead_channels($r); $done = lead_done($r['_row'], $kind, $log); $both = count($channels) > 1;
             $ig = preg_replace('#^@|^https?://(www\.)?instagram\.com/#', '', rtrim($r['instagram'], '/'));
             $o = '<details class="card lead"' . ($i === 0 ? ' open' : '') . '><summary><div class="grow"><b>' . h($r['company']) . '</b><small>' . h($r['location']) . '</small></div>'
-                . ($sv ? '<span class="pill ok">Opened ' . h(ago($sv['at'])) . '</span>' : ($kind === 'followup' ? '<span class="pill grey">Not opened yet</span>' : ''))
-                . '<span class="pill' . ($isMail ? '' : ' grey') . '">' . ($isMail ? 'Email' : 'Instagram DM') . '</span></summary>'
-                . '<form method="post" class="leadform">' . csrf_field() . '<input type="hidden" name="row" value="' . (int)$r['_row'] . '"><input type="hidden" name="kind" value="' . $kind . '"><input type="hidden" name="business" value="' . h($r['company']) . '"><input type="hidden" name="slug" value="' . h($slug) . '">';
-            if ($isMail) $o .= '<div class="f2x"><label>To<input type="email" name="to" value="' . h($r['email']) . '" required></label><label>Subject<input name="subject" value="' . h($kind === 'followup' ? 'Re: ' . $r['subject'] : $r['subject']) . '" required></label></div>';
-            else $o .= '<input type="hidden" name="to" value="' . h($ig) . '"><p class="hint">Send this in Instagram, then press Mark as sent. ' . ($ig ? 'Account: <a href="https://instagram.com/' . h($ig) . '" target="_blank" rel="noopener">@' . h($ig) . '</a>' : 'No Instagram handle in the sheet.') . '</p>';
-            $o .= '<label>' . ($kind === 'first' ? 'Message' : 'Follow-up') . '<textarea name="body" rows="' . max(6, min(18, substr_count($text, "\n") + 3)) . '">' . h($text) . '</textarea></label>'
-                . ($r['issues'] ? '<p class="hint"><b>Issues we found:</b> ' . nl2br(h($r['issues'])) . '</p>' : '')
-                . '<div class="acts">'
-                . ($slug ? '<a class="btn line sm" href="/' . h($slug) . '/?team=1" target="_blank" rel="noopener">Open concept</a>' : '')
-                . ($isMail ? '<button class="btn sm" name="a" value="osend" onclick="return confirm(\'Send this email to ' . h($r['email']) . '?\')">' . ($kind === 'first' ? 'Send email' : 'Send follow-up') . '</button>'
-                           : '<button type="button" class="btn line sm" data-copy>Copy message</button>' . ($ig ? '<a class="btn line sm" href="https://ig.me/m/' . h($ig) . '" target="_blank" rel="noopener">Open Instagram chat</a>' : '') . '<button class="btn sm" name="a" value="omark">Mark as sent</button>')
-                . ($kind === 'first' ? '<button class="btn line sm subtle" name="a" value="oskip" onclick="return confirm(\'Move ' . h($r['company']) . ' to Skip?\')">Skip lead</button>' : '')
-                . '</div></form></details>';
-            return $o;
+                . ($sv ? '<span class="pill ok">Opened ' . h(ago($sv['at'])) . '</span>' : ($kind === 'followup' ? '<span class="pill grey">Not opened yet</span>' : ''));
+            foreach ($channels as $c) $o .= '<span class="pill' . (isset($done[$c]) ? ' ok' : ($c === 'Email' ? '' : ' grey')) . '">' . (isset($done[$c]) ? '✓ ' : '') . ($c === 'Email' ? 'Email' : 'Instagram') . '</span>';
+            $o .= '</summary>';
+            if ($r['issues']) $o .= '<p class="hint"><b>Issues we found:</b> ' . nl2br(h($r['issues'])) . '</p>';
+            foreach ($channels as $c) {
+                $isMail = $c === 'Email';
+                if ($both) $o .= '<h3 class="chh">' . ($isMail ? 'Email' : 'Instagram DM') . '</h3>';
+                if (isset($done[$c])) { $o .= '<p class="hint">' . ($done[$c] === 'sent' ? '✓ Sent' : 'Skipped') . '.</p>'; continue; }
+                $text = tracked_links(lead_text($r, $c, $kind), $isMail ? 'email' : 'ig');
+                $o .= '<form method="post" class="leadform">' . csrf_field() . '<input type="hidden" name="row" value="' . (int)$r['_row'] . '"><input type="hidden" name="kind" value="' . $kind . '"><input type="hidden" name="business" value="' . h($r['company']) . '"><input type="hidden" name="slug" value="' . h($slug) . '"><input type="hidden" name="channel" value="' . h($c) . '">';
+                if ($isMail) $o .= '<div class="f2x"><label>To<input type="email" name="to" value="' . h($r['email']) . '" required></label><label>Subject<input name="subject" value="' . h($kind === 'followup' ? 'Re: ' . $r['subject'] : $r['subject']) . '" required></label></div>';
+                else $o .= '<input type="hidden" name="to" value="' . h($ig) . '"><p class="hint">Send this in Instagram, then press Mark as sent. ' . ($ig ? 'Account: <a href="https://instagram.com/' . h($ig) . '" target="_blank" rel="noopener">@' . h($ig) . '</a>' : 'No Instagram handle in the sheet.') . '</p>';
+                $o .= '<label>' . ($kind === 'first' ? 'Message' : 'Follow-up') . '<textarea name="body" rows="' . max(6, min(18, substr_count($text, "\n") + 3)) . '">' . h($text) . '</textarea></label><div class="acts">'
+                    . ($slug ? '<a class="btn line sm" href="/' . h($slug) . '/?team=1" target="_blank" rel="noopener">Open concept</a>' : '')
+                    . ($isMail ? '<button class="btn sm" name="a" value="osend" onclick="return confirm(\'Send this email to ' . h($r['email']) . '?\')">' . ($kind === 'first' ? 'Send email' : 'Send follow-up') . '</button>'
+                               : '<button type="button" class="btn line sm" data-copy>Copy message</button>' . ($ig ? '<a class="btn line sm" href="https://ig.me/m/' . h($ig) . '" target="_blank" rel="noopener">Open Instagram chat</a>' : '') . '<button class="btn sm" name="a" value="omark">Mark as sent</button>')
+                    . ($both ? '<button class="btn line sm subtle" name="a" value="oskipch" formnovalidate onclick="return confirm(\'Skip ' . ($isMail ? 'the email' : 'Instagram') . ' for ' . h($r['company']) . '?\')">Skip ' . ($isMail ? 'email' : 'Instagram') . '</button>' : '')
+                    . ($kind === 'first' && !$done && $c === end($channels) ? '<button class="btn line sm subtle" name="a" value="oskip" formnovalidate onclick="return confirm(\'Move ' . h($r['company']) . ' to Skip?\')">Skip lead</button>' : '')
+                    . '</div></form>';
+            }
+            return $o . '</details>';
         };
         echo '<h2 id="ready" class="sec-h">Ready to send</h2>';
         echo $first ? implode('', array_map($card, $first, array_fill(0, count($first), 'first'), array_keys($first))) : '<div class="card"><div class="empty">Nothing waiting. New messages appear here after the nightly run.</div></div>';
@@ -354,13 +376,22 @@ if ($page === 'results') {
         $isReply = fn($r) => $r['reply'] !== '' && stripos($r['reply'], 'follow-up sent') !== 0;
         $seenAt = seen_map();
         $stat = []; $list = [];
+        $olog = outreach_all();
         foreach ($sent as $r) {
-            $c = $chan($r); $stat[$c] ??= ['sent' => 0, 'seen' => 0, 'opened' => 0, 'tracked' => 0, 'reply' => 0, 'call' => 0];
-            $sv = $vs[$r['slug']] ?? []; $st = &$stat[$c];
-            $st['sent']++; if ($sv) $st['opened']++; if (isset($seenAt[$r['slug']]) || $sv) $st['seen']++; if ($isReply($r)) $st['reply']++; if (isset($calls[$r['slug']])) $st['call']++;
-            if (array_filter($sv, fn($v) => str_starts_with((string)$v['ref'], 'via '))) $st['tracked']++;
-            unset($st);
-            $list[] = ['r' => $r, 'c' => $c, 'v' => $sv];
+            $done = array_keys(array_filter(lead_done($r['_row'], 'first', $olog), fn($x) => $x === 'sent'));
+            $chs = $done ?: lead_channels($r);
+            $sv = $vs[$r['slug']] ?? [];
+            foreach ($chs as $c) {
+                $stat[$c] ??= ['sent' => 0, 'seen' => 0, 'opened' => 0, 'tracked' => 0, 'reply' => 0, 'call' => 0]; $st = &$stat[$c];
+                $tag = 'via ' . ($c === 'Email' ? 'email' : 'ig');
+                $mine = array_filter($sv, fn($v) => $v['ref'] === $tag);
+                $opened = $mine || (count($chs) === 1 && $sv);
+                $st['sent']++; if ($opened) $st['opened']++; if ($mine) $st['tracked']++;
+                if ($opened || isset($seenAt[$r['slug'] . '|' . $c]) || (count($chs) === 1 && isset($seenAt[$r['slug']]))) $st['seen']++;
+                if ($isReply($r)) $st['reply']++; if (isset($calls[$r['slug']])) $st['call']++;
+                unset($st);
+            }
+            $list[] = ['r' => $r, 'c' => implode(' + ', $chs), 'v' => $sv];
         }
         $pct = fn($a, $b) => $b ? round(100 * $a / $b) . '%' : '–';
         ksort($stat);
@@ -371,7 +402,7 @@ if ($page === 'results') {
         echo '</tbody></table></div><p class="hint"><b>View rate</b> = saw the message ÷ sent. Email: counted when the email is opened (it carries a tiny image; some apps block images, so the real number can be a bit higher). Instagram: press <b>Mark seen</b> below when Instagram shows “Seen”. Anyone who opened the concept also counts as seen.<br><b>Click rate</b> = opened the concept ÷ sent. Visits from the panel, or from any browser or network where the panel is used, are never counted.</p></section>';
         usort($list, fn($a, $b) => [(int)!$a['v'], $b['r']['sent']] <=> [(int)!$b['v'], $a['r']['sent']]);
         echo '<section class="card"><h2>Every lead</h2>';
-        foreach ($list as $x) { $r = $x['r']; $v = $x['v']; $n = count($v); $last = $v ? end($v) : null; $isIg = $x['c'] === 'Instagram DM'; $sa = $seenAt[$r['slug']] ?? null;
+        foreach ($list as $x) { $r = $x['r']; $v = $x['v']; $n = count($v); $last = $v ? end($v) : null; $isIg = str_contains($x['c'], 'Instagram'); $sa = $seenAt[$r['slug']] ?? null;
             echo '<div class="row"><div class="grow"><b>' . h($r['company']) . '</b><small>' . h($x['c']) . ' · sent ' . h($r['sent']) . ($isReply($r) ? ' · <b>replied:</b> ' . h(mb_substr($r['reply'], 0, 80)) : '') . '</small></div>'
                 . ($v ? '<span class="pill ok">Opened concept ' . h(ago($last['at'])) . ' · ' . $n . ($n === 1 ? ' view' : ' views') . '</span>'
                       : ($sa ? '<span class="pill">Saw message ' . h(ago($sa)) . '</span>' : '<span class="pill grey">' . ($isIg ? 'Not seen yet' : 'Email not opened yet') . '</span>'))

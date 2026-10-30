@@ -9,7 +9,8 @@ const SHEET_TAB = 'Sheet1';
 // Column letters in Sheet1.
 const COL = ['row' => 'A', 'company' => 'B', 'country' => 'C', 'location' => 'D', 'site' => 'E', 'email' => 'F', 'phone' => 'G', 'instagram' => 'H',
              'owner' => 'I', 'notes' => 'J', 'status' => 'K', 'language' => 'L', 'issues' => 'M', 'preview' => 'N', 'channel' => 'O', 'subject' => 'P',
-             'message' => 'Q', 'followup' => 'R', 'sent' => 'S', 'followup_date' => 'T', 'reply' => 'U', 'slug' => 'V'];
+             'message' => 'Q', 'followup' => 'R', 'sent' => 'S', 'followup_date' => 'T', 'reply' => 'U', 'slug' => 'V',
+             'stage' => 'W', 'payment' => 'X', 'ig_message' => 'Y', 'ig_followup' => 'Z'];
 
 function google_key(): ?array { $k = read_json('google-sa.json', null); return (is_array($k) && !empty($k['private_key']) && !empty($k['client_email'])) ? $k : null; }
 
@@ -49,7 +50,7 @@ function http_json(string $method, string $url, $body = null, bool $form = false
 
 function sheet_rows(): array {
     $t = google_token();
-    $j = http_json('GET', google_api_base() . '/v4/spreadsheets/' . SHEET_ID . '/values/' . rawurlencode(SHEET_TAB . '!A1:X1000') . '?valueRenderOption=FORMATTED_VALUE', null, false, ["Authorization: Bearer $t"]);
+    $j = http_json('GET', google_api_base() . '/v4/spreadsheets/' . SHEET_ID . '/values/' . rawurlencode(SHEET_TAB . '!A1:Z1000') . '?valueRenderOption=FORMATTED_VALUE', null, false, ["Authorization: Bearer $t"]);
     $vals = $j['values'] ?? []; $rows = [];
     $keys = array_keys(COL);
     foreach ($vals as $i => $r) {
@@ -74,6 +75,35 @@ function sheet_update_row(int $row, array $cells): void {
     $url = google_api_base() . '/v4/spreadsheets/' . SHEET_ID . '/values:batchUpdate';
     if ($raw) http_json('POST', $url, ['valueInputOption' => 'RAW', 'data' => $raw], false, ["Authorization: Bearer $t"]);
     if ($typed) http_json('POST', $url, ['valueInputOption' => 'USER_ENTERED', 'data' => $typed], false, ["Authorization: Bearer $t"]);
+}
+
+/* ---------- channels per lead ---------- */
+
+/** Channels this lead should get: Email and/or Instagram DM (column O, if the contact exists). */
+function lead_channels(array $r): array {
+    $o = strtolower($r['channel']); $ch = [];
+    if (str_contains($o, 'mail') && $r['email'] !== '') $ch[] = 'Email';
+    if (str_contains($o, 'insta') && $r['instagram'] !== '') $ch[] = 'Instagram DM';
+    if (!$ch) $ch[] = $r['email'] !== '' && !str_contains($o, 'insta') ? 'Email' : 'Instagram DM';
+    return $ch;
+}
+/** Text for one channel. With both channels, Q/R are the email and Y/Z the Instagram DM; with one channel Q/R are used. */
+function lead_text(array $r, string $channel, string $kind): string {
+    if ($channel === 'Instagram DM' && count(lead_channels($r)) > 1) {
+        $t = $kind === 'first' ? $r['ig_message'] : $r['ig_followup'];
+        if ($t !== '') return $t;
+    }
+    return $kind === 'first' ? $r['message'] : $r['followup'];
+}
+/** channel => 'sent'|'skipped' for one sheet row and kind, from the panel's log. */
+function lead_done(int $row, string $kind, ?array $log = null): array {
+    $d = [];
+    foreach ($log ?? outreach_all() as $o) {
+        if ((int)$o['row'] !== $row) continue;
+        if ($o['kind'] === $kind) $d[$o['channel']] ??= 'sent';
+        elseif ($o['kind'] === $kind . '-skip') $d[$o['channel']] ??= 'skipped';
+    }
+    return $d;
 }
 
 /* ---------- outreach email ---------- */
@@ -124,11 +154,11 @@ function seen_add(string $slug, string $kind, string $channel, string $how): voi
     seen_migrate($p);
     $p->prepare('INSERT INTO message_seen (slug,kind,channel,how,created_at) VALUES (?,?,?,?,UTC_TIMESTAMP())')->execute([$slug, $kind, $channel, $how]);
 }
-/** slug => first time the message was seen (ISO). */
+/** slug and "slug|channel" => first time the message was seen (ISO). */
 function seen_map(): array {
     $p = db();
-    $rows = $p ? (function () use ($p) { seen_migrate($p); return array_map(fn($r) => ['slug' => $r['slug'], 'at' => iso($r['created_at'])], $p->query('SELECT slug, MIN(created_at) created_at FROM message_seen GROUP BY slug')->fetchAll()); })() : read_lines('seen.jsonl');
-    $m = []; foreach ($rows as $r) if (!isset($m[$r['slug']]) || strtotime($r['at']) < strtotime($m[$r['slug']])) $m[$r['slug']] = $r['at'];
+    $rows = $p ? (function () use ($p) { seen_migrate($p); return array_map(fn($r) => ['slug' => $r['slug'], 'channel' => $r['channel'], 'at' => iso($r['created_at'])], $p->query('SELECT slug, channel, MIN(created_at) created_at FROM message_seen GROUP BY slug, channel')->fetchAll()); })() : read_lines('seen.jsonl');
+    $m = []; foreach ($rows as $r) foreach ([$r['slug'], $r['slug'] . '|' . ($r['channel'] ?? '')] as $k) if (!isset($m[$k]) || strtotime($r['at']) < strtotime($m[$k])) $m[$k] = $r['at'];
     return $m;
 }
 

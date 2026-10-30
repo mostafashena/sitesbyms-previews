@@ -104,3 +104,5 @@ ol.steps{margin:0;padding-left:20px;display:grid;gap:6px;font-size:15px}
 .tbl table{width:100%;border-collapse:collapse;font-size:14px}
 .tbl th,.tbl td{text-align:left;padding:10px 12px;border-bottom:1px solid rgba(7,15,55,.08);white-space:nowrap}
 .tbl th{font-size:12px;text-transform:uppercase;letter-spacing:.04em;opacity:.6;font-weight:600}
+details.lead h3.chh{margin:18px 20px 0;font-size:13px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted-2)}
+details.lead > p.hint{margin:14px 20px 0}
