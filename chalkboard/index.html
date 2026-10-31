@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chalkboard | Educational toys &amp; games, Northcote Road</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cabin+Sketch:wght@400;700&family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
+<style>
+/* Layout 5 (cycle 2): storefront grid on a blackboard. Words: curious, hands-on, clever. */
+:root{--board:#24382F;--board2:#2C443A;--chalk:#F4F1E8;--dust:#B9C4BC;--yellow:#F5D547;--pink:#F29BB0;--blue:#8EC9F0;--wood:#B07A45}
+*{box-sizing:border-box}
+body{margin:0;background:var(--board);color:var(--chalk);font:400 17px/1.65 "Atkinson Hyperlegible",system-ui,sans-serif}
+a{color:inherit}
+h1,h2,h3{font-family:"Cabin Sketch",cursive;font-weight:700;margin:0;line-height:1.05}
+.wrap{width:min(1100px,100% - 32px);margin-inline:auto}
+.topbar{background:#15211b;color:var(--dust);font-size:13px;text-align:center;padding:7px 16px}
+header{position:sticky;top:0;z-index:20;background:var(--board);border-bottom:10px solid var(--wood)}
+.nav{display:flex;justify-content:space-between;align-items:center;height:64px}
+.mark{font:700 30px/1 "Cabin Sketch";text-decoration:none}
+.btn{display:inline-flex;align-items:center;min-height:46px;padding:0 22px;border-radius:8px;background:var(--yellow);color:#1c2a23;font-weight:700;text-decoration:none}
+.btn.c{background:transparent;color:var(--chalk);border:2px dashed var(--chalk)}
+.hero{padding:44px 0 26px;text-align:center}
+.hero h1{font-size:clamp(50px,10vw,104px)}
+.hero h1 span{color:var(--yellow)}
+.hero p{max-width:40ch;margin:16px auto 24px;font-size:19px;color:var(--dust)}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;padding:26px 0 40px}
+.tile{background:var(--board2);border:2px solid rgba(244,241,232,.35);border-radius:14px;padding:18px;display:flex;flex-direction:column;gap:8px}
+.tile .ic{font:700 40px/1 "Cabin Sketch"}
+.tile:nth-child(3n+1) .ic{color:var(--yellow)}.tile:nth-child(3n+2) .ic{color:var(--pink)}.tile:nth-child(3n) .ic{color:var(--blue)}
+.tile h3{font-size:24px}
+.tile p{margin:0;color:var(--dust);font-size:15px}
+.ph{border:2px dashed rgba(244,241,232,.5);border-radius:14px;min-height:260px;display:grid;place-items:center;text-align:center;color:var(--dust);font-size:14px;padding:14px}
+section{padding:36px 0}
+h2{font-size:clamp(36px,6vw,58px);margin-bottom:16px}
+.two{display:grid;gap:26px;align-items:center}
+.hours div{display:flex;justify-content:space-between;border-bottom:1px dashed rgba(244,241,232,.35);padding:9px 0}
+.ledge{height:14px;background:var(--wood);margin-top:20px}
+footer{background:#15211b;color:var(--dust);padding:22px 0 120px;font-size:13px}
+footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+@media(min-width:820px){.grid{grid-template-columns:repeat(3,1fr)}.two{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+<div class="topbar">Design concept prepared for Chalkboard by Sites By MS. Not the official website.</div>
+<header><div class="wrap nav"><a class="mark" href="#">Chalkboard</a><a class="btn" href="tel:02079247066">Call the shop</a></div></header>
+<main>
+<section class="hero"><div class="wrap">
+  <h1>Toys that make kids <span>think.</span></h1>
+  <p>An educational toy and game shop on Northcote Road, where you're encouraged to try things out before you buy.</p>
+  <a class="btn" href="https://www.google.com/maps/search/?api=1&query=Chalkboard+60+Northcote+Road+London+SW11+1PA">Visit the shop</a>
+  <a class="btn c" href="https://www.instagram.com/chalkboard.biz/">See what's new</a>
+</div></section>
+
+<div class="wrap">
+  <div class="grid">
+    <div class="tile"><span class="ic">ABC</span><h3>English</h3><p>Games that build words and reading.</p></div>
+    <div class="tile"><span class="ic">1+2</span><h3>Maths</h3><p>Counting, numbers and number games.</p></div>
+    <div class="tile"><span class="ic">?!</span><h3>Logic</h3><p>Puzzles and games for clever thinking.</p></div>
+    <div class="tile"><span class="ic">✿</span><h3>Early years</h3><p>First toys for little hands.</p></div>
+    <div class="tile"><span class="ic">✂</span><h3>Craft</h3><p>Make, stick, paint and create.</p></div>
+    <div class="tile"><span class="ic">⚽</span><h3>Active play</h3><p>Toys to get moving.</p></div>
+  </div>
+  <div class="ledge" aria-hidden="true"></div>
+</div>
+
+<section><div class="wrap two">
+  <div class="ph">1000 × 800 – Kids trying out games in the shop</div>
+  <div>
+    <h2>Try before you buy</h2>
+    <p>Chalkboard is the kind of shop where toys come out of the box: pick things up, play a round, and find what fits your child. Local families rate it 5.0 on Google.</p>
+  </div>
+</div></section>
+
+<section><div class="wrap two">
+  <div>
+    <h2>Find us</h2>
+    <p><strong>60 Northcote Road, Battersea, London SW11 1PA</strong><br>Near Clapham Junction.</p>
+    <p><a href="tel:02079247066">020 7924 7066</a> · <a href="mailto:shop@thechalkboard.biz">shop@thechalkboard.biz</a></p>
+    <p><a class="btn" href="https://www.google.com/maps/search/?api=1&query=Chalkboard+60+Northcote+Road+London+SW11+1PA">Directions</a></p>
+  </div>
+  <div class="hours">
+    <div><span>Monday – Saturday</span><span>9am – 6pm</span></div>
+    <div><span>Sunday</span><span>11am – 5pm</span></div>
+    <p style="font-size:14px;color:var(--dust)">Bank holidays may differ, give us a call.</p>
+  </div>
+</div></section>
+</main>
+<footer><div class="wrap"><span>Chalkboard</span><span>Design concept by Sites By MS. Not the official website.</span></div></footer>
+<script src="/assets/concept-bar.js" data-name="Chalkboard" data-slug="chalkboard" defer></script>
+</body>
+</html>
