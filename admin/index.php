@@ -129,6 +129,8 @@ if ($csrfOk) {
             if ($a === 'oskip') { sheet_update_row($row, ['status' => 'Skip']); go('outreach', "$business moved to Skip."); }
             $lead = null; foreach (sheet_rows() as $x) if ($x['_row'] === $row) { $lead = $x; break; }
             if (!$lead) go('outreach', "Could not find $business in the sheet any more. Nothing was sent.", true);
+            if ($a !== 'oskip' && ($why = lead_mismatch($lead))) go('outreach', "Not sent: $why", true);
+            $slug = $lead['slug'];
             $channels = lead_channels($lead); $both = count($channels) > 1;
             $body = str_replace("\r", '', (string)($_POST['body'] ?? ''));
             if ($a !== 'oskipch' && trim($body) === '') go('outreach', 'The message is empty.', true);
@@ -156,7 +158,7 @@ if ($csrfOk) {
                 outreach_log(['row' => $row, 'slug' => $slug, 'business' => $business, 'kind' => $kind . '-skip', 'channel' => $ch, 'to' => '', 'subject' => '', 'body' => '(skipped)', 'mid' => null, 'by' => $by]);
                 $did = "$ch skipped for $business.";
             }
-            $done = lead_done($row, $kind);
+            $done = lead_done($row, $kind, null, $lead['slug']);
             $left = array_values(array_diff($channels, array_keys($done)));
             $anySent = in_array('sent', $done, true);
             if ($kind === 'first') {
@@ -318,12 +320,13 @@ if ($page === 'outreach') {
         $log = outreach_all();
         $card = function (array $r, string $kind, int $i) use ($seen, $log) {
             $slug = $r['slug']; $sv = $seen[$slug] ?? null;
-            $channels = lead_channels($r); $done = lead_done($r['_row'], $kind, $log); $both = count($channels) > 1;
+            $channels = lead_channels($r); $done = lead_done($r['_row'], $kind, $log, $slug); $both = count($channels) > 1; $bad = lead_mismatch($r);
             $ig = preg_replace('#^@|^https?://(www\.)?instagram\.com/#', '', rtrim($r['instagram'], '/'));
             $o = '<details class="card lead"' . ($i === 0 ? ' open' : '') . '><summary><div class="grow"><b>' . h($r['company']) . '</b><small>' . h($r['location']) . '</small></div>'
                 . ($sv ? '<span class="pill ok">Opened ' . h(ago($sv['at'])) . '</span>' : ($kind === 'followup' ? '<span class="pill grey">Not opened yet</span>' : ''));
             foreach ($channels as $c) $o .= '<span class="pill' . (isset($done[$c]) ? ' ok' : ($c === 'Email' ? '' : ' grey')) . '">' . (isset($done[$c]) ? '✓ ' : '') . ($c === 'Email' ? 'Email' : 'Instagram') . '</span>';
             $o .= '</summary>';
+            if ($bad) return $o . '</summary><p class="err" style="margin:14px 20px 18px">⚠ ' . h($bad) . '</p></details>';
             if ($r['issues']) $o .= '<p class="hint"><b>Issues we found:</b> ' . nl2br(h($r['issues'])) . '</p>';
             foreach ($channels as $c) {
                 $isMail = $c === 'Email';
@@ -378,7 +381,7 @@ if ($page === 'results') {
         $stat = []; $list = [];
         $olog = outreach_all();
         foreach ($sent as $r) {
-            $done = array_keys(array_filter(lead_done($r['_row'], 'first', $olog), fn($x) => $x === 'sent'));
+            $done = array_keys(array_filter(lead_done($r['_row'], 'first', $olog, $r['slug']), fn($x) => $x === 'sent'));
             $chs = $done ?: lead_channels($r);
             $sv = $vs[$r['slug']] ?? [];
             foreach ($chs as $c) {

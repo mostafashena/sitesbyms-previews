@@ -95,15 +95,32 @@ function lead_text(array $r, string $channel, string $kind): string {
     }
     return $kind === 'first' ? $r['message'] : $r['followup'];
 }
-/** channel => 'sent'|'skipped' for one sheet row and kind, from the panel's log. */
-function lead_done(int $row, string $kind, ?array $log = null): array {
+/** channel => 'sent'|'skipped' for one sheet row and kind, from the panel's log.
+ *  Only entries for the row's current concept (slug) count, so a row whose content was corrected can be sent again. */
+function lead_done(int $row, string $kind, ?array $log = null, string $slug = ''): array {
     $d = [];
     foreach ($log ?? outreach_all() as $o) {
         if ((int)$o['row'] !== $row) continue;
+        if ($slug !== '' && ($o['slug'] ?? '') !== '' && $o['slug'] !== $slug) continue;
         if ($o['kind'] === $kind) $d[$o['channel']] ??= 'sent';
         elseif ($o['kind'] === $kind . '-skip') $d[$o['channel']] ??= 'skipped';
     }
     return $d;
+}
+
+/** Safety check before sending: the concept page in /<slug>/ must belong to the business on this row.
+ *  Returns null when it matches, otherwise a short reason. */
+function lead_mismatch(array $r): ?string {
+    $slug = $r['slug'];
+    if ($slug === '' || !preg_match('/^[a-z0-9-]+$/', $slug)) return 'This row has no concept page (column V is empty).';
+    $f = dirname(__DIR__) . '/' . $slug . '/index.html';
+    if (!is_file($f)) return "The concept page /$slug/ does not exist yet.";
+    if (!preg_match('/concept-bar\.js"[^>]*data-name="([^"]*)"/', (string)file_get_contents($f, false, null, 0, 400000), $m)) return null;
+    $n = fn($s) => preg_replace('/[^a-z0-9]/', '', strtolower((function_exists('iconv') ? @iconv('UTF-8', 'ASCII//TRANSLIT//IGNORE', html_entity_decode($s, ENT_QUOTES, 'UTF-8')) : '') ?: html_entity_decode($s, ENT_QUOTES, 'UTF-8')));
+    $page = $n($m[1]); $row = $n($r['company']);
+    if ($page === '' || $row === '' || str_contains($page, $row) || str_contains($row, $page)) return null;
+    similar_text($page, $row, $pct);
+    return $pct >= 75 ? null : 'The concept /' . $slug . '/ is for “' . html_entity_decode($m[1], ENT_QUOTES, 'UTF-8') . '”, not for ' . $r['company'] . '. The message on this row probably belongs to another business. Do not send; fix the row in the sheet first.';
 }
 
 /* ---------- outreach email ---------- */
