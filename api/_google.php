@@ -119,6 +119,10 @@ function lead_mismatch(array $r): ?string {
     $n = fn($s) => preg_replace('/[^a-z0-9]/', '', strtolower((function_exists('iconv') ? @iconv('UTF-8', 'ASCII//TRANSLIT//IGNORE', html_entity_decode($s, ENT_QUOTES, 'UTF-8')) : '') ?: html_entity_decode($s, ENT_QUOTES, 'UTF-8')));
     $page = $n($m[1]); $row = $n($r['company']);
     if ($page === '' || $row === '' || str_contains($page, $row) || str_contains($row, $page)) return null;
+    $generic = ['the', 'and', 'london', 'cafe', 'restaurant', 'kitchen', 'store', 'shop', 'studio', 'coffee', 'hair', 'beauty', 'pilates', 'boxing', 'flowers', 'books', 'dental', 'care', 'clinic', 'limited', 'bakery', 'salon', 'barbers', 'house', 'london'];
+    foreach ([[$m[1], $row], [$r['company'], $page]] as [$name, $other])
+        foreach (preg_split('/[^a-z0-9]+/', strtolower(html_entity_decode($name, ENT_QUOTES, 'UTF-8'))) as $t)
+            if (strlen($t) >= 4 && !in_array($t, $generic, true) && str_contains($other, $t)) return null;
     similar_text($page, $row, $pct);
     return $pct >= 75 ? null : 'The concept /' . $slug . '/ is for “' . html_entity_decode($m[1], ENT_QUOTES, 'UTF-8') . '”, not for ' . $r['company'] . '. The message on this row probably belongs to another business. Do not send; fix the row in the sheet first.';
 }
