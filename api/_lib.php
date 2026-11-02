@@ -328,3 +328,48 @@ function user_add(string $email, string $name, string $role, string $password): 
     db()->prepare('INSERT INTO users (email,name,role,password_hash,created_at) VALUES (?,?,?,?,UTC_TIMESTAMP())')->execute([strtolower(trim($email)), $name, $role, password_hash($password, PASSWORD_DEFAULT)]);
 }
 
+
+/* ---------- behaviour events (concept and report pages) ---------- */
+function events_migrate(PDO $p): void {
+    static $done = false; if ($done) return; $done = true;
+    $p->exec("CREATE TABLE IF NOT EXISTS events (id BIGINT AUTO_INCREMENT PRIMARY KEY, sid CHAR(16) NOT NULL, vid CHAR(16) NOT NULL, slug VARCHAR(80) NOT NULL,
+        page VARCHAR(20) NOT NULL DEFAULT 'concept', ev VARCHAR(40) NOT NULL, val VARCHAR(160) NOT NULL DEFAULT '', src VARCHAR(20) NOT NULL DEFAULT '',
+        device VARCHAR(12) NOT NULL DEFAULT '', t_ms INT NOT NULL DEFAULT 0, created_at DATETIME NOT NULL,
+        INDEX (slug, created_at), INDEX (sid)) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4");
+}
+function events_add(array $rows): void {
+    if (!$rows) return;
+    if ($p = db()) {
+        events_migrate($p);
+        $q = $p->prepare('INSERT INTO events (sid,vid,slug,page,ev,val,src,device,t_ms,created_at) VALUES (?,?,?,?,?,?,?,?,?,UTC_TIMESTAMP())');
+        foreach ($rows as $r) $q->execute([$r['sid'], $r['vid'], $r['slug'], $r['page'], $r['ev'], $r['val'], $r['src'], $r['device'], $r['t']]);
+        return;
+    }
+    foreach ($rows as $r) append_line('events.jsonl', $r + ['at' => gmdate('c')]);
+}
+/** Latest events, newest first. */
+function events_all(int $days = 60): array {
+    if ($p = db()) {
+        events_migrate($p);
+        $q = $p->prepare('SELECT * FROM events WHERE created_at > UTC_TIMESTAMP() - INTERVAL ? DAY ORDER BY id DESC LIMIT 20000'); $q->execute([$days]);
+        return array_map(fn($r) => $r + ['t' => (int)$r['t_ms'], 'at' => iso($r['created_at'])], $q->fetchAll());
+    }
+    return array_reverse(read_lines('events.jsonl'));
+}
+/** Groups events into visits (sessions), newest first, with a summary of each. */
+function sessions_from(array $events): array {
+    $s = [];
+    foreach (array_reverse($events) as $e) {   // oldest first
+        $k = $e['sid'];
+        $s[$k] ??= ['sid' => $k, 'vid' => $e['vid'], 'slug' => $e['slug'], 'src' => '', 'device' => $e['device'], 'start' => $e['at'], 'end' => $e['at'], 'active' => 0, 'scroll' => 0, 'events' => [], 'flags' => []];
+        $x = &$s[$k]; $x['end'] = $e['at'];
+        if ($e['src'] !== '' && $x['src'] === '') $x['src'] = $e['src'];
+        if ($e['ev'] === 'time') $x['active'] = max($x['active'], (int)$e['val']);
+        elseif ($e['ev'] === 'scroll') $x['scroll'] = max($x['scroll'], (int)$e['val']);
+        else { $x['events'][] = $e; $x['flags'][$e['ev']] = true; }
+        unset($x);
+    }
+    $out = array_values($s);
+    usort($out, fn($a, $b) => strtotime($b['start']) <=> strtotime($a['start']));
+    return $out;
+}

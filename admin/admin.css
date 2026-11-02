@@ -106,3 +106,7 @@ ol.steps{margin:0;padding-left:20px;display:grid;gap:6px;font-size:15px}
 .tbl th{font-size:12px;text-transform:uppercase;letter-spacing:.04em;opacity:.6;font-weight:600}
 details.lead h3.chh{margin:18px 20px 0;font-size:13px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted-2)}
 details.lead > p.hint{margin:14px 20px 0}
+ol.tl{list-style:none;margin:0;padding:4px 20px 12px;display:grid;gap:6px;font-size:14px}
+ol.tl li{display:flex;gap:12px}
+ol.tl li span{flex:0 0 44px;color:var(--muted-2);font-variant-numeric:tabular-nums}
+.tbl td small{color:var(--muted-2);margin-left:4px}

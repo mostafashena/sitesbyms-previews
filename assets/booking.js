@@ -96,7 +96,7 @@
     function restore(f, v) { if (f && v) { f.name.value = v.name; f.business.value = v.business; f.email.value = v.email; f.phone.value = v.phone; } }
     function wire() {
       box.querySelectorAll('[data-day]').forEach(function (b) { b.onclick = function () { if (b.getAttribute('aria-disabled')) return; var v = keep(box.querySelector('form')); S.day = +b.getAttribute('data-day'); S.ts = null; S.t = ''; draw(); restore(box.querySelector('form'), v); }; });
-      box.querySelectorAll('[data-ts]').forEach(function (b) { b.onclick = function () { var v = keep(box.querySelector('form')); S.ts = +b.getAttribute('data-ts'); S.t = b.getAttribute('data-t'); draw(); var f = box.querySelector('form'); restore(f, v); (f.name.value ? f.email : f.name).focus({ preventScroll: false }); }; });
+      box.querySelectorAll('[data-ts]').forEach(function (b) { b.onclick = function () { var v = keep(box.querySelector('form')); S.ts = +b.getAttribute('data-ts'); S.t = b.getAttribute('data-t'); if (window.SBMTrack) window.SBMTrack('book_slot', S.t); draw(); var f = box.querySelector('form'); restore(f, v); (f.name.value ? f.email : f.name).focus({ preventScroll: false }); }; });
       box.querySelectorAll('[data-how]').forEach(function (b) { b.onclick = function () { var v = keep(box.querySelector('form')); S.how = b.getAttribute('data-how'); draw(); restore(box.querySelector('form'), v); }; });
       var f = box.querySelector('form'); if (!f) return;
       f.onsubmit = function (e) {
@@ -117,6 +117,7 @@
             return;
           }
           var first = f.name.value.trim().split(/\s+/)[0];
+          if (window.SBMTrack) window.SBMTrack('book_submit', S.how || '', true);
           box.innerHTML = '<div class="sbk-done"><div class="ok"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>'
             + '<h3>You\'re booked, ' + esc(first) + '.</h3><p>A calendar invite is on its way to ' + esc(f.email.value.trim()) + '.</p>'
             + '<div class="sbk-card"><b style="font-size:18px">' + esc(r.j.when) + '</b><span style="color:#4A5070;font-size:14px">15 minutes · London time · ' + esc(r.j.how) + '</span></div>'

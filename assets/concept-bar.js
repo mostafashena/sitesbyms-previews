@@ -23,6 +23,67 @@
     if (navigator.sendBeacon) navigator.sendBeacon(url); else { var i = new Image(); i.src = url; }
   }
 
+
+  // ---------- behaviour tracking: what the visitor looks at and does (never the team or bots) ----------
+  var track = (function () {
+    var off = !slug || store('sbm_team') === '1' || /bot|crawl|spider|preview|fetch|headless/i.test(navigator.userAgent);
+    function rid() { var a = '', c = 'abcdefghijklmnopqrstuvwxyz0123456789'; for (var i = 0; i < 16; i++) a += c.charAt(Math.floor(Math.random() * 36)); return a; }
+    var vid = store('sbm_vid') || rid(); store('sbm_vid', vid);
+    var sid; try { sid = sessionStorage.getItem('sbm_sid_' + slug); if (!sid) { sid = rid(); sessionStorage.setItem('sbm_sid_' + slug, sid); } } catch (e) { sid = rid(); }
+    var src = (location.search.match(/[?&]from=([a-z0-9-]{1,20})/) || [])[1] || '';
+    var t0 = Date.now(), q = [];
+    function flush() {
+      if (off || !q.length) return;
+      var body = JSON.stringify({ sid: sid, vid: vid, slug: slug, page: 'concept', src: src, e: q.splice(0, 40) });
+      var sent = false;
+      try { sent = navigator.sendBeacon && navigator.sendBeacon('/api/event.php', new Blob([body], { type: 'application/json' })); } catch (e) {}
+      if (!sent) { try { fetch('/api/event.php', { method: 'POST', body: body, headers: { 'Content-Type': 'application/json' }, keepalive: true }); } catch (e) {} }
+      if (q.length) flush();
+    }
+    function ev(name, val, now) { if (off) return; q.push([name, String(val == null ? '' : val).slice(0, 160), Date.now() - t0]); if (now || q.length >= 20) flush(); }
+    if (off) return ev;
+    var ref = ''; try { ref = document.referrer ? new URL(document.referrer).hostname : ''; } catch (e) {}
+    ev('open', ref, true);
+    // active time: counts only while the page is visible and the visitor did something in the last 30 seconds
+    var active = 0, lastAct = Date.now(), sentActive = 0;
+    ['scroll', 'mousemove', 'touchstart', 'keydown', 'click'].forEach(function (n) { window.addEventListener(n, function () { lastAct = Date.now(); }, { passive: true }); });
+    setInterval(function () {
+      if (document.visibilityState === 'visible' && Date.now() - lastAct < 30000) active++;
+      if (active - sentActive >= 15) { sentActive = active; ev('time', active); flush(); }
+    }, 1000);
+    // scroll depth
+    var marks = [25, 50, 75, 100], hit = {};
+    window.addEventListener('scroll', function () {
+      var h = document.documentElement.scrollHeight - innerHeight; if (h <= 0) return;
+      var pct = Math.round(window.scrollY / h * 100);
+      marks.forEach(function (m) { if (pct >= m - 2 && !hit[m]) { hit[m] = 1; ev('scroll', m); } });
+    }, { passive: true });
+    // which parts of the page were seen
+    if ('IntersectionObserver' in window) {
+      var seen = {}, io = new IntersectionObserver(function (es) {
+        es.forEach(function (x) {
+          if (!x.isIntersecting) return;
+          var el = x.target, hd = el.querySelector('h1,h2,h3'), label = (hd ? hd.textContent : (el.id || el.tagName.toLowerCase())).replace(/\s+/g, ' ').trim().slice(0, 60);
+          if (label && !seen[label]) { seen[label] = 1; ev('section', label); }
+          io.unobserve(el);
+        });
+      }, { threshold: 0.35 });
+      setTimeout(function () { Array.prototype.slice.call(document.querySelectorAll('body > header, main > section, body > section, section, footer')).filter(function (el) { return !el.closest('.sbm-bar,.sbm-sheet-bg,.sbm-nudge'); }).slice(0, 20).forEach(function (el) { io.observe(el); }); }, 500);
+    }
+    // clicks inside the concept itself (not on our bar)
+    document.addEventListener('click', function (e) {
+      var a = e.target.closest && e.target.closest('a,button'); if (!a || a.closest('.sbm-bar,.sbm-sheet-bg,.sbm-nudge,.sbm-pill')) return;
+      var href = a.getAttribute('href') || '', txt = (a.textContent || a.getAttribute('aria-label') || href).replace(/\s+/g, ' ').trim().slice(0, 60);
+      if (/^tel:/i.test(href)) ev('call', txt, true); else if (/^mailto:/i.test(href)) ev('email', txt, true); else ev('click', txt);
+    }, true);
+    function leave() { if (active !== sentActive) { sentActive = active; ev('time', active); } flush(); }
+    document.addEventListener('visibilitychange', function () { if (document.visibilityState === 'hidden') leave(); });
+    window.addEventListener('pagehide', leave);
+    setInterval(flush, 10000);
+    return ev;
+  })();
+  window.SBMTrack = track;
+
   var css = ''
     + '.sbm-bar,.sbm-pill{font-family:"Plus Jakarta Sans",system-ui,-apple-system,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased;box-sizing:border-box}'
     + '.sbm-bar *{box-sizing:border-box}'
@@ -115,13 +176,15 @@
     try { sessionStorage.setItem('sbm_hide', open ? '' : '1'); } catch (e) {}
     requestAnimationFrame(function () { liftOthers(open ? bar.offsetHeight + 14 : 0); });
   }
-  bar.querySelector('.sbm-x').onclick = function () { show(false); pill.focus(); };
-  bar.querySelector('.sbm-ask').onclick = function (e) { e.preventDefault(); openBooking(); };
-  bar.querySelector('.sbm-rep').onclick = function (e) { e.preventDefault(); openReport(); };
-  if (/[?&#]report\b/.test(location.search + location.hash)) setTimeout(openReport, 600);
-  if (/[?&#]book\b/.test(location.search + location.hash)) setTimeout(openBooking, 600);
+  bar.querySelector('.sbm-x').onclick = function () { show(false); track('bar_hide'); pill.focus(); };
+  // (the bar's first button opens the in-page booking)
+  bar.querySelector('.sbm-ask').onclick = function (e) { e.preventDefault(); openBooking('bar'); };
+  bar.querySelector('.sbm-rep').onclick = function (e) { e.preventDefault(); openReport('bar'); };
+  if (/[?&#]report\b/.test(location.search + location.hash)) setTimeout(function () { openReport('link'); }, 600);
+  if (/[?&#]book\b/.test(location.search + location.hash)) setTimeout(function () { openBooking('link'); }, 600);
 
-  function openBooking() {
+  function openBooking(from) {
+    track('book_open', from || '');
     var prev = document.activeElement;
     var bg = document.createElement('div'); bg.className = 'sbm-sheet-bg';
     bg.innerHTML = '<div class="sbm-sheet" role="dialog" aria-modal="true" aria-label="Book a 15-minute call">'
@@ -163,8 +226,8 @@
 
   function esc(t) { return String(t).replace(/[&<>"']/g, function (c) { return '&#' + c.charCodeAt(0) + ';'; }); }
   var asked = store('sbm_rep_' + slug) === '1';
-  function openReport() {
-    hideNudge();
+  function openReport(from) {
+    hideNudge(); track('report_open', from || '');
     var sh = sheet('Free analysis report for ' + name, 'Prepared by the Sites By MS team · ready within 24 hours');
     if (asked) { sh.body.innerHTML = '<div class="sbm-done"><b>You\'ve already asked for it 👍</b><p>Our team is preparing your analysis and will send it within 24 hours.</p></div>'; return; }
     sh.body.innerHTML = '<p class="sbm-lead">Our team compares <b>' + esc(name) + ' with 4–5 local competitors</b> and shows you where you lead, where you lose customers, and what to do about it.</p>'
@@ -186,12 +249,13 @@
         .then(function (r) { return r.json().catch(function () { return { ok: false }; }); })
         .then(function (j) {
           if (!j.ok) throw new Error(j.error || 'Something went wrong. Please try again.');
-          asked = true; store('sbm_rep_' + slug, '1');
+          asked = true; store('sbm_rep_' + slug, '1'); track('report_submit', f.contact.value ? (/@/.test(f.contact.value) ? 'email' : 'whatsapp') : 'no contact', true);
           sh.body.innerHTML = '<div class="sbm-done"><b>Thank you. Our team is on it.</b><p>Your analysis report will be ready within 24 hours and we\'ll send it' + (f.contact.value ? ' to <span></span>' : ' to you') + '. It opens on your own private page, together with this concept.</p>'
-            + '<p>Questions in the meantime? <a href="/ask/' + q + '">Ask us anything</a>.</p></div>';
+            + '<p>Questions in the meantime? <a class="sbm-askl" href="/ask/' + q + '">Ask us anything</a>.</p></div>';
           var sp = sh.body.querySelector('.sbm-done span'); if (sp) sp.textContent = f.contact.value;
+          var al = sh.body.querySelector('.sbm-askl'); if (al) al.onclick = function () { track('ask_click', 'after report', true); };
         })
-        .catch(function (x) { err.textContent = x.message; err.hidden = false; btn.disabled = false; btn.textContent = 'Send me the free analysis'; });
+        .catch(function (x) { track('report_error', x.message); err.textContent = x.message; err.hidden = false; btn.disabled = false; btn.textContent = 'Send me the free analysis'; });
     };
   }
 
@@ -205,17 +269,17 @@
     nudge.innerHTML = '<button type="button" class="sbm-nx" aria-label="Close">×</button><b></b><p>Our team will show you where you lead your local competitors, and where you lose customers to them.</p>'
       + '<div class="sbm-nacts"><button type="button" class="sbm-btn sbm-book">Get it free</button><button type="button" class="sbm-btn sbm-later">Not now</button></div>';
     nudge.querySelector('b').textContent = 'Free analysis report for ' + name;
-    nudge.querySelector('.sbm-book').onclick = openReport;
-    nudge.querySelector('.sbm-later').onclick = hideNudge; nudge.querySelector('.sbm-nx').onclick = hideNudge;
+    nudge.querySelector('.sbm-book').onclick = function () { track('nudge_yes'); openReport('nudge'); };
+    nudge.querySelector('.sbm-later').onclick = nudge.querySelector('.sbm-nx').onclick = function () { track('nudge_no'); hideNudge(); };
     nudge.style.bottom = (bar.offsetHeight + 34) + 'px';
-    document.body.appendChild(nudge);
+    document.body.appendChild(nudge); track('nudge_shown');
   }
   setTimeout(showNudge, 12000);
   window.addEventListener('scroll', function onS() {
     if (window.scrollY > (document.documentElement.scrollHeight - innerHeight) * 0.5) { window.removeEventListener('scroll', onS); showNudge(); }
   }, { passive: true });
 
-  pill.onclick = function () { show(true); };
+  pill.onclick = function () { show(true); track('bar_show'); };
 
   function mount() {
     document.body.appendChild(bar); document.body.appendChild(pill);

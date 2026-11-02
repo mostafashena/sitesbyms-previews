@@ -279,7 +279,7 @@ function msg_row(array $m, array $typeLabel): string {
 }
 
 /* ---------- pages ---------- */
-$nav = [['home', 'Overview'], ['outreach', 'Outreach'], ['results', 'Results'], ['calls', 'Calls'], ['messages', 'Messages'], ['views', 'Concept views']];
+$nav = [['home', 'Overview'], ['outreach', 'Outreach'], ['results', 'Results'], ['activity', 'Activity'], ['calls', 'Calls'], ['messages', 'Messages'], ['views', 'Concept views']];
 if ($pdo && $isOwner) $nav[] = ['team', 'Team'];
 $nav[] = ['settings', 'Settings'];
 
@@ -413,6 +413,50 @@ if ($page === 'results') {
                 . ($r['slug'] ? '<a class="btn line sm" href="/' . h($r['slug']) . '/?team=1" target="_blank" rel="noopener">Concept</a>' : '') . '</div>'; }
         echo '</section>';
     }
+}
+if ($page === 'activity') {
+    $days = in_array((int)($_GET['d'] ?? 30), [7, 30, 60], true) ? (int)$_GET['d'] : 30;
+    $only = preg_replace('/[^a-z0-9-]/', '', (string)($_GET['s'] ?? ''));
+    $ss = sessions_from(events_all($days));
+    if ($only) $ss = array_values(array_filter($ss, fn($x) => $x['slug'] === $only));
+    $mmss = fn(int $s) => floor($s / 60) . ':' . str_pad((string)($s % 60), 2, '0', STR_PAD_LEFT);
+    $label = ['open' => 'Opened the page', 'scroll' => 'Scrolled to %s%%', 'section' => 'Saw “%s”', 'click' => 'Clicked “%s”', 'call' => 'Tapped call: %s', 'email' => 'Tapped email: %s',
+        'bar_hide' => 'Hid our bar', 'bar_show' => 'Brought our bar back', 'nudge_shown' => 'Saw the report offer', 'nudge_yes' => 'Said yes to the report offer', 'nudge_no' => 'Closed the report offer',
+        'report_open' => 'Opened the report form (%s)', 'report_submit' => '★ Requested the analysis report (%s)', 'report_error' => 'Report form error: %s',
+        'book_open' => 'Opened call booking (%s)', 'book_slot' => 'Picked a time: %s', 'book_submit' => '★ Booked a call (%s)', 'ask_click' => 'Went to ask a question', 'leave' => 'Left'];
+    $srcName = fn($s) => $s === 'email' ? 'Email' : ($s === 'ig' ? 'Instagram' : ($s === '' ? 'Direct / unknown' : $s));
+    // funnel per source
+    $steps = ['Visits', 'Engaged (20s+ or half the page)', 'Saw the report offer', 'Opened the report form', 'Requested the report', 'Booked a call'];
+    $fun = [];
+    foreach ($ss as $x) {
+        $c = $srcName($x['src']); $f = $x['flags'];
+        $vals = [true, $x['active'] >= 20 || $x['scroll'] >= 50, !empty($f['nudge_shown']) || !empty($f['report_open']), !empty($f['report_open']), !empty($f['report_submit']), !empty($f['book_submit'])];
+        foreach (['All visits', $c] as $k) { $fun[$k] ??= array_fill(0, count($steps), 0); foreach ($vals as $i => $v) if ($v) $fun[$k][$i]++; }
+    }
+    echo '<h1>Activity</h1><p class="sub">What visitors do on their concept page: how long they stay, how far they scroll, what they look at and what they click. Team visits are never counted.</p>';
+    echo '<div class="tabs2">'; foreach ([7, 30, 60] as $d) echo '<a href="?p=activity&amp;d=' . $d . ($only ? '&amp;s=' . h($only) : '') . '"' . ($d === $days ? ' style="font-weight:800"' : '') . '>Last ' . $d . ' days</a>'; if ($only) echo '<a href="?p=activity&amp;d=' . $days . '">Show all businesses</a>'; echo '</div>';
+    echo '<section class="card"><h2>Funnel' . ($only ? ' for ' . h($only) : '') . '</h2>';
+    if (!$ss) echo '<div class="empty">No visits recorded yet. They appear here as soon as someone opens a concept.</div>';
+    else {
+        echo '<div class="tbl"><table><thead><tr><th>Step</th>'; foreach (array_keys($fun) as $k) echo '<th>' . h($k) . '</th>'; echo '</tr></thead><tbody>';
+        foreach ($steps as $i => $st) { echo '<tr><td>' . h($st) . '</td>'; foreach ($fun as $row) echo '<td><b>' . $row[$i] . '</b>' . ($i && $row[0] ? ' <small>' . round(100 * $row[$i] / $row[0]) . '%</small>' : '') . '</td>'; echo '</tr>'; }
+        echo '</tbody></table></div><p class="hint">One visit = one visitor on one page until they leave. Percentages are of all visits in that column.</p>';
+    }
+    echo '</section><section class="card"><h2>Visits</h2>';
+    foreach (array_slice($ss, 0, 150) as $x) {
+        $f = $x['flags']; $chips = '';
+        if (!empty($f['report_submit'])) $chips .= '<span class="pill ok">Requested report</span>';
+        if (!empty($f['book_submit'])) $chips .= '<span class="pill ok">Booked a call</span>';
+        if (!empty($f['call'])) $chips .= '<span class="pill">Tapped call</span>';
+        if (!empty($f['report_open']) && empty($f['report_submit'])) $chips .= '<span class="pill">Opened report form</span>';
+        echo '<details class="card lead visit"><summary><div class="grow"><b>' . h($x['slug']) . '</b><small>' . h(ago($x['start'])) . ' · ' . h($srcName($x['src'])) . ' · ' . h($x['device']) . ' · active ' . $mmss($x['active']) . ' · scrolled ' . (int)$x['scroll'] . '%</small></div>' . $chips . '</summary><ol class="tl">';
+        foreach ($x['events'] as $e) { $t = (int)floor($e['t'] / 1000); $l = $label[$e['ev']] ?? $e['ev']; $v = $e['val'] !== '' ? $e['val'] : '—';
+            echo '<li><span>' . $mmss($t) . '</span>' . h(str_contains($l, '%s') ? sprintf($l, $v) : $l) . '</li>'; }
+        if ($x['scroll']) echo '<li><span>·</span>Deepest scroll: ' . (int)$x['scroll'] . '% · active time ' . $mmss($x['active']) . '</li>';
+        echo '</ol><p class="hint" style="margin:0 20px 16px"><a href="?p=activity&amp;d=' . $days . '&amp;s=' . h($x['slug']) . '">All visits for ' . h($x['slug']) . '</a> · <a href="/' . h($x['slug']) . '/?team=1" target="_blank" rel="noopener">Open concept</a></p></details>';
+    }
+    if (!$ss) echo '<div class="empty">Nothing yet.</div>';
+    echo '</section>';
 }
 if ($page === 'messages') {
     echo '<h1>Messages</h1><p class="sub">Questions and free concept requests from the website forms.</p>';
