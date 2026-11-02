@@ -296,6 +296,23 @@ $cfg = config();
 $typeLabel = ['booking' => 'Call request', 'question' => 'Question', 'concept' => 'Free concept request', 'report' => 'Report request'];
 $howLabel = ['Video call (Google Meet)' => 'Video call', 'WhatsApp call' => 'WhatsApp call', 'Phone call' => 'Phone call'];
 
+/* ---------- numbers for the sidebar badges ---------- */
+$badge = ['outreach' => 0, 'leads' => 0, 'calls' => count($upcoming), 'messages' => count($open), 'activity' => 0, 'outreach_hint' => ''];
+if (google_key()) { try {
+    $tzL = new DateTimeZone(TZ); $todayL = new DateTime('today', $tzL);
+    $pd = function (string $d) use ($tzL): ?DateTime { if ($d === '') return null; foreach (['Y-m-d', 'd/m/Y', 'm/d/Y', 'j M Y', 'd.m.Y'] as $f) { $x = DateTime::createFromFormat('!' . $f, $d, $tzL); if ($x) return $x; } return null; };
+    $nReady = $nFollow = $nRep = 0;
+    foreach (sheet_rows() as $r) {
+        if ($r['status'] === 'Candidate') $badge['leads']++;
+        if ($r['status'] === 'Review') $nReady++;
+        if (str_starts_with($r['stage'], 'Report ready')) $nRep++;
+        if ($r['status'] === 'Sent' && $r['reply'] === '') { $d = $pd($r['followup_date']) ?? (($s = $pd($r['sent'])) ? $s->modify('+3 days') : null); if ($d && $d <= $todayL) $nFollow++; }
+    }
+    $badge['outreach'] = $nReady + $nFollow + $nRep;
+    $badge['outreach_hint'] = "$nReady to send · $nFollow follow-ups · $nRep reports";
+} catch (Throwable $e) {} }
+try { $badge['activity'] = count(array_filter(sessions_from(events_all(2)), fn($x) => strtotime($x['start']) > time() - 86400)); } catch (Throwable $e) {}
+
 /* ---------- pieces ---------- */
 function booking_row(array $b, array $howLabel, bool $full = false): string {
     $past = $b['start_ts'] < time() - 1800; $cancelled = $b['status'] === 'cancelled';
@@ -329,9 +346,14 @@ function msg_row(array $m, array $typeLabel): string {
 }
 
 /* ---------- pages ---------- */
-$nav = [['home', 'Overview'], ['leads', 'Leads'], ['outreach', 'Outreach'], ['results', 'Results'], ['activity', 'Activity'], ['calls', 'Calls'], ['messages', 'Messages']];
-if ($pdo && $isOwner) $nav[] = ['team', 'Team'];
-$nav[] = ['settings', 'Settings'];
+$nav = [
+    'Work' => [['home', 'Overview', 'home'], ['outreach', 'Outreach', 'send'], ['leads', 'Leads', 'list']],
+    'Clients' => [['calls', 'Calls', 'phone'], ['messages', 'Messages', 'chat']],
+    'Insights' => [['results', 'Results', 'chart'], ['activity', 'Activity', 'pulse'], ['views', 'Concept views', 'eye']],
+    'Admin' => [],
+];
+if ($pdo && $isOwner) $nav['Admin'][] = ['team', 'Team', 'users'];
+$nav['Admin'][] = ['settings', 'Settings', 'cog'];
 
 ob_start();
 if (!$pdo && $isOwner && $page !== 'settings') echo '<div class="banner"><div><b>Connect the database</b><br><span>Calls and messages are saved in files for now. Connect MySQL to get personal logins for you and your team.</span></div><a class="btn" href="?p=settings#db">Connect</a></div>';
@@ -669,15 +691,36 @@ layout($page, $nav, $body, $err ?: $flash, $err ? true : $flashBad, count($open)
 function head(string $title): string {
     return '<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><meta name="robots" content="noindex, nofollow"><title>' . h($title) . ' · Sites By MS team panel</title>'
         . '<link rel="icon" href="/assets/brand/favicon.png"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>'
-        . '<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="/admin/admin.css?v=3"></head><body>';
+        . '<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="/admin/admin.css?v=4"></head><body>';
 }
 function auth_page(string $title, string $inner): void {
     echo head($title) . '<main class="auth"><img src="/assets/brand/logo-on-dark.png" alt="Sites By MS" class="logo"><div class="box"><h1>' . h($title) . '</h1>' . $inner . '</div></main></body></html>';
     exit;
 }
 function layout(string $page, array $nav, string $body, string $msg, bool $isErr, int $openCount, array $me): void {
-    echo head('Team panel') . '<header class="top"><a class="brand" href="/admin/"><img src="/assets/brand/mark-sm-dark.png" alt=""><span>Sites By <b>MS</b></span><em>Team panel</em></a>'
-        . '<nav aria-label="Panel">' . implode('', array_map(fn($n) => '<a href="?p=' . $n[0] . '"' . ($page === $n[0] ? ' aria-current="page"' : '') . '>' . $n[1] . ($n[0] === 'messages' && $openCount ? ' <i>' . $openCount . '</i>' : '') . '</a>', $nav))
-        . '<a href="?p=logout" class="out">Log out' . (!empty($me['email']) ? ' <small>' . h($me['email']) . '</small>' : '') . '</a></nav></header><main class="wrap">'
-        . ($msg ? '<div class="note' . ($isErr ? ' bad' : '') . '" role="status">' . h($msg) . '</div>' : '') . $body . '</main></body></html>';
+    global $badge;
+    $ic = ['home' => '<path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"/>', 'send' => '<path d="M21 3L10 14M21 3l-7 18-4-7-7-4z"/>',
+        'list' => '<path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/>', 'phone' => '<path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/>',
+        'chat' => '<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>', 'chart' => '<path d="M3 3v18h18M7 15l4-4 3 3 5-6"/>', 'pulse' => '<path d="M22 12h-4l-3 9L9 3l-3 9H2"/>',
+        'eye' => '<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8S1 12 1 12z"/><circle cx="12" cy="12" r="3"/>', 'users' => '<path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8M23 21v-2a4 4 0 0 0-3-3.9M16 3.1a4 4 0 0 1 0 7.8"/>',
+        'cog' => '<circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/>'];
+    $tips = ['outreach' => $badge['outreach_hint'] ?? '', 'leads' => 'candidates to approve', 'calls' => 'upcoming calls', 'messages' => 'unanswered', 'activity' => 'visits in the last 24 hours'];
+    $info = ['activity' => true, 'calls' => true];
+    $cur = in_array($page, ['lead', 'leadnew'], true) ? 'leads' : $page;
+    $side = '';
+    foreach ($nav as $group => $items) {
+        if (!$items) continue;
+        $side .= '<p class="sg">' . h($group) . '</p>';
+        foreach ($items as [$k, $label, $icon]) {
+            $n = (int)($badge[$k] ?? 0);
+            $side .= '<a href="?p=' . $k . '"' . ($cur === $k ? ' aria-current="page"' : '') . ($n && !empty($tips[$k]) ? ' title="' . h($tips[$k]) . '"' : '') . '><svg viewBox="0 0 24 24" aria-hidden="true">' . $ic[$icon] . '</svg><span>' . h($label) . '</span>'
+                . ($n ? '<i class="' . (!empty($info[$k]) ? 'info' : 'act') . '" aria-label="' . $n . ' ' . h($tips[$k] ?? '') . '">' . $n . '</i>' : '') . '</a>';
+        }
+    }
+    echo head('Team panel') . '<div class="app"><aside class="side" id="side"><a class="brand" href="/admin/"><img src="/assets/brand/mark-sm-dark.png" alt=""><span>Sites By <b>MS</b></span></a><nav aria-label="Panel">' . $side . '</nav>'
+        . '<div class="me">' . (!empty($me['name']) ? '<b>' . h($me['name']) . '</b>' : '') . (!empty($me['email']) ? '<small>' . h($me['email']) . '</small>' : '') . '<a href="?p=logout">Log out</a></div></aside>'
+        . '<div class="scrim" onclick="document.body.classList.remove(\'nav-open\')"></div>'
+        . '<div class="mainwrap"><header class="mtop"><button type="button" class="burger" aria-label="Menu" aria-controls="side" onclick="document.body.classList.toggle(\'nav-open\')"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>'
+        . ($badge['outreach'] + $badge['messages'] ? '<i>' . ($badge['outreach'] + $badge['messages']) . '</i>' : '') . '</button><a class="brand" href="/admin/"><img src="/assets/brand/mark-sm-dark.png" alt=""><span>Sites By <b>MS</b></span></a></header>'
+        . '<main class="wrap">' . ($msg ? '<div class="note' . ($isErr ? ' bad' : '') . '" role="status">' . h($msg) . '</div>' : '') . $body . '</main></div></div></body></html>';
 }

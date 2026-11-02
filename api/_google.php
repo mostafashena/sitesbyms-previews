@@ -50,6 +50,7 @@ function http_json(string $method, string $url, $body = null, bool $form = false
 
 function sheet_rows(bool $fresh = false): array {
     static $cache = null; if ($cache !== null && !$fresh) return $cache;
+    if (!$fresh) { $fc = read_json('sheet_cache.json', []); if (($fc['at'] ?? 0) > time() - 60 && isset($fc['rows'])) return $cache = $fc['rows']; }
     $t = google_token();
     $j = http_json('GET', google_api_base() . '/v4/spreadsheets/' . SHEET_ID . '/values/' . rawurlencode(SHEET_TAB . '!A1:Z1000') . '?valueRenderOption=FORMATTED_VALUE', null, false, ["Authorization: Bearer $t"]);
     $vals = $j['values'] ?? []; $rows = [];
@@ -61,11 +62,13 @@ function sheet_rows(bool $fresh = false): array {
         if ($row['company'] === '') continue;
         $rows[] = $row;
     }
+    write_json('sheet_cache.json', ['at' => time(), 'rows' => $rows]);
     return $cache = $rows;
 }
 
 /** Writes cells of one sheet row. $cells: ['status' => 'Sent', ...]. Dates use USER_ENTERED so formulas keep working. */
 function sheet_update_row(int $row, array $cells): void {
+    @unlink(data_dir() . '/sheet_cache.json');
     $t = google_token(); $raw = []; $typed = [];
     foreach ($cells as $k => $v) {
         if (!isset(COL[$k])) continue;
@@ -145,6 +148,7 @@ function sheet_append_lead(array $cells): int {
     $line = [];
     foreach (COL as $k => $letter) $line[] = $k === 'row' ? (string)($n + 1) : (string)($cells[$k] ?? '');
     $line = array_slice($line, 0, array_search('followup_date', array_keys(COL)));   // stop before T (formula column)
+    @unlink(data_dir() . '/sheet_cache.json');
     $t = google_token(); $row = $last + 1;
     http_json('POST', google_api_base() . '/v4/spreadsheets/' . SHEET_ID . '/values:batchUpdate', ['valueInputOption' => 'RAW', 'data' => [['range' => SHEET_TAB . '!A' . $row . ':S' . $row, 'values' => [$line]]]], false, ["Authorization: Bearer $t"]);
     $rest = []; foreach (['reply', 'slug', 'stage', 'payment', 'ig_message', 'ig_followup'] as $k) if (($cells[$k] ?? '') !== '') $rest[$k] = $cells[$k];
