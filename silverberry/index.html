@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Silverberry | Breakfast, brunch &amp; coffee on Pond Street, Hampstead</title>
+<meta name="description" content="Silverberry, 14 Pond Street, Hampstead. Neighbourhood café for breakfast, brunch, lunch bowls and coffee, open from 7am.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,700;1,500&family=Jost:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* Layout: editorial magazine. Words: neighbourly, fresh, unhurried. */
+:root{--sage:#2F4A3A;--moss:#5C7A62;--stone:#F3F1EC;--silver:#C9CCC6;--berry:#7B2D4A;--ink:#1E2420}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--stone);color:var(--ink);font:400 17px/1.7 Jost,system-ui,sans-serif}
+a{color:inherit}
+img{display:block;width:100%;height:100%;object-fit:cover}
+h1,h2,h3{font-family:"Cormorant Garamond",Georgia,serif;font-weight:700;margin:0;line-height:1.02}
+.wrap{width:min(1120px,100% - 32px);margin-inline:auto}
+.topbar{background:var(--ink);color:#fff;font-size:13px;text-align:center;padding:7px 16px}
+header{position:sticky;top:0;z-index:20;background:rgba(243,241,236,.95);backdrop-filter:blur(6px);border-bottom:1px solid var(--silver)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:70px;gap:12px}
+.logo{display:flex;align-items:center;height:48px;text-decoration:none}
+.logo img{height:48px;width:auto;object-fit:contain}
+.logo span{display:none;font:italic 700 30px/1 "Cormorant Garamond",serif;color:var(--sage)}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:0 22px;background:var(--sage);color:#fff;font-weight:500;letter-spacing:.06em;text-transform:uppercase;font-size:14px;text-decoration:none;white-space:nowrap}
+.btn.line{background:transparent;color:var(--sage);border:1px solid var(--sage)}
+figure{margin:0;position:relative;overflow:hidden;background:#D7DDD5}
+.cap{position:absolute;right:8px;bottom:8px;font-size:11px;background:rgba(255,255,255,.85);padding:2px 7px}
+.issue{display:flex;justify-content:space-between;border-bottom:1px solid var(--ink);padding:16px 0 10px;font-size:12px;letter-spacing:.2em;text-transform:uppercase}
+/* split editorial hero */
+.hero{display:grid;gap:26px;padding:24px 0 54px}
+.hero h1{font-size:clamp(52px,12vw,124px);color:var(--sage)}
+.hero h1 i{font-weight:500;color:var(--berry)}
+.dek{font:italic 500 24px/1.35 "Cormorant Garamond",serif;max-width:480px;margin:18px 0 24px}
+.hero figure{aspect-ratio:4/5}
+.row{display:flex;flex-wrap:wrap;gap:10px}
+section{padding:60px 0}
+.kick{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--berry);margin-bottom:12px}
+h2{font-size:clamp(38px,7vw,64px);color:var(--sage);margin-bottom:18px}
+/* feature article */
+.feature{display:grid;gap:30px;border-top:1px solid var(--ink);padding-top:36px}
+.feature .col{columns:1;column-gap:36px}
+.feature p{margin:0 0 14px}
+.feature p:first-child::first-letter{float:left;font:700 72px/.8 "Cormorant Garamond",serif;color:var(--berry);padding:6px 10px 0 0}
+.feature figure{aspect-ratio:3/2}
+.pull{font:italic 500 28px/1.25 "Cormorant Garamond",serif;color:var(--sage);border-left:3px solid var(--berry);padding-left:18px;margin:8px 0 0}
+/* contents / offer */
+.contents{background:var(--sage);color:#EEF1EC}
+.contents h2{color:#fff}
+.toc{display:grid;gap:0;border-top:1px solid rgba(255,255,255,.3)}
+.toc div{display:grid;grid-template-columns:52px 1fr;gap:12px;padding:16px 0;border-bottom:1px solid rgba(255,255,255,.3)}
+.toc b{font:700 28px/1 "Cormorant Garamond",serif;color:var(--silver)}
+.toc h3{font-size:26px;color:#fff}
+.toc p{margin:2px 0 0;color:#CBD5CC}
+/* gallery spread */
+.spread{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.spread figure{aspect-ratio:4/5}
+.spread figure.wide{grid-column:span 2;aspect-ratio:16/9}
+/* reviews */
+.revs{display:grid;gap:22px;border-top:1px solid var(--ink);padding-top:30px}
+blockquote{margin:0;font:italic 500 26px/1.3 "Cormorant Garamond",serif}
+blockquote cite{display:block;margin-top:10px;font:400 13px/1.4 Jost,sans-serif;letter-spacing:.16em;text-transform:uppercase;font-style:normal;color:var(--moss)}
+/* visit */
+.visit{display:grid;gap:22px;background:#fff;padding:28px;border:1px solid var(--silver)}
+.visit h3{font-size:28px;color:var(--sage);margin-bottom:10px}
+table{width:100%;border-collapse:collapse}
+td{padding:7px 0;border-bottom:1px solid #E6E4DE}
+td:last-child{text-align:right}
+.close{text-align:center}
+.close p{font:italic 500 24px/1.4 "Cormorant Garamond",serif;margin:0 0 22px}
+footer{border-top:1px solid var(--ink);padding:24px 0 40px;font-size:14px}
+footer .wrap{display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between}
+@media(min-width:800px){
+ .hero{grid-template-columns:1.1fr .9fr;align-items:end}
+ .feature{grid-template-columns:1.2fr .8fr;align-items:start}
+ .feature .col{columns:2}
+ .toc{grid-template-columns:1fr 1fr;column-gap:40px}
+ .spread{grid-template-columns:repeat(4,1fr)}
+ .spread figure.wide{grid-column:span 2;aspect-ratio:auto}
+ .revs{grid-template-columns:1fr 1fr 1fr}
+ .visit{grid-template-columns:1fr 1fr;padding:40px}
+}
+</style>
+</head>
+<body id="top">
+<div class="topbar">Design concept prepared for Silverberry by Sites By MS. Not the official website.</div>
+<header>
+ <div class="wrap nav">
+  <a class="logo" href="#top" aria-label="Silverberry home"><img src="https://silverberry.net/wp-content/uploads/2024/07/sb-logo-green.png" alt="Silverberry logo" width="160" height="48" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><span>Silverberry</span></a>
+  <a class="btn" href="tel:02079161745">Call us</a>
+ </div>
+</header>
+
+<main>
+ <div class="wrap">
+  <div class="issue"><span>14 Pond Street</span><span>Hampstead NW3</span></div>
+  <section class="hero" style="padding-top:24px">
+   <div>
+    <div class="kick">Breakfast · Brunch · Coffee</div>
+    <h1>Good mornings, <i>Pond Street.</i></h1>
+    <p class="dek">Your next breakfast and brunch is just round the corner, from 7am every weekday.</p>
+    <div class="row"><a class="btn" href="#menu">Read the menu</a><a class="btn line" href="#visit">Opening hours</a></div>
+   </div>
+   <figure><img src="https://silverberry.net/wp-content/uploads/elementor/thumbs/silverberry-interior-home-1-qrfwlwp7w9bwe32mat0dvp4u6lic0gxds6z2rawcc0.jpg" alt="Inside Silverberry" width="900" height="1125" onerror="this.style.opacity=0"></figure>
+  </section>
+ </div>
+
+ <section id="about" style="padding-top:0">
+  <div class="wrap feature">
+   <div>
+    <div class="kick">The neighbourhood</div>
+    <h2>A small neighbourhood ecosystem</h2>
+    <div class="col">
+     <p>Silverberry sits on Pond Street in Hampstead: a relaxed café where the day starts early with coffee and avocado sourdough, carries on through shakshuka and Benedicts, and ends with a slice of burnt Basque cheesecake.</p>
+     <p>From midday the menu turns to burgers and bowls, and the coffee keeps coming, from classics to chai lattes, matcha and Belgian hot chocolate. It has more than two thousand Google reviews, at 4.6 stars.</p>
+    </div>
+    <p class="pull">"Nice music and sweet staff."</p>
+   </div>
+   <figure><img src="https://silverberry.net/wp-content/uploads/elementor/thumbs/silverberry-interior-home-2-s-qrq33inwrydz12m8vte28c49kvvu7qn7qi0wb8ln5c.jpg" alt="Silverberry dining room" width="900" height="600" loading="lazy" onerror="this.style.opacity=0"></figure>
+  </div>
+ </section>
+
+ <section id="menu" class="contents">
+  <div class="wrap">
+   <div class="kick" style="color:var(--silver)">In this issue</div>
+   <h2>On the menu</h2>
+   <div class="toc">
+    <div><b>01</b><div><h3>Avocado sourdough</h3><p>The breakfast classic, done well.</p></div></div>
+    <div><b>02</b><div><h3>Shakshuka</h3><p>Eggs baked in a spiced tomato sauce.</p></div></div>
+    <div><b>03</b><div><h3>New Yorker Benedict</h3><p>For a proper weekend brunch.</p></div></div>
+    <div><b>04</b><div><h3>Bowls from midday</h3><p>Quinoa bowl and roasted sweet potato bowl.</p></div></div>
+    <div><b>05</b><div><h3>Angus beef burger</h3><p>Lunch for bigger appetites.</p></div></div>
+    <div><b>06</b><div><h3>Something sweet</h3><p>Burnt Basque cheesecake, tiramisu, homemade granola.</p></div></div>
+   </div>
+  </div>
+ </section>
+
+ <section id="gallery">
+  <div class="wrap">
+   <div class="kick">Photo essay</div>
+   <h2>Inside Silverberry</h2>
+   <div class="spread">
+    <figure class="wide"><img src="https://silverberry.net/wp-content/uploads/elementor/thumbs/silverberry-interior-home-3-s-qrq34jbm6hs5lv4zxr8ifkv8qwv5jxoqvjgu113aeo.jpg" alt="Silverberry interior" width="1200" height="675" loading="lazy" onerror="this.style.opacity=0"></figure>
+    <figure><img src="https://images.unsplash.com/photo-1761027101486-d0403a229f88?w=1600&q=80" alt="Avocado toast with poached egg" width="800" height="1000" loading="lazy" onerror="this.style.opacity=0"><span class="cap">Sample photo</span></figure>
+    <figure><img src="https://images.unsplash.com/photo-1616866866413-0ee9e3f7fbd2?w=1600&q=80" alt="Eggs on bread" width="800" height="1000" loading="lazy" onerror="this.style.opacity=0"><span class="cap">Sample photo</span></figure>
+    <figure><img src="https://images.unsplash.com/photo-1759303380841-55c09244fd2b?w=1600&q=80" alt="A slice of burnt Basque cheesecake on a wooden board" width="800" height="1000" loading="lazy" onerror="this.style.opacity=0"><span class="cap">Sample photo</span></figure>
+    <figure><img src="https://images.unsplash.com/photo-1674315604997-bc5fcaa1ac32?w=1600&q=80" alt="A brunch plate with eggs and asparagus" width="800" height="1000" loading="lazy" onerror="this.style.opacity=0"><span class="cap">Sample photo</span></figure>
+   </div>
+  </div>
+ </section>
+
+ <section id="reviews" style="padding-top:0">
+  <div class="wrap">
+   <div class="kick">4.6 on Google · 2,000+ reviews</div>
+   <div class="revs">
+    <blockquote>"The food was very good, with quality ingredients and well-prepared dishes."<cite>Guest review</cite></blockquote>
+    <blockquote>"Food was good, service was good too, nice music and sweet staff."<cite>Guest review</cite></blockquote>
+    <blockquote>"I was greeted by a warm ambiance and friendly staff."<cite>Guest review</cite></blockquote>
+   </div>
+  </div>
+ </section>
+
+ <section id="visit" style="padding-top:0">
+  <div class="wrap visit">
+   <div>
+    <h3>Opening hours</h3>
+    <table>
+     <tr><td>Monday – Saturday</td><td>7am – 7pm</td></tr>
+     <tr><td>Sunday</td><td>8am – 7pm</td></tr>
+    </table>
+   </div>
+   <div>
+    <h3>Find us</h3>
+    <p style="margin-top:0">14 Pond Street<br>Hampstead, London NW3 2PS</p>
+    <p><a href="tel:02079161745">020 7916 1745</a><br><a href="mailto:hello@silverberry.net">hello@silverberry.net</a><br><a href="https://www.instagram.com/silverberryhampstead/">@silverberryhampstead</a></p>
+    <a class="btn" href="https://maps.google.com/?q=Silverberry+14+Pond+Street+London+NW3+2PS">Directions</a>
+   </div>
+  </div>
+ </section>
+
+ <section class="close" style="padding-top:0">
+  <div class="wrap">
+   <h2>See you for breakfast.</h2>
+   <p>Pond Street, Hampstead. From 7am.</p>
+   <div class="row" style="justify-content:center"><a class="btn" href="tel:02079161745">Call 020 7916 1745</a><a class="btn line" href="https://maps.google.com/?q=Silverberry+14+Pond+Street+London+NW3+2PS">Directions</a></div>
+  </div>
+ </section>
+</main>
+
+<footer>
+ <div class="wrap">
+  <span><b>Silverberry</b> · 14 Pond Street, London NW3 2PS</span>
+  <span>Design concept by Sites By MS. Not the official website.</span>
+ </div>
+</footer>
+<script src="/assets/concept-bar.js" data-name="Silverberry" data-slug="silverberry" defer></script>
+</body>
+</html>
