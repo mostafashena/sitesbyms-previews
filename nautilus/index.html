@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nautilus | Fish &amp; chips on Fortune Green Road, West Hampstead</title>
+<meta name="description" content="Nautilus, 27-29 Fortune Green Road, West Hampstead. Family-run fish and chip restaurant and takeaway, a local favourite for generations.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bowlby+One&family=Lexend:wght@400;600&display=swap" rel="stylesheet">
+<style>
+/* Layout: colour-block playful. Words: classic, family, no-nonsense. */
+:root{--navy:#0F2D52;--sky:#7FC4E8;--red:#D7392B;--chip:#F4C542;--paper:#FFFDF6;--ink:#10192A}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 17px/1.6 Lexend,system-ui,sans-serif}
+a{color:inherit}
+img{display:block;width:100%;height:100%;object-fit:cover}
+h1,h2,h3{font-family:"Bowlby One",Impact,sans-serif;font-weight:400;margin:0;line-height:.98;text-transform:uppercase}
+.wrap{width:min(1100px,100% - 32px);margin-inline:auto}
+.topbar{background:var(--ink);color:#fff;font-size:13px;text-align:center;padding:7px 16px}
+header{position:sticky;top:0;z-index:20;background:var(--paper);border-bottom:4px solid var(--navy)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:64px;gap:12px}
+.mark{text-decoration:none;display:flex;align-items:center;gap:10px}
+.mark b{font:400 26px/1 "Bowlby One",sans-serif;color:var(--navy);letter-spacing:.04em}
+.shell{width:34px;height:34px;border-radius:50%;background:conic-gradient(var(--red) 0 25%,var(--chip) 0 50%,var(--sky) 0 75%,var(--navy) 0)}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 22px;border-radius:999px;background:var(--red);color:#fff;font-weight:600;text-decoration:none;white-space:nowrap;border:3px solid var(--ink)}
+.btn.chip{background:var(--chip);color:var(--ink)}
+.btn.sky{background:var(--sky);color:var(--ink)}
+figure{margin:0;position:relative;overflow:hidden;background:var(--sky)}
+.cap{position:absolute;right:8px;bottom:8px;font-size:11px;background:rgba(255,255,255,.9);padding:2px 7px;border-radius:999px}
+/* blocks */
+.blocks{display:grid;gap:0}
+.b{padding:34px 22px}
+.b.navy{background:var(--navy);color:#fff}
+.b.chip{background:var(--chip)}
+.b.red{background:var(--red);color:#fff}
+.b.sky{background:var(--sky)}
+.hero h1{font-size:clamp(54px,13vw,128px)}
+.hero h1 span{color:var(--chip)}
+.hero p{font-size:19px;max-width:500px;margin:16px 0 22px}
+.row{display:flex;flex-wrap:wrap;gap:10px}
+.hero figure{min-height:300px;border:4px solid var(--ink)}
+.stamp{display:inline-flex;align-items:center;justify-content:center;width:120px;height:120px;border-radius:50%;background:var(--red);color:#fff;font:400 18px/1.05 "Bowlby One",sans-serif;text-align:center;transform:rotate(-10deg);border:4px solid var(--ink);margin-top:-60px;position:relative;z-index:2}
+section{padding:60px 0}
+h2{font-size:clamp(38px,7vw,68px);margin-bottom:18px}
+.kick{font-weight:600;letter-spacing:.18em;text-transform:uppercase;font-size:12px;margin-bottom:10px}
+/* about */
+.about{display:grid;gap:0;border:4px solid var(--ink);border-radius:24px;overflow:hidden}
+.about .t{padding:28px}
+.about figure{min-height:300px}
+.about p{margin:0 0 12px}
+/* menu tiles */
+.tiles{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.tile{border:4px solid var(--ink);border-radius:20px;padding:20px 16px;min-height:150px;display:flex;flex-direction:column;justify-content:space-between}
+.tile:nth-child(1){background:var(--chip)}
+.tile:nth-child(2){background:var(--sky)}
+.tile:nth-child(3){background:var(--red);color:#fff}
+.tile:nth-child(4){background:var(--navy);color:#fff}
+.tile:nth-child(5){background:#fff}
+.tile:nth-child(6){background:var(--chip)}
+.tile h3{font-size:24px}
+.tile p{margin:8px 0 0;font-size:15px}
+/* gallery */
+.gal{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.gal figure{aspect-ratio:1/1;border:4px solid var(--ink);border-radius:20px}
+/* reviews */
+.qs{display:grid;gap:14px}
+.q{background:#fff;color:var(--ink);border:4px solid var(--ink);border-radius:20px;padding:22px;box-shadow:6px 6px 0 var(--ink)}
+.q p{margin:0;font:400 22px/1.15 "Bowlby One",sans-serif;text-transform:uppercase}
+.q cite{display:block;margin-top:10px;font-style:normal;font-weight:600}
+/* visit */
+.visit{display:grid;gap:14px}
+.card{border:4px solid var(--ink);border-radius:20px;padding:22px;background:#fff}
+.card h3{font-size:26px;color:var(--red);margin-bottom:10px}
+table{width:100%;border-collapse:collapse}
+td{padding:7px 0;border-bottom:2px dotted #D5D9E0}
+td:last-child{text-align:right;font-weight:600}
+.small{font-size:13px;color:#4C5566}
+footer{background:var(--navy);color:#fff;padding:26px 0 40px;font-size:14px}
+footer .wrap{display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between}
+@media(min-width:800px){
+ .blocks.hero{grid-template-columns:1.1fr .9fr}
+ .b{padding:56px 48px}
+ .about{grid-template-columns:1fr 1fr}
+ .tiles{grid-template-columns:repeat(3,1fr)}
+ .gal{grid-template-columns:repeat(4,1fr)}
+ .qs{grid-template-columns:1fr 1fr 1fr}
+ .visit{grid-template-columns:1fr 1fr}
+}
+</style>
+</head>
+<body id="top">
+<div class="topbar">Design concept prepared for Nautilus by Sites By MS. Not the official website.</div>
+<header>
+ <div class="wrap nav">
+  <a class="mark" href="#top" aria-label="Nautilus home"><span class="shell" aria-hidden="true"></span><b>Nautilus</b></a>
+  <a class="btn" href="tel:02074352532">Call us</a>
+ </div>
+</header>
+
+<main>
+ <div class="blocks hero">
+  <div class="b navy">
+   <div class="kick" style="color:var(--sky)">Fortune Green Road · West Hampstead</div>
+   <h1>Proper <span>fish &amp; chips.</span></h1>
+   <p>A family-run chippy that West Hampstead has trusted for as long as anyone can remember. Eat in, or take it home.</p>
+   <div class="row"><a class="btn chip" href="tel:02074352532">020 7435 2532</a><a class="btn sky" href="#visit">Opening hours</a></div>
+  </div>
+  <div class="b chip">
+   <figure style="min-height:340px"><img src="https://images.unsplash.com/photo-1697748836791-9ddf7e616ece?w=1600&q=80" alt="Fried fish and chips on a white plate" width="1200" height="1200" onerror="this.style.opacity=0"><span class="cap">Sample photo</span></figure>
+   <div class="stamp">4.5 ★<br>500<br>reviews</div>
+  </div>
+ </div>
+
+ <section id="about">
+  <div class="wrap about">
+   <figure><img src="https://images.unsplash.com/photo-1784597148273-ea233bf17016?w=1600&q=80" alt="An illuminated fish and chips sign" width="1200" height="900" loading="lazy" onerror="this.style.opacity=0"><span class="cap">Sample photo</span></figure>
+   <div class="t">
+    <div class="kick" style="color:var(--red)">The local chippy</div>
+    <h2>Simple room, serious fish</h2>
+    <p>Nautilus is a family-owned, long-standing favourite on Fortune Green Road. The setting is simple and casual; the attention goes on the fish.</p>
+    <p>There's a big choice of fish, plus chicken, sausages and a few salads, with beer, house wine and hot or soft drinks.</p>
+   </div>
+  </div>
+ </section>
+
+ <section id="menu" style="padding-top:0">
+  <div class="wrap">
+   <div class="kick">The menu</div>
+   <h2>What's frying</h2>
+   <div class="tiles">
+    <div class="tile"><h3>Cod &amp; haddock</h3><p>The classics, with chips.</p></div>
+    <div class="tile"><h3>Lemon sole &amp; more</h3><p>A large choice of fish.</p></div>
+    <div class="tile"><h3>Chips</h3><p>The other half of the deal.</p></div>
+    <div class="tile"><h3>Chicken &amp; sausages</h3><p>For the non-fish eaters.</p></div>
+    <div class="tile"><h3>Salads &amp; sides</h3><p>A few lighter plates.</p></div>
+    <div class="tile"><h3>Takeaway</h3><p>Fish and chips to take home.</p></div>
+   </div>
+  </div>
+ </section>
+
+ <section id="gallery" style="padding-top:0">
+  <div class="wrap">
+   <div class="kick">Hungry?</div>
+   <h2>Golden &amp; crisp</h2>
+   <div class="gal">
+    <figure><img src="https://images.unsplash.com/photo-1764397557799-258db31fe6a4?w=1600&q=80" alt="Fish and chips with lemon and sauce" width="800" height="800" loading="lazy" onerror="this.style.opacity=0"><span class="cap">Sample photo</span></figure>
+    <figure><img src="https://images.unsplash.com/photo-1769611445765-9b6ca0d2e649?w=1600&q=80" alt="A takeaway box of fish and chips with lemon" width="800" height="800" loading="lazy" onerror="this.style.opacity=0"><span class="cap">Sample photo</span></figure>
+    <figure><img src="https://images.unsplash.com/photo-1763633924194-d008fbcfeb6a?w=1600&q=80" alt="Fried fish and chips with peas" width="800" height="800" loading="lazy" onerror="this.style.opacity=0"><span class="cap">Sample photo</span></figure>
+    <figure><img src="https://images.unsplash.com/photo-1576777647209-e8733d7b851d?w=1600&q=80" alt="A pile of chips" width="800" height="800" loading="lazy" onerror="this.style.opacity=0"><span class="cap">Sample photo</span></figure>
+   </div>
+  </div>
+ </section>
+
+ <div class="b red" id="reviews">
+  <div class="wrap">
+   <h2>What they say</h2>
+   <div class="qs">
+    <div class="q"><p>"Outstanding local chippy."</p><cite>Harden's survey</cite></div>
+    <div class="q"><p>"One of the best in London."</p><cite>Harden's survey</cite></div>
+    <div class="q"><p>"Gasps of delight at the sheer freshness."</p><cite>Time Out London</cite></div>
+   </div>
+  </div>
+ </div>
+
+ <section id="visit">
+  <div class="wrap">
+   <div class="kick">Visit</div>
+   <h2>27-29 Fortune Green Road</h2>
+   <div class="visit">
+    <div class="card">
+     <h3>Opening hours</h3>
+     <table>
+      <tr><td>Monday – Saturday</td><td>11.30am – 9.30pm</td></tr>
+      <tr><td>Sunday</td><td>12pm – 8pm</td></tr>
+     </table>
+     <p class="small">Hours as listed online; we'd confirm them with you.</p>
+    </div>
+    <div class="card">
+     <h3>Find us</h3>
+     <p style="margin-top:0">27-29 Fortune Green Road<br>West Hampstead, London NW6 1DU</p>
+     <p><a href="tel:02074352532">020 7435 2532</a><br><a href="https://www.instagram.com/nautilusfishandchip/">@nautilusfishandchip</a></p>
+     <a class="btn" href="https://maps.google.com/?q=Nautilus+27-29+Fortune+Green+Road+London+NW6+1DU">Directions</a>
+    </div>
+   </div>
+  </div>
+ </section>
+
+ <div class="b chip" style="text-align:center">
+  <h2>Friday? Fish.</h2>
+  <p style="margin:0 0 20px">Eat in or take away, seven days a week.</p>
+  <a class="btn" href="tel:02074352532">Call 020 7435 2532</a>
+ </div>
+</main>
+
+<footer>
+ <div class="wrap">
+  <span><b>Nautilus</b> · 27-29 Fortune Green Road, London NW6 1DU</span>
+  <span>Design concept by Sites By MS. Not the official website.</span>
+ </div>
+</footer>
+<script src="/assets/concept-bar.js" data-name="Nautilus" data-slug="nautilus" defer></script>
+</body>
+</html>
