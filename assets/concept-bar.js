@@ -57,7 +57,7 @@
     + '.sbm-lead{margin:0 0 14px;font-size:16px;line-height:1.55;color:#1B2140}'
     + '.sbm-list{list-style:none;margin:0 0 18px;padding:0;display:grid;gap:10px}'
     + '.sbm-list li{display:flex;gap:12px;align-items:flex-start;font-size:15px;line-height:1.45;color:#2A3050}'
-    + '.sbm-list i{font-style:normal;flex:0 0 30px;height:30px;border-radius:9px;background:#F1ECFF;color:#5B2FE0;display:grid;place-items:center;font-weight:800}'
+    + '.sbm-list i{font-style:normal;flex:0 0 28px;height:28px;border-radius:50%;background:#070F37;color:#fff;display:grid;place-items:center;font-weight:800;font-size:13px}'
     + '.sbm-form label{display:block;font-weight:700;font-size:14px;color:#0E1430}'
     + '.sbm-form label em{font-style:normal;font-weight:500;color:#7A7F99;margin-left:4px}'
     + '.sbm-form input{display:block;width:100%;margin-top:6px;min-height:48px;border:1.5px solid #DCD8E8;border-radius:12px;padding:0 14px;font:500 16px/1 inherit;font-family:inherit;color:#0E1430;background:#fff}'
@@ -86,9 +86,9 @@
   var bar = document.createElement('div');
   bar.className = 'sbm-bar'; bar.setAttribute('role', 'region'); bar.setAttribute('aria-label', 'About this concept');
   bar.innerHTML = '<img src="/assets/brand/mark-sm-dark.png" alt="Sites By MS">'
-    + '<div class="sbm-txt"><b></b><span>We\'ve also compared you with similar businesses nearby. The report is free.</span></div>'
+    + '<div class="sbm-txt"><b></b><span>Get a free market analysis for your business from our team.</span></div>'
     + '<div class="sbm-acts"><a class="sbm-btn sbm-ask" href="/book/' + q + '">Book a call</a>'
-    + '<a class="sbm-btn sbm-book sbm-rep" href="#report">Get my free report</a></div>'
+    + '<a class="sbm-btn sbm-book sbm-rep" href="#report">Free analysis report</a></div>'
     + '<button class="sbm-x" type="button" aria-label="Hide this bar"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>';
   bar.querySelector('.sbm-txt b').textContent = 'This concept was made for ' + name + ' by Sites By MS';
 
@@ -161,22 +161,23 @@
     return { body: bg.querySelector('.sbm-sheet-body'), close: close };
   }
 
+  function esc(t) { return String(t).replace(/[&<>"']/g, function (c) { return '&#' + c.charCodeAt(0) + ';'; }); }
   var asked = store('sbm_rep_' + slug) === '1';
   function openReport() {
     hideNudge();
-    var sh = sheet('Free competitor report for ' + name, 'Ready within 24 hours · no cost, no obligation');
-    if (asked) { sh.body.innerHTML = '<div class="sbm-done"><b>You\'ve already asked for it 👍</b><p>We\'re preparing your report and will send it within 24 hours.</p></div>'; return; }
-    sh.body.innerHTML = '<p class="sbm-lead">We look at <b>4–5 similar businesses near you</b> and show, side by side, where you are ahead and where customers may pick someone else.</p>'
+    var sh = sheet('Free analysis report for ' + name, 'Prepared by the Sites By MS team · ready within 24 hours');
+    if (asked) { sh.body.innerHTML = '<div class="sbm-done"><b>You\'ve already asked for it 👍</b><p>Our team is preparing your analysis and will send it within 24 hours.</p></div>'; return; }
+    sh.body.innerHTML = '<p class="sbm-lead">Our team compares <b>' + esc(name) + ' with 4–5 local competitors</b> and shows you where you lead, where you lose customers, and what to do about it.</p>'
       + '<ul class="sbm-list">'
-      + '<li><i>★</i><span><b>Google rating and reviews</b> compared with your neighbours</span></li>'
-      + '<li><i>⌕</i><span><b>Who shows up first on Google Maps</b> when people search nearby</span></li>'
-      + '<li><i>▣</i><span><b>Websites side by side</b>: mobile, booking, menu or prices, hours</span></li>'
-      + '<li><i>✓</i><span><b>3 quick wins</b> you can act on, with or without us</span></li></ul>'
+      + '<li><i>1</i><span><b>Market position</b>: how you stand against local competitors</span></li>'
+      + '<li><i>2</i><span><b>Online visibility</b>: how easily new customers find you</span></li>'
+      + '<li><i>3</i><span><b>Customer experience</b>: your website and booking side by side with theirs</span></li>'
+      + '<li><i>4</i><span><b>Priority actions</b>: three clear steps, ranked by impact</span></li></ul>'
       + '<form class="sbm-form" novalidate><label>Where should we send it? <em>optional</em><input name="contact" autocomplete="email" placeholder="Email or WhatsApp number"></label>'
       + '<input name="website_url" tabindex="-1" autocomplete="off" class="sbm-hp" aria-hidden="true">'
       + '<p class="sbm-note">Leave it empty and we\'ll reply where we first contacted you.</p>'
       + '<p class="sbm-err" role="alert" hidden></p>'
-      + '<button class="sbm-btn sbm-book sbm-go" type="submit">Yes, send me the report</button></form>';
+      + '<button class="sbm-btn sbm-book sbm-go" type="submit">Send me the free analysis</button></form>';
     var f = sh.body.querySelector('form'), err = f.querySelector('.sbm-err'), btn = f.querySelector('.sbm-go');
     f.onsubmit = function (e) {
       e.preventDefault(); err.hidden = true; btn.disabled = true; btn.textContent = 'Sending…';
@@ -186,11 +187,11 @@
         .then(function (j) {
           if (!j.ok) throw new Error(j.error || 'Something went wrong. Please try again.');
           asked = true; store('sbm_rep_' + slug, '1');
-          sh.body.innerHTML = '<div class="sbm-done"><b>Thank you! Your report is on its way.</b><p>We\'ll send it within 24 hours' + (f.contact.value ? ' to <span></span>' : '') + '. It opens on a private page together with this concept.</p>'
+          sh.body.innerHTML = '<div class="sbm-done"><b>Thank you. Our team is on it.</b><p>Your analysis report will be ready within 24 hours and we\'ll send it' + (f.contact.value ? ' to <span></span>' : ' to you') + '. It opens on your own private page, together with this concept.</p>'
             + '<p>Questions in the meantime? <a href="/ask/' + q + '">Ask us anything</a>.</p></div>';
           var sp = sh.body.querySelector('.sbm-done span'); if (sp) sp.textContent = f.contact.value;
         })
-        .catch(function (x) { err.textContent = x.message; err.hidden = false; btn.disabled = false; btn.textContent = 'Yes, send me the report'; });
+        .catch(function (x) { err.textContent = x.message; err.hidden = false; btn.disabled = false; btn.textContent = 'Send me the free analysis'; });
     };
   }
 
@@ -200,10 +201,10 @@
   function showNudge() {
     if (asked || nudge || document.querySelector('.sbm-sheet-bg') || bar.hidden) return;
     try { if (sessionStorage.getItem('sbm_nudged')) return; sessionStorage.setItem('sbm_nudged', '1'); } catch (e) {}
-    nudge = document.createElement('div'); nudge.className = 'sbm-nudge'; nudge.setAttribute('role', 'dialog'); nudge.setAttribute('aria-label', 'Free competitor report');
-    nudge.innerHTML = '<button type="button" class="sbm-nx" aria-label="Close">×</button><b></b><p>How does it compare with similar businesses nearby? We\'ll show you on Google, reviews and websites.</p>'
-      + '<div class="sbm-nacts"><button type="button" class="sbm-btn sbm-book">Yes, send it</button><button type="button" class="sbm-btn sbm-later">Not now</button></div>';
-    nudge.querySelector('b').textContent = 'Free report: ' + name + ' vs. the neighbours';
+    nudge = document.createElement('div'); nudge.className = 'sbm-nudge'; nudge.setAttribute('role', 'dialog'); nudge.setAttribute('aria-label', 'Free analysis report');
+    nudge.innerHTML = '<button type="button" class="sbm-nx" aria-label="Close">×</button><b></b><p>Our team will show you where you lead your local competitors, and where you lose customers to them.</p>'
+      + '<div class="sbm-nacts"><button type="button" class="sbm-btn sbm-book">Get it free</button><button type="button" class="sbm-btn sbm-later">Not now</button></div>';
+    nudge.querySelector('b').textContent = 'Free analysis report for ' + name;
     nudge.querySelector('.sbm-book').onclick = openReport;
     nudge.querySelector('.sbm-later').onclick = hideNudge; nudge.querySelector('.sbm-nx').onclick = hideNudge;
     nudge.style.bottom = (bar.offsetHeight + 34) + 'px';
