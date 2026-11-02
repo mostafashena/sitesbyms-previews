@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Heap's Sausage Café | Handmade bangers in Greenwich</title>
+<meta name="description" content="Heap's Sausage Café, 8 Nevada Street, Greenwich. Handmade sausages by chef Martin Heap, all-day breakfast, bangers and mash and a deli counter to take home.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Karla:wght@400;700&display=swap" rel="stylesheet">
+<style>
+/* Layout: big-type poster. Words: hearty, cheeky, old-Greenwich. */
+:root{--navy:#1E3557;--mustard:#E6A925;--ketchup:#B8322A;--paper:#F5EEDF;--ink:#16202E}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 17px/1.6 Karla,system-ui,sans-serif}
+a{color:inherit}
+img{display:block;width:100%;height:100%;object-fit:cover}
+h1,h2,h3{font-family:"Alfa Slab One",Georgia,serif;font-weight:400;margin:0;line-height:.95;text-transform:uppercase}
+.wrap{width:min(1100px,100% - 32px);margin-inline:auto}
+.topbar{background:var(--ink);color:var(--paper);font-size:13px;text-align:center;padding:7px 16px}
+header{position:sticky;top:0;z-index:20;background:var(--navy);color:var(--paper);border-bottom:4px solid var(--mustard)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:64px;gap:12px}
+.mark{text-decoration:none;display:flex;align-items:center;gap:10px}
+.mark b{font:400 26px/1 "Alfa Slab One",serif;letter-spacing:.02em}
+.mark small{font-weight:700;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--mustard);line-height:1.2}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:0 20px;border-radius:4px;background:var(--mustard);color:var(--ink);font-weight:700;text-decoration:none;white-space:nowrap;text-transform:uppercase;letter-spacing:.06em;font-size:15px}
+.btn.red{background:var(--ketchup);color:#fff}
+.btn.out{background:transparent;border:3px solid var(--ink)}
+figure{margin:0;position:relative;overflow:hidden;background:var(--navy)}
+.cap{position:absolute;right:8px;bottom:8px;font-size:11px;background:rgba(245,238,223,.9);color:var(--ink);padding:2px 7px;border-radius:3px}
+/* poster hero */
+.poster{background:var(--navy);color:var(--paper);padding:34px 0 0;overflow:hidden}
+.poster h1{font-size:clamp(64px,17vw,190px);letter-spacing:-.01em}
+.poster h1 .y{color:var(--mustard);display:block}
+.poster .lede{display:grid;gap:18px;margin:22px 0 28px}
+.poster .lede p{margin:0;font-size:19px;max-width:520px}
+.poster figure{aspect-ratio:16/8;border-top:4px solid var(--mustard)}
+.row{display:flex;flex-wrap:wrap;gap:10px}
+.ticker{background:var(--mustard);color:var(--ink);font:400 18px/1 "Alfa Slab One",serif;text-transform:uppercase;white-space:nowrap;overflow:hidden;padding:14px 0}
+.ticker span{display:inline-block;padding-left:100%;animation:run 26s linear infinite}
+@keyframes run{to{transform:translateX(-100%)}}
+@media(prefers-reduced-motion:reduce){.ticker span{animation:none;padding-left:16px}}
+section{padding:64px 0}
+.tag{display:inline-block;background:var(--ketchup);color:#fff;font-weight:700;font-size:12px;letter-spacing:.18em;text-transform:uppercase;padding:4px 10px;margin-bottom:14px}
+h2{font-size:clamp(40px,8vw,76px);margin-bottom:20px}
+/* about */
+.about{display:grid;gap:26px;align-items:center}
+.about figure{aspect-ratio:4/5;border:4px solid var(--ink)}
+.about p{margin:0 0 14px;font-size:18px}
+.about .big{font:400 26px/1.15 "Alfa Slab One",serif;color:var(--navy)}
+/* bangers board */
+.board{background:var(--ink);color:var(--paper)}
+.board h2{color:var(--mustard)}
+.menu{display:grid;gap:0;border-top:2px solid rgba(245,238,223,.25)}
+.dish{display:grid;grid-template-columns:1fr auto;gap:12px;align-items:baseline;padding:18px 0;border-bottom:2px solid rgba(245,238,223,.25)}
+.dish h3{font-size:clamp(22px,4vw,30px)}
+.dish p{grid-column:1/-1;margin:0;color:#CFC7B6}
+.dish em{font-style:normal;color:var(--mustard);font-weight:700;font-size:13px;letter-spacing:.14em;text-transform:uppercase}
+/* gallery */
+.gal{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+.gal figure{aspect-ratio:1/1}
+.gal figure:nth-child(1){grid-column:span 2;aspect-ratio:2/1}
+/* reviews */
+.quotes{display:grid;gap:18px}
+blockquote{margin:0;border:4px solid var(--ink);background:#fff;padding:24px;box-shadow:8px 8px 0 var(--mustard)}
+blockquote p{margin:0;font:400 24px/1.15 "Alfa Slab One",serif;text-transform:uppercase;color:var(--navy)}
+blockquote cite{display:block;margin-top:12px;font-style:normal;font-weight:700}
+/* visit */
+.visit{display:grid;gap:16px}
+.card{background:#fff;border:4px solid var(--ink);padding:22px}
+.card h3{font-size:26px;margin-bottom:10px;color:var(--ketchup)}
+.card p{margin:0 0 12px}
+.note{font-size:13px;color:#555}
+.end{background:var(--ketchup);color:#fff;text-align:center}
+.end h2{color:#fff}
+.end p{font-size:19px;margin:0 auto 24px;max-width:560px}
+footer{background:var(--navy);color:var(--paper);padding:26px 0 36px;font-size:14px}
+footer .wrap{display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between}
+@media(min-width:780px){
+ .poster .lede{grid-template-columns:1.2fr auto;align-items:end}
+ .about{grid-template-columns:.9fr 1.1fr;gap:56px}
+ .menu{grid-template-columns:1fr 1fr;column-gap:48px}
+ .gal{grid-template-columns:repeat(3,1fr)}
+ .gal figure:nth-child(1){grid-column:span 2;grid-row:span 2;aspect-ratio:auto}
+ .quotes{grid-template-columns:1fr 1fr}
+ .visit{grid-template-columns:1fr 1fr}
+}
+</style>
+</head>
+<body id="top">
+<div class="topbar">Design concept prepared for Heap's Sausage Café by Sites By MS. Not the official website.</div>
+<header>
+ <div class="wrap nav">
+  <a class="mark" href="#top" aria-label="Heap's home"><b>HEAP'S</b><small>Sausage<br>Café</small></a>
+  <a class="btn" href="tel:02082939199">Call us</a>
+ </div>
+</header>
+
+<main>
+ <section class="poster" style="padding-bottom:0">
+  <div class="wrap">
+   <h1>If it's a sausage, <span class="y">it's here.</span></h1>
+   <div class="lede">
+    <p>Handmade bangers by chef Martin Heap, all-day breakfasts and a deli counter to take home. On Nevada Street, round the corner from Greenwich Park.</p>
+    <div class="row"><a class="btn" href="#menu">See the bangers</a><a class="btn red" href="#visit">Find us</a></div>
+   </div>
+  </div>
+  <figure><img src="https://images.unsplash.com/photo-1750461325721-4dea035dc0e1?w=1600&q=80" alt="Sausages sizzling on a grill" width="1600" height="800" onerror="this.style.opacity=0"><span class="cap">Sample photo</span></figure>
+ </section>
+ <div class="ticker" aria-hidden="true"><span>No.1 · Lethal Lucifer · Billingsgate Banger · Merguez · Bangers &amp; mash · Bacon baps · Hot dogs · Sausage rolls · No.1 · Lethal Lucifer · Billingsgate Banger ·</span></div>
+
+ <section id="about">
+  <div class="wrap about">
+   <figure><img src="https://images.unsplash.com/photo-1688895061981-4f7b10d4e4da?w=1600&q=80" alt="Rows of sausages hanging in a kitchen" width="1200" height="1500" loading="lazy" onerror="this.style.opacity=0"><span class="cap">Sample photo</span></figure>
+   <div>
+    <span class="tag">Since 1991</span>
+    <h2>Made by Martin</h2>
+    <p class="big">The Simply Sausages story began in 1991 at Smithfield Market, with a shop selling 24 varieties.</p>
+    <p>Chef Martin Heap is still the man behind the bangers, and Heap's in Greenwich is where you can eat them: in the café, or from the deli counter to cook at home.</p>
+    <p>It's small inside, with room to perch, and it has the feel of old Greenwich about it.</p>
+   </div>
+  </div>
+ </section>
+
+ <section id="menu" class="board">
+  <div class="wrap">
+   <span class="tag">The board</span>
+   <h2>What's cooking</h2>
+   <div class="menu">
+    <div class="dish"><h3>The No.1</h3><em>Signature</em><p>The flagship banger, spiced with nutmeg, mace and coriander.</p></div>
+    <div class="dish"><h3>Lethal Lucifer</h3><em>Hot</em><p>The spicy one. Try it as a hot dog if you dare.</p></div>
+    <div class="dish"><h3>Bangers &amp; mash</h3><em>Classic</em><p>With proper onion gravy.</p></div>
+    <div class="dish"><h3>All-day breakfast</h3><em>Every day</em><p>Breakfast and brunch, plus air-dried home-cured bacon baps.</p></div>
+    <div class="dish"><h3>Deli counter</h3><em>Take home</em><p>Handmade sausages, sliced bacon and British charcuterie.</p></div>
+    <div class="dish"><h3>Bakes</h3><em>Sweet</em><p>Chocolate brownies, Earl Grey teabread and flapjacks.</p></div>
+   </div>
+  </div>
+ </section>
+
+ <section id="gallery">
+  <div class="wrap">
+   <span class="tag">Hungry yet?</span>
+   <h2>Plates &amp; bangers</h2>
+   <div class="gal">
+    <figure><img src="https://images.unsplash.com/photo-1541329351076-600b0f9fdf28?w=1600&q=80" alt="A cooked breakfast with egg, tomatoes, mushrooms and black coffee" width="1600" height="800" loading="lazy" onerror="this.style.opacity=0"><span class="cap">Sample photo</span></figure>
+    <figure><img src="https://images.unsplash.com/photo-1638368593249-7cadb261e8b3?w=1600&q=80" alt="A hot dog in a bun with mustard and relish" width="800" height="800" loading="lazy" onerror="this.style.opacity=0"><span class="cap">Sample photo</span></figure>
+    <figure><img src="https://images.unsplash.com/photo-1624772398066-98584aa2f214?w=1600&q=80" alt="A sausage on a white plate" width="800" height="800" loading="lazy" onerror="this.style.opacity=0"><span class="cap">Sample photo</span></figure>
+    <figure><img src="https://images.unsplash.com/photo-1524182732116-a3ad2034503c?w=1600&q=80" alt="Grilled food with beans" width="800" height="800" loading="lazy" onerror="this.style.opacity=0"><span class="cap">Sample photo</span></figure>
+    <figure><img src="https://images.unsplash.com/photo-1750461325554-4619e46dbc85?w=1600&q=80" alt="Sausages on a barbecue grill" width="800" height="800" loading="lazy" onerror="this.style.opacity=0"><span class="cap">Sample photo</span></figure>
+   </div>
+  </div>
+ </section>
+
+ <section id="reviews" style="padding-top:0">
+  <div class="wrap">
+   <span class="tag">4.6 on Google · 470+ reviews</span>
+   <div class="quotes">
+    <blockquote><p>"A mecca for fans of artisan bangers."</p><cite>Time Out London</cite></blockquote>
+    <blockquote><p>"A fantastic variety of meats and spices, and each one cuts the mustard."</p><cite>The Nudge</cite></blockquote>
+   </div>
+  </div>
+ </section>
+
+ <section id="visit" style="padding-top:0">
+  <div class="wrap">
+   <span class="tag">Visit</span>
+   <h2>8 Nevada Street</h2>
+   <div class="visit">
+    <div class="card">
+     <h3>Opening hours</h3>
+     <p><b>Open 7 days</b><br>8am – 7pm</p>
+     <p class="note">Hours as shown on your current website; we'd confirm them with you.</p>
+    </div>
+    <div class="card">
+     <h3>Find us</h3>
+     <p>8 Nevada Street<br>Greenwich, London SE10 9JL</p>
+     <p><a href="tel:02082939199">020 8293 9199</a><br><a href="https://www.instagram.com/heapssausages/">@heapssausages on Instagram</a></p>
+     <a class="btn" href="https://maps.google.com/?q=Heaps+Sausage+Cafe+8+Nevada+Street+London+SE10+9JL">Directions</a>
+    </div>
+   </div>
+  </div>
+ </section>
+
+ <section class="end">
+  <div class="wrap">
+   <h2>Pull up a perch.</h2>
+   <p>Eat in, take away, or grab a pack of No.1s for tonight's tea.</p>
+   <div class="row" style="justify-content:center"><a class="btn" href="tel:02082939199">Call 020 8293 9199</a><a class="btn out" style="border-color:#fff;color:#fff" href="https://maps.google.com/?q=Heaps+Sausage+Cafe+8+Nevada+Street+London+SE10+9JL">Directions</a></div>
+  </div>
+ </section>
+</main>
+
+<footer>
+ <div class="wrap">
+  <span><b>Heap's Sausage Café</b> · 8 Nevada Street, Greenwich SE10 9JL</span>
+  <span>Design concept by Sites By MS. Not the official website.</span>
+ </div>
+</footer>
+<script src="/assets/concept-bar.js" data-name="Heap&#39;s Sausage Café" data-slug="heaps-sausages" defer></script>
+</body>
+</html>
