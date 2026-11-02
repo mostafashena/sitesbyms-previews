@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Time Art Café | Coffee, brunch &amp; art on Haverstock Hill</title>
+<meta name="description" content="Time Art Café, 76 Haverstock Hill, Belsize Park. Coffee, teas, brunch and healthy bowls in a small café that doubles as a gallery for local and international artists.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Schibsted+Grotesk:wght@400;600&display=swap" rel="stylesheet">
+<style>
+/* Layout: minimal monochrome, gallery-white. Words: quiet, crafted, local. */
+:root{--white:#FFFFFF;--wall:#F6F6F4;--ink:#111111;--grey:#6B6B6B;--line:#E2E2DF}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--white);color:var(--ink);font:400 17px/1.65 "Schibsted Grotesk",system-ui,sans-serif}
+a{color:inherit}
+img{display:block;width:100%;height:100%;object-fit:cover;filter:grayscale(.15)}
+h1,h2,h3{font-family:"Instrument Serif",Georgia,serif;font-weight:400;margin:0;line-height:1}
+.wrap{width:min(1080px,100% - 32px);margin-inline:auto}
+.topbar{background:var(--ink);color:#fff;font-size:13px;text-align:center;padding:7px 16px}
+header{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.96);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:64px;gap:12px}
+.mark{text-decoration:none;font:400 26px/1 "Instrument Serif",serif}
+.mark i{color:var(--grey)}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:0 22px;background:var(--ink);color:#fff;font-weight:600;font-size:14px;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;white-space:nowrap}
+.btn.line{background:transparent;color:var(--ink);border:1px solid var(--ink)}
+figure{margin:0;position:relative;overflow:hidden;background:var(--wall)}
+.label{font-size:12px;color:var(--grey);margin-top:8px;letter-spacing:.04em}
+.cap{position:absolute;right:8px;bottom:8px;font-size:11px;background:rgba(255,255,255,.9);padding:2px 7px}
+/* hero */
+.hero{padding:56px 0 40px}
+.hero h1{font-size:clamp(56px,13vw,140px);letter-spacing:-.02em}
+.hero h1 i{color:var(--grey)}
+.hero .sub{display:grid;gap:18px;margin-top:22px}
+.hero p{margin:0;max-width:440px;font-size:18px}
+.row{display:flex;flex-wrap:wrap;gap:10px}
+.frame{margin-top:40px;border:1px solid var(--line);padding:16px;background:var(--wall)}
+.frame figure{aspect-ratio:16/9}
+section{padding:64px 0;border-top:1px solid var(--line)}
+.num{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--grey);margin-bottom:14px}
+h2{font-size:clamp(40px,7vw,72px);margin-bottom:20px}
+/* about */
+.about{display:grid;gap:28px}
+.about p{margin:0 0 14px;max-width:520px}
+.about figure{aspect-ratio:3/4}
+/* menu as wall labels */
+.labels{display:grid;gap:0}
+.wl{display:grid;grid-template-columns:1fr auto;gap:6px 16px;padding:18px 0;border-bottom:1px solid var(--line)}
+.wl h3{font-size:28px}
+.wl span{font-size:15px;color:var(--grey);align-self:end}
+.wl p{grid-column:1/-1;margin:0;color:var(--grey);font-size:15px}
+/* exhibition grid */
+.ex{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}
+.ex .piece figure{aspect-ratio:4/5}
+/* reviews */
+.quotes{display:grid;gap:28px}
+blockquote{margin:0;font:italic 400 30px/1.2 "Instrument Serif",serif}
+blockquote cite{display:block;margin-top:12px;font:400 13px/1.4 "Schibsted Grotesk",sans-serif;font-style:normal;color:var(--grey);letter-spacing:.06em;text-transform:uppercase}
+.rating{font:400 64px/1 "Instrument Serif",serif}
+/* visit */
+.visit{display:grid;gap:30px}
+table{width:100%;border-collapse:collapse}
+td{padding:9px 0;border-bottom:1px solid var(--line)}
+td:last-child{text-align:right}
+.small{font-size:13px;color:var(--grey)}
+.end{text-align:center}
+.end p{color:var(--grey);margin:0 0 22px}
+footer{border-top:1px solid var(--line);padding:24px 0 40px;font-size:14px;color:var(--grey)}
+footer .wrap{display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between}
+@media(min-width:800px){
+ .hero .sub{grid-template-columns:1fr auto;align-items:end}
+ .about{grid-template-columns:1.1fr .9fr;align-items:center;gap:60px}
+ .labels{grid-template-columns:1fr 1fr;column-gap:56px}
+ .ex{grid-template-columns:repeat(3,1fr)}
+ .ex .piece:nth-child(2){margin-top:60px}
+ .quotes{grid-template-columns:.6fr 1fr 1fr;align-items:end}
+ .visit{grid-template-columns:1fr 1fr}
+}
+</style>
+</head>
+<body id="top">
+<div class="topbar">Design concept prepared for Time Art Café by Sites By MS. Not the official website.</div>
+<header>
+ <div class="wrap nav">
+  <a class="mark" href="#top" aria-label="Time Art Café home">Time <i>Art</i> Café</a>
+  <a class="btn" href="#visit">Visit</a>
+ </div>
+</header>
+
+<main>
+ <div class="hero">
+  <div class="wrap">
+   <div class="num">76 Haverstock Hill · Belsize Park</div>
+   <h1>Coffee, <i>on show.</i></h1>
+   <div class="sub">
+    <p>A small café that doubles as a gallery: good coffee, a long tea list and brunch, surrounded by work from local and international artists.</p>
+    <div class="row"><a class="btn" href="#menu">The menu</a><a class="btn line" href="https://maps.google.com/?q=Time+Art+Cafe+76+Haverstock+Hill+London+NW3+2BE">Directions</a></div>
+   </div>
+   <div class="frame">
+    <figure><img src="https://lh7-us.googleusercontent.com/sitesv-images-rt/AMxu72s-nI0kBGioIKBGLGTfmgH67gAp9-ifVKvLNM6KG7J3gs2nvnVLBYjsb41-fsNGv0n0BtwKd4346dpDQteLTsnoKd1wiciEQdhsj3utzd7VyutYIpmPXGDspjqC862-Rq7uvNtXNP4FtX1MwzzR1C6jQMLMzoxihZp5KMOosVKc6rXetIL5DZsI-_m4HAbTfW1_lE0UTLujQn_7bSMY9PWxxhc2uokx6OIM69uBCPk=w1280" alt="Time Art Café" width="1280" height="720" onerror="this.style.opacity=0"></figure>
+    <div class="label">Time Art Café, Haverstock Hill</div>
+   </div>
+  </div>
+ </div>
+
+ <section id="about">
+  <div class="wrap about">
+   <div>
+    <div class="num">01 · The café</div>
+    <h2>A local hangout, not a destination</h2>
+    <p>Time Art Café is small and unhurried. Regulars, freelancers and passers-by come in for coffee taken seriously and a solid selection of teas.</p>
+    <p>On the walls and shelves: artworks by local and international artists, plus handmade ceramics and jewellery you can take home.</p>
+   </div>
+   <figure><img src="https://lh7-us.googleusercontent.com/sitesv-images-rt/AMxu72u27uENQQtd1141tn-CIe2TaM-r0NzmqHLmQw-_uzZi3jAESZA5IcvT6ppaNLLQT7uRdqtG_A-hsNnRF2JoWNTBJU-O9ePXLhYFUNNsjX-ksObesHWNd7U5ckT7pPGM_yxnPTK9bQwz8XD8ZARSl2ZINzTFPUgS8QHrfchyxbhWkE85k1nr-fZQMR1Da7cC0oUSDlzZtwUAebBlxMz1iTu1Ae1BuTi0AmYzs1BAyv0=w1280" alt="Inside Time Art Café" width="900" height="1200" loading="lazy" onerror="this.style.opacity=0"></figure>
+  </div>
+ </section>
+
+ <section id="menu">
+  <div class="wrap">
+   <div class="num">02 · The menu</div>
+   <h2>Breakfast to brunch</h2>
+   <div class="labels">
+    <div class="wl"><h3>Turkish eggs</h3><span>£14.50</span><p>Garlic spinach, Greek yogurt, spicy beef sausage, poached eggs, chilli butter.</p></div>
+    <div class="wl"><h3>Sausage shakshuka</h3><span>£14.90</span><p>Eggs baked in homemade tomato sauce with peppers, mushroom and feta.</p></div>
+    <div class="wl"><h3>Salmon plate</h3><span>£14.00</span><p>Smoked salmon, avocado and scrambled eggs, lemon and dill.</p></div>
+    <div class="wl"><h3>Acai bowl</h3><span>£13.00</span><p>Banana, berries, granola and flaked almonds.</p></div>
+    <div class="wl"><h3>Pancakes &amp; berries</h3><span>£13.90</span><p>Homemade, with honey or chocolate, banana and yogurt.</p></div>
+    <div class="wl"><h3>Banana chocolate cake</h3><span>£4.90</span><p>The house signature.</p></div>
+   </div>
+   <p class="small" style="margin-top:14px">Prices as listed on the café's delivery menu.</p>
+  </div>
+ </section>
+
+ <section id="gallery">
+  <div class="wrap">
+   <div class="num">03 · On the walls &amp; plates</div>
+   <h2>A look around</h2>
+   <div class="ex">
+    <div class="piece"><figure><img src="https://images.unsplash.com/photo-1612870199268-d33b7e0bd9b0?w=1600&q=80" alt="White ceramic mugs on a shelf" width="800" height="1000" loading="lazy" onerror="this.style.opacity=0"><span class="cap">Sample photo</span></figure><div class="label">Ceramics</div></div>
+    <div class="piece"><figure><img src="https://images.unsplash.com/photo-1627308594190-a057cd4bfac8?w=1600&q=80" alt="Two acai bowls with banana, berries and granola" width="800" height="1000" loading="lazy" onerror="this.style.opacity=0"><span class="cap">Sample photo</span></figure><div class="label">Acai bowl</div></div>
+    <div class="piece"><figure><img src="https://images.unsplash.com/photo-1611162458324-aae1eb4129a4?w=1600&q=80" alt="A teacup on a saucer" width="800" height="1000" loading="lazy" onerror="this.style.opacity=0"><span class="cap">Sample photo</span></figure><div class="label">Coffee</div></div>
+    <div class="piece"><figure><img src="https://images.unsplash.com/photo-1677761640321-b80251be00ca?w=1600&q=80" alt="Handmade vases on a table" width="800" height="1000" loading="lazy" onerror="this.style.opacity=0"><span class="cap">Sample photo</span></figure><div class="label">Handmade pieces</div></div>
+    <div class="piece"><figure><img src="https://images.unsplash.com/photo-1684403620650-81dc661a69db?w=1600&q=80" alt="A bowl with berries, banana and fruit" width="800" height="1000" loading="lazy" onerror="this.style.opacity=0"><span class="cap">Sample photo</span></figure><div class="label">Brunch</div></div>
+   </div>
+  </div>
+ </section>
+
+ <section id="reviews">
+  <div class="wrap quotes">
+   <div><div class="rating">4.9</div><p class="small">on Google · 160 reviews</p></div>
+   <blockquote>"A small, quietly confident spot in Belsize Park that feels more like a local hangout than a destination café."<cite>Thatsup London</cite></blockquote>
+   <blockquote>"Coffee is taken seriously, there's a solid selection of teas."<cite>Thatsup London</cite></blockquote>
+  </div>
+ </section>
+
+ <section id="visit">
+  <div class="wrap visit">
+   <div>
+    <div class="num">04 · Visit</div>
+    <h2>Opening hours</h2>
+    <table>
+     <tr><td>Monday – Friday</td><td>8am – 5.30pm</td></tr>
+     <tr><td>Saturday – Sunday</td><td>9am – 5pm</td></tr>
+    </table>
+    <p class="small">Hours as listed online; we'd confirm them with you.</p>
+   </div>
+   <div>
+    <h2>Find us</h2>
+    <p>76 Haverstock Hill<br>London NW3 2BE<br>About 550m from Chalk Farm station</p>
+    <p><a href="tel:07859092671">07859 092671</a><br><a href="https://www.instagram.com/time.artcafe/">@time.artcafe</a></p>
+    <a class="btn" href="https://maps.google.com/?q=Time+Art+Cafe+76+Haverstock+Hill+London+NW3+2BE">Directions</a>
+   </div>
+  </div>
+ </section>
+
+ <section class="end">
+  <div class="wrap">
+   <h2>Come for the coffee. Stay for the art.</h2>
+   <p>76 Haverstock Hill, Belsize Park.</p>
+   <a class="btn" href="tel:07859092671">Call 07859 092671</a>
+  </div>
+ </section>
+</main>
+
+<footer>
+ <div class="wrap">
+  <span>Time Art Café · 76 Haverstock Hill, London NW3 2BE</span>
+  <span>Design concept by Sites By MS. Not the official website.</span>
+ </div>
+</footer>
+<script src="/assets/concept-bar.js" data-name="Time Art Café" data-slug="time-art-cafe" defer></script>
+</body>
+</html>
