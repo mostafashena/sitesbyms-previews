@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tania's of Hampstead | Café, teas &amp; chocolates by Swiss Cottage</title>
+<meta name="description" content="Tania's of Hampstead, 28 College Crescent, NW3. A family café with strong coffee, loose-leaf teas, falafel wraps, Lebanese pasties and freshly made chocolates.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caprasimo&family=Rubik:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* Layout: warm handmade. Words: welcoming, family, homemade. */
+:root{--cream:#FBF3E6;--sand:#F1E2C9;--terra:#B5522F;--cardamom:#4E6B43;--choc:#3C2418;--honey:#E2A443}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--cream);color:var(--choc);font:400 17px/1.65 Rubik,system-ui,sans-serif}
+a{color:inherit}
+img{display:block;width:100%;height:100%;object-fit:cover}
+h1,h2,h3{font-family:Caprasimo,Georgia,serif;font-weight:400;margin:0;line-height:1.05}
+.wrap{width:min(1040px,100% - 32px);margin-inline:auto}
+.topbar{background:var(--choc);color:var(--cream);font-size:13px;text-align:center;padding:7px 16px}
+header{position:sticky;top:0;z-index:20;background:rgba(251,243,230,.96);border-bottom:2px dotted var(--terra)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:68px;gap:12px}
+.mark{text-decoration:none;line-height:1}
+.mark b{font:400 28px/1 Caprasimo,serif;color:var(--terra);display:block}
+.mark small{font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--cardamom)}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:0 20px;border-radius:14px;background:var(--terra);color:#fff;font-weight:500;text-decoration:none;white-space:nowrap;box-shadow:0 4px 0 #8A3C21}
+.btn.green{background:var(--cardamom);box-shadow:0 4px 0 #34492D}
+figure{margin:0;position:relative;overflow:hidden;background:var(--sand)}
+.cap{position:absolute;right:8px;bottom:8px;font-size:11px;background:rgba(251,243,230,.9);padding:2px 7px;border-radius:6px}
+/* hero */
+.hero{padding:40px 0 30px;text-align:center}
+.hello{display:inline-block;background:var(--honey);color:var(--choc);font-weight:500;border-radius:999px;padding:5px 14px;transform:rotate(-2deg);margin-bottom:16px}
+.hero h1{font-size:clamp(44px,10vw,96px);color:var(--terra)}
+.hero h1 span{color:var(--cardamom)}
+.hero p{max-width:560px;margin:16px auto 22px;font-size:18px}
+.row{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
+.polaroids{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:34px}
+.pol{background:#fff;padding:10px 10px 34px;box-shadow:0 10px 24px rgba(60,36,24,.12);position:relative}
+.pol figure{aspect-ratio:1/1}
+.pol:nth-child(1){transform:rotate(-3deg)}
+.pol:nth-child(2){transform:rotate(2deg)}
+.pol:nth-child(3){transform:rotate(-1.5deg);display:none}
+.pol em{position:absolute;left:0;right:0;bottom:8px;text-align:center;font-style:normal;font-size:14px;color:var(--cardamom)}
+section{padding:60px 0}
+.kick{color:var(--cardamom);font-weight:500;letter-spacing:.18em;text-transform:uppercase;font-size:12px;margin-bottom:10px}
+h2{font-size:clamp(34px,6.5vw,54px);color:var(--terra);margin-bottom:16px}
+/* about */
+.about{display:grid;gap:26px;align-items:center;background:var(--sand);border-radius:28px;padding:26px}
+.about figure{aspect-ratio:4/5;border-radius:22px}
+.about p{margin:0 0 12px}
+.sig{font:400 24px/1 Caprasimo,serif;color:var(--cardamom);margin-top:8px}
+/* jars */
+.jars{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px}
+.jar{background:#fff;border:2px solid var(--sand);border-radius:22px 22px 14px 14px;padding:20px 16px;text-align:center}
+.jar .dot{width:46px;height:46px;border-radius:50%;margin:0 auto 10px;background:var(--honey)}
+.jar:nth-child(2) .dot{background:var(--cardamom)}
+.jar:nth-child(3) .dot{background:var(--choc)}
+.jar:nth-child(4) .dot{background:var(--terra)}
+.jar:nth-child(5) .dot{background:#E8C9A0}
+.jar:nth-child(6) .dot{background:#9DB38A}
+.jar h3{font-size:22px;color:var(--choc);margin-bottom:4px}
+.jar p{margin:0;font-size:15px}
+/* gallery */
+.gal{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.gal figure{aspect-ratio:1/1;border-radius:18px}
+/* reviews */
+.notes{display:grid;gap:16px}
+.note{background:#FFF8E8;border:2px dashed var(--honey);border-radius:16px;padding:20px;transform:rotate(-.6deg)}
+.note:nth-child(2){transform:rotate(.8deg)}
+.note p{margin:0;font-size:19px}
+.note cite{display:block;margin-top:8px;font-style:normal;color:var(--terra);font-weight:500;font-size:14px}
+/* visit */
+.visit{display:grid;gap:16px}
+.card{background:#fff;border-radius:22px;padding:24px;border:2px solid var(--sand)}
+.card h3{font-size:26px;color:var(--cardamom);margin-bottom:10px}
+table{width:100%;border-collapse:collapse}
+td{padding:6px 0;border-bottom:1px dotted #E3D3B8}
+td:last-child{text-align:right}
+.small{font-size:13px;color:#7A6352}
+.end{text-align:center;background:var(--terra);color:#fff;border-radius:28px;padding:44px 22px;margin-bottom:40px}
+.end h2{color:#fff}
+.end p{margin:0 auto 22px;max-width:520px}
+footer{text-align:center;padding:0 0 40px;font-size:14px;color:#7A6352}
+@media(min-width:780px){
+ .polaroids{grid-template-columns:repeat(3,1fr)}
+ .pol:nth-child(3){display:block}
+ .about{grid-template-columns:.8fr 1.2fr;gap:44px;padding:40px}
+ .gal{grid-template-columns:repeat(3,1fr)}
+ .notes{grid-template-columns:repeat(3,1fr)}
+ .visit{grid-template-columns:1fr 1fr}
+}
+</style>
+</head>
+<body id="top">
+<div class="topbar">Design concept prepared for Tania's of Hampstead by Sites By MS. Not the official website.</div>
+<header>
+ <div class="wrap nav">
+  <a class="mark" href="#top" aria-label="Tania's of Hampstead home"><b>Tania's</b><small>of Hampstead</small></a>
+  <a class="btn" href="tel:07964323723">Call us</a>
+ </div>
+</header>
+
+<main>
+ <section class="hero">
+  <div class="wrap">
+   <span class="hello">★ 4.9 on Google · 280+ reviews</span>
+   <h1>Strong coffee, <span>warm welcome.</span></h1>
+   <p>A family café on College Crescent, two minutes from Swiss Cottage: loose-leaf teas, falafel wraps, Lebanese pasties and a counter of freshly made chocolates.</p>
+   <div class="row"><a class="btn" href="#menu">What's on the counter</a><a class="btn green" href="https://maps.google.com/?q=Tania%27s+of+Hampstead+28+College+Crescent+London+NW3+5DN">Find us</a></div>
+   <div class="polaroids">
+    <div class="pol"><figure><img src="https://images.unsplash.com/photo-1610632380989-680fe40816c6?w=1600&q=80" alt="A cup of coffee with coffee beans" width="800" height="800" onerror="this.style.opacity=0"><span class="cap">Sample photo</span></figure><em>coffee, strong</em></div>
+    <div class="pol"><figure><img src="https://images.unsplash.com/photo-1593001872095-7d5b3868fb1d?w=1600&q=80" alt="Falafel in a white bowl" width="800" height="800" onerror="this.style.opacity=0"><span class="cap">Sample photo</span></figure><em>falafel, with chilli sauce</em></div>
+    <div class="pol"><figure><img src="https://images.unsplash.com/photo-1767510533183-425731f088a7?w=1600&q=80" alt="A box of assorted chocolates" width="800" height="800" loading="lazy" onerror="this.style.opacity=0"><span class="cap">Sample photo</span></figure><em>chocolates, made fresh</em></div>
+   </div>
+  </div>
+ </section>
+
+ <section id="about">
+  <div class="wrap about">
+   <figure><img src="https://images.unsplash.com/photo-1778448806128-18e8354356e1?w=1600&q=80" alt="Baklava with pistachios and a glass of tea" width="800" height="1000" loading="lazy" onerror="this.style.opacity=0"><span class="cap">Sample photo</span></figure>
+   <div>
+    <div class="kick">Our café</div>
+    <h2>Come for a coffee, stay for a chat</h2>
+    <p>Tania's is a neighbourhood café with a personal welcome. Reviewers mention Ghassan by name: the warm welcome, the conversation and the strong coffee.</p>
+    <p>There's a long list of loose-leaf teas, some named after members of the family, fresh juices, homemade food, a deli, and catering for your events.</p>
+    <p class="sig">Tania's of Hampstead</p>
+   </div>
+  </div>
+ </section>
+
+ <section id="menu">
+  <div class="wrap">
+   <div class="kick">On the counter</div>
+   <h2>Made with love</h2>
+   <div class="jars">
+    <div class="jar"><div class="dot"></div><h3>Coffee</h3><p>Strong, proper cappuccinos and lattes.</p></div>
+    <div class="jar"><div class="dot"></div><h3>Loose-leaf teas</h3><p>A long list, some named after the family.</p></div>
+    <div class="jar"><div class="dot"></div><h3>Chocolates</h3><p>Freshly made, plus ice cream.</p></div>
+    <div class="jar"><div class="dot"></div><h3>Falafel wrap</h3><p>Toasted. Get the chilli sauce.</p></div>
+    <div class="jar"><div class="dot"></div><h3>Lebanese pasties</h3><p>Plus sandwiches and cheese toasties.</p></div>
+    <div class="jar"><div class="dot"></div><h3>Deli &amp; catering</h3><p>A small deli, and catering for events.</p></div>
+   </div>
+  </div>
+ </section>
+
+ <section id="gallery" style="padding-top:0">
+  <div class="wrap">
+   <div class="kick">A little look</div>
+   <h2>Treats &amp; teas</h2>
+   <div class="gal">
+    <figure><img src="https://images.unsplash.com/photo-1761828122856-8703baac8e86?w=1600&q=80" alt="Golden baklava with pistachios" width="800" height="800" loading="lazy" onerror="this.style.opacity=0"><span class="cap">Sample photo</span></figure>
+    <figure><img src="https://images.unsplash.com/photo-1593001869807-9b07543c8688?w=1600&q=80" alt="Hands holding falafel" width="800" height="800" loading="lazy" onerror="this.style.opacity=0"><span class="cap">Sample photo</span></figure>
+    <figure><img src="https://images.unsplash.com/photo-1542990253-0d0f5be5f0ed?w=1600&q=80" alt="Hot chocolate pouring into a white mug" width="800" height="800" loading="lazy" onerror="this.style.opacity=0"><span class="cap">Sample photo</span></figure>
+   </div>
+  </div>
+ </section>
+
+ <section id="reviews" style="padding-top:0">
+  <div class="wrap">
+   <div class="kick">Kind words</div>
+   <h2>The neighbourhood gem</h2>
+   <div class="notes">
+    <div class="note"><p>"The friendliest owner Ghassan, great strong coffee, fantastic falafel wrap (get the chili sauce!)"</p><cite>Hyewon, Google</cite></div>
+    <div class="note"><p>"Had a great cup of cappuccino while having the warmest chat with the owner Ghassan!"</p><cite>Melisa, Google</cite></div>
+    <div class="note"><p>"Absolutely amazing place. The owner is a very warm person and a great host."</p><cite>Agata, Google</cite></div>
+   </div>
+  </div>
+ </section>
+
+ <section id="visit" style="padding-top:0">
+  <div class="wrap">
+   <div class="kick">Visit</div>
+   <h2>28 College Crescent</h2>
+   <div class="visit">
+    <div class="card">
+     <h3>Opening hours</h3>
+     <table>
+      <tr><td>Monday – Thursday</td><td>8.30am – 5pm</td></tr>
+      <tr><td>Friday</td><td>8am – 5pm</td></tr>
+      <tr><td>Saturday – Sunday</td><td>9am – 5pm</td></tr>
+     </table>
+     <p class="small">Hours as listed online; we'd confirm them with you.</p>
+    </div>
+    <div class="card">
+     <h3>Find us</h3>
+     <p style="margin-top:0">28 College Crescent<br>London NW3 5DN<br>About 200m from Swiss Cottage station</p>
+     <p><a href="tel:07964323723">07964 323723</a><br><a href="https://www.instagram.com/taniasofhampstead/">@taniasofhampstead</a></p>
+     <a class="btn" href="https://maps.google.com/?q=Tania%27s+of+Hampstead+28+College+Crescent+London+NW3+5DN">Directions</a>
+    </div>
+   </div>
+  </div>
+ </section>
+
+ <div class="wrap">
+  <div class="end">
+   <h2>The kettle and the coffee are on.</h2>
+   <p>Pop in for a tea, or call ahead about chocolates and catering.</p>
+   <a class="btn green" href="tel:07964323723">Call 07964 323723</a>
+  </div>
+ </div>
+</main>
+
+<footer>
+ <p><b>Tania's of Hampstead</b> · 28 College Crescent, London NW3 5DN</p>
+ <p>Design concept by Sites By MS. Not the official website.</p>
+</footer>
+<script src="/assets/concept-bar.js" data-name="Tania&#39;s of Hampstead" data-slug="tanias-of-hampstead" defer></script>
+</body>
+</html>
