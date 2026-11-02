@@ -1,7 +1,7 @@
 /* Sites By MS concept bar.
    Add to any concept page, just before </body>:
    <script src="/assets/concept-bar.js" data-name="Liman" data-slug="liman" defer></script>
-   - Shows a floating bar with "Ask a question" and "Book a 15-min call".
+   - Shows a floating bar with "Book a call" and "Get my free report" (competitor report request), plus one gentle nudge card.
    - Lifts the concept's own fixed bottom bars so nothing overlaps.
    - Lets the visitor hide it (a small pill brings it back).
    - Tells the team the concept was opened (skipped for the team: open any concept once with ?team=1). */
@@ -54,6 +54,27 @@
     + '.sbm-sheet-head span{display:block;font-size:13px;color:#5B6180}'
     + '.sbm-close{background:#fff;border:1px solid #DCD8E8;width:44px;height:44px;border-radius:12px;display:grid;place-items:center;cursor:pointer;color:#0E1430;flex:0 0 auto}'
     + '.sbm-sheet-body{padding:22px}'
+    + '.sbm-lead{margin:0 0 14px;font-size:16px;line-height:1.55;color:#1B2140}'
+    + '.sbm-list{list-style:none;margin:0 0 18px;padding:0;display:grid;gap:10px}'
+    + '.sbm-list li{display:flex;gap:12px;align-items:flex-start;font-size:15px;line-height:1.45;color:#2A3050}'
+    + '.sbm-list i{font-style:normal;flex:0 0 30px;height:30px;border-radius:9px;background:#F1ECFF;color:#5B2FE0;display:grid;place-items:center;font-weight:800}'
+    + '.sbm-form label{display:block;font-weight:700;font-size:14px;color:#0E1430}'
+    + '.sbm-form label em{font-style:normal;font-weight:500;color:#7A7F99;margin-left:4px}'
+    + '.sbm-form input{display:block;width:100%;margin-top:6px;min-height:48px;border:1.5px solid #DCD8E8;border-radius:12px;padding:0 14px;font:500 16px/1 inherit;font-family:inherit;color:#0E1430;background:#fff}'
+    + '.sbm-form input:focus{outline:none;border-color:#8557FC;box-shadow:0 0 0 3px #E6DDFF}'
+    + '.sbm-hp{position:absolute!important;left:-9999px!important;width:1px!important;height:1px!important}'
+    + '.sbm-note{margin:8px 0 14px;font-size:13px;color:#6B7090}'
+    + '.sbm-err{margin:0 0 12px;color:#B42318;font-size:14px;font-weight:600}.sbm-err[hidden]{display:none}'
+    + '.sbm-go{width:100%;border:0;cursor:pointer;min-height:52px;font-size:16px}.sbm-go:disabled{opacity:.6;cursor:default}'
+    + '.sbm-done b{display:block;font-size:19px;color:#0E1430;margin-bottom:6px}.sbm-done p{margin:0 0 10px;color:#3B4160;line-height:1.55}.sbm-done a{color:#5B2FE0;font-weight:700}'
+    + '.sbm-nudge{position:fixed;z-index:2147483001;right:calc(20px + env(safe-area-inset-right,0px));width:min(360px,calc(100% - 20px));background:#fff;color:#0E1430;border-radius:18px;padding:18px 18px 16px;box-shadow:0 24px 60px rgba(7,15,55,.35);font-family:"Plus Jakarta Sans",system-ui,sans-serif;animation:sbmUp .35s ease-out;border:1px solid #ECE8F5}'
+    + '@keyframes sbmUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}'
+    + '.sbm-nudge b{display:block;font-size:16px;font-weight:800;padding-right:28px;line-height:1.35}'
+    + '.sbm-nudge p{margin:6px 0 14px;font-size:14px;line-height:1.5;color:#4A5070}'
+    + '.sbm-nacts{display:flex;gap:8px}.sbm-nacts .sbm-btn{border:0;cursor:pointer;min-height:44px;font-size:14px;font-family:inherit}'
+    + '.sbm-later{background:#F3F1F8;color:#2A3050}'
+    + '.sbm-nx{position:absolute;top:8px;right:8px;width:36px;height:36px;border:0;background:transparent;font-size:22px;color:#7A7F99;cursor:pointer;border-radius:10px}.sbm-nx:hover{background:#F3F1F8}'
+    + '@media (max-width:640px){.sbm-nudge{right:10px;left:10px;width:auto}}'
     + '@media (max-width:640px){.sbm-sheet-bg{align-items:flex-end;padding:0}.sbm-sheet{border-radius:22px 22px 0 0;max-height:92vh}.sbm-sheet-body{padding:18px 16px calc(22px + env(safe-area-inset-bottom,0px))}}';
   var st = document.createElement('style'); st.textContent = css; document.head.appendChild(st);
   if (!document.querySelector('link[href*="Plus+Jakarta+Sans"]')) {
@@ -65,9 +86,9 @@
   var bar = document.createElement('div');
   bar.className = 'sbm-bar'; bar.setAttribute('role', 'region'); bar.setAttribute('aria-label', 'About this concept');
   bar.innerHTML = '<img src="/assets/brand/mark-sm-dark.png" alt="Sites By MS">'
-    + '<div class="sbm-txt"><b></b><span>Built only from your public information. Like where it\'s going?</span></div>'
-    + '<div class="sbm-acts"><a class="sbm-btn sbm-ask" href="/ask/' + q + '">Ask a question</a>'
-    + '<a class="sbm-btn sbm-book" href="/book/' + q + '">Book a 15-min call</a></div>'
+    + '<div class="sbm-txt"><b></b><span>We\'ve also compared you with similar businesses nearby. The report is free.</span></div>'
+    + '<div class="sbm-acts"><a class="sbm-btn sbm-ask" href="/book/' + q + '">Book a call</a>'
+    + '<a class="sbm-btn sbm-book sbm-rep" href="#report">Get my free report</a></div>'
     + '<button class="sbm-x" type="button" aria-label="Hide this bar"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>';
   bar.querySelector('.sbm-txt b').textContent = 'This concept was made for ' + name + ' by Sites By MS';
 
@@ -95,7 +116,9 @@
     requestAnimationFrame(function () { liftOthers(open ? bar.offsetHeight + 14 : 0); });
   }
   bar.querySelector('.sbm-x').onclick = function () { show(false); pill.focus(); };
-  bar.querySelector('.sbm-book').onclick = function (e) { e.preventDefault(); openBooking(); };
+  bar.querySelector('.sbm-ask').onclick = function (e) { e.preventDefault(); openBooking(); };
+  bar.querySelector('.sbm-rep').onclick = function (e) { e.preventDefault(); openReport(); };
+  if (/[?&#]report\b/.test(location.search + location.hash)) setTimeout(openReport, 600);
   if (/[?&#]book\b/.test(location.search + location.hash)) setTimeout(openBooking, 600);
 
   function openBooking() {
@@ -118,6 +141,79 @@
     if (window.SBMBooking) go();
     else { var s = document.createElement('script'); s.src = '/assets/booking.js'; s.onload = go; s.onerror = function () { location.href = '/book/' + q; }; document.head.appendChild(s); }
   }
+  function sheet(title, sub) {
+    var prev = document.activeElement;
+    var bg = document.createElement('div'); bg.className = 'sbm-sheet-bg';
+    bg.innerHTML = '<div class="sbm-sheet" role="dialog" aria-modal="true">'
+      + '<div class="sbm-sheet-head"><img src="/assets/brand/mark-sm-light.png" alt=""><div><b></b><span></span></div>'
+      + '<button type="button" class="sbm-close" aria-label="Close"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>'
+      + '<div class="sbm-sheet-body"></div></div>';
+    bg.querySelector('.sbm-sheet-head b').textContent = title;
+    bg.querySelector('.sbm-sheet-head span').textContent = sub;
+    bg.querySelector('.sbm-sheet').setAttribute('aria-label', title);
+    document.body.appendChild(bg); document.documentElement.style.overflow = 'hidden';
+    function close() { bg.remove(); document.documentElement.style.overflow = ''; document.removeEventListener('keydown', key); if (prev && prev.focus) prev.focus(); }
+    function key(e) { if (e.key === 'Escape') close(); }
+    document.addEventListener('keydown', key);
+    bg.addEventListener('click', function (e) { if (e.target === bg) close(); });
+    bg.querySelector('.sbm-close').onclick = close;
+    bg.querySelector('.sbm-close').focus();
+    return { body: bg.querySelector('.sbm-sheet-body'), close: close };
+  }
+
+  var asked = store('sbm_rep_' + slug) === '1';
+  function openReport() {
+    hideNudge();
+    var sh = sheet('Free competitor report for ' + name, 'Ready within 24 hours · no cost, no obligation');
+    if (asked) { sh.body.innerHTML = '<div class="sbm-done"><b>You\'ve already asked for it 👍</b><p>We\'re preparing your report and will send it within 24 hours.</p></div>'; return; }
+    sh.body.innerHTML = '<p class="sbm-lead">We look at <b>4–5 similar businesses near you</b> and show, side by side, where you are ahead and where customers may pick someone else.</p>'
+      + '<ul class="sbm-list">'
+      + '<li><i>★</i><span><b>Google rating and reviews</b> compared with your neighbours</span></li>'
+      + '<li><i>⌕</i><span><b>Who shows up first on Google Maps</b> when people search nearby</span></li>'
+      + '<li><i>▣</i><span><b>Websites side by side</b>: mobile, booking, menu or prices, hours</span></li>'
+      + '<li><i>✓</i><span><b>3 quick wins</b> you can act on, with or without us</span></li></ul>'
+      + '<form class="sbm-form" novalidate><label>Where should we send it? <em>optional</em><input name="contact" autocomplete="email" placeholder="Email or WhatsApp number"></label>'
+      + '<input name="website_url" tabindex="-1" autocomplete="off" class="sbm-hp" aria-hidden="true">'
+      + '<p class="sbm-note">Leave it empty and we\'ll reply where we first contacted you.</p>'
+      + '<p class="sbm-err" role="alert" hidden></p>'
+      + '<button class="sbm-btn sbm-book sbm-go" type="submit">Yes, send me the report</button></form>';
+    var f = sh.body.querySelector('form'), err = f.querySelector('.sbm-err'), btn = f.querySelector('.sbm-go');
+    f.onsubmit = function (e) {
+      e.preventDefault(); err.hidden = true; btn.disabled = true; btn.textContent = 'Sending…';
+      fetch('/api/report-request.php', { method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ slug: slug, business: name, contact: f.contact.value, website_url: f.website_url.value }) })
+        .then(function (r) { return r.json().catch(function () { return { ok: false }; }); })
+        .then(function (j) {
+          if (!j.ok) throw new Error(j.error || 'Something went wrong. Please try again.');
+          asked = true; store('sbm_rep_' + slug, '1');
+          sh.body.innerHTML = '<div class="sbm-done"><b>Thank you! Your report is on its way.</b><p>We\'ll send it within 24 hours' + (f.contact.value ? ' to <span></span>' : '') + '. It opens on a private page together with this concept.</p>'
+            + '<p>Questions in the meantime? <a href="/ask/' + q + '">Ask us anything</a>.</p></div>';
+          var sp = sh.body.querySelector('.sbm-done span'); if (sp) sp.textContent = f.contact.value;
+        })
+        .catch(function (x) { err.textContent = x.message; err.hidden = false; btn.disabled = false; btn.textContent = 'Yes, send me the report'; });
+    };
+  }
+
+  // One gentle nudge per visit: after 12 seconds or when the visitor has scrolled half the page.
+  var nudge = null;
+  function hideNudge() { if (nudge) { nudge.remove(); nudge = null; } }
+  function showNudge() {
+    if (asked || nudge || document.querySelector('.sbm-sheet-bg') || bar.hidden) return;
+    try { if (sessionStorage.getItem('sbm_nudged')) return; sessionStorage.setItem('sbm_nudged', '1'); } catch (e) {}
+    nudge = document.createElement('div'); nudge.className = 'sbm-nudge'; nudge.setAttribute('role', 'dialog'); nudge.setAttribute('aria-label', 'Free competitor report');
+    nudge.innerHTML = '<button type="button" class="sbm-nx" aria-label="Close">×</button><b></b><p>How does it compare with similar businesses nearby? We\'ll show you on Google, reviews and websites.</p>'
+      + '<div class="sbm-nacts"><button type="button" class="sbm-btn sbm-book">Yes, send it</button><button type="button" class="sbm-btn sbm-later">Not now</button></div>';
+    nudge.querySelector('b').textContent = 'Free report: ' + name + ' vs. the neighbours';
+    nudge.querySelector('.sbm-book').onclick = openReport;
+    nudge.querySelector('.sbm-later').onclick = hideNudge; nudge.querySelector('.sbm-nx').onclick = hideNudge;
+    nudge.style.bottom = (bar.offsetHeight + 34) + 'px';
+    document.body.appendChild(nudge);
+  }
+  setTimeout(showNudge, 12000);
+  window.addEventListener('scroll', function onS() {
+    if (window.scrollY > (document.documentElement.scrollHeight - innerHeight) * 0.5) { window.removeEventListener('scroll', onS); showNudge(); }
+  }, { passive: true });
+
   pill.onclick = function () { show(true); };
 
   function mount() {

@@ -243,7 +243,7 @@ $bySlug = [];
 foreach ($views as $v) { $s = $v['slug']; $bySlug[$s] ??= ['n' => 0, 'last' => null, 'device' => '', 'from' => '']; $bySlug[$s]['n']++; if (!$bySlug[$s]['last'] || strtotime($v['at']) > strtotime($bySlug[$s]['last'])) { $bySlug[$s]['last'] = $v['at']; $bySlug[$s]['device'] = $v['device']; } if (!$bySlug[$s]['from'] && str_starts_with((string)$v['ref'], 'via ')) $bySlug[$s]['from'] = substr($v['ref'], 4); }
 uasort($bySlug, fn($x, $y) => strtotime((string)$y['last']) <=> strtotime((string)$x['last']));
 $cfg = config();
-$typeLabel = ['booking' => 'Call request', 'question' => 'Question', 'concept' => 'Free concept request'];
+$typeLabel = ['booking' => 'Call request', 'question' => 'Question', 'concept' => 'Free concept request', 'report' => 'Report request'];
 $howLabel = ['Video call (Google Meet)' => 'Video call', 'WhatsApp call' => 'WhatsApp call', 'Phone call' => 'Phone call'];
 
 /* ---------- pieces ---------- */
