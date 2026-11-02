@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Royal Teas | Tea room &amp; café on Royal Hill, Greenwich</title>
+<meta name="description" content="Royal Teas, 76 Royal Hill, Greenwich. A cosy vegetarian tea room: breakfast and brunch, soups and salads, homemade cakes and cream teas. Walk-ins only.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,500;0,6..96,700;1,6..96,500&family=Nunito+Sans:wght@400;700&display=swap" rel="stylesheet">
+<style>
+/* Layout: printed menu card. Words: cosy, homemade, neighbourly. */
+:root{--card:#FFFDF8;--linen:#F1EBDF;--teal:#2E5E5A;--berry:#8C2F45;--ink:#2A2622;--rule:#D9CFBF}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--linen);color:var(--ink);font:400 17px/1.65 "Nunito Sans",system-ui,sans-serif}
+a{color:inherit}
+img{display:block;width:100%;height:100%;object-fit:cover}
+h1,h2,h3{font-family:"Bodoni Moda",Georgia,serif;font-weight:700;margin:0;line-height:1.08}
+.wrap{width:min(940px,100% - 32px);margin-inline:auto}
+.topbar{background:var(--teal);color:#fff;font-size:13px;text-align:center;padding:7px 16px}
+header{position:sticky;top:0;z-index:20;background:rgba(255,253,248,.97);border-bottom:1px solid var(--rule)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:68px;gap:12px}
+.logo{display:flex;align-items:center;text-decoration:none;height:52px}
+.logo img{height:52px;width:auto;object-fit:contain}
+.logo .wm{display:none;font:italic 500 26px/1 "Bodoni Moda",serif;color:var(--teal)}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:0 22px;border-radius:2px;background:var(--teal);color:#fff;font-weight:700;text-decoration:none;white-space:nowrap;letter-spacing:.04em}
+.btn.berry{background:var(--berry)}
+.btn.line{background:transparent;color:var(--teal);border:1px solid var(--teal)}
+figure{margin:0;position:relative;overflow:hidden;background:#CFDCD9}
+/* the card */
+.sheet{background:var(--card);margin:26px auto;box-shadow:0 1px 0 var(--rule),0 18px 40px rgba(42,38,34,.08);border:1px solid var(--rule);position:relative}
+.sheet::before{content:"";position:absolute;inset:10px;border:1px solid var(--rule);pointer-events:none}
+.inner{padding:44px 26px;position:relative}
+.orn{text-align:center;color:var(--berry);letter-spacing:.5em;font-size:13px;margin:0 0 12px}
+.center{text-align:center}
+.hero h1{font-size:clamp(42px,9vw,78px);color:var(--teal)}
+.hero h1 i{font-weight:500;color:var(--berry)}
+.hero p{max-width:540px;margin:16px auto 22px;font-size:18px}
+.hero figure{aspect-ratio:16/9;margin-top:30px}
+.row{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+h2{font-size:clamp(30px,6vw,46px);color:var(--teal);margin-bottom:8px}
+.sub{font:italic 500 18px/1.4 "Bodoni Moda",serif;color:var(--berry);margin:0 0 22px}
+/* about */
+.about{display:grid;gap:24px;align-items:center}
+.about figure{aspect-ratio:1/1;border-radius:50%;border:6px solid var(--card);box-shadow:0 0 0 1px var(--rule)}
+.about p{margin:0 0 12px}
+/* menu */
+.menu{display:grid;gap:4px 40px}
+.mi{padding:14px 0;border-bottom:1px dotted var(--rule)}
+.mi h3{font-size:22px;display:flex;justify-content:space-between;gap:10px}
+.mi h3 span{font:700 13px/2 "Nunito Sans",sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--berry)}
+.mi p{margin:2px 0 0;color:#5A534B}
+/* gallery */
+.gal{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.gal figure{aspect-ratio:4/5}
+/* reviews */
+.rev{display:grid;gap:20px}
+blockquote{margin:0;text-align:center;font:italic 500 24px/1.35 "Bodoni Moda",serif;color:var(--ink)}
+blockquote cite{display:block;margin-top:10px;font:700 13px/1.4 "Nunito Sans",sans-serif;letter-spacing:.12em;text-transform:uppercase;font-style:normal;color:var(--teal)}
+/* visit */
+.visit{display:grid;gap:26px}
+table{width:100%;border-collapse:collapse}
+td{padding:7px 0;border-bottom:1px dotted var(--rule)}
+td:last-child{text-align:right}
+.note{font-size:14px;color:#5A534B}
+.stamp{display:inline-block;border:2px solid var(--berry);color:var(--berry);padding:6px 14px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;font-size:12px;transform:rotate(-3deg);margin-bottom:14px}
+footer{text-align:center;padding:10px 0 40px;font-size:14px;color:#5A534B}
+@media(min-width:760px){
+ .inner{padding:60px 64px}
+ .about{grid-template-columns:.8fr 1.2fr;gap:44px}
+ .menu{grid-template-columns:1fr 1fr}
+ .gal{grid-template-columns:repeat(3,1fr)}
+ .rev{grid-template-columns:1fr 1fr}
+ .visit{grid-template-columns:1fr 1fr}
+}
+</style>
+</head>
+<body id="top">
+<div class="topbar">Design concept prepared for Royal Teas by Sites By MS. Not the official website.</div>
+<header>
+ <div class="wrap nav">
+  <a class="logo" href="#top" aria-label="Royal Teas home"><img src="https://images.squarespace-cdn.com/content/v1/5f1b1f42ce672520a4eee952/1595618823355-SH4Y2RGS5726L4FOPM9L/Logo+Royal+Teas-01.png?format=500w" alt="Royal Teas logo" width="160" height="52" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><span class="wm">Royal Teas</span></a>
+  <a class="btn" href="#visit">Visit us</a>
+ </div>
+</header>
+
+<main>
+ <div class="wrap">
+  <article class="sheet hero">
+   <div class="inner center">
+    <p class="orn">✦ ✦ ✦</p>
+    <h1>Tea, cake &amp; <i>a proper breakfast</i></h1>
+    <p>A cosy tea room on Royal Hill, a short walk from Greenwich station. Homemade food all day, cream teas in the afternoon, and no need to book.</p>
+    <div class="row"><a class="btn" href="#menu">See the menu</a><a class="btn line" href="https://maps.google.com/?q=Royal+Teas+76+Royal+Hill+London+SE10+8RT">Directions</a></div>
+    <figure><img src="https://images.squarespace-cdn.com/content/v1/5f1b1f42ce672520a4eee952/c05d2854-d092-4ac3-9244-cc185fe1c5be/cream+tea+box.jpg?format=1500w" alt="A Royal Teas cream tea" width="1500" height="844" onerror="this.style.opacity=0"></figure>
+   </div>
+  </article>
+
+  <article class="sheet" id="about">
+   <div class="inner about">
+    <figure><img src="https://images.squarespace-cdn.com/content/v1/5f1b1f42ce672520a4eee952/1595625155775-D4MCNUQZ36IV9VAL7PR3/DSC01027.jpg?format=1500w" alt="Inside Royal Teas" width="800" height="800" loading="lazy" onerror="this.style.opacity=0"></figure>
+    <div>
+     <p class="orn" style="text-align:left">ABOUT US</p>
+     <h2>A neighbourhood tea room</h2>
+     <p class="sub">On Royal Hill, Greenwich</p>
+     <p>Royal Teas is styled as a classic English tea room, with tables inside and out and a homemade vegetarian menu.</p>
+     <p>Mornings are for breakfast and brunch, lunchtimes for soups and salads, and the afternoon belongs to cream teas and cake.</p>
+    </div>
+   </div>
+  </article>
+
+  <article class="sheet" id="menu">
+   <div class="inner">
+    <div class="center"><p class="orn">✦ THE MENU ✦</p><h2>Served all day</h2><p class="sub">Everything vegetarian</p></div>
+    <div class="menu">
+     <div class="mi"><h3>Breakfast &amp; brunch <span>Morning</span></h3><p>Including avocado and poached eggs on toast.</p></div>
+     <div class="mi"><h3>Soups &amp; salads <span>Lunch</span></h3><p>Light lunches, made fresh.</p></div>
+     <div class="mi"><h3>Cream tea <span>Afternoon</span></h3><p>Scones with jam and cream and a pot of tea.</p></div>
+     <div class="mi"><h3>Afternoon tea <span>Afternoon</span></h3><p>Homemade, and "so filling", say reviewers.</p></div>
+     <div class="mi"><h3>Homemade cakes <span>All day</span></h3><p>Orange and polenta cake, florentines and more.</p></div>
+     <div class="mi"><h3>Coffee &amp; teas <span>All day</span></h3><p>Hot or iced.</p></div>
+    </div>
+   </div>
+  </article>
+
+  <article class="sheet" id="gallery">
+   <div class="inner">
+    <div class="center"><p class="orn">✦ ✦ ✦</p><h2>From our kitchen</h2><p class="sub">Photos from Royal Teas</p></div>
+    <div class="gal">
+     <figure><img src="https://images.squarespace-cdn.com/content/v1/5f1b1f42ce672520a4eee952/bd76f0ee-6017-4aeb-a54b-81d02ede5574/orange+and+polenta.jpg?format=1500w" alt="Orange and polenta cake" width="800" height="1000" loading="lazy" onerror="this.style.opacity=0"></figure>
+     <figure><img src="https://images.squarespace-cdn.com/content/v1/5f1b1f42ce672520a4eee952/66b1e5d9-985a-4f1f-892d-b2603a2b1c99/florentine.jpg?format=1500w" alt="Florentines" width="800" height="1000" loading="lazy" onerror="this.style.opacity=0"></figure>
+     <figure><img src="https://images.squarespace-cdn.com/content/v1/5f1b1f42ce672520a4eee952/863b7822-a276-477a-9b87-0ea66feed966/avocado+and+poach+on+toast+copy.jpg?format=1500w" alt="Avocado and poached eggs on toast" width="800" height="1000" loading="lazy" onerror="this.style.opacity=0"></figure>
+     <figure><img src="https://images.squarespace-cdn.com/content/v1/5f1b1f42ce672520a4eee952/df7c7138-fa42-4bfd-976a-0409caf4620c/coffee+and+green.jpg?format=1500w" alt="Coffee at Royal Teas" width="800" height="1000" loading="lazy" onerror="this.style.opacity=0"></figure>
+     <figure><img src="https://images.squarespace-cdn.com/content/v1/5f1b1f42ce672520a4eee952/17924b2e-70a2-4a96-b38a-ea17196aa78a/iced+coffee.jpg?format=1500w" alt="Iced coffee" width="800" height="1000" loading="lazy" onerror="this.style.opacity=0"></figure>
+     <figure><img src="https://images.squarespace-cdn.com/content/v1/5f1b1f42ce672520a4eee952/1595625321825-5HIV999RN35NM9G1WVLF/DSC01047.jpg?format=1500w" alt="At Royal Teas" width="800" height="1000" loading="lazy" onerror="this.style.opacity=0"></figure>
+    </div>
+   </div>
+  </article>
+
+  <article class="sheet" id="reviews">
+   <div class="inner">
+    <div class="center"><p class="orn">✦ 4.7 ON GOOGLE · 420+ REVIEWS ✦</p></div>
+    <div class="rev">
+     <blockquote>"Everything was homemade and the afternoon tea menu was so filling!"<cite>Local reviewer</cite></blockquote>
+     <blockquote>"A cosy vegetarian café nestled on Royal Hill, Royal Teas is a community favourite."<cite>Essential Living</cite></blockquote>
+    </div>
+   </div>
+  </article>
+
+  <article class="sheet" id="visit">
+   <div class="inner visit">
+    <div>
+     <span class="stamp">Walk-ins only</span>
+     <h2>Opening hours</h2>
+     <table>
+      <tr><td>Mon, Tue, Wed, Fri</td><td>9am – 4pm</td></tr>
+      <tr><td>Thursday</td><td>Closed</td></tr>
+      <tr><td>Saturday</td><td>9am – 5pm</td></tr>
+      <tr><td>Sunday &amp; bank holidays</td><td>10.30am – 5pm</td></tr>
+     </table>
+     <p class="note">We don't take bookings, just come in.</p>
+    </div>
+    <div>
+     <h2>Find us</h2>
+     <p>76 Royal Hill<br>Greenwich, London SE10 8RT<br>About 200m from Greenwich station</p>
+     <p><a href="tel:07887674051">07887 674051</a><br><a href="https://www.instagram.com/royalteascafe/">@royalteascafe on Instagram</a></p>
+     <div class="row" style="justify-content:flex-start"><a class="btn berry" href="https://maps.google.com/?q=Royal+Teas+76+Royal+Hill+London+SE10+8RT">Get directions</a><a class="btn line" href="tel:07887674051">Call</a></div>
+    </div>
+   </div>
+  </article>
+
+  <article class="sheet">
+   <div class="inner center">
+    <p class="orn">✦ ✦ ✦</p>
+    <h2>The kettle's on.</h2>
+    <p class="sub">See you on Royal Hill.</p>
+    <a class="btn" href="https://maps.google.com/?q=Royal+Teas+76+Royal+Hill+London+SE10+8RT">Plan your visit</a>
+   </div>
+  </article>
+ </div>
+</main>
+
+<footer>
+ <p><b>Royal Teas</b> · 76 Royal Hill, Greenwich, London SE10 8RT</p>
+ <p>Design concept by Sites By MS. Not the official website.</p>
+</footer>
+<script src="/assets/concept-bar.js" data-name="Royal Teas" data-slug="royal-teas" defer></script>
+</body>
+</html>
