@@ -114,6 +114,32 @@ if ($csrfOk) {
         $ok = send_mail($b['email'], "Your call link: $when", $txt, FROM_ADDR, [$ics]);
         go($page, $ok ? 'Meet link sent to ' . $b['email'] . '.' : 'Saved, but the email could not be sent. Please send the link yourself.', !$ok);
     }
+    if (in_array($a, ['lead_save', 'lead_status', 'lead_add'], true)) {
+        $editable = ['company', 'country', 'location', 'site', 'email', 'phone', 'instagram', 'owner', 'notes', 'status', 'language', 'issues', 'preview', 'channel', 'subject', 'message', 'followup', 'sent', 'reply', 'slug', 'stage', 'payment', 'ig_message', 'ig_followup'];
+        $clean = function (string $k, $v): string { $v = str_replace("\r", '', (string)$v); return in_array($k, ['notes', 'issues', 'message', 'followup', 'ig_message', 'ig_followup', 'reply'], true) ? trim($v) : one_line($v); };
+        try {
+            if ($a === 'lead_add') {
+                $cells = []; foreach ($editable as $k) if (isset($_POST['f'][$k])) $cells[$k] = $clean($k, $_POST['f'][$k]);
+                if (($cells['company'] ?? '') === '') go('leads', 'Please add the business name.', true);
+                foreach (sheet_rows(true) as $r) if (strcasecmp($r['company'], $cells['company']) === 0 && strcasecmp($r['location'], $cells['location'] ?? '') === 0) go('leads', $cells['company'] . ' is already in the sheet (row ' . $r['_row'] . ').', true);
+                $cells['status'] = in_array($cells['status'] ?? '', LEAD_STATUSES, true) ? $cells['status'] : 'Candidate';
+                $row = sheet_append_lead($cells);
+                go('lead&r=' . $row, $cells['company'] . ' added to the sheet (row ' . $row . ').');
+            }
+            $row = (int)$_POST['row']; $lead = lead_get($row, (string)$_POST['orig']);
+            if ($a === 'lead_status') {
+                $st = (string)$_POST['status']; if (!in_array($st, LEAD_STATUSES, true)) go('leads', 'Unknown status.', true);
+                sheet_update_row($row, ['status' => $st]);
+                $back = preg_match('/^[a-z0-9&=_%+.-]{1,120}$/i', (string)($_POST['back'] ?? '')) ? (string)$_POST['back'] : 'leads';
+                go($back, $lead['company'] . " moved to $st.");
+            }
+            $diff = [];
+            foreach ($editable as $k) if (isset($_POST['f'][$k])) { $v = $clean($k, $_POST['f'][$k]); if ($v !== $lead[$k]) $diff[$k] = $v; }
+            if (isset($diff['status']) && !in_array($diff['status'], LEAD_STATUSES, true)) unset($diff['status']);
+            if ($diff) sheet_update_row($row, $diff);
+            go('lead&r=' . $row, $diff ? 'Saved to the sheet (' . count($diff) . ' ' . (count($diff) === 1 ? 'field' : 'fields') . ').' : 'Nothing changed.');
+        } catch (Throwable $e) { go('leads', $e->getMessage(), true); }
+    }
     if ($a === 'oseen' || $a === 'ounseen') {
         $slug = preg_replace('/[^a-z0-9-]/', '', (string)$_POST['slug']);
         if ($slug !== '' && $a === 'oseen') seen_add($slug, 'first', 'Instagram DM', 'manual');
@@ -279,7 +305,7 @@ function msg_row(array $m, array $typeLabel): string {
 }
 
 /* ---------- pages ---------- */
-$nav = [['home', 'Overview'], ['outreach', 'Outreach'], ['results', 'Results'], ['activity', 'Activity'], ['calls', 'Calls'], ['messages', 'Messages'], ['views', 'Concept views']];
+$nav = [['home', 'Overview'], ['leads', 'Leads'], ['outreach', 'Outreach'], ['results', 'Results'], ['activity', 'Activity'], ['calls', 'Calls'], ['messages', 'Messages']];
 if ($pdo && $isOwner) $nav[] = ['team', 'Team'];
 $nav[] = ['settings', 'Settings'];
 
@@ -315,7 +341,7 @@ if ($page === 'outreach') {
             $t = strtotime($d); return $t ? (new DateTime('@' . $t))->setTimezone($tz) : null;
         };
         $first = array_values(array_filter($rows, fn($r) => strcasecmp($r['status'], 'Review') === 0));
-        $follow = array_values(array_filter($rows, function ($r) use ($parseDate, $todayD) { if (strcasecmp($r['status'], 'Sent') !== 0 || $r['reply'] !== '') return false; $d = $parseDate($r['followup_date']); return $d && $d <= $todayD; }));
+        $follow = array_values(array_filter($rows, function ($r) use ($parseDate, $todayD) { if (strcasecmp($r['status'], 'Sent') !== 0 || $r['reply'] !== '') return false; $d = $parseDate($r['followup_date']); if (!$d && ($s = $parseDate($r['sent']))) $d = (clone $s)->modify('+3 days'); return $d && $d <= $todayD; }));
         echo '<div class="tabs2"><a href="#ready">Ready to send <i>' . count($first) . '</i></a><a href="#followups">Follow-ups due <i>' . count($follow) . '</i></a><a href="#sent">Sent</a></div>';
         $log = outreach_all();
         $card = function (array $r, string $kind, int $i) use ($seen, $log) {
@@ -457,6 +483,86 @@ if ($page === 'activity') {
     }
     if (!$ss) echo '<div class="empty">Nothing yet.</div>';
     echo '</section>';
+}
+if (in_array($page, ['leads', 'lead', 'leadnew'], true)) {
+    $rows = null; $gerr = '';
+    if (!google_key()) $gerr = 'The leads sheet is not connected yet (Settings › Leads sheet).';
+    else { try { $rows = sheet_rows(); } catch (Throwable $e) { $gerr = $e->getMessage(); } }
+    $stClass = ['Candidate' => 'grey', 'Ready' => '', 'Rebuild' => '', 'Review' => '', 'Sent' => 'ok', 'Replied' => 'ok', 'Won' => 'ok', 'Lost' => 'grey', 'Skip' => 'grey'];
+    $fieldDefs = [
+        'Business' => ['company' => 'Business name', 'location' => 'Address', 'country' => 'Country', 'site' => 'Website'],
+        'Contact' => ['owner' => 'Owner name', 'email' => 'Email', 'phone' => 'Phone / WhatsApp', 'instagram' => 'Instagram'],
+        'Pipeline' => ['status' => 'Status', 'notes' => 'Notes', 'reply' => 'Reply / result', 'stage' => 'Project stage', 'payment' => 'Payment link'],
+        'Pitch' => ['slug' => 'Concept folder (slug)', 'preview' => 'Concept link', 'language' => 'Language', 'channel' => 'Channel', 'issues' => 'Issues we found', 'subject' => 'Email subject', 'message' => 'First message (email, or DM if Instagram only)', 'followup' => 'Follow-up', 'ig_message' => 'Instagram message (when both channels)', 'ig_followup' => 'Instagram follow-up', 'sent' => 'Sent date'],
+    ];
+    $long = ['notes', 'issues', 'message', 'followup', 'ig_message', 'ig_followup', 'reply'];
+    $input = function (string $k, string $label, string $v) use ($long) {
+        if ($k === 'status') return '<label>' . h($label) . '<select name="f[status]">' . implode('', array_map(fn($s) => '<option' . ($s === $v ? ' selected' : '') . '>' . $s . '</option>', array_unique(array_merge(LEAD_STATUSES, $v !== '' ? [$v] : [])))) . '</select></label>';
+        if ($k === 'channel') return '<label>' . h($label) . '<select name="f[channel]">' . implode('', array_map(fn($s) => '<option' . ($s === $v ? ' selected' : '') . '>' . $s . '</option>', array_unique(array_merge(['', 'Email', 'Instagram DM', 'Email + Instagram DM'], [$v])))) . '</select></label>';
+        if (in_array($k, $long, true)) return '<label class="wide">' . h($label) . '<textarea name="f[' . $k . ']" rows="' . max(3, min(16, substr_count($v, "\n") + 2 + intdiv(strlen($v), 90))) . '">' . h($v) . '</textarea></label>';
+        return '<label>' . h($label) . '<input name="f[' . $k . ']" value="' . h($v) . '"' . ($k === 'email' ? ' type="email"' : '') . '></label>';
+    };
+    if ($gerr) echo '<h1>Leads</h1><section class="card"><p class="err">' . h($gerr) . '</p></section>';
+    elseif ($page === 'leads') {
+        $st = (string)($_GET['st'] ?? 'active'); $qq = trim((string)($_GET['q'] ?? ''));
+        $count = ['active' => 0, 'all' => count($rows)]; foreach (LEAD_STATUSES as $s) $count[$s] = 0;
+        foreach ($rows as $r) { $count[$r['status']] = ($count[$r['status']] ?? 0) + 1; if (!in_array($r['status'], ['Skip', 'Lost'], true)) $count['active']++; }
+        $list = array_values(array_filter($rows, function ($r) use ($st, $qq) {
+            if ($st === 'active' && in_array($r['status'], ['Skip', 'Lost'], true)) return false;
+            if ($st !== 'active' && $st !== 'all' && $r['status'] !== $st) return false;
+            if ($qq !== '') { $hay = strtolower(implode(' ', [$r['company'], $r['location'], $r['email'], $r['instagram'], $r['notes'], $r['owner'], $r['slug']])); if (!str_contains($hay, strtolower($qq))) return false; }
+            return true;
+        }));
+        usort($list, fn($a, $b) => $b['_row'] <=> $a['_row']);
+        $viewsBy = []; foreach ($views as $v) $viewsBy[$v['slug']] = ($viewsBy[$v['slug']] ?? 0) + 1;
+        echo '<div class="ch"><h1>Leads</h1><div class="acts"><a class="btn" href="?p=leadnew">Add a lead</a></div></div><p class="sub">Every business in the leads sheet. Changes you make here are saved straight to the sheet, so it always stays in sync with the nightly work.</p>';
+        echo '<div class="tabs2">';
+        foreach (array_merge(['active' => 'Active', 'all' => 'All'], array_combine(LEAD_STATUSES, LEAD_STATUSES)) as $k => $lab) echo '<a href="?p=leads&amp;st=' . rawurlencode($k) . '"' . ($k === $st ? ' aria-current="page"' : '') . '>' . h($lab) . ' <i>' . ($count[$k] ?? 0) . '</i></a>';
+        echo '</div><form class="search" method="get"><input type="hidden" name="p" value="leads"><input type="hidden" name="st" value="' . h($st) . '"><input name="q" value="' . h($qq) . '" placeholder="Search name, area, email, Instagram, notes…" aria-label="Search leads"><button class="btn line sm">Search</button></form>';
+        echo '<section class="card"><div class="tbl"><table class="leads"><thead><tr><th>Business</th><th>Contact</th><th>Status</th><th>Notes</th><th>Concept</th><th></th></tr></thead><tbody>';
+        $back = 'leads&st=' . rawurlencode($st) . ($qq !== '' ? '&q=' . rawurlencode($qq) : '');
+        foreach ($list as $r) {
+            $quick = '';
+            if ($r['status'] === 'Candidate') foreach (['Ready' => 'Approve', 'Skip' => 'Skip'] as $to => $lab) $quick .= '<form method="post">' . csrf_field() . '<input type="hidden" name="a" value="lead_status"><input type="hidden" name="row" value="' . $r['_row'] . '"><input type="hidden" name="orig" value="' . h($r['company']) . '"><input type="hidden" name="status" value="' . $to . '"><input type="hidden" name="back" value="' . h($back) . '"><button class="btn sm' . ($to === 'Skip' ? ' line' : '') . '">' . $lab . '</button></form>';
+            $nv = $viewsBy[$r['slug']] ?? 0;
+            echo '<tr><td><a class="lname" href="?p=lead&amp;r=' . $r['_row'] . '"><b>' . h($r['company']) . '</b></a><small>' . h(mb_strimwidth($r['location'], 0, 48, '…')) . '</small></td>'
+                . '<td class="ct">' . ($r['email'] !== '' ? '<span title="' . h($r['email']) . '">✉</span>' : '') . ($r['instagram'] !== '' ? '<span title="@' . h(ltrim($r['instagram'], '@')) . '">IG</span>' : '') . ($r['phone'] !== '' ? '<span title="' . h($r['phone']) . '">☎</span>' : '') . '</td>'
+                . '<td><span class="pill ' . ($stClass[$r['status']] ?? 'grey') . '">' . h($r['status'] ?: '—') . '</span>' . ($r['sent'] ? '<small>sent ' . h($r['sent']) . '</small>' : '') . '</td>'
+                . '<td class="nt">' . h(mb_strimwidth($r['notes'], 0, 110, '…')) . '</td>'
+                . '<td>' . ($r['slug'] ? '<a href="/' . h($r['slug']) . '/?team=1" target="_blank" rel="noopener">View</a>' . ($nv ? '<small>' . $nv . ' ' . ($nv === 1 ? 'open' : 'opens') . '</small>' : '') : '—') . '</td>'
+                . '<td class="qa">' . $quick . '<a class="btn line sm" href="?p=lead&amp;r=' . $r['_row'] . '">Open</a></td></tr>';
+        }
+        if (!$list) echo '<tr><td colspan="6"><div class="empty">No leads here.</div></td></tr>';
+        echo '</tbody></table></div></section>';
+    } elseif ($page === 'leadnew') {
+        echo '<h1>Add a lead</h1><p class="sub">It is added to the end of the leads sheet. The nightly run picks up leads with status Ready.</p><form class="card leadedit" method="post">' . csrf_field() . '<input type="hidden" name="a" value="lead_add">';
+        foreach (['Business', 'Contact'] as $grp) { echo '<h2>' . $grp . '</h2><div class="fgrid">'; foreach ($fieldDefs[$grp] as $k => $lab) echo $input($k, $lab, ''); echo '</div>'; }
+        echo '<h2>Pipeline</h2><div class="fgrid">' . $input('status', 'Status', 'Candidate') . $input('notes', 'Notes (sector, rating, why it is a good lead)', '') . '</div><div class="acts"><button class="btn">Add lead</button><a class="btn line" href="?p=leads">Cancel</a></div></form>';
+    } else {
+        $rn = (int)($_GET['r'] ?? 0); $r = null; foreach ($rows as $x) if ($x['_row'] === $rn) $r = $x;
+        if (!$r) echo '<h1>Lead not found</h1><section class="card"><p>That row is empty or no longer exists.</p><a class="btn line" href="?p=leads">Back to leads</a></section>';
+        else {
+            $slug = $r['slug'];
+            echo '<p class="crumb"><a href="?p=leads">← Leads</a></p><div class="ch"><div><h1>' . h($r['company']) . ' <span class="pill ' . ($stClass[$r['status']] ?? 'grey') . '">' . h($r['status']) . '</span></h1><p class="sub">' . h($r['location']) . ' · sheet row ' . $r['_row'] . '</p></div>'
+                . '<form method="post" class="acts">' . csrf_field() . '<input type="hidden" name="a" value="lead_status"><input type="hidden" name="row" value="' . $r['_row'] . '"><input type="hidden" name="orig" value="' . h($r['company']) . '"><input type="hidden" name="back" value="lead&amp;r=' . $r['_row'] . '">'
+                . '<select name="status" aria-label="New status">' . implode('', array_map(fn($s) => '<option' . ($s === $r['status'] ? ' selected' : '') . '>' . $s . '</option>', LEAD_STATUSES)) . '</select><button class="btn sm">Change status</button></form></div>';
+            // activity for this business
+            $vv = array_values(array_filter($views, fn($v) => $v['slug'] === $slug && $slug !== ''));
+            $ol = array_values(array_filter(outreach_all(), fn($o) => (int)$o['row'] === $r['_row']));
+            $mm = array_values(array_filter($messages, fn($m) => $slug !== '' && ($m['slug'] ?? '') === $slug));
+            $bb = array_values(array_filter($bookings, fn($b) => $slug !== '' && $b['slug'] === $slug));
+            echo '<section class="card"><h2>Activity</h2><ul class="act">';
+            foreach ($bb as $b) echo '<li><b>Call booked</b> for ' . h(london($b['start_ts'], 'D j M, H:i')) . ' London · ' . h($b['how']) . '</li>';
+            foreach ($mm as $m) echo '<li><b>' . h($typeLabel[$m['type']] ?? $m['type']) . '</b> · ' . h(ago($m['at'])) . ($m['email'] ? ' · ' . h($m['email']) : '') . ($m['phone'] ? ' · ' . h($m['phone']) : '') . '</li>';
+            foreach ($ol as $o) echo '<li><b>' . h($o['kind'] === 'first' ? 'First message' : ($o['kind'] === 'followup' ? 'Follow-up' : ucfirst(str_replace('-', ' ', $o['kind'])))) . '</b> · ' . h($o['channel']) . ' · ' . h(ago($o['at'] ?? null)) . (!empty($o['sent_by']) ? ' · by ' . h($o['sent_by']) : '') . '</li>';
+            if ($vv) echo '<li><b>Concept opened ' . count($vv) . ' ' . (count($vv) === 1 ? 'time' : 'times') . '</b> · last ' . h(ago($vv[0]['at'])) . ' · <a href="?p=activity&amp;s=' . h($slug) . '">see what they did</a></li>';
+            if (!$bb && !$mm && !$ol && !$vv) echo '<li class="muted">Nothing yet.</li>';
+            echo '</ul><div class="links">' . ($slug ? '<a class="btn line sm" href="/' . h($slug) . '/?team=1" target="_blank" rel="noopener">Open concept</a>' : '') . ($r['site'] ? ' <a class="btn line sm" href="' . h(preg_match('#^https?://#', $r['site']) ? $r['site'] : 'https://' . $r['site']) . '" target="_blank" rel="noopener">Their website</a>' : '') . '</div></section>';
+            echo '<form class="card leadedit" method="post">' . csrf_field() . '<input type="hidden" name="a" value="lead_save"><input type="hidden" name="row" value="' . $r['_row'] . '"><input type="hidden" name="orig" value="' . h($r['company']) . '">';
+            foreach ($fieldDefs as $grp => $fs) { echo '<h2>' . $grp . '</h2><div class="fgrid">'; foreach ($fs as $k => $lab) echo $input($k, $lab, $r[$k]); echo '</div>'; }
+            echo '<p class="hint">Follow-up date (from the sheet formula): ' . h($r['followup_date'] ?: '—') . '</p><div class="acts sticky"><button class="btn">Save changes</button><a class="btn line" href="?p=leads">Back</a></div></form>';
+        }
+    }
 }
 if ($page === 'messages') {
     echo '<h1>Messages</h1><p class="sub">Questions and free concept requests from the website forms.</p>';

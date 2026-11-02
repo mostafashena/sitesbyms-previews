@@ -48,7 +48,8 @@ function http_json(string $method, string $url, $body = null, bool $form = false
     return $j;
 }
 
-function sheet_rows(): array {
+function sheet_rows(bool $fresh = false): array {
+    static $cache = null; if ($cache !== null && !$fresh) return $cache;
     $t = google_token();
     $j = http_json('GET', google_api_base() . '/v4/spreadsheets/' . SHEET_ID . '/values/' . rawurlencode(SHEET_TAB . '!A1:Z1000') . '?valueRenderOption=FORMATTED_VALUE', null, false, ["Authorization: Bearer $t"]);
     $vals = $j['values'] ?? []; $rows = [];
@@ -60,7 +61,7 @@ function sheet_rows(): array {
         if ($row['company'] === '') continue;
         $rows[] = $row;
     }
-    return $rows;
+    return $cache = $rows;
 }
 
 /** Writes cells of one sheet row. $cells: ['status' => 'Sent', ...]. Dates use USER_ENTERED so formulas keep working. */
@@ -125,6 +126,30 @@ function lead_mismatch(array $r): ?string {
             if (strlen($t) >= 4 && !in_array($t, $generic, true) && str_contains($other, $t)) return null;
     similar_text($page, $row, $pct);
     return $pct >= 75 ? null : 'The concept /' . $slug . '/ is for “' . html_entity_decode($m[1], ENT_QUOTES, 'UTF-8') . '”, not for ' . $r['company'] . '. The message on this row probably belongs to another business. Do not send; fix the row in the sheet first.';
+}
+
+/* ---------- leads managed from the panel ---------- */
+const LEAD_STATUSES = ['Candidate', 'Ready', 'Rebuild', 'Review', 'Sent', 'Replied', 'Won', 'Lost', 'Skip'];
+/** Finds a row and checks it still holds the same business, so a shifted sheet can never be written to the wrong row. */
+function lead_get(int $row, string $company): array {
+    foreach (sheet_rows(true) as $r) if ($r['_row'] === $row) {
+        if (trim($r['company']) !== trim($company)) throw new RuntimeException("Row $row now holds “{$r['company']}”, not “{$company}”. The sheet changed; please reload and try again.");
+        return $r;
+    }
+    throw new RuntimeException("Row $row no longer exists in the sheet. Please reload.");
+}
+/** Adds a lead at the end of the sheet. Returns its sheet row. */
+function sheet_append_lead(array $cells): int {
+    $rows = sheet_rows(true); $n = 0; $last = 1;
+    foreach ($rows as $r) { $n = max($n, (int)$r['row']); $last = max($last, $r['_row']); }
+    $line = [];
+    foreach (COL as $k => $letter) $line[] = $k === 'row' ? (string)($n + 1) : (string)($cells[$k] ?? '');
+    $line = array_slice($line, 0, array_search('followup_date', array_keys(COL)));   // stop before T (formula column)
+    $t = google_token(); $row = $last + 1;
+    http_json('POST', google_api_base() . '/v4/spreadsheets/' . SHEET_ID . '/values:batchUpdate', ['valueInputOption' => 'RAW', 'data' => [['range' => SHEET_TAB . '!A' . $row . ':S' . $row, 'values' => [$line]]]], false, ["Authorization: Bearer $t"]);
+    $rest = []; foreach (['reply', 'slug', 'stage', 'payment', 'ig_message', 'ig_followup'] as $k) if (($cells[$k] ?? '') !== '') $rest[$k] = $cells[$k];
+    if ($rest) sheet_update_row($row, $rest);
+    return $row;
 }
 
 /* ---------- outreach email ---------- */
