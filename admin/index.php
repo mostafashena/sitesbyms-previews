@@ -241,6 +241,7 @@ if ($csrfOk) {
         $c['start'] = preg_match('/^\d{2}:\d{2}$/', (string)$_POST['start']) ? $_POST['start'] : '10:00';
         $c['end'] = preg_match('/^\d{2}:\d{2}$/', (string)$_POST['end']) ? $_POST['end'] : '17:00';
         $c['weekdays'] = array_values(array_map('intval', (array)($_POST['wd'] ?? [1, 2, 3, 4, 5])));
+        $c['held_pct'] = max(0, min(80, (int)($_POST['held_pct'] ?? 45)));
         setting_set('config', $c); @unlink(data_dir() . '/ical_cache.json');
         go('settings', 'Settings saved.');
     }
@@ -679,6 +680,7 @@ if ($page === 'settings') {
         . '<label>Google Calendar secret address (iCal)<input name="ical_url" value="' . h($cfg['ical_url']) . '" placeholder="https://calendar.google.com/calendar/ical/.../basic.ics"><span class="hint">With this, times that are busy in your Google Calendar show as Taken on the booking page.' . ($ical !== null ? ' ' . $ical . ' events read from the calendar just now.' : '') . '</span></label>'
         . '<div class="f3"><label>First bookable day<select name="days_ahead">' . implode('', array_map(fn($n) => '<option value="' . $n . '"' . ($n == $cfg['days_ahead'] ? ' selected' : '') . '>' . $n . ($n === 1 ? ' day' : ' days') . ' from today</option>', range(1, 7))) . '</select></label>'
         . '<label>Day starts (London)<input name="start" type="time" value="' . h($cfg['start']) . '"></label><label>Day ends (London)<input name="end" type="time" value="' . h($cfg['end']) . '"></label></div>'
+        . '<label>Times shown as already booked<select name="held_pct">' . implode('', array_map(fn($n) => '<option value="' . $n . '"' . ($n == ($cfg['held_pct'] ?? 45) ? ' selected' : '') . '>' . ($n ? $n . '% of free times' : 'None') . '</option>', [0, 25, 35, 45, 55, 65])) . '</select><span class="hint">Makes the calendar look like a busy studio. The same times stay taken for every visitor, a different pattern each day, and at least 3 times a day always stay open. These times are never bookable.</span></label>'
         . '<fieldset><legend>Working days</legend><div class="wd">' . implode('', array_map(fn($n) => '<label class="chk"><input type="checkbox" name="wd[]" value="' . $n . '"' . (in_array($n, $wd, true) ? ' checked' : '') . '>' . $days[$n] . '</label>', array_keys($days))) . '</div></fieldset>'
         . '<button class="btn">Save settings</button></form>';
     echo '<form class="card" method="post">' . csrf_field() . '<input type="hidden" name="a" value="password"><h2>Change ' . (!empty($me['legacy']) ? 'panel' : 'your') . ' password</h2><div class="f3"><label>Current password<input type="password" name="old" autocomplete="current-password"></label><label>New password<input type="password" name="new" autocomplete="new-password" minlength="10"></label></div><button class="btn line">Change password</button></form>';

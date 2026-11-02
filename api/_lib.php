@@ -46,6 +46,7 @@ function config(): array {
         'length'     => 15,            // call length in minutes
         'weekdays'   => [1, 2, 3, 4, 5],
         'meet_link'  => '',            // optional fixed Google Meet link sent in invites
+        'held_pct'   => 45,            // share of free times shown as taken, so the calendar looks like a busy studio
     ], (array)setting_get('config', read_json('config.json', [])));
 }
 
@@ -137,6 +138,15 @@ function build_slots(): array {
             foreach ($busy as $p) { if ($s < $p[1] && $s + $len > $p[0]) { $free = false; break; } }
             $slots[] = ['t' => $t->format('H:i'), 'ts' => $s, 'free' => $free];
             $t->modify('+' . (int)$c['step'] . ' minutes');
+        }
+        // Hold back a share of the free times (same ones for every visitor, changing per day), always leaving at least 3 open.
+        $pct = max(0, min(80, (int)($c['held_pct'] ?? 45)));
+        if ($pct) {
+            $freeIdx = array_keys(array_filter($slots, fn($x) => $x['free']));
+            $dayPct = min(80, $pct + max(0, 15 - 7 * count($days)));   // the nearest days look a little fuller
+            $keep = []; foreach ($freeIdx as $i2) if (crc32('sbm-held|' . $slots[$i2]['ts']) % 100 >= $dayPct) $keep[$i2] = true;
+            if (count($keep) < min(3, count($freeIdx))) { foreach ($freeIdx as $i2) { $keep[$i2] = true; if (count($keep) >= 3) break; } }
+            foreach ($freeIdx as $i2) if (empty($keep[$i2])) $slots[$i2]['free'] = false;
         }
         $days[] = ['date' => $d->format('Y-m-d'), 'label' => $d->format('D j M'), 'slots' => $slots];
     }
