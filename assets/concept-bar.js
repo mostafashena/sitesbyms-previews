@@ -8,6 +8,7 @@
 (function () {
   var me = document.currentScript || document.querySelector('script[src*="concept-bar.js"]');
   if (!me) return;
+  if (/[?&]embed=1/.test(location.search)) return;   // small preview inside the report page
   var name = me.getAttribute('data-name') || 'your business';
   var slug = (me.getAttribute('data-slug') || '').replace(/[^a-z0-9-]/g, '');
   var q = '?b=' + encodeURIComponent(name) + (slug ? '&s=' + slug : '');

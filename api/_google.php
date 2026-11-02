@@ -152,6 +152,25 @@ function sheet_append_lead(array $cells): int {
     return $row;
 }
 
+/* ---------- panel settings stored in the sheet (tab "Panel"), so the nightly run can read them ---------- */
+const PANEL_TAB = 'Panel';
+const PANEL_DEFAULTS = ['New concepts per night' => '5', 'If nothing is Ready, build the best new candidates' => 'Yes', 'New candidates per night' => '20'];
+function panel_settings(): array {
+    $t = google_token(); $out = PANEL_DEFAULTS;
+    try {
+        $j = http_json('GET', google_api_base() . '/v4/spreadsheets/' . SHEET_ID . '/values/' . rawurlencode(PANEL_TAB . '!A1:B30'), null, false, ["Authorization: Bearer $t"]);
+        foreach ($j['values'] ?? [] as $i => $r) if ($i > 0 && isset($r[0]) && $r[0] !== '') $out[$r[0]] = (string)($r[1] ?? '');
+    } catch (Throwable $e) {}
+    return $out;
+}
+function panel_settings_save(array $kv): void {
+    $t = google_token(); $vals = [['Setting', 'Value']];
+    foreach ($kv as $k => $v) $vals[] = [(string)$k, (string)$v];
+    http_json('POST', google_api_base() . '/v4/spreadsheets/' . SHEET_ID . '/values:batchUpdate', ['valueInputOption' => 'RAW', 'data' => [['range' => PANEL_TAB . '!A1:B' . count($vals), 'values' => $vals]]], false, ["Authorization: Bearer $t"]);
+}
+/** Report token from column W ("Report ready: <token> …"). */
+function report_token(array $r): string { return preg_match('/Report (?:ready|sent)\b.*?\b([a-z0-9]{16})\b/', $r['stage'], $m) ? $m[1] : ''; }
+
 /* ---------- outreach email ---------- */
 
 /** Adds ?from=email to sitesbyms.com concept links. */

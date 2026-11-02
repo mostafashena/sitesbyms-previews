@@ -1,7 +1,7 @@
 <?php
 // "Yes, send me the competitor report" from a concept page. JSON in, JSON out.
 declare(strict_types=1);
-require __DIR__ . '/_lib.php';
+require __DIR__ . '/_google.php';
 header('Content-Type: application/json; charset=UTF-8');
 header('Cache-Control: no-store');
 $fail = function (string $m, int $code = 400) { http_response_code($code); echo json_encode(['ok' => false, 'error' => $m]); exit; };
@@ -24,6 +24,12 @@ message_add(['at' => gmdate('c'), 'type' => 'report', 'name' => $name ?: '(not g
     'phone' => $isPhone ? $contact : '', 'slot' => '', 'how' => '', 'reply' => $isEmail ? 'Email' : ($isPhone ? 'WhatsApp' : 'Same channel as our message'),
     'site' => '', 'slug' => $slug, 'message' => ($team ? '[TEST from the team] ' : '') . 'Asked for the free competitor report from the concept page.', 'file' => '', 'mailed' => true]);
 
+// Mark the lead in the sheet so the nightly run builds the report (column W, Project Stage).
+if (!$team && google_key()) {
+    try { foreach (sheet_rows() as $r) if ($r['slug'] === $slug) {
+        if (!str_starts_with($r['stage'], 'Report')) sheet_update_row($r['_row'], ['stage' => 'Report requested ' . gmdate('Y-m-d') . ' · send to: ' . ($contact !== '' ? $contact : 'same channel')]);
+        break; } } catch (Throwable $e) {}
+}
 if (!$team) {
     $where = $contact !== '' ? $contact : 'not given (reply on the channel we used: email or Instagram)';
     send_mail(TEAM_TO, "Report requested: $business",

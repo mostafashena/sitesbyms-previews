@@ -114,6 +114,30 @@ if ($csrfOk) {
         $ok = send_mail($b['email'], "Your call link: $when", $txt, FROM_ADDR, [$ics]);
         go($page, $ok ? 'Meet link sent to ' . $b['email'] . '.' : 'Saved, but the email could not be sent. Please send the link yourself.', !$ok);
     }
+    if ($a === 'nightly' && google_key()) {
+        $kv = PANEL_DEFAULTS;
+        $kv['New concepts per night'] = (string)max(0, min(20, (int)($_POST['n_concepts'] ?? 5)));
+        $kv['If nothing is Ready, build the best new candidates'] = ($_POST['auto'] ?? '') === 'Yes' ? 'Yes' : 'No';
+        $kv['New candidates per night'] = (string)max(0, min(40, (int)($_POST['n_cand'] ?? 20)));
+        try { panel_settings_save($kv); go('settings', 'Nightly settings saved. The next run uses them.'); } catch (Throwable $e) { go('settings', 'Could not save: ' . $e->getMessage(), true); }
+    }
+    if ($a === 'rep_send' || $a === 'rep_mark') {
+        try {
+            $row = (int)$_POST['row']; $lead = lead_get($row, (string)$_POST['orig']); $tok = report_token($lead);
+            if (!$tok) go('outreach', 'This report is not ready yet.', true);
+            $body = trim(str_replace("\r", '', (string)$_POST['body'])); if ($body === '') go('outreach', 'The message is empty.', true);
+            $today = (new DateTime('now', new DateTimeZone(TZ)))->format('Y-m-d'); $by = (string)($me['email'] ?? 'team');
+            if ($a === 'rep_send') {
+                $to = strtolower(one_line((string)$_POST['to'])); if (!filter_var($to, FILTER_VALIDATE_EMAIL)) go('outreach', 'Please check the email address.', true);
+                $mid = send_outreach($to, 'Your market analysis for ' . $lead['company'], $body, null, $lead['slug'], 'report');
+                if (!$mid) go('outreach', 'The email could not be sent. Nothing was changed.', true);
+                $ch = 'Email';
+            } else { $to = one_line((string)($_POST['to'] ?? '')); $mid = null; $ch = one_line((string)($_POST['ch'] ?? 'Instagram DM')); }
+            outreach_log(['row' => $row, 'slug' => $lead['slug'], 'business' => $lead['company'], 'kind' => 'report', 'channel' => $ch, 'to' => $to, 'subject' => '', 'body' => $body, 'mid' => $mid, 'by' => $by]);
+            sheet_update_row($row, ['stage' => "Report sent $today · $tok"]);
+            go('outreach', 'Report sent to ' . $lead['company'] . '. You get an email when they open it.');
+        } catch (Throwable $e) { go('outreach', $e->getMessage(), true); }
+    }
     if (in_array($a, ['lead_save', 'lead_status', 'lead_add'], true)) {
         $editable = ['company', 'country', 'location', 'site', 'email', 'phone', 'instagram', 'owner', 'notes', 'status', 'language', 'issues', 'preview', 'channel', 'subject', 'message', 'followup', 'sent', 'reply', 'slug', 'stage', 'payment', 'ig_message', 'ig_followup'];
         $clean = function (string $k, $v): string { $v = str_replace("\r", '', (string)$v); return in_array($k, ['notes', 'issues', 'message', 'followup', 'ig_message', 'ig_followup', 'reply'], true) ? trim($v) : one_line($v); };
@@ -372,6 +396,31 @@ if ($page === 'outreach') {
             }
             return $o . '</details>';
         };
+        $reps = array_values(array_filter($rows, fn($r) => str_starts_with($r['stage'], 'Report requested') || str_starts_with($r['stage'], 'Report ready')));
+        if ($reps) {
+            echo '<h2 id="reports" class="sec-h">Analysis reports</h2>';
+            foreach ($reps as $r) {
+                $tok = report_token($r); $sendTo = preg_match('/send to: (.+)$/', $r['stage'], $m) ? trim($m[1]) : 'same channel';
+                echo '<details class="card lead" open><summary><div class="grow"><b>' . h($r['company']) . '</b><small>' . h($r['stage']) . '</small></div><span class="pill' . ($tok ? ' ok' : ' grey') . '">' . ($tok ? 'Ready to check' : 'Requested · built in the next nightly run') . '</span></summary>';
+                if ($tok) {
+                    $link = 'https://sitesbyms.com/report/?k=' . $tok;
+                    $email = filter_var($sendTo, FILTER_VALIDATE_EMAIL) ? $sendTo : $r['email'];
+                    $phone = preg_match('/^[0-9 +().-]{7,20}$/', $sendTo) ? $sendTo : '';
+                    $greet = $r['owner'] !== '' ? 'Hi ' . explode(' ', $r['owner'])[0] : 'Hi ' . $r['company'] . ' team';
+                    $txt = "$greet,\n\nAs promised, here is the market analysis our team prepared for " . $r['company'] . ":\n$link\n\nIt shows where you lead your local competitors, where you may be losing customers, and three priority actions. Your homepage concept is on the same page.\n\nIf you'd like, we can walk you through it in a short call. You can book a time straight from the page.\n\nBest regards,\nSites By MS\nhello@sitesbyms.com · WhatsApp +44 7405 760048";
+                    echo '<p class="hint" style="margin:14px 20px 0"><b>1.</b> Check the report first: <a href="/report/?k=' . h($tok) . '&amp;team=1" target="_blank" rel="noopener">open the report</a>. If anything is wrong, tell Claude before sending.</p>';
+                    echo '<form method="post" class="leadform">' . csrf_field() . '<input type="hidden" name="row" value="' . $r['_row'] . '"><input type="hidden" name="orig" value="' . h($r['company']) . '">'
+                        . '<p class="hint"><b>2.</b> Send it. They asked to receive it: ' . h($sendTo) . '</p>'
+                        . ($email ? '<label>Email to<input type="email" name="to" value="' . h($email) . '"></label>' : '<input type="hidden" name="to" value="' . h($phone ?: $r['instagram']) . '">')
+                        . '<label>Message<textarea name="body" rows="10">' . h($txt) . '</textarea></label><div class="acts">'
+                        . ($email ? '<button class="btn sm" name="a" value="rep_send" onclick="return confirm(\'Send the report to ' . h($email) . '?\')">Send report by email</button>' : '')
+                        . ($phone ? '<a class="btn line sm" href="https://wa.me/' . h(preg_replace('/\D/', '', preg_replace('/^0/', '44', $phone))) . '?text=' . rawurlencode($txt) . '" target="_blank" rel="noopener">Open WhatsApp</a>' : '')
+                        . ($r['instagram'] ? '<a class="btn line sm" href="https://ig.me/m/' . h(ltrim($r['instagram'], '@')) . '" target="_blank" rel="noopener">Open Instagram chat</a>' : '')
+                        . '<input type="hidden" name="ch" value="' . ($phone ? 'WhatsApp' : 'Instagram DM') . '"><button class="btn line sm" name="a" value="rep_mark">I sent it myself: mark as sent</button></div></form>';
+                }
+                echo '</details>';
+            }
+        }
         echo '<h2 id="ready" class="sec-h">Ready to send</h2>';
         echo $first ? implode('', array_map($card, $first, array_fill(0, count($first), 'first'), array_keys($first))) : '<div class="card"><div class="empty">Nothing waiting. New messages appear here after the nightly run.</div></div>';
         echo '<h2 id="followups" class="sec-h">Follow-ups due</h2>';
@@ -379,7 +428,7 @@ if ($page === 'outreach') {
         echo '<h2 id="sent" class="sec-h">Sent from the panel</h2><section class="card">';
         $log = outreach_all();
         if ($log) foreach (array_slice($log, 0, 40) as $l) { $sv = $seen[$l['slug']] ?? null;
-            echo '<div class="row"><div class="grow"><b>' . h($l['business']) . '</b> · ' . h($l['kind'] === 'first' ? 'first message' : 'follow-up') . '<small>' . h($l['channel']) . ($l['to'] ? ' · ' . h($l['to']) : '') . ' · ' . h(ago($l['at'] ?? $l['sent_at'] ?? null)) . ($l['sent_by'] ?? '' ? ' · by ' . h($l['sent_by'] ?? '') : '') . '</small></div>'
+            echo '<div class="row"><div class="grow"><b>' . h($l['business']) . '</b> · ' . h($l['kind'] === 'first' ? 'first message' : ($l['kind'] === 'report' ? 'analysis report' : 'follow-up')) . '<small>' . h($l['channel']) . ($l['to'] ? ' · ' . h($l['to']) : '') . ' · ' . h(ago($l['at'] ?? $l['sent_at'] ?? null)) . ($l['sent_by'] ?? '' ? ' · by ' . h($l['sent_by'] ?? '') : '') . '</small></div>'
                 . ($sv && strtotime($sv['at']) >= strtotime((string)($l['at'] ?? '')) ? '<span class="pill ok">Opened ' . h(ago($sv['at'])) . ($sv['from'] ? ' · ' . h($sv['from'] === 'ig' ? 'Instagram' : $sv['from']) : '') . '</span>' : '<span class="pill grey">Not opened yet</span>') . '</div>'; }
         else echo '<div class="empty">Nothing sent from the panel yet.</div>';
         echo '</section>';
@@ -598,6 +647,12 @@ if ($page === 'settings') {
     else echo '<p class="hint">Lets the Outreach page read the leads sheet and mark rows as Sent. One-time setup:</p><ol class="steps"><li>Open <a href="https://console.cloud.google.com/projectcreate" target="_blank" rel="noopener">Google Cloud</a> with the m.and.s.design.develop account and create a project called <b>sitesbyms</b>.</li><li>Turn on the <a href="https://console.cloud.google.com/apis/library/sheets.googleapis.com" target="_blank" rel="noopener">Google Sheets API</a> for that project.</li><li>Go to <a href="https://console.cloud.google.com/iam-admin/serviceaccounts" target="_blank" rel="noopener">Service accounts</a> › Create service account › name <b>panel</b> › Done.</li><li>Open it › Keys › Add key › Create new key › <b>JSON</b>. A file downloads.</li><li>Upload that file below.</li><li>In the leads sheet, press Share and add the service account email (shown here after upload) as <b>Editor</b>.</li></ol>';
     if ($isOwner) echo '<form method="post" enctype="multipart/form-data" class="stack">' . csrf_field() . '<input type="hidden" name="a" value="gkey"><label>' . ($gk ? 'Replace the key file' : 'Key file (.json)') . '<input type="file" name="keyfile" accept=".json,application/json"></label><button class="btn' . ($gk ? ' line' : '') . '">Upload key</button></form>';
     echo '</section>';
+    if ($gk) { try { $ns = panel_settings(); } catch (Throwable $e) { $ns = PANEL_DEFAULTS; }
+        echo '<form class="card" method="post" id="nightly">' . csrf_field() . '<input type="hidden" name="a" value="nightly"><h2>Nightly run</h2><p class="hint">The nightly run reads these from the leads sheet (tab “Panel”) every night.</p><div class="f3">'
+            . '<label>New concepts per night<input type="number" name="n_concepts" min="0" max="20" value="' . h($ns['New concepts per night']) . '"></label>'
+            . '<label>New candidates to find per night<input type="number" name="n_cand" min="0" max="40" value="' . h($ns['New candidates per night']) . '"></label>'
+            . '<label>If nothing is Ready, build the best new candidates<select name="auto"><option' . ($ns['If nothing is Ready, build the best new candidates'] === 'Yes' ? ' selected' : '') . '>Yes</option><option' . ($ns['If nothing is Ready, build the best new candidates'] !== 'Yes' ? ' selected' : '') . '>No</option></select></label>'
+            . '</div><button class="btn">Save</button></form>'; }
     echo '<form class="card" method="post">' . csrf_field() . '<input type="hidden" name="a" value="settings"><h2>Calendar &amp; booking</h2>'
         . '<label>Google Calendar secret address (iCal)<input name="ical_url" value="' . h($cfg['ical_url']) . '" placeholder="https://calendar.google.com/calendar/ical/.../basic.ics"><span class="hint">With this, times that are busy in your Google Calendar show as Taken on the booking page.' . ($ical !== null ? ' ' . $ical . ' events read from the calendar just now.' : '') . '</span></label>'
         . '<div class="f3"><label>First bookable day<select name="days_ahead">' . implode('', array_map(fn($n) => '<option value="' . $n . '"' . ($n == $cfg['days_ahead'] ? ' selected' : '') . '>' . $n . ($n === 1 ? ' day' : ' days') . ' from today</option>', range(1, 7))) . '</select></label>'
