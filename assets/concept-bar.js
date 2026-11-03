@@ -241,7 +241,7 @@
   if (/[?&#]book\b/.test(location.search + location.hash)) setTimeout(function () { openBooking('link'); }, 600);
 
   // Who the visitor deals with: the founder and the team (shown in the booking and report sheets).
-  var WHO = '<div class="sbm-who"><img src="/assets/team/mostafa-avatar-2.jpg" alt="Mostafa, founder of Sites By MS" width="48" height="48" loading="lazy">'
+  var WHO = '<div class="sbm-who"><img src="/assets/team/mostafa-avatar-3.jpg" alt="Mostafa, founder of Sites By MS" width="48" height="48" loading="lazy">'
     + '<div><b>Mostafa &amp; the Sites By MS team</b><span>Research, design and development under one roof. You talk to the founder; the whole team works on your site. <a class="sbm-about" href="/about/" target="_blank" rel="noopener">Meet the team →</a></span></div></div>';
   document.addEventListener('click', function (e) { var a = e.target.closest && e.target.closest('.sbm-about'); if (a) track('about_click', '', true); }, true);
   function openBooking(from) {
@@ -327,7 +327,7 @@
     if (asked || nudge || document.querySelector('.sbm-sheet-bg') || bar.hidden) return;
     try { if (sessionStorage.getItem('sbm_nudged')) return; sessionStorage.setItem('sbm_nudged', '1'); } catch (e) {}
     nudge = document.createElement('div'); nudge.className = 'sbm-nudge'; nudge.setAttribute('role', 'dialog'); nudge.setAttribute('aria-label', 'Free analysis report');
-    nudge.innerHTML = '<button type="button" class="sbm-nx" aria-label="Close">×</button><div class="sbm-nwho"><img src="/assets/team/mostafa-avatar-2.jpg" alt="" width="28" height="28">Mostafa · Sites By MS team</div><b></b><p>Our team will show you where you lead your local competitors, and where you lose customers to them.</p>'
+    nudge.innerHTML = '<button type="button" class="sbm-nx" aria-label="Close">×</button><div class="sbm-nwho"><img src="/assets/team/mostafa-avatar-3.jpg" alt="" width="28" height="28">Mostafa · Sites By MS team</div><b></b><p>Our team will show you where you lead your local competitors, and where you lose customers to them.</p>'
       + '<div class="sbm-nacts"><button type="button" class="sbm-btn sbm-book">Get it free</button><button type="button" class="sbm-btn sbm-later">Not now</button></div>';
     nudge.querySelector('b').textContent = 'Free analysis report for ' + name;
     nudge.querySelector('.sbm-book').onclick = function () { track('nudge_yes'); openReport('nudge'); };
