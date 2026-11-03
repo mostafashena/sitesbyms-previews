@@ -137,6 +137,11 @@
     + '.sbm-later{background:#F3F1F8;color:#2A3050}'
     + '.sbm-nx{position:absolute;top:8px;right:8px;width:36px;height:36px;border:0;background:transparent;font-size:22px;color:#7A7F99;cursor:pointer;border-radius:10px}.sbm-nx:hover{background:#F3F1F8}'
     + '@media (max-width:640px){.sbm-nudge{right:10px;left:10px;width:auto}}'
+    + '.sbm-who{display:flex;align-items:center;gap:12px;margin:0 22px 22px;padding:14px 16px;border-radius:16px;background:#F6F2FF;border:1px solid #E6DEFF}'
+    + '.sbm-who img{width:48px;height:48px;border-radius:50%;object-fit:cover;flex:none;border:2px solid #fff;box-shadow:0 2px 8px rgba(7,15,55,.15)}'
+    + '.sbm-who b{display:block;font-size:14.5px;color:#0E1430;line-height:1.3}.sbm-who span{display:block;font-size:13px;color:#4A5070;line-height:1.45;margin-top:2px}.sbm-who a{color:#5B2FE0;font-weight:700;white-space:nowrap}'
+    + '.sbm-nwho{display:flex;align-items:center;gap:8px;margin:-2px 0 8px;font-size:12.5px;color:#5B6180}.sbm-nwho img{width:28px;height:28px;border-radius:50%;object-fit:cover}'
+    + '@media (max-width:640px){.sbm-who{margin:0 16px calc(18px + env(safe-area-inset-bottom,0px))}}'
     + '@media (max-width:640px){.sbm-sheet-bg{align-items:flex-end;padding:0}.sbm-sheet{border-radius:22px 22px 0 0;max-height:92vh}.sbm-sheet-body{padding:18px 16px calc(22px + env(safe-area-inset-bottom,0px))}}';
   var st = document.createElement('style'); st.textContent = css; document.head.appendChild(st);
   if (!document.querySelector('link[href*="Plus+Jakarta+Sans"]')) {
@@ -184,6 +189,10 @@
   if (/[?&#]report\b/.test(location.search + location.hash)) setTimeout(function () { openReport('link'); }, 600);
   if (/[?&#]book\b/.test(location.search + location.hash)) setTimeout(function () { openBooking('link'); }, 600);
 
+  // Who the visitor deals with: the founder and the team (shown in the booking and report sheets).
+  var WHO = '<div class="sbm-who"><img src="/assets/team/mostafa-avatar.jpg" alt="Mostafa, founder of Sites By MS" width="48" height="48" loading="lazy">'
+    + '<div><b>Mostafa &amp; the Sites By MS team</b><span>Research, design and development under one roof. You talk to the founder; the whole team works on your site. <a class="sbm-about" href="/about/" target="_blank" rel="noopener">Meet the team →</a></span></div></div>';
+  document.addEventListener('click', function (e) { var a = e.target.closest && e.target.closest('.sbm-about'); if (a) track('about_click', '', true); }, true);
   function openBooking(from) {
     track('book_open', from || '');
     var prev = document.activeElement;
@@ -191,7 +200,7 @@
     bg.innerHTML = '<div class="sbm-sheet" role="dialog" aria-modal="true" aria-label="Book a 15-minute call">'
       + '<div class="sbm-sheet-head"><img src="/assets/brand/mark-sm-light.png" alt=""><div><b></b><span>Free, no obligation · video, WhatsApp or phone</span></div>'
       + '<button type="button" class="sbm-close" aria-label="Close"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>'
-      + '<div class="sbm-sheet-body"></div></div>';
+      + '<div class="sbm-sheet-body"></div>' + WHO + '</div>';
     bg.querySelector('.sbm-sheet-head b').textContent = 'A 15-minute call about ' + name + "'s website";
     document.body.appendChild(bg); document.documentElement.style.overflow = 'hidden';
     function close() { bg.remove(); document.documentElement.style.overflow = ''; document.removeEventListener('keydown', key); if (prev && prev.focus) prev.focus(); }
@@ -211,7 +220,7 @@
     bg.innerHTML = '<div class="sbm-sheet" role="dialog" aria-modal="true">'
       + '<div class="sbm-sheet-head"><img src="/assets/brand/mark-sm-light.png" alt=""><div><b></b><span></span></div>'
       + '<button type="button" class="sbm-close" aria-label="Close"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>'
-      + '<div class="sbm-sheet-body"></div></div>';
+      + '<div class="sbm-sheet-body"></div>' + WHO + '</div>';
     bg.querySelector('.sbm-sheet-head b').textContent = title;
     bg.querySelector('.sbm-sheet-head span').textContent = sub;
     bg.querySelector('.sbm-sheet').setAttribute('aria-label', title);
@@ -267,7 +276,7 @@
     if (asked || nudge || document.querySelector('.sbm-sheet-bg') || bar.hidden) return;
     try { if (sessionStorage.getItem('sbm_nudged')) return; sessionStorage.setItem('sbm_nudged', '1'); } catch (e) {}
     nudge = document.createElement('div'); nudge.className = 'sbm-nudge'; nudge.setAttribute('role', 'dialog'); nudge.setAttribute('aria-label', 'Free analysis report');
-    nudge.innerHTML = '<button type="button" class="sbm-nx" aria-label="Close">×</button><b></b><p>Our team will show you where you lead your local competitors, and where you lose customers to them.</p>'
+    nudge.innerHTML = '<button type="button" class="sbm-nx" aria-label="Close">×</button><div class="sbm-nwho"><img src="/assets/team/mostafa-avatar.jpg" alt="" width="28" height="28">Mostafa · Sites By MS team</div><b></b><p>Our team will show you where you lead your local competitors, and where you lose customers to them.</p>'
       + '<div class="sbm-nacts"><button type="button" class="sbm-btn sbm-book">Get it free</button><button type="button" class="sbm-btn sbm-later">Not now</button></div>';
     nudge.querySelector('b').textContent = 'Free analysis report for ' + name;
     nudge.querySelector('.sbm-book').onclick = function () { track('nudge_yes'); openReport('nudge'); };

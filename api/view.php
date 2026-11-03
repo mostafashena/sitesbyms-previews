@@ -23,8 +23,22 @@ if (time() - (int)($state[$slug] ?? 0) > 12 * 3600) {
     $state[$slug] = time(); write_json('view_alerts.json', $state);
     $london = new DateTime('now', new DateTimeZone(TZ));
     $body = "Someone just opened the concept for \"$slug\" on a $device.\n\nhttps://sitesbyms.com/$slug/\n"
-          . 'Time: ' . $london->format('D j M, H:i') . " (London)\n" . ($ref ? 'Came from: ' . ($from === 'email' ? 'your email' : ($from === 'ig' ? 'your Instagram DM' : $ref)) . "\n" : '')
-          . "\nGood moment for a friendly call or WhatsApp if you have their number.\n\nTeam panel: https://sitesbyms.com/admin/?p=views\n";
-    send_mail(TEAM_TO, "Concept opened: $slug", $body);
+          . 'Time: ' . $london->format('D j M, H:i') . " (London)\n" . ($ref ? 'Came from: ' . ($from === 'email' ? 'your email' : ($from === 'ig' ? 'your Instagram DM' : ($from === 'wa' ? 'your WhatsApp message' : $ref))) . "\n" : '')
+          . "\nGood moment for a friendly call or WhatsApp if you have their number.\n";
+    // Their row in the sheet: business name, and a ready WhatsApp message when the number is a UK mobile.
+    $lead = null; $name = $slug;
+    try { require_once __DIR__ . '/_google.php'; if (google_key()) $lead = lead_by_slug($slug); } catch (Throwable $e) { $lead = null; }
+    if ($lead) {
+        $name = $lead['company'];
+        $wa = uk_mobile($lead['phone']);
+        if ($wa) {
+            $msg = lead_greeting($lead) . ", it's Mostafa from Sites By MS. Just checking you got the homepage idea we made for " . $lead['company'] . ': ' . tracked_links('https://sitesbyms.com/' . $slug . '/', 'wa')
+                 . "\nHappy to tweak anything or answer any questions.";
+            $body .= "\nWhatsApp " . $lead['company'] . " with a ready message (" . $lead['phone'] . "):\nhttps://wa.me/$wa?text=" . rawurlencode($msg) . "\n\nThe message it opens with:\n" . $msg . "\n";
+        } elseif ($lead['phone'] !== '') $body .= "\nTheir number is a landline (" . $lead['phone'] . "), so a call is the way, not WhatsApp.\n";
+        else $body .= "\nNo phone number on their row.\n";
+    }
+    $body .= "\nTeam panel: https://sitesbyms.com/admin/?p=views\n";
+    send_mail(TEAM_TO, "Concept opened: $name", $body);
 }
 http_response_code(204);

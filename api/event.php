@@ -18,7 +18,7 @@ if (!$sid || !$vid || !$slug) exit;
 $page = in_array($in['page'] ?? '', ['concept', 'report'], true) ? $in['page'] : 'concept';
 $src = preg_match('/^[a-z0-9-]{1,20}$/', (string)($in['src'] ?? '')) ? (string)$in['src'] : '';
 $device = preg_match('/Mobile|Android|iPhone/i', $ua) ? 'phone' : 'computer';
-$allowed = ['open', 'scroll', 'time', 'section', 'click', 'call', 'email', 'bar_hide', 'bar_show', 'nudge_shown', 'nudge_yes', 'nudge_no',
+$allowed = ['about_click', 'open', 'scroll', 'time', 'section', 'click', 'call', 'email', 'bar_hide', 'bar_show', 'nudge_shown', 'nudge_yes', 'nudge_no',
             'report_open', 'report_submit', 'report_error', 'book_open', 'book_slot', 'book_submit', 'ask_click', 'leave'];
 $rows = [];
 foreach (array_slice((array)($in['e'] ?? []), 0, 40) as $e) {

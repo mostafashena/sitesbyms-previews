@@ -4,7 +4,7 @@ declare(strict_types=1);
 require __DIR__ . '/_google.php';
 header('Content-Type: image/gif');
 header('Cache-Control: no-store, no-cache, must-revalidate, max-age=0');
-$slug = (string)($_GET['s'] ?? ''); $kind = ($_GET['k'] ?? '') === 'followup' ? 'followup' : 'first';
+$slug = (string)($_GET['s'] ?? ''); $kind = in_array($_GET['k'] ?? '', ['followup', 'followup2', 'followup3'], true) ? (string)$_GET['k'] : 'first';
 if (preg_match('/^[a-z0-9-]{1,60}$/', $slug) && !is_team_visit() && rate_limit('pixel', 120, 3600)) {
     try { seen_add($slug, $kind, 'Email', 'pixel'); } catch (Throwable $e) {}
 }

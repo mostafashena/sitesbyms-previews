@@ -97,7 +97,70 @@ function lead_text(array $r, string $channel, string $kind): string {
         $t = $kind === 'first' ? $r['ig_message'] : $r['ig_followup'];
         if ($t !== '') return $t;
     }
+    if ($kind === 'followup2' || $kind === 'followup3') return lead_followup_text($r, $channel, $kind);
     return $kind === 'first' ? $r['message'] : $r['followup'];
+}
+
+/* ---------- follow-ups: 1st (day 3, text in R/Z), 2nd (day 7) and 3rd (day 14, last) ---------- */
+const FOLLOWUP_KINDS = ['followup' => 'Follow-up', 'followup2' => 'Follow-up 2', 'followup3' => 'Follow-up 3'];
+
+function lead_date(string $d): ?DateTime {
+    $tz = new DateTimeZone(TZ); $d = trim($d);
+    if ($d === '') return null;
+    foreach (['Y-m-d', 'd/m/Y', 'm/d/Y', 'j M Y', 'd.m.Y'] as $f) { $x = DateTime::createFromFormat('!' . $f, $d, $tz); if ($x) return $x; }
+    $t = strtotime($d); return $t ? (new DateTime('@' . $t))->setTimezone($tz)->setTime(0, 0) : null;
+}
+/** Next follow-up for a sent lead with no real reply: ['kind' => followup|followup2|followup3, 'due' => DateTime], or null when none is left.
+ *  Column U holds the stage: empty → 1st (S+3 or T), "Follow-up sent DATE" → 2nd (S+7), "Follow-up 2 sent DATE" → 3rd (S+14).
+ *  A follow-up is never due less than 3 days after the previous one. */
+function lead_followup(array $r): ?array {
+    if (strcasecmp($r['status'], 'Sent') !== 0 || !($sent = lead_date($r['sent']))) return null;
+    $u = trim($r['reply']);
+    if ($u === '') { $due = lead_date($r['followup_date']) ?? (clone $sent)->modify('+3 days'); return ['kind' => 'followup', 'due' => $due]; }
+    if (!preg_match('/^follow-up( 2)? sent\s*(.*)$/i', $u, $m)) return null;      // a real reply, or follow-up 3 already sent
+    $kind = $m[1] ? 'followup3' : 'followup2';
+    $due = (clone $sent)->modify($kind === 'followup2' ? '+7 days' : '+14 days');
+    if (($prev = lead_date($m[2])) && $prev->modify('+3 days') > $due) $due = $prev;
+    return ['kind' => $kind, 'due' => $due];
+}
+/** The first concrete issue from column M (skips "could not be checked" notes), without its number. */
+function lead_issue(array $r): string {
+    foreach (preg_split('/\n+/', $r['issues']) as $l) {
+        $l = trim(preg_replace('/^\s*(\d+[.)]|[-•*])\s*/', '', $l));
+        if ($l === '' || preg_match('/could not be (checked|opened)|confirm .* on the call/i', $l)) continue;
+        return rtrim($l, '. ') . '.';
+    }
+    return '';
+}
+function lead_greeting(array $r): string {
+    $n = trim(explode(' ', trim($r['owner']))[0] ?? '');
+    return $n !== '' && preg_match('/^\p{Lu}[\p{L}\'-]+$/u', $n) ? "Hi $n" : 'Hi ' . $r['company'] . ' team';
+}
+/** Text for the 2nd and 3rd follow-ups, built from the row (they have no sheet column). */
+function lead_followup_text(array $r, string $channel, string $kind): string {
+    $hi = lead_greeting($r); $biz = $r['company']; $link = 'https://sitesbyms.com/' . $r['slug'] . '/';
+    $issue = lead_issue($r); $ig = $channel === 'Instagram DM';
+    if ($kind === 'followup2') {
+        $t = "$hi,\n\n" . ($issue !== '' ? "One more thought on $biz's website. Something we noticed: $issue\n\n" : "One more thought on $biz's website.\n\n")
+           . "The homepage idea we made for you shows how this could look:\n$link\n\n"
+           . "Our team can also put together a free analysis report comparing $biz with a few local competitors. If that would be useful, just reply \"yes\".";
+    } else {
+        $t = "$hi,\n\nI'll leave it here so I don't fill your " . ($ig ? 'messages' : 'inbox') . ". The homepage idea we made for $biz stays online if you'd like another look:\n$link\n\n"
+           . "If the timing is ever right, just reply here. We're happy to help, and you see your new site before you pay anything.";
+    }
+    return $t . ($ig ? "\n\nMostafa, Sites By MS" : "\n\nBest regards,\nMostafa\nSites By MS\nhello@sitesbyms.com · WhatsApp +44 7405 760048");
+}
+/** A lead's own sheet row by concept slug (used by the "Concept opened" alert). */
+function lead_by_slug(string $slug): ?array {
+    foreach (sheet_rows() as $r) if ($r['slug'] === $slug) return $r;
+    return null;
+}
+/** wa.me number for a UK mobile (07…, +447…), or '' for landlines and anything unclear. */
+function uk_mobile(string $p): string {
+    $d = preg_replace('/\D/', '', $p);
+    if (preg_match('/^07\d{9}$/', $d)) return '44' . substr($d, 1);
+    if (preg_match('/^447\d{9}$/', $d)) return $d;
+    return '';
 }
 /** channel => 'sent'|'skipped' for one sheet row and kind, from the panel's log.
  *  Only entries for the row's current concept (slug) count, so a row whose content was corrected can be sent again. */

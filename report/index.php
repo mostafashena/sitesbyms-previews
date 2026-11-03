@@ -43,6 +43,7 @@ ol.acts b{display:block;font-size:17px;margin-bottom:4px}ol.acts p{margin:0;colo
 .btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 20px;border-radius:12px;font-weight:700;text-decoration:none;font-size:15px;border:0;cursor:pointer;font-family:inherit}
 .btn.p{background:var(--violet);color:#fff}.btn.p:hover{background:#7444F5}.btn.l{background:#fff;color:var(--ink);border:1.5px solid #DCD8E8}.row{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
 section.card.next{background:var(--navy);color:var(--cream);border:0}.next h2{color:#fff}.next p{color:#D8DAEA;margin:0}
+.who{display:flex;align-items:center;gap:14px;margin:18px 0 0;padding-top:18px;border-top:1px solid rgba(255,255,255,.14)}.who img{width:56px;height:56px;border-radius:50%;object-fit:cover;border:2px solid rgba(255,255,255,.6);flex:none}.who b{display:block;color:#fff}.who span{font-size:14px;color:#D8DAEA}.who a{color:#C9B6FF;font-weight:700}
 .foot{color:var(--muted);font-size:13px;text-align:center;margin-top:24px}
 </style></head><body>
 <header class="top"><div class="wrap"><img src="/assets/brand/logo-on-dark.png" alt="Sites By MS"><a class="cta" href="#next">Talk to our team</a></div></header>
@@ -60,7 +61,8 @@ section.card.next{background:var(--navy);color:var(--cream);border:0}.next h2{co
 <?php if ($slug && is_dir(dirname(__DIR__) . '/' . $slug)): ?><section class="card concept" id="concept"><div><h2>Your new homepage concept</h2><p class="lead">We designed this for <?= e($name) ?> to fix the points above: clear on a phone, easy to book or call, and true to your brand.</p><a class="btn p" href="/<?= e($slug) ?>/?from=report" data-ev="concept">Open the full concept</a></div>
 <div class="frame"><iframe src="/<?= e($slug) ?>/?from=report&amp;embed=1" title="Concept preview" loading="lazy" tabindex="-1"></iframe></div></section><?php endif; ?>
 <section class="card next" id="next"><h2>Next step</h2><p>A short call with our team: we walk you through the report and what a new website would do for <?= e($name) ?>. Free, no obligation.</p>
-<div class="row"><a class="btn p" href="/book/?b=<?= rawurlencode($name) ?>&amp;s=<?= e($slug) ?>" data-ev="book">Book a 15-min call</a><a class="btn l" href="https://wa.me/447405760048?text=<?= rawurlencode('Hi, about the analysis report for ' . $name) ?>" data-ev="whatsapp">WhatsApp us</a><a class="btn l" href="/ask/?b=<?= rawurlencode($name) ?>&amp;s=<?= e($slug) ?>" data-ev="ask">Ask a question</a></div></section>
+<div class="row"><a class="btn p" href="/book/?b=<?= rawurlencode($name) ?>&amp;s=<?= e($slug) ?>" data-ev="book">Book a 15-min call</a><a class="btn l" href="https://wa.me/447405760048?text=<?= rawurlencode('Hi, about the analysis report for ' . $name) ?>" data-ev="whatsapp">WhatsApp us</a><a class="btn l" href="/ask/?b=<?= rawurlencode($name) ?>&amp;s=<?= e($slug) ?>" data-ev="ask">Ask a question</a></div>
+<div class="who"><img src="/assets/team/mostafa-avatar.jpg" alt="Mostafa, founder of Sites By MS" width="56" height="56"><div><b>Mostafa &amp; the Sites By MS team</b><span>You talk to the founder; our team researched this report and designed your concept. <a href="/about/" data-ev="about">Meet the team</a></span></div></div></section>
 <p class="foot">Prepared for <?= e($name) ?> by the Sites By MS team · hello@sitesbyms.com · sitesbyms.com</p>
 </main>
 <script>
