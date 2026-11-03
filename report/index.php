@@ -62,7 +62,7 @@ section.card.next{background:var(--navy);color:var(--cream);border:0}.next h2{co
 <div class="frame"><iframe src="/<?= e($slug) ?>/?from=report&amp;embed=1" title="Concept preview" loading="lazy" tabindex="-1"></iframe></div></section><?php endif; ?>
 <section class="card next" id="next"><h2>Next step</h2><p>A short call with our team: we walk you through the report and what a new website would do for <?= e($name) ?>. Free, no obligation.</p>
 <div class="row"><a class="btn p" href="/book/?b=<?= rawurlencode($name) ?>&amp;s=<?= e($slug) ?>" data-ev="book">Book a 15-min call</a><a class="btn l" href="https://wa.me/447405760048?text=<?= rawurlencode('Hi, about the analysis report for ' . $name) ?>" data-ev="whatsapp">WhatsApp us</a><a class="btn l" href="/ask/?b=<?= rawurlencode($name) ?>&amp;s=<?= e($slug) ?>" data-ev="ask">Ask a question</a></div>
-<div class="who"><img src="/assets/team/mostafa-avatar.jpg" alt="Mostafa, founder of Sites By MS" width="56" height="56"><div><b>Mostafa &amp; the Sites By MS team</b><span>You talk to the founder; our team researched this report and designed your concept. <a href="/about/" data-ev="about">Meet the team</a></span></div></div></section>
+<div class="who"><img src="/assets/team/mostafa-avatar-2.jpg" alt="Mostafa, founder of Sites By MS" width="56" height="56"><div><b>Mostafa &amp; the Sites By MS team</b><span>You talk to the founder; our team researched this report and designed your concept. <a href="/about/" data-ev="about">Meet the team</a></span></div></div></section>
 <p class="foot">Prepared for <?= e($name) ?> by the Sites By MS team · hello@sitesbyms.com · sitesbyms.com</p>
 </main>
 <script>
