@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>My French Physio | Physiotherapy &amp; osteopathy in Kentish Town</title>
+<meta name="description" content="My French Physio & Osteopath, 1st floor Kentish Town Studio, 141-145 Kentish Town Road, London NW1. Physiotherapy, osteopathy, sports injury and post-operative rehabilitation. Also in Pimlico.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* Layout: split screen. Words: personal, calm, French. */
+:root{--bleu:#22336B;--paper:#F7F4EE;--white:#FFFFFF;--rouge:#D9583F;--sage:#DCE4DA;--ink:#1B1F2E;--mute:#5E6476;--line:#E1DCD2}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 17px/1.65 "Instrument Sans",system-ui,sans-serif}
+a{color:inherit}
+h1,h2,h3{font-family:Newsreader,Georgia,serif;font-weight:500;margin:0;line-height:1.1;color:var(--bleu)}
+.wrap{width:min(1120px,100% - 32px);margin-inline:auto}
+.topbar{background:var(--bleu);color:#fff;font-size:13px;text-align:center;padding:7px 16px}
+header{position:sticky;top:0;z-index:20;background:var(--white);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:64px;gap:12px}
+.mark{text-decoration:none;display:flex;align-items:center;gap:10px}
+.flag{display:flex;height:22px;width:24px;border-radius:3px;overflow:hidden}
+.flag i{flex:1}
+.mark b{font:500 22px/1 Newsreader,serif;color:var(--bleu)}
+.mark b em{color:var(--rouge)}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 22px;border-radius:8px;background:var(--bleu);color:#fff;font-weight:600;text-decoration:none;white-space:nowrap}
+.btn.rouge{background:var(--rouge)}
+.btn.line{background:transparent;color:var(--bleu);border:1.5px solid var(--bleu)}
+figure{margin:0;position:relative;overflow:hidden;background:var(--sage)}
+figure img{display:block;width:100%;height:100%;object-fit:cover}
+.cap{position:absolute;right:8px;bottom:8px;font-size:11px;background:rgba(255,255,255,.9);padding:2px 8px;border-radius:999px}
+.split{display:grid}
+.split .txt{padding:40px 20px;display:flex;flex-direction:column;justify-content:center}
+.split figure{min-height:340px}
+.hero .txt{background:var(--white)}
+.kicker{font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--rouge);font-weight:600;margin:0 0 12px}
+.hero h1{font-size:clamp(40px,7vw,68px)}
+.hero h1 em{font-style:italic;color:var(--rouge)}
+.hero p{font-size:19px;color:var(--mute);margin:16px 0 24px;max-width:34ch}
+.row{display:flex;flex-wrap:wrap;gap:10px}
+.trust{display:flex;flex-wrap:wrap;gap:8px 20px;margin-top:22px;font-size:14px;color:var(--mute)}
+.trust b{color:var(--bleu)}
+h2{font-size:clamp(32px,5vw,48px);margin-bottom:14px}
+.about .txt{background:var(--sage)}
+.about p{max-width:46ch}
+section.list{padding:60px 0;background:var(--paper)}
+.cards{display:grid;gap:12px;margin-top:10px}
+.card{background:var(--white);border:1px solid var(--line);border-radius:12px;padding:20px}
+.card h3{font-size:23px;margin-bottom:4px}
+.card p{margin:0;color:var(--mute);font-size:15px}
+.team{padding:60px 0;background:var(--white)}
+.people{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:10px}
+.person{text-align:center}
+.person figure{width:96px;height:96px;border-radius:50%;margin:0 auto 10px;background:var(--sage)}
+.person b{display:block;font:500 19px/1.2 Newsreader,serif;color:var(--bleu)}
+.person span{font-size:14px;color:var(--mute)}
+.gallery .grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.gallery figure{aspect-ratio:1/1;border-radius:10px}
+.gallery{padding:60px 0}
+.rating{padding:60px 0;background:var(--bleu);color:#fff;text-align:center}
+.rating h2{color:#fff;font-size:clamp(54px,12vw,110px)}
+.rating p{max-width:46ch;margin:8px auto 0;color:#cdd3e6}
+.visit .txt{background:var(--white)}
+.visit table{width:100%;border-collapse:collapse;margin:6px 0 10px}
+.visit td{padding:9px 0;border-bottom:1px solid var(--line)}
+.visit td:last-child{text-align:right;font-weight:600}
+.small{font-size:13px;color:var(--mute)}
+.cta{padding:60px 16px;text-align:center;background:var(--sage)}
+.cta .row{justify-content:center;margin-top:18px}
+footer{background:var(--ink);color:#b9bdc9;font-size:14px;padding:24px 0}
+footer .wrap{display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-between}
+@media(min-width:860px){
+ .split{grid-template-columns:1fr 1fr;min-height:560px}
+ .split .txt{padding:56px max(32px,calc((100vw - 1120px)/2))}
+ .hero .txt{padding-right:56px}
+ .split.rev figure{order:2}
+ .about .txt,.visit .txt{padding-left:56px}
+ .split.rev .txt{padding-left:max(32px,calc((100vw - 1120px)/2));padding-right:56px}
+ .cards{grid-template-columns:repeat(3,1fr)}
+ .people{grid-template-columns:repeat(5,1fr)}
+ .gallery .grid{grid-template-columns:repeat(4,1fr)}
+}
+</style>
+</head>
+<body>
+<div class="topbar">Design concept prepared for My French Physio by Sites By MS. Not the official website.</div>
+<header>
+ <div class="wrap nav">
+  <a class="mark" href="#top"><span class="flag"><i style="background:#22336B"></i><i style="background:#fff;border:1px solid #e1dcd2"></i><i style="background:#D9583F"></i></span><b>My French <em>Physio</em></b></a>
+  <a class="btn rouge" href="tel:07491987919">Book</a>
+ </div>
+</header>
+
+<main id="top">
+ <section class="split hero">
+  <div class="txt">
+   <p class="kicker">Physiotherapy &amp; osteopathy · Kentish Town</p>
+   <h1>Care that is <em>personal</em>, from the first appointment.</h1>
+   <p>A French team of physiotherapists and an osteopath on Kentish Town Road, with treatment plans built around you.</p>
+   <div class="row"><a class="btn rouge" href="tel:07491987919">Call 07491 987919</a><a class="btn line" href="mailto:contact@myfrenchphysio.london">Email us</a></div>
+   <div class="trust"><span><b>★ 4.9</b> on Google (161)</span><span><b>Home visits</b> available</span><span><b>2 clinics</b> Kentish Town &amp; Pimlico</span></div>
+  </div>
+  <figure><img src="https://images.unsplash.com/photo-1649751361457-01d3a696c7e6?w=1600&q=80" alt="A physiotherapist examining a patient's leg" width="1600" height="1200" onerror="this.parentNode.style.background='#DCE4DA';this.remove()"><span class="cap">Sample photo</span></figure>
+ </section>
+
+ <section class="split rev about">
+  <div class="txt">
+   <p class="kicker">Our approach</p>
+   <h2>Hands-on treatment, exercise and clear explanations.</h2>
+   <p>We combine manual therapy with exercise programmes and patient education, so you understand what's going on and what you can do between sessions.</p>
+   <p>Every plan is tailored to the person in front of us: a runner after an injury, someone recovering from an operation, or anyone living with long-term pain.</p>
+  </div>
+  <figure><img src="https://images.unsplash.com/photo-1645005512968-0c1fe99f0093?w=1400&q=80" alt="A therapist treating a patient's shoulder" width="1400" height="1200" loading="lazy" onerror="this.parentNode.style.background='#22336B';this.remove()"><span class="cap">Sample photo</span></figure>
+ </section>
+
+ <section class="list">
+  <div class="wrap">
+   <p class="kicker">How we can help</p>
+   <h2>What we treat</h2>
+   <div class="cards">
+    <div class="card"><h3>Muscle &amp; joint pain</h3><p>Assessment and treatment of musculoskeletal pain and injuries.</p></div>
+    <div class="card"><h3>Sports injuries</h3><p>Rehabilitation to help you get back to training.</p></div>
+    <div class="card"><h3>After surgery</h3><p>Post-operative rehabilitation, step by step.</p></div>
+    <div class="card"><h3>Osteopathy</h3><p>Osteopathic treatment alongside our physio team.</p></div>
+    <div class="card"><h3>Women's health</h3><p>Physiotherapy for women's health issues.</p></div>
+    <div class="card"><h3>Pilates &amp; dry needling</h3><p>Plus acupuncture and massage therapy as part of your plan.</p></div>
+   </div>
+  </div>
+ </section>
+
+ <section class="team">
+  <div class="wrap">
+   <p class="kicker">The team</p>
+   <h2>Who you'll see</h2>
+   <div class="people">
+    <div class="person"><figure><img src="https://cdn.doctify.com/_next/image?url=https%3A%2F%2Fwww.doctify.com%2Fpublic%2Fimages%2Fathena-uk%2Fpractice%2Flogo%2Felodie-poissenot%2Felodie-poissenotf5c65d85-a537-4aca-90ca-0a4e43a3b24f.png&amp;w=256&amp;q=97" alt="Elodie Poissenot" width="96" height="96" loading="lazy" onerror="this.parentNode.style.background='#DCE4DA';this.remove()"></figure><b>Elodie Poissenot</b><span>Physiotherapist</span></div>
+    <div class="person"><figure><img src="https://cdn.doctify.com/_next/image?url=https%3A%2F%2Fwww.doctify.com%2Fpublic%2Fimages%2Fathena-uk%2Fpractice%2Flogo%2Fvirgil-bru%2Fvirgil-bru564dddf1-3a03-4377-b680-bec3e4b30b59.png&amp;w=256&amp;q=97" alt="Virgil Bru" width="96" height="96" loading="lazy" onerror="this.parentNode.style.background='#DCE4DA';this.remove()"></figure><b>Virgil Bru</b><span>Osteopath</span></div>
+    <div class="person"><figure><img src="https://cdn.doctify.com/_next/image?url=https%3A%2F%2Fwww.doctify.com%2Fpublic%2Fimages%2Fathena-uk%2Fpractice%2Flogo%2Fbenjamin-perfetti%2Fbenjamin-perfetti3575c230-afb0-4527-aeaa-9df9d4759270.png&amp;w=256&amp;q=97" alt="Benjamin Perfetti" width="96" height="96" loading="lazy" onerror="this.parentNode.style.background='#DCE4DA';this.remove()"></figure><b>Benjamin Perfetti</b><span>Physiotherapist</span></div>
+    <div class="person"><figure><img src="https://cdn.doctify.com/_next/image?url=https%3A%2F%2Fwww.doctify.com%2Fpublic%2Fimages%2Fathena-uk%2Fpractice%2Flogo%2Fmathilde-renard%2Fmathilde-renarde5f7075a-fa0c-4dad-a1a7-48894d98c298.png&amp;w=256&amp;q=97" alt="Mathilde Renard" width="96" height="96" loading="lazy" onerror="this.parentNode.style.background='#DCE4DA';this.remove()"></figure><b>Mathilde Renard</b><span>Physiotherapist</span></div>
+    <div class="person"><figure><img src="https://cdn.doctify.com/_next/image?url=https%3A%2F%2Fwww.doctify.com%2Fpublic%2Fimages%2Fathena-uk%2Fpractice%2Flogo%2Fkarolina-somodi%2Fkarolina-somodic2dcd13f-9701-45f1-84d4-85571d37be99.png&amp;w=256&amp;q=97" alt="Karolina Somodi" width="96" height="96" loading="lazy" onerror="this.parentNode.style.background='#DCE4DA';this.remove()"></figure><b>Karolina Somodi</b><span>Physiotherapist</span></div>
+   </div>
+  </div>
+ </section>
+
+ <section class="gallery">
+  <div class="wrap">
+   <p class="kicker">In the clinic</p>
+   <div class="grid">
+    <figure><img src="https://images.unsplash.com/photo-1772122028843-9139d23af4fb?w=800&q=80" alt="A therapist using an ultrasound device on a patient's arm" width="800" height="800" loading="lazy" onerror="this.parentNode.style.background='#DCE4DA';this.remove()"><span class="cap">Sample photo</span></figure>
+    <figure><img src="https://images.unsplash.com/photo-1586401100295-7a8096fd231a?w=800&q=80" alt="A person holding pink and white dumbbells" width="800" height="800" loading="lazy" onerror="this.parentNode.style.background='#22336B';this.remove()"><span class="cap">Sample photo</span></figure>
+    <figure><img src="https://images.unsplash.com/photo-1758063800058-473d9071937a?w=800&q=80" alt="A hand resting on a person's lower back during treatment" width="800" height="800" loading="lazy" onerror="this.parentNode.style.background='#DCE4DA';this.remove()"><span class="cap">Sample photo</span></figure>
+    <figure><img src="https://images.unsplash.com/photo-1540205895360-4ad4cffb3aa8?w=800&q=80" alt="A therapist working on a patient's back" width="800" height="800" loading="lazy" onerror="this.parentNode.style.background='#D9583F';this.remove()"><span class="cap">Sample photo</span></figure>
+   </div>
+  </div>
+ </section>
+
+ <section class="rating">
+  <div class="wrap">
+   <h2>4.9★</h2>
+   <p>from 161 Google reviews. Your patients' own words would sit here, three short quotes chosen by you.</p>
+  </div>
+ </section>
+
+ <section class="split visit" id="visit">
+  <figure><img src="https://images.unsplash.com/photo-1645005513713-9e2b92a687d3?w=1400&q=80" alt="Two people exercising with dumbbells" width="1400" height="1200" loading="lazy" onerror="this.parentNode.style.background='#DCE4DA';this.remove()"><span class="cap">Sample photo</span></figure>
+  <div class="txt">
+   <p class="kicker">Visit</p>
+   <h2>Kentish Town clinic</h2>
+   <p style="margin:0 0 6px">1st Floor, Kentish Town Studio<br>141-145 Kentish Town Road, London NW1 8PB</p>
+   <table>
+    <tr><td>Appointments</td><td>9am – 8pm</td></tr>
+    <tr><td>Home visits</td><td>Available</td></tr>
+    <tr><td>Also in</td><td>Dolphin Square, Pimlico</td></tr>
+   </table>
+   <p class="small">Hours as listed online; we'd confirm days and times with you. Please note the clinic is on the first floor.</p>
+   <div class="row"><a class="btn" href="tel:07491987919">07491 987919</a><a class="btn line" href="https://maps.google.com/?q=141-145+Kentish+Town+Road+London+NW1+8PB">Directions</a></div>
+  </div>
+ </section>
+
+ <div class="cta">
+  <h2>Book your first appointment.</h2>
+  <p style="margin:8px 0 0;color:var(--mute)">Call, email or send us a message on Instagram to book your first appointment.</p>
+  <div class="row"><a class="btn rouge" href="tel:07491987919">Call to book</a><a class="btn line" href="mailto:contact@myfrenchphysio.london">contact@myfrenchphysio.london</a></div>
+ </div>
+</main>
+
+<footer>
+ <div class="wrap">
+  <span><b>My French Physio &amp; Osteopath</b> · 141-145 Kentish Town Road, London NW1 8PB</span>
+  <span>Design concept by Sites By MS. Not the official website.</span>
+ </div>
+</footer>
+<script src="/assets/concept-bar.js" data-name="My French Physio" data-slug="my-french-physio" defer></script>
+</body>
+</html>
