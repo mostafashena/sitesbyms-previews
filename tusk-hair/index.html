@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tusk Hair | Hair salon on Camden High Street</title>
+<meta name="description" content="Tusk Hair, 92 Camden High Street, London NW1. Cuts, colour and styling with Tommy and Carole. Open Monday to Saturday.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Figtree:wght@400;600&display=swap" rel="stylesheet">
+<style>
+/* Layout: big-type poster. Words: welcoming, sharp, Camden. */
+:root{--bone:#F2ECDF;--ink:#121212;--red:#E2412A;--grey:#6E6A62;--line:#CFC6B4}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bone);color:var(--ink);font:400 17px/1.6 Figtree,system-ui,sans-serif}
+a{color:inherit}
+h1,h2,h3{font-family:"Archivo Black",Impact,sans-serif;font-weight:400;margin:0;line-height:.92;text-transform:uppercase;letter-spacing:-.01em}
+.wrap{width:min(1120px,100% - 32px);margin-inline:auto}
+.topbar{background:var(--ink);color:var(--bone);font-size:13px;text-align:center;padding:7px 16px}
+header{position:sticky;top:0;z-index:20;background:var(--bone);border-bottom:2px solid var(--ink)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:62px;gap:12px}
+.mark{text-decoration:none;font:400 30px/1 "Archivo Black",sans-serif;letter-spacing:.08em}
+.mark span{color:var(--red)}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 24px;background:var(--ink);color:var(--bone);font-weight:600;text-decoration:none;white-space:nowrap;text-transform:uppercase;letter-spacing:.06em;font-size:15px}
+.btn.red{background:var(--red);color:#fff}
+.btn.line{background:transparent;color:var(--ink);border:2px solid var(--ink)}
+figure{margin:0;position:relative;overflow:hidden;background:var(--line)}
+figure img{display:block;width:100%;height:100%;object-fit:cover}
+.cap{position:absolute;left:8px;bottom:8px;font-size:11px;background:rgba(242,236,223,.92);padding:2px 7px;color:var(--ink)}
+.hero{padding:26px 0 0}
+.hero h1{font-size:clamp(64px,19vw,210px)}
+.hero h1 .r{color:var(--red)}
+.hero .sub{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;align-items:end;margin:18px 0 22px}
+.hero .sub p{margin:0;max-width:30ch;font-size:19px}
+.hero figure{aspect-ratio:16/10;filter:grayscale(.15)}
+.hero figure:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 60%,rgba(0,0,0,.25))}
+section{padding:54px 0}
+.lbl{font-size:13px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--red);margin:0 0 10px}
+h2{font-size:clamp(40px,10vw,96px);margin-bottom:20px}
+.about .grid{display:grid;gap:24px}
+.about figure{aspect-ratio:3/2}
+.about p{margin:0 0 14px;font-size:18px}
+.team{display:flex;gap:10px;flex-wrap:wrap;margin-top:6px}
+.team span{border:2px solid var(--ink);padding:6px 14px;font-weight:600}
+.offer{background:var(--ink);color:var(--bone)}
+.offer .list{border-top:2px solid var(--bone)}
+.offer .it{display:grid;grid-template-columns:52px 1fr;gap:10px;padding:18px 0;border-bottom:1px solid #3b3a36;align-items:baseline}
+.offer .it b{font:400 22px/1 "Archivo Black",sans-serif;color:var(--red)}
+.offer .it h3{font-size:clamp(24px,5vw,40px)}
+.offer .it p{grid-column:2;margin:4px 0 0;color:#cfc8ba;font-size:16px}
+.offer h2 span{color:var(--red)}
+.gallery .grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.gallery figure{aspect-ratio:4/5}
+.gallery figure.big{grid-column:span 2;aspect-ratio:16/9}
+.reviews .q{border-top:2px solid var(--ink);padding:20px 0}
+.reviews .q p{font:400 clamp(22px,4.4vw,34px)/1.1 "Archivo Black",sans-serif;text-transform:uppercase;margin:0 0 8px}
+.reviews .q span{color:var(--grey)}
+.reviews .score{display:inline-block;background:var(--red);color:#fff;padding:6px 12px;font-weight:600;margin-bottom:14px}
+.visit .grid{display:grid;gap:20px}
+.visit table{width:100%;border-collapse:collapse;font-size:18px}
+.visit td{padding:10px 0;border-bottom:1px solid var(--line)}
+.visit td:last-child{text-align:right;font-weight:600}
+.small{font-size:13px;color:var(--grey)}
+.cta{background:var(--red);color:#fff;padding:60px 0}
+.cta h2{color:#fff}
+.cta .btn{background:var(--ink)}
+.cta .btn.line{background:transparent;border-color:#fff;color:#fff}
+.row{display:flex;flex-wrap:wrap;gap:10px}
+footer{background:var(--ink);color:#bdb6a8;font-size:14px;padding:24px 0}
+footer .wrap{display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-between}
+@media(min-width:840px){
+ .about .grid{grid-template-columns:1fr 1fr;align-items:center}
+ .gallery .grid{grid-template-columns:repeat(4,1fr)}
+ .gallery figure.big{grid-column:span 2;grid-row:span 2;aspect-ratio:auto}
+ .reviews .qs{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+ .visit .grid{grid-template-columns:1.2fr 1fr}
+}
+</style>
+</head>
+<body>
+<div class="topbar">Design concept prepared for Tusk Hair by Sites By MS. Not the official website.</div>
+<header>
+ <div class="wrap nav">
+  <a class="mark" href="#top">TUSK<span>.</span></a>
+  <a class="btn red" href="tel:02073872289">Book: call</a>
+ </div>
+</header>
+
+<main id="top">
+ <section class="hero" style="padding-bottom:0">
+  <div class="wrap">
+   <h1>Good hair,<br><span class="r">Camden.</span></h1>
+   <div class="sub">
+    <p>Your Camden-based go-to hair oasis, a few doors from the High Street crowds.</p>
+    <div class="row"><a class="btn" href="tel:02073872289">Call 020 7387 2289</a><a class="btn line" href="#visit">Find us</a></div>
+   </div>
+   <figure><img src="https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=1800&q=80" alt="A hairstylist using a blow dryer and round brush on a client's hair" width="1800" height="1125" onerror="this.parentNode.style.background='#CFC6B4';this.remove()"><span class="cap">Sample photo</span></figure>
+  </div>
+ </section>
+
+ <section class="about">
+  <div class="wrap grid">
+   <figure><img src="https://cdn1.treatwell.net/images/view/v2.i3631834.w1080.h720.x318780E0/" alt="Inside Tusk Hair on Camden High Street" width="1080" height="720" loading="lazy" onerror="this.parentNode.style.background='#E2412A';this.remove()"></figure>
+   <div>
+    <p class="lbl">The salon</p>
+    <h2 style="font-size:clamp(36px,7vw,64px)">Small salon. Full attention.</h2>
+    <p>Tusk is an independent salon at 92 Camden High Street. You sit with one stylist from consultation to finish, so what you describe is what you walk out with.</p>
+    <p>Clients keep saying the same two things: they feel instantly comfortable, and they leave happy with the cut.</p>
+    <div class="team"><span>Tommy</span><span>Carole</span></div>
+   </div>
+  </div>
+ </section>
+
+ <section class="offer">
+  <div class="wrap">
+   <p class="lbl">What we do</p>
+   <h2>In the chair<span>.</span></h2>
+   <div class="list">
+    <div class="it"><b>01</b><h3>Cuts</h3><p>Shaped around how you actually wear your hair.</p></div>
+    <div class="it"><b>02</b><h3>Consultation</h3><p>Show us the picture in your head; we talk it through before anything is cut.</p></div>
+    <div class="it"><b>03</b><h3>Styling</h3><p>Finished and ready to go back out onto the High Street.</p></div>
+    <div class="it"><b>04</b><h3>Face</h3><p>Face treatments with Tommy, alongside your hair appointment.</p></div>
+   </div>
+   <p class="small" style="color:#a9a291;margin-top:16px">Your full price list would go here.</p>
+  </div>
+ </section>
+
+ <section class="gallery">
+  <div class="wrap">
+   <p class="lbl">The work</p>
+   <div class="grid">
+    <figure class="big"><img src="https://images.unsplash.com/photo-1634449571010-02389ed0f9b0?w=1400&q=80" alt="A woman getting her hair cut by a hair stylist" width="1400" height="1400" loading="lazy" onerror="this.parentNode.style.background='#CFC6B4';this.remove()"><span class="cap">Sample photo</span></figure>
+    <figure><img src="https://images.unsplash.com/photo-1595475884562-073c30d45670?w=900&q=80" alt="Hands holding hairbrushes, scissors and a tinting brush" width="900" height="1125" loading="lazy" onerror="this.parentNode.style.background='#121212';this.remove()"><span class="cap">Sample photo</span></figure>
+    <figure><img src="https://images.unsplash.com/photo-1560869713-7d0a29430803?w=900&q=80" alt="A stylist holding a hair curler" width="900" height="1125" loading="lazy" onerror="this.parentNode.style.background='#E2412A';this.remove()"><span class="cap">Sample photo</span></figure>
+    <figure><img src="https://images.unsplash.com/photo-1605497788044-5a32c7078486?w=900&q=80" alt="A stylist blow-drying a man's hair in a salon" width="900" height="1125" loading="lazy" onerror="this.parentNode.style.background='#CFC6B4';this.remove()"><span class="cap">Sample photo</span></figure>
+    <figure><img src="https://images.unsplash.com/photo-1600948836101-f9ffda59d250?w=900&q=80" alt="Black salon chairs facing round mirrors" width="900" height="1125" loading="lazy" onerror="this.parentNode.style.background='#121212';this.remove()"><span class="cap">Sample photo</span></figure>
+   </div>
+  </div>
+ </section>
+
+ <section class="reviews">
+  <div class="wrap">
+   <p class="lbl">Clients</p>
+   <span class="score">★ 4.5 on Google · 5.0 on Treatwell</span>
+   <div class="qs">
+    <div class="q"><p>"Tommy absolutely understood my vision."</p><span>Robin, Treatwell</span></div>
+    <div class="q"><p>"Really happy with my haircut, will go back again!"</p><span>Helen, Treatwell</span></div>
+    <div class="q"><p>"Makes you feel instantly comfortable."</p><span>Cyrille, Treatwell</span></div>
+   </div>
+  </div>
+ </section>
+
+ <section class="visit" id="visit">
+  <div class="wrap grid">
+   <div>
+    <p class="lbl">Opening hours</p>
+    <table>
+     <tr><td>Monday – Saturday</td><td>9am – 7pm</td></tr>
+     <tr><td>Sunday</td><td>Closed</td></tr>
+    </table>
+    <p class="small">Hours as listed online; we'd confirm them with you.</p>
+   </div>
+   <div>
+    <p class="lbl">Find us</p>
+    <h3 style="font-size:32px;margin-bottom:10px">92 Camden High St</h3>
+    <p style="margin:0 0 14px">London NW1 0LT · a short walk from Mornington Crescent and Camden Town<br><a href="tel:02073872289">020 7387 2289</a> · <a href="mailto:info@tuskhair.co.uk">info@tuskhair.co.uk</a></p>
+    <a class="btn line" href="https://maps.google.com/?q=Tusk+Hair+92+Camden+High+Street+London+NW1+0LT">Directions</a>
+   </div>
+  </div>
+ </section>
+
+ <div class="cta">
+  <div class="wrap">
+   <h2>Your turn<br>in the chair.</h2>
+   <div class="row"><a class="btn" href="tel:02073872289">Call to book</a><a class="btn line" href="mailto:info@tuskhair.co.uk">Email us</a></div>
+  </div>
+ </div>
+</main>
+
+<footer>
+ <div class="wrap">
+  <span><b>Tusk Hair</b> · 92 Camden High Street, London NW1 0LT</span>
+  <span>Design concept by Sites By MS. Not the official website.</span>
+ </div>
+</footer>
+<script src="/assets/concept-bar.js" data-name="Tusk Hair" data-slug="tusk-hair" defer></script>
+</body>
+</html>
