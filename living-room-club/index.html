@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Living Room Club Café | Coffee, breakfast &amp; clubs on Camden Road</title>
+<meta name="description" content="The Living Room Club Café, 43-45 Camden Road, London NW1. Coffee, breakfast, vegan pancakes and cakes, plus language and songwriting clubs. Open Monday to Saturday.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Rubik:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* Layout: colour-block playful. Words: sociable, relaxed, good value. */
+:root{--terra:#D2603D;--mustard:#F0B53C;--teal:#1F6F6B;--cream:#FFF6E8;--plum:#3A2340;--ink:#2A211E;--pink:#F6C9C0}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--cream);color:var(--ink);font:400 17px/1.6 Rubik,system-ui,sans-serif}
+a{color:inherit}
+h1,h2,h3{font-family:"Lilita One",system-ui,sans-serif;font-weight:400;margin:0;line-height:1}
+.wrap{width:min(1100px,100% - 32px);margin-inline:auto}
+.topbar{background:var(--plum);color:#fff;font-size:13px;text-align:center;padding:7px 16px}
+header{position:sticky;top:0;z-index:20;background:var(--cream);border-bottom:3px solid var(--ink)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:64px;gap:12px}
+.mark{text-decoration:none;display:flex;align-items:center;gap:10px}
+.sofa{width:38px;height:24px;background:var(--terra);border-radius:10px 10px 4px 4px;position:relative;border:2px solid var(--ink)}
+.sofa:before,.sofa:after{content:"";position:absolute;bottom:-6px;width:5px;height:6px;background:var(--ink)}
+.sofa:before{left:4px}.sofa:after{right:4px}
+.mark b{font:400 22px/1 "Lilita One",sans-serif}
+.mark b span{color:var(--terra)}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 22px;border-radius:12px;background:var(--ink);color:#fff;font-weight:600;text-decoration:none;white-space:nowrap;border:3px solid var(--ink)}
+.btn.y{background:var(--mustard);color:var(--ink)}
+.btn.w{background:#fff;color:var(--ink)}
+figure{margin:0;position:relative;overflow:hidden;background:var(--pink);border:3px solid var(--ink);border-radius:18px}
+figure img{display:block;width:100%;height:100%;object-fit:cover}
+.cap{position:absolute;right:8px;bottom:8px;font-size:11px;background:rgba(255,255,255,.92);padding:2px 8px;border-radius:999px}
+.blk{padding:44px 0}
+.terra{background:var(--terra);color:#fff}
+.mustard{background:var(--mustard)}
+.teal{background:var(--teal);color:#fff}
+.plum{background:var(--plum);color:#fff}
+.hero{padding:30px 0 40px}
+.hero .grid{display:grid;gap:22px;align-items:center}
+.hero h1{font-size:clamp(46px,11vw,104px)}
+.hero h1 span{color:var(--mustard)}
+.hero p{font-size:20px;margin:14px 0 22px;max-width:30ch}
+.hero figure{aspect-ratio:4/3;transform:rotate(1.5deg)}
+.row{display:flex;flex-wrap:wrap;gap:10px}
+h2{font-size:clamp(36px,7vw,64px);margin-bottom:14px}
+.about .grid{display:grid;gap:22px;align-items:center}
+.about figure{aspect-ratio:1/1;transform:rotate(-1.5deg)}
+.about p{font-size:18px;max-width:46ch}
+.menu .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.m{background:#fff;border:3px solid var(--ink);border-radius:16px;padding:16px}
+.m h3{font-size:24px;color:var(--teal)}
+.m p{margin:4px 0 0;font-size:14px}
+.m .v{display:inline-block;margin-top:8px;font-size:12px;font-weight:600;background:var(--pink);border-radius:999px;padding:2px 10px}
+.clubs .cards{display:grid;gap:12px}
+.c{border:3px solid #fff;border-radius:16px;padding:20px}
+.c h3{font-size:30px;color:var(--mustard)}
+.c p{margin:6px 0 0}
+.gallery .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.gallery figure{aspect-ratio:1/1}
+.gallery figure:nth-child(odd){transform:rotate(-1deg)}
+.gallery figure:nth-child(even){transform:rotate(1deg)}
+.say .big{font:400 clamp(70px,16vw,140px)/1 "Lilita One",sans-serif}
+.say .chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+.say .chips span{background:#fff;color:var(--ink);border:3px solid var(--ink);border-radius:999px;padding:8px 16px;font-weight:600}
+.visit .grid{display:grid;gap:14px}
+.box{background:#fff;border:3px solid var(--ink);border-radius:18px;padding:22px}
+.box table{width:100%;border-collapse:collapse}
+.box td{padding:8px 0;border-bottom:2px dotted #e3cfb4}
+.box td:last-child{text-align:right;font-weight:600}
+.small{font-size:13px;opacity:.8}
+.cta{text-align:center}
+.cta .row{justify-content:center}
+footer{background:var(--ink);color:#d8cfc4;font-size:14px;padding:24px 0}
+footer .wrap{display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-between}
+@media(min-width:840px){
+ .hero .grid,.about .grid{grid-template-columns:1.1fr 1fr}
+ .about .grid figure{order:-1}
+ .menu .grid{grid-template-columns:repeat(3,1fr)}
+ .clubs .cards{grid-template-columns:repeat(3,1fr)}
+ .gallery .grid{grid-template-columns:repeat(4,1fr)}
+ .visit .grid{grid-template-columns:1fr 1fr}
+}
+</style>
+</head>
+<body>
+<div class="topbar">Design concept prepared for The Living Room Club Café by Sites By MS. Not the official website.</div>
+<header>
+ <div class="wrap nav">
+  <a class="mark" href="#top"><span class="sofa"></span><b>Living Room <span>Club</span></b></a>
+  <a class="btn y" href="#visit">Visit us</a>
+ </div>
+</header>
+
+<main id="top">
+ <section class="blk terra hero">
+  <div class="wrap grid">
+   <div>
+    <h1>Camden's <span>living room.</span></h1>
+    <p>Good coffee, a big breakfast menu, vegan pancakes and a sofa-shaped welcome on Camden Road.</p>
+    <div class="row"><a class="btn y" href="#menu">What's cooking</a><a class="btn w" href="#clubs">Join a club</a></div>
+   </div>
+   <figure><img src="https://images.unsplash.com/photo-1497636577773-f1231844b336?w=1400&q=80" alt="A cappuccino in a mug" width="1400" height="1050" onerror="this.parentNode.style.background='#F0B53C';this.remove()"><span class="cap">Sample photo</span></figure>
+  </div>
+ </section>
+
+ <section class="blk about">
+  <div class="wrap grid">
+   <div>
+    <h2>Pull up a chair. Stay a while.</h2>
+    <p>The Living Room Club is a relaxed café for working, catching up with friends or sitting outside with a matcha latte. Plant milks come as standard options, the cakes are a reason on their own, and the staff are known for looking after people.</p>
+    <p>It's also a club: regular language and songwriting groups meet here, so there's usually someone new to talk to.</p>
+   </div>
+   <figure><img src="https://images.unsplash.com/photo-1775138889111-11e72c65e2a6?w=1200&q=80" alt="Outdoor café tables and chairs" width="1200" height="1200" loading="lazy" onerror="this.parentNode.style.background='#1F6F6B';this.remove()"><span class="cap">Sample photo</span></figure>
+  </div>
+ </section>
+
+ <section class="blk mustard menu" id="menu">
+  <div class="wrap">
+   <h2>On the counter</h2>
+   <div class="grid">
+    <div class="m"><h3>Vegan pancakes</h3><p>With fresh fruit. Waffles too.</p><span class="v">Vegan</span></div>
+    <div class="m"><h3>Avocado toast</h3><p>A breakfast favourite.</p></div>
+    <div class="m"><h3>Carrot cake</h3><p>And banana bread on the side.</p></div>
+    <div class="m"><h3>Matcha latte</h3><p>A regulars' favourite.</p></div>
+    <div class="m"><h3>Coffee</h3><p>Lattes and more.</p></div>
+    <div class="m"><h3>Plant milks</h3><p>Oat, almond, soya and coconut.</p><span class="v">Vegan</span></div>
+   </div>
+   <p class="small" style="margin-top:14px">Your full menu would go here, with prices and clear vegan labels on every dish.</p>
+  </div>
+ </section>
+
+ <section class="blk teal clubs" id="clubs">
+  <div class="wrap">
+   <h2>The clubs</h2>
+   <div class="cards">
+    <div class="c"><h3>Language club</h3><p>Practise a new language over coffee with other learners.</p></div>
+    <div class="c"><h3>Songwriting club</h3><p>Bring a notebook, an idea or a guitar.</p></div>
+    <div class="c"><h3>Drop in</h3><p>Curious? Ask at the counter when the next session is on.</p></div>
+   </div>
+   <p class="small" style="margin-top:14px">Dates and sign-ups for each club would appear here.</p>
+  </div>
+ </section>
+
+ <section class="blk gallery">
+  <div class="wrap">
+   <h2>Around the room</h2>
+   <div class="grid">
+    <figure><img src="https://images.unsplash.com/photo-1783307525039-b92506474dc8?w=800&q=80" alt="Smashed avocado toast with tomatoes" width="800" height="800" loading="lazy" onerror="this.parentNode.style.background='#F6C9C0';this.remove()"><span class="cap">Sample photo</span></figure>
+    <figure><img src="https://images.unsplash.com/photo-1676300186098-9b5ae9916e3c?w=800&q=80" alt="A slice of carrot cake" width="800" height="800" loading="lazy" onerror="this.parentNode.style.background='#F0B53C';this.remove()"><span class="cap">Sample photo</span></figure>
+    <figure><img src="https://images.unsplash.com/photo-1498709112912-9be3173d30be?w=800&q=80" alt="A hand holding a cup of coffee" width="800" height="800" loading="lazy" onerror="this.parentNode.style.background='#D2603D';this.remove()"><span class="cap">Sample photo</span></figure>
+    <figure><img src="https://images.unsplash.com/photo-1610632380989-680fe40816c6?w=800&q=80" alt="A cup of coffee with coffee beans" width="800" height="800" loading="lazy" onerror="this.parentNode.style.background='#1F6F6B';this.remove()"><span class="cap">Sample photo</span></figure>
+   </div>
+  </div>
+ </section>
+
+ <section class="blk plum say">
+  <div class="wrap">
+   <div class="big">4.6★</div>
+   <p style="font-size:20px;margin:6px 0 0">from 242 Google reviews. What people keep mentioning:</p>
+   <div class="chips"><span>Great atmosphere</span><span>Attentive service</span><span>Generous portions</span><span>Good value</span></div>
+   <p class="small" style="margin-top:14px">Summary of reviews on Spinach. Your favourite Google reviews would go here.</p>
+  </div>
+ </section>
+
+ <section class="blk visit" id="visit">
+  <div class="wrap">
+   <h2>Come round</h2>
+   <div class="grid">
+    <div class="box">
+     <h3 style="font-size:28px;color:var(--terra);margin-bottom:6px">Opening hours</h3>
+     <table>
+      <tr><td>Monday – Friday</td><td>7.30am – 6pm</td></tr>
+      <tr><td>Saturday</td><td>8am – 4pm</td></tr>
+      <tr><td>Sunday</td><td>Closed</td></tr>
+     </table>
+     <p class="small">Hours as listed online; we'd confirm them with you.</p>
+    </div>
+    <div class="box">
+     <h3 style="font-size:28px;color:var(--terra);margin-bottom:6px">Find us</h3>
+     <p style="margin:0 0 12px">43-45 Camden Road<br>London NW1 9LR · near Camden Road station</p>
+     <p style="margin:0 0 14px"><a href="tel:07840382794">07840 382794</a><br><a href="https://www.instagram.com/livingroomclubcamden/">@livingroomclubcamden</a></p>
+     <a class="btn" href="https://maps.google.com/?q=Living+Room+Club+Cafe+43-45+Camden+Road+London+NW1+9LR">Directions</a>
+    </div>
+   </div>
+  </div>
+ </section>
+
+ <section class="blk terra cta">
+  <div class="wrap">
+   <h2>The kettle's always on.</h2>
+   <div class="row" style="margin-top:16px"><a class="btn y" href="https://maps.google.com/?q=Living+Room+Club+Cafe+43-45+Camden+Road+London+NW1+9LR">Get directions</a><a class="btn w" href="https://www.instagram.com/livingroomclubcamden/">Follow on Instagram</a></div>
+  </div>
+ </section>
+</main>
+
+<footer>
+ <div class="wrap">
+  <span><b>The Living Room Club Café</b> · 43-45 Camden Road, London NW1 9LR</span>
+  <span>Design concept by Sites By MS. Not the official website.</span>
+ </div>
+</footer>
+<script src="/assets/concept-bar.js" data-name="The Living Room Club Café" data-slug="living-room-club" defer></script>
+</body>
+</html>
