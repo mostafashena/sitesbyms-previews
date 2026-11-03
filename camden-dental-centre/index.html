@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Camden Dental Centre | NHS &amp; private dentist, 77 Camden High Street</title>
+<meta name="description" content="Camden Dental Centre, 77 Camden High Street, London NW1. NHS and private dentistry: check-ups, hygienist, white fillings, crowns, veneers, implants, whitening and invisible braces. Denplan welcome.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:wght@500;600&family=Mulish:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+/* Layout: full-bleed photo hero. Words: established, reassuring, straightforward. */
+:root{--teal:#0E5560;--deep:#0A3A42;--mint:#E6F2EF;--white:#FFFFFF;--coral:#EE7B5B;--ink:#16292D;--mute:#5A6E72;--line:#D5E5E1}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--white);color:var(--ink);font:400 17px/1.65 Mulish,system-ui,sans-serif}
+a{color:inherit}
+h1,h2,h3{font-family:Spectral,Georgia,serif;font-weight:600;margin:0;line-height:1.12}
+.wrap{width:min(1100px,100% - 32px);margin-inline:auto}
+.topbar{background:var(--deep);color:#fff;font-size:13px;text-align:center;padding:7px 16px}
+header{position:sticky;top:0;z-index:20;background:var(--white);box-shadow:0 1px 0 var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:66px;gap:12px}
+.mark{text-decoration:none;display:flex;align-items:center;gap:10px}
+.tooth{width:34px;height:34px;border-radius:10px;background:var(--teal);display:grid;place-items:center;color:#fff;font:700 15px/1 Mulish,sans-serif}
+.mark b{display:block;font:600 20px/1.05 Spectral,serif;color:var(--teal)}
+.mark small{display:block;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute)}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 22px;border-radius:999px;background:var(--coral);color:#fff;font-weight:700;text-decoration:none;white-space:nowrap}
+.btn.teal{background:var(--teal)}
+.btn.white{background:#fff;color:var(--teal)}
+.btn.line{background:transparent;color:#fff;border:2px solid rgba(255,255,255,.8)}
+figure{margin:0;position:relative;overflow:hidden;background:var(--mint)}
+figure img{display:block;width:100%;height:100%;object-fit:cover}
+.cap{position:absolute;right:8px;bottom:8px;font-size:11px;background:rgba(255,255,255,.9);padding:2px 8px;border-radius:999px;color:var(--ink)}
+.hero{position:relative;min-height:78vh;display:flex;align-items:flex-end;color:#fff}
+.hero figure{position:absolute;inset:0;background:var(--teal)}
+.hero figure:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(10,58,66,.88) 0%,rgba(10,58,66,.55) 55%,rgba(10,58,66,.2) 100%)}
+.hero .wrap{position:relative;padding:60px 0 50px}
+.pill{display:inline-block;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.35);border-radius:999px;padding:5px 14px;font-size:13px;font-weight:600;margin-bottom:16px}
+.hero h1{font-size:clamp(40px,8vw,74px);max-width:14ch}
+.hero p{font-size:19px;max-width:38ch;margin:16px 0 24px;color:#e2efec}
+.row{display:flex;flex-wrap:wrap;gap:10px}
+section{padding:64px 0}
+.kick{font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--coral);font-weight:700;margin:0 0 10px}
+h2{font-size:clamp(32px,5vw,46px);color:var(--teal);margin-bottom:14px}
+.about .grid{display:grid;gap:26px;align-items:center}
+.about figure{aspect-ratio:4/3;border-radius:16px}
+.facts{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:18px}
+.facts div{background:var(--mint);border-radius:12px;padding:14px}
+.facts b{display:block;color:var(--teal);font-size:18px}
+.facts span{font-size:14px;color:var(--mute)}
+.treat{background:var(--mint)}
+.tgrid{display:grid;gap:12px}
+.t{background:#fff;border-radius:14px;padding:20px;border:1px solid var(--line)}
+.t h3{font-size:22px;color:var(--teal);margin-bottom:4px}
+.t p{margin:0;color:var(--mute);font-size:15px}
+.t .from{display:inline-block;margin-top:10px;font-weight:700;color:var(--coral);font-size:15px}
+.team .people{display:grid;gap:12px}
+.p{display:flex;align-items:center;gap:14px;border:1px solid var(--line);border-radius:14px;padding:14px}
+.p figure{width:64px;height:64px;border-radius:50%;flex:none}
+.p .ini{width:64px;height:64px;border-radius:50%;flex:none;background:var(--teal);color:#fff;display:grid;place-items:center;font:600 22px/1 Spectral,serif}
+.p b{display:block;font:600 19px/1.2 Spectral,serif;color:var(--teal)}
+.p span{font-size:14px;color:var(--mute)}
+.gallery .grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.gallery figure{aspect-ratio:4/3;border-radius:12px}
+.gallery figure.tall{grid-row:span 2;aspect-ratio:auto}
+.trust{background:var(--teal);color:#fff;text-align:center}
+.trust h2{color:#fff;font-size:clamp(48px,10vw,92px);margin:0}
+.trust p{max-width:44ch;margin:10px auto 0;color:#cfe4df}
+.visit .grid{display:grid;gap:18px}
+.box{border:1px solid var(--line);border-radius:16px;padding:22px}
+.box table{width:100%;border-collapse:collapse}
+.box td{padding:8px 0;border-bottom:1px solid var(--line);font-size:16px}
+.box td:last-child{text-align:right;font-weight:600}
+.small{font-size:13px;color:var(--mute)}
+.cta{background:var(--deep);color:#fff;text-align:center;padding:60px 16px}
+.cta h2{color:#fff}
+.cta .row{justify-content:center;margin-top:18px}
+footer{background:#06262c;color:#a9c3be;font-size:14px;padding:24px 0}
+footer .wrap{display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-between}
+@media(min-width:840px){
+ .about .grid{grid-template-columns:1.1fr 1fr;gap:54px}
+ .tgrid{grid-template-columns:repeat(3,1fr)}
+ .team .people{grid-template-columns:repeat(4,1fr)}
+ .p{flex-direction:column;text-align:center}
+ .gallery .grid{grid-template-columns:1.2fr 1fr 1fr}
+ .visit .grid{grid-template-columns:1.2fr 1fr}
+}
+</style>
+</head>
+<body>
+<div class="topbar">Design concept prepared for Camden Dental Centre by Sites By MS. Not the official website.</div>
+<header>
+ <div class="wrap nav">
+  <a class="mark" href="#top"><span class="tooth">CD</span><span><b>Camden Dental Centre</b><small>77 Camden High Street</small></span></a>
+  <a class="btn" href="tel:02073800768">Call</a>
+ </div>
+</header>
+
+<main id="top">
+ <section class="hero" style="padding:0">
+  <figure><img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=1800&q=80" alt="A modern dental surgery with chair and equipment" width="1800" height="1200" onerror="this.parentNode.style.background='#0E5560';this.remove()"><span class="cap">Sample photo</span></figure>
+  <div class="wrap">
+   <span class="pill">NHS &amp; private · Denplan welcome</span>
+   <h1>Your dentist on Camden High Street.</h1>
+   <p>Check-ups, hygienist visits and cosmetic treatments in a relaxed, friendly practice, a short walk from Camden Town and Mornington Crescent.</p>
+   <div class="row"><a class="btn" href="tel:02073800768">Call 020 7380 0768</a><a class="btn line" href="https://booking.uk.hsone.app/soe/new/Camden%20Dental%20Centre?pid=UKCMM01">Book online</a></div>
+  </div>
+ </section>
+
+ <section class="about">
+  <div class="wrap grid">
+   <div>
+    <p class="kick">About the practice</p>
+    <h2>Everyday dentistry and cosmetic care under one roof.</h2>
+    <p>Camden Dental Centre is an independent practice on Camden High Street. A team of dentists and a hygienist look after NHS and private patients, from routine check-ups to white fillings, crowns, veneers and implants.</p>
+    <p>Denplan members are welcome, and 0% finance is available on some treatments.</p>
+    <div class="facts">
+     <div><b>NHS + private</b><span>both welcome</span></div>
+     <div><b>Denplan</b><span>members welcome</span></div>
+     <div><b>0% finance</b><span>on some treatments</span></div>
+     <div><b>Online booking</b><span>via the booking page</span></div>
+    </div>
+   </div>
+   <figure><img src="https://www.doctify.com/public/images/athena-uk/practice/images/camden_dental_centre/camden_dental_centre.0.jpg" alt="Camden Dental Centre" width="1200" height="900" loading="lazy" onerror="this.parentNode.style.background='#E6F2EF';this.remove()"></figure>
+  </div>
+ </section>
+
+ <section class="treat">
+  <div class="wrap">
+   <p class="kick">Treatments</p>
+   <h2>What we offer</h2>
+   <div class="tgrid">
+    <div class="t"><h3>Check-ups &amp; hygienist</h3><p>Examinations, scale and polish and oral health advice, on the NHS or privately.</p><span class="from">Hygienist from £45</span></div>
+    <div class="t"><h3>Fillings, crowns &amp; bridges</h3><p>Including tooth-coloured white fillings and inlays.</p><span class="from">White fillings from £45</span></div>
+    <div class="t"><h3>Root canal &amp; extractions</h3><p>Including wisdom teeth and gum treatment.</p></div>
+    <div class="t"><h3>Veneers</h3><p>Porcelain veneers for chipped or uneven teeth.</p><span class="from">from £390</span></div>
+    <div class="t"><h3>Invisible braces</h3><p>Clear aligner straightening, plus orthodontics.</p></div>
+    <div class="t"><h3>Whitening &amp; implants</h3><p>Laser whitening with a home kit, and dental implants.</p></div>
+   </div>
+   <p class="small" style="margin-top:14px">Private prices as listed on WhatClinic; we'd confirm every figure with you before going live.</p>
+  </div>
+ </section>
+
+ <section class="team">
+  <div class="wrap">
+   <p class="kick">The team</p>
+   <h2>Your dentists</h2>
+   <div class="people">
+    <div class="p"><span class="ini">JB</span><div><b>Dr Jan Blekkingh</b><span>Dentist</span></div></div>
+    <div class="p"><figure><img src="https://cdn.whatclinic.com/dentists/uk/london/camden-dental-centre/thumbnails/a7f56f7de7d5604e/martin_gilbert.jpg" alt="Dr Martin Gilbert" width="64" height="64" loading="lazy" onerror="this.parentNode.style.background='#0E5560';this.remove()"></figure><div><b>Dr Martin Gilbert</b><span>Dentist</span></div></div>
+    <div class="p"><figure><img src="https://cdn.whatclinic.com/dentists/uk/london/camden-dental-centre/thumbnails/d67638421f3b5709/sofia_pavlidou.jpg" alt="Dr Sofia Pavlidou" width="64" height="64" loading="lazy" onerror="this.parentNode.style.background='#0E5560';this.remove()"></figure><div><b>Dr Sofia Pavlidou</b><span>Dentist</span></div></div>
+    <div class="p"><span class="ini">AJ</span><div><b>Dr Andreas Jahingen</b><span>Dentist</span></div></div>
+   </div>
+   <p class="small" style="margin-top:12px">Team names from public listings; your own photos and bios would go here.</p>
+  </div>
+ </section>
+
+ <section class="gallery" style="padding-top:0">
+  <div class="wrap grid">
+   <figure class="tall"><img src="https://images.unsplash.com/photo-1777331903190-341a3dd0441b?w=1000&q=80" alt="A dentist talking to a patient in a modern surgery" width="1000" height="1300" loading="lazy" onerror="this.parentNode.style.background='#E6F2EF';this.remove()"><span class="cap">Sample photo</span></figure>
+   <figure><img src="https://images.unsplash.com/photo-1762625570087-6d98fca29531?w=800&q=80" alt="A modern waiting room with chairs" width="800" height="600" loading="lazy" onerror="this.parentNode.style.background='#0E5560';this.remove()"><span class="cap">Sample photo</span></figure>
+   <figure><img src="https://images.unsplash.com/photo-1606811856475-5e6fcdc6e509?w=800&q=80" alt="A dental mirror and explorer on a white surface" width="800" height="600" loading="lazy" onerror="this.parentNode.style.background='#E6F2EF';this.remove()"><span class="cap">Sample photo</span></figure>
+   <figure><img src="https://images.unsplash.com/photo-1598256989800-fe5f95da9787?w=800&q=80" alt="A dental chair in a bright surgery" width="800" height="600" loading="lazy" onerror="this.parentNode.style.background='#EE7B5B';this.remove()"><span class="cap">Sample photo</span></figure>
+   <figure><img src="https://images.unsplash.com/photo-1643660526741-094639fbe53a?w=800&q=80" alt="A dental chair in a room with a painting on the wall" width="800" height="600" loading="lazy" onerror="this.parentNode.style.background='#0E5560';this.remove()"><span class="cap">Sample photo</span></figure>
+  </div>
+ </section>
+
+ <section class="trust">
+  <div class="wrap">
+   <h2>4.6★</h2>
+   <p>from 281 Google reviews. Three short quotes from your patients, chosen by you, would sit here.</p>
+  </div>
+ </section>
+
+ <section class="visit" id="visit">
+  <div class="wrap grid">
+   <div class="box">
+    <h3 style="font-size:26px;color:var(--teal);margin-bottom:8px">Opening times</h3>
+    <table>
+     <tr><td>Monday – Friday</td><td>9am – 1pm, 2pm – 5.30pm</td></tr>
+     <tr><td>Saturday &amp; Sunday</td><td>Closed</td></tr>
+    </table>
+    <p class="small">As listed on the NHS website (confirmed September 2026).</p>
+   </div>
+   <div class="box" style="background:var(--mint);border-color:var(--mint)">
+    <h3 style="font-size:26px;color:var(--teal);margin-bottom:8px">Find us</h3>
+    <p style="margin:0 0 12px">77 Camden High Street<br>London NW1 7JL</p>
+    <p style="margin:0 0 16px"><a href="tel:02073800768">020 7380 0768</a><br><a href="mailto:camdendentalcentre@yahoo.co.uk">camdendentalcentre@yahoo.co.uk</a></p>
+    <a class="btn teal" href="https://maps.google.com/?q=Camden+Dental+Centre+77+Camden+High+Street+London+NW1+7JL">Directions</a>
+   </div>
+  </div>
+ </section>
+
+ <div class="cta">
+  <h2>Due a check-up?</h2>
+  <p style="margin:8px 0 0;color:#cfe4df">Call the practice or book online in a minute.</p>
+  <div class="row"><a class="btn" href="tel:02073800768">Call 020 7380 0768</a><a class="btn white" href="https://booking.uk.hsone.app/soe/new/Camden%20Dental%20Centre?pid=UKCMM01">Book online</a></div>
+ </div>
+</main>
+
+<footer>
+ <div class="wrap">
+  <span><b>Camden Dental Centre</b> · 77 Camden High Street, London NW1 7JL</span>
+  <span>Design concept by Sites By MS. Not the official website.</span>
+ </div>
+</footer>
+<script src="/assets/concept-bar.js" data-name="Camden Dental Centre" data-slug="camden-dental-centre" defer></script>
+</body>
+</html>
