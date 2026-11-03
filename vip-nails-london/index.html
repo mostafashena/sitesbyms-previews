@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VIP Nails London | BIAB and nail art, 18 Camden High Street</title>
+<meta name="description" content="VIP Nails London, 18 Camden High Street NW1. BIAB from £38, French tips, ombre, 3D and personalised nail art with Siam and Chi. Monday to Saturday.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+/* Layout: dark moody with one glowing accent. Words: precise, artistic, a little bit glam. */
+:root{--night:#0E0D12;--panel:#17151D;--line:#2B2833;--text:#ECE7DE;--mute:#A49E93;--gold:#E3B861}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--night);color:var(--text);font:300 17px/1.65 Outfit,system-ui,sans-serif}
+a{color:inherit}
+h1,h2,h3{font-family:Marcellus,Georgia,serif;font-weight:400;margin:0;line-height:1.08}
+.wrap{width:min(1100px,100% - 32px);margin-inline:auto}
+.topbar{background:#000;color:var(--mute);font-size:13px;text-align:center;padding:7px 16px;border-bottom:1px solid var(--line)}
+header{position:sticky;top:0;z-index:20;background:rgba(14,13,18,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:66px;gap:12px}
+.mark{text-decoration:none;display:flex;align-items:baseline;gap:8px}
+.mark b{font:400 28px/1 Marcellus,serif;color:var(--gold);letter-spacing:.14em;text-shadow:0 0 18px rgba(227,184,97,.45)}
+.mark span{font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--mute)}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 24px;border-radius:999px;background:var(--gold);color:#111;font-weight:600;text-decoration:none;white-space:nowrap;box-shadow:0 0 24px rgba(227,184,97,.35)}
+.btn.out{background:transparent;color:var(--text);border:1px solid var(--line);box-shadow:none}
+figure{margin:0;position:relative;overflow:hidden;background:var(--panel)}
+figure img{display:block;width:100%;height:100%;object-fit:cover}
+.cap{position:absolute;right:8px;bottom:8px;font-size:11px;background:rgba(0,0,0,.6);color:#ddd;padding:2px 8px;border-radius:999px}
+.hero{position:relative;min-height:84vh;display:flex;align-items:flex-end}
+.hero figure{position:absolute;inset:0}
+.hero figure:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(14,13,18,.25) 0%,rgba(14,13,18,.55) 45%,var(--night) 100%)}
+.hero .wrap{position:relative;padding:40px 0 46px}
+.eyebrow{font-size:12px;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);margin:0 0 14px}
+.hero h1{font-size:clamp(44px,10vw,96px);max-width:12ch}
+.hero h1 em{font-style:normal;color:var(--gold);text-shadow:0 0 30px rgba(227,184,97,.5)}
+.hero p{font-size:19px;color:#d6d0c5;max-width:36ch;margin:16px 0 24px}
+.row{display:flex;flex-wrap:wrap;gap:10px}
+section{padding:64px 0;border-top:1px solid var(--line)}
+h2{font-size:clamp(34px,6vw,54px);margin-bottom:14px}
+.about .grid{display:grid;gap:26px;align-items:center}
+.about figure{aspect-ratio:4/5;border-radius:4px}
+.about p{color:#cfc9be}
+.duo{display:flex;gap:12px;margin-top:20px}
+.duo div{flex:1;border:1px solid var(--line);padding:16px;border-radius:4px}
+.duo b{display:block;font:400 26px/1 Marcellus,serif;color:var(--gold)}
+.duo span{font-size:14px;color:var(--mute)}
+.menu .cols{display:grid;gap:30px}
+.menu h3{font-size:24px;color:var(--gold);margin-bottom:6px}
+.li{display:flex;justify-content:space-between;gap:16px;padding:12px 0;border-bottom:1px solid var(--line)}
+.li span:last-child{color:var(--gold);white-space:nowrap;font-weight:400}
+.li small{display:block;color:var(--mute);font-size:13px}
+.gallery .grid{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.gallery figure{aspect-ratio:3/4;border-radius:2px}
+.gallery figure:nth-child(1){grid-column:span 2;aspect-ratio:16/9}
+.quotes{display:grid;gap:18px}
+.quotes blockquote{margin:0;padding:22px 0 0;border-top:1px solid var(--gold)}
+.quotes p{font:400 24px/1.3 Marcellus,serif;margin:0 0 8px}
+.quotes cite{font-style:normal;color:var(--mute);font-size:14px}
+.score{color:var(--gold);letter-spacing:.06em;margin:0 0 22px}
+.visit .grid{display:grid;gap:22px}
+.visit table{width:100%;border-collapse:collapse}
+.visit td{padding:10px 0;border-bottom:1px solid var(--line)}
+.visit td:last-child{text-align:right}
+.small{font-size:13px;color:var(--mute)}
+.cta{text-align:center;padding:80px 16px;border-top:1px solid var(--line);background:radial-gradient(60% 80% at 50% 100%,rgba(227,184,97,.18),transparent)}
+.cta h2{font-size:clamp(40px,8vw,78px)}
+.cta .row{justify-content:center;margin-top:22px}
+footer{border-top:1px solid var(--line);color:var(--mute);font-size:14px;padding:24px 0}
+footer .wrap{display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-between}
+@media(min-width:840px){
+ .about .grid{grid-template-columns:.9fr 1.1fr;gap:56px}
+ .menu .cols{grid-template-columns:1fr 1fr;gap:56px}
+ .gallery .grid{grid-template-columns:repeat(4,1fr)}
+ .gallery figure:nth-child(1){grid-column:span 2;grid-row:span 2;aspect-ratio:auto}
+ .quotes{grid-template-columns:repeat(3,1fr);gap:28px}
+ .visit .grid{grid-template-columns:1fr 1fr}
+}
+</style>
+</head>
+<body>
+<div class="topbar">Design concept prepared for VIP Nails London by Sites By MS. Not the official website.</div>
+<header>
+ <div class="wrap nav">
+  <a class="mark" href="#top"><b>VIP</b><span>Nails London</span></a>
+  <a class="btn" href="tel:02033027190">Book</a>
+ </div>
+</header>
+
+<main id="top">
+ <section class="hero" style="border-top:0;padding:0">
+  <figure><img src="https://images.unsplash.com/photo-1772322586754-34c9e6f5be6f?w=1800&q=80" alt="A hand with a French manicure and glitter accents" width="1800" height="1200" onerror="this.parentNode.style.background='#17151D';this.remove()"><span class="cap">Sample photo</span></figure>
+  <div class="wrap">
+   <p class="eyebrow">18 Camden High Street</p>
+   <h1>Let all gel <em>break loose.</em></h1>
+   <p>BIAB, French tips, ombre and hand-painted nail art, done with real precision at the Mornington Crescent end of Camden.</p>
+   <div class="row"><a class="btn" href="tel:02033027190">Call to book</a><a class="btn out" href="#menu">Treatments &amp; prices</a></div>
+  </div>
+ </section>
+
+ <section class="about">
+  <div class="wrap grid">
+   <figure><img src="https://cdn1.treatwell.net/images/view/v2.i11705583.w1080.h720.x2BB59952/" alt="Inside VIP Nails London on Camden High Street" width="1080" height="1350" loading="lazy" onerror="this.parentNode.style.background='#17151D';this.remove()"></figure>
+   <div>
+    <p class="eyebrow">The studio</p>
+    <h2>Small studio. Serious detail.</h2>
+    <p>VIP Nails London is an independent nail studio at 18 Camden High Street. The focus is BIAB and nail art, from a single line of diamonds to fully personalised 3D designs, and clients keep coming back because the nails "always look good".</p>
+    <div class="duo">
+     <div><b>Siam</b><span>4.8 from 152 reviews</span></div>
+     <div><b>Chi</b><span>4.8 from 97 reviews</span></div>
+    </div>
+   </div>
+  </div>
+ </section>
+
+ <section class="menu" id="menu">
+  <div class="wrap">
+   <p class="eyebrow">Treatments</p>
+   <h2>The menu</h2>
+   <div class="cols">
+    <div>
+     <h3>BIAB</h3>
+     <div class="li"><span>BIAB infill &amp; manicure<small>50 mins</small></span><span>£38</span></div>
+     <div class="li"><span>BIAB on natural nails<small>50 mins</small></span><span>£43</span></div>
+     <div class="li"><span>BIAB including removal<small>1 hr</small></span><span>£48</span></div>
+     <div class="li"><span>Manicure &amp; pedicure<small>without polish, 1 hr</small></span><span>£48</span></div>
+    </div>
+    <div>
+     <h3>Nail art</h3>
+     <div class="li"><span>French tips<small>15 mins</small></span><span>from £8</span></div>
+     <div class="li"><span>Ombre<small>20 mins</small></span><span>from £10</span></div>
+     <div class="li"><span>3D nail art<small>40 mins</small></span><span>from £25</span></div>
+     <div class="li"><span>Personalised nail art<small>40 mins</small></span><span>from £30</span></div>
+    </div>
+   </div>
+   <p class="small" style="margin-top:16px">Prices as listed on Treatwell; we'd confirm them with you.</p>
+  </div>
+ </section>
+
+ <section class="gallery">
+  <div class="wrap">
+   <p class="eyebrow">Recent work</p>
+   <h2>Sets we love</h2>
+   <div class="grid">
+    <figure><img src="https://images.unsplash.com/photo-1607779097040-26e80aa78e66?w=1400&q=80" alt="Mauve, white and silver glitter nails" width="1400" height="1400" loading="lazy" onerror="this.parentNode.style.background='#17151D';this.remove()"><span class="cap">Sample photo</span></figure>
+    <figure><img src="https://images.unsplash.com/photo-1610992015762-45dca7fa3a85?w=800&q=80" alt="Light pink manicured nails" width="800" height="1066" loading="lazy" onerror="this.parentNode.style.background='#2B2833';this.remove()"><span class="cap">Sample photo</span></figure>
+    <figure><img src="https://images.unsplash.com/photo-1775500835259-d3b3f6d6e2f2?w=800&q=80" alt="Manicure tools laid out on a white towel" width="800" height="1066" loading="lazy" onerror="this.parentNode.style.background='#17151D';this.remove()"><span class="cap">Sample photo</span></figure>
+    <figure><img src="https://images.unsplash.com/photo-1612887390768-fb02affea7a6?w=800&q=80" alt="A pink manicure on white fabric" width="800" height="1066" loading="lazy" onerror="this.parentNode.style.background='#2B2833';this.remove()"><span class="cap">Sample photo</span></figure>
+    <figure><img src="https://images.unsplash.com/photo-1758225490983-0fae7961e425?w=800&q=80" alt="A nail salon window with a neon sign" width="800" height="1066" loading="lazy" onerror="this.parentNode.style.background='#17151D';this.remove()"><span class="cap">Sample photo</span></figure>
+   </div>
+  </div>
+ </section>
+
+ <section>
+  <div class="wrap">
+   <p class="eyebrow">Clients</p>
+   <p class="score">★ 4.8 on Google (123) · 4.8 on Treatwell (271)</p>
+   <div class="quotes">
+    <blockquote><p>"Always the best service and love my nails."</p><cite>Yvonne, Treatwell</cite></blockquote>
+    <blockquote><p>"Very efficient, good service and nails always look good."</p><cite>Maya, Treatwell</cite></blockquote>
+    <blockquote><p>"Love getting my nails done here, always a great experience."</p><cite>Treatwell review</cite></blockquote>
+   </div>
+  </div>
+ </section>
+
+ <section class="visit" id="visit">
+  <div class="wrap grid">
+   <div>
+    <p class="eyebrow">Opening hours</p>
+    <table>
+     <tr><td>Monday – Saturday</td><td>10am – 7pm</td></tr>
+     <tr><td>Sunday</td><td>Closed</td></tr>
+    </table>
+    <p class="small">Hours as listed online; we'd confirm them with you.</p>
+   </div>
+   <div>
+    <p class="eyebrow">Find us</p>
+    <h3 style="font-size:28px;margin-bottom:8px">18 Camden High Street</h3>
+    <p style="margin:0 0 16px;color:#cfc9be">London NW1 0JH · near Mornington Crescent station<br><a href="tel:02033027190">020 3302 7190</a> · <a href="https://www.instagram.com/vipnailslondon/">@vipnailslondon</a></p>
+    <a class="btn out" href="https://maps.google.com/?q=VIP+Nails+London+18+Camden+High+Street+London+NW1+0JH">Directions</a>
+   </div>
+  </div>
+ </section>
+
+ <div class="cta">
+  <h2>Your next set<br>starts here.</h2>
+  <div class="row"><a class="btn" href="tel:02033027190">Call 020 3302 7190</a><a class="btn out" href="https://www.instagram.com/vipnailslondon/">Message on Instagram</a></div>
+ </div>
+</main>
+
+<footer>
+ <div class="wrap">
+  <span><b>VIP Nails London</b> · 18 Camden High Street, London NW1 0JH</span>
+  <span>Design concept by Sites By MS. Not the official website.</span>
+ </div>
+</footer>
+<script src="/assets/concept-bar.js" data-name="VIP Nails London" data-slug="vip-nails-london" defer></script>
+</body>
+</html>
