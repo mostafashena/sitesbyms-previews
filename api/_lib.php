@@ -371,12 +371,12 @@ function sessions_from(array $events): array {
     $s = [];
     foreach (array_reverse($events) as $e) {   // oldest first
         $k = $e['sid'];
-        $s[$k] ??= ['sid' => $k, 'vid' => $e['vid'], 'slug' => $e['slug'], 'src' => '', 'device' => $e['device'], 'start' => $e['at'], 'end' => $e['at'], 'active' => 0, 'scroll' => 0, 'events' => [], 'flags' => []];
+        $s[$k] ??= ['sid' => $k, 'vid' => $e['vid'], 'slug' => $e['slug'], 'page' => $e['page'] ?? 'concept', 'pages' => [], 'src' => '', 'device' => $e['device'], 'start' => $e['at'], 'end' => $e['at'], 'active' => 0, 'scroll' => 0, 'events' => [], 'flags' => []];
         $x = &$s[$k]; $x['end'] = $e['at'];
         if ($e['src'] !== '' && $x['src'] === '') $x['src'] = $e['src'];
         if ($e['ev'] === 'time') $x['active'] = max($x['active'], (int)$e['val']);
         elseif ($e['ev'] === 'scroll') $x['scroll'] = max($x['scroll'], (int)$e['val']);
-        else { $x['events'][] = $e; $x['flags'][$e['ev']] = true; }
+        else { $x['events'][] = $e; $x['flags'][$e['ev']] = true; if ($e['ev'] === 'page') $x['pages'][] = preg_replace('/ [(←].*$/u', '', $e['val']); }
         unset($x);
     }
     $out = array_values($s);

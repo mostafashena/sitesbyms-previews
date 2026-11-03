@@ -95,7 +95,7 @@
     function keep(f) { return f ? { name: f.name.value, business: f.business.value, email: f.email.value, phone: f.phone.value } : null; }
     function restore(f, v) { if (f && v) { f.name.value = v.name; f.business.value = v.business; f.email.value = v.email; f.phone.value = v.phone; } }
     function wire() {
-      box.querySelectorAll('[data-day]').forEach(function (b) { b.onclick = function () { if (b.getAttribute('aria-disabled')) return; var v = keep(box.querySelector('form')); S.day = +b.getAttribute('data-day'); S.ts = null; S.t = ''; draw(); restore(box.querySelector('form'), v); }; });
+      box.querySelectorAll('[data-day]').forEach(function (b) { b.onclick = function () { if (b.getAttribute('aria-disabled')) return; var v = keep(box.querySelector('form')); S.day = +b.getAttribute('data-day'); S.ts = null; S.t = ''; if (window.SBMTrack) window.SBMTrack('book_day', b.textContent.replace(/\s+/g, ' ').trim().slice(0, 40)); draw(); restore(box.querySelector('form'), v); }; });
       box.querySelectorAll('[data-ts]').forEach(function (b) { b.onclick = function () { var v = keep(box.querySelector('form')); S.ts = +b.getAttribute('data-ts'); S.t = b.getAttribute('data-t'); if (window.SBMTrack) window.SBMTrack('book_slot', S.t); draw(); var f = box.querySelector('form'); restore(f, v); (f.name.value ? f.email : f.name).focus({ preventScroll: false }); }; });
       box.querySelectorAll('[data-how]').forEach(function (b) { b.onclick = function () { var v = keep(box.querySelector('form')); S.how = b.getAttribute('data-how'); draw(); restore(box.querySelector('form'), v); }; });
       var f = box.querySelector('form'); if (!f) return;

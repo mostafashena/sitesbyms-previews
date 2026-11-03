@@ -312,3 +312,69 @@ function outreach_all(): array {
     outreach_migrate($p);
     return array_map(fn($r) => $r + ['row' => (int)$r['sheet_row'], 'to' => $r['to_email'], 'mid' => $r['message_id'], 'at' => iso($r['sent_at'])], $p->query('SELECT * FROM outreach ORDER BY sent_at DESC, id DESC LIMIT 500')->fetchAll());
 }
+
+/* ---------- "Visits" tab: one row per visit, for weekly analysis ---------- */
+const VISITS_TAB = 'Visits';
+
+/** Rewrites the Visits tab with every visit of the last 45 days (newest first). Team visits are never recorded in the first place. */
+function visits_sync(): int {
+    write_json('visits_sync.json', ['at' => time()]);   // claim the slot first so parallel requests don't sync twice
+    $tz = new DateTimeZone(TZ);
+    $names = []; try { foreach (sheet_rows() as $r) if ($r['slug'] !== '') $names[$r['slug']] = $r['company']; } catch (Throwable $e) {}
+    $by = [];
+    foreach (array_reverse(events_all(45)) as $e) $by[$e['sid']][] = $e;   // oldest first
+    $sessions = [];
+    foreach ($by as $sid => $evs) {
+        $f = $evs[0]; $x = ['start' => $f['at'], 'vid' => $f['vid'], 'slug' => $f['slug'], 'page' => $f['page'] ?? 'concept', 'src' => '', 'device' => $f['device'],
+            'active' => 0, 'scroll' => 0, 'sections' => [], 'dwell' => '', 'clicks' => [], 'contact' => [], 'report' => [], 'book' => [], 'nudge' => [], 'frustr' => [], 'forms' => [], 'pages' => [], 'ref' => '', 'last' => '', 'trail' => [], 'n' => ''];
+        foreach ($evs as $e) {
+            $ev = $e['ev']; $v = (string)$e['val']; $sec = (int)floor((int)$e['t'] / 1000);
+            if ($e['src'] !== '' && $x['src'] === '') $x['src'] = $e['src'];
+            if ($ev === 'time') { $x['active'] = max($x['active'], (int)$v); continue; }
+            $x['trail'][] = floor($sec / 60) . ':' . str_pad((string)($sec % 60), 2, '0', STR_PAD_LEFT) . ' ' . $ev . ($v !== '' ? ' ' . $v : '');
+            $x['last'] = $ev . ($v !== '' ? ' ' . $v : '');
+            switch ($ev) {
+                case 'open': $x['ref'] = $v; break;
+                case 'visit': $x['n'] = explode(' · ', $v)[0]; break;
+                case 'page': $x['pages'][] = preg_replace('/ ←.*$/u', '', $v); if ($x['ref'] === '' && preg_match('/← (.+)$/u', $v, $pm)) $x['ref'] = $pm[1]; break;
+                case 'scroll': $x['scroll'] = max($x['scroll'], (int)$v); break;
+                case 'section': $x['sections'][$v] = true; break;
+                case 'dwell': $x['dwell'] = $v; break;
+                case 'click': case 'about_click': case 'ask_click': $x['clicks'][] = $v !== '' ? $v : $ev; break;
+                case 'call': case 'email': case 'copy': $x['contact'][] = $ev . ($v !== '' ? ': ' . $v : ''); break;
+                case 'report_open': case 'report_submit': case 'report_error': $x['report'][] = str_replace('report_', '', $ev) . ($v !== '' ? " ($v)" : ''); break;
+                case 'book_open': case 'book_day': case 'book_slot': case 'book_submit': $x['book'][] = str_replace('book_', '', $ev) . ($v !== '' ? " ($v)" : ''); break;
+                case 'nudge_shown': case 'nudge_yes': case 'nudge_no': $x['nudge'][] = str_replace('nudge_', '', $ev); break;
+                case 'tap': case 'rage': $x['frustr'][] = $ev . ': ' . $v; break;
+                case 'form_start': case 'form_submit': case 'form_abandon': $x['forms'][] = str_replace('form_', '', $ev) . ': ' . $v; break;
+            }
+        }
+        $sessions[] = $x;
+    }
+    usort($sessions, fn($a, $b) => strtotime($b['start']) <=> strtotime($a['start']));
+    // visit number per visitor (counting all their visits we have)
+    $nth = []; foreach (array_reverse($sessions) as $x) $nth[$x['vid']] = ($nth[$x['vid']] ?? 0) + 1;
+    $cell = function ($v): string { $v = is_array($v) ? implode(' | ', $v) : (string)$v; $v = ltrim($v, "=+-@ "); return mb_substr($v, 0, 4000); };
+    $vals = [['Start (London)', 'Day', 'Hour', 'Visitor', 'Their visits so far', 'Page', 'Business', 'Came from', 'Referrer', 'Device', 'Active seconds', 'Max scroll %',
+              'Sections seen', 'Most time on', 'Clicks', 'Call / email / copy', 'Report offer', 'Report form', 'Booking', 'Forms', 'Taps on non-links / rage taps', 'Last thing they did', 'Full trail']];
+    $left = []; foreach ($sessions as $x) $left[$x['vid']] = $nth[$x['vid']];
+    foreach ($sessions as $x) {
+        $d = (new DateTime($x['start']))->setTimezone($tz);
+        $vals[] = array_map($cell, [$d->format('Y-m-d H:i'), $d->format('D'), $d->format('H'), substr($x['vid'], 0, 6), (string)$left[$x['vid']]--,
+            $x['page'] === 'site' ? 'studio: ' . implode(' > ', $x['pages']) : $x['page'],
+            $x['slug'] === 'site' ? '' : ($names[$x['slug']] ?? $x['slug']),
+            $x['src'] === 'email' ? 'email' : ($x['src'] === 'ig' ? 'instagram' : ($x['src'] === 'wa' ? 'whatsapp' : ($x['src'] ?: 'direct'))),
+            $x['ref'], $x['device'], (string)$x['active'], (string)$x['scroll'], count($x['sections']) . ($x['sections'] ? ': ' . implode('; ', array_keys($x['sections'])) : ''),
+            $x['dwell'], $x['clicks'], $x['contact'], $x['nudge'], $x['report'], $x['book'], $x['forms'], $x['frustr'], $x['last'], implode("\n", $x['trail'])]);
+    }
+    $t = google_token(); $auth = ["Authorization: Bearer $t"]; $base = google_api_base() . '/v4/spreadsheets/' . SHEET_ID;
+    try { http_json('POST', $base . '/values/' . rawurlencode(VISITS_TAB . '!A1:Z5000') . ':clear', new stdClass(), false, $auth); }
+    catch (Throwable $e) {
+        if (!preg_match('/parse range|not found/i', $e->getMessage())) throw $e;
+        http_json('POST', $base . ':batchUpdate', ['requests' => [['addSheet' => ['properties' => ['title' => VISITS_TAB, 'gridProperties' => ['frozenRowCount' => 1, 'rowCount' => 5000, 'columnCount' => 26]]]]]], false, $auth);
+    }
+    $vals = array_slice($vals, 0, 4999);
+    http_json('POST', $base . '/values:batchUpdate', ['valueInputOption' => 'RAW', 'data' => [['range' => VISITS_TAB . '!A1:W' . count($vals), 'values' => $vals]]], false, $auth);
+    write_json('visits_sync.json', ['at' => time(), 'rows' => count($vals) - 1]);
+    return count($vals) - 1;
+}

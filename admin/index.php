@@ -219,6 +219,10 @@ if ($csrfOk) {
             go('outreach', $did . ($left ? ' Still to do: ' . implode(' and ', $left) . '.' : ' All done, the sheet is updated.'));
         } catch (Throwable $e) { go('outreach', 'Sheet error: ' . $e->getMessage(), true); }
     }
+    if ($a === 'vsync') {
+        try { $n = visits_sync(); go('activity', "Copied $n visits to the Visits tab of the leads sheet."); }
+        catch (Throwable $e) { write_json('visits_sync.json', ['at' => time(), 'error' => $e->getMessage()]); go('activity', 'Could not copy the visits: ' . $e->getMessage(), true); }
+    }
     if ($a === 'gkey' && $isOwner) {
         $raw = (string)($_POST['json'] ?? '');
         if (!empty($_FILES['keyfile']['tmp_name']) && is_uploaded_file($_FILES['keyfile']['tmp_name'])) $raw = (string)file_get_contents($_FILES['keyfile']['tmp_name']);
@@ -523,17 +527,22 @@ if ($page === 'activity') {
     $label = ['open' => 'Opened the page', 'scroll' => 'Scrolled to %s%%', 'section' => 'Saw “%s”', 'click' => 'Clicked “%s”', 'call' => 'Tapped call: %s', 'email' => 'Tapped email: %s',
         'bar_hide' => 'Hid our bar', 'bar_show' => 'Brought our bar back', 'nudge_shown' => 'Saw the report offer', 'nudge_yes' => 'Said yes to the report offer', 'nudge_no' => 'Closed the report offer',
         'report_open' => 'Opened the report form (%s)', 'report_submit' => '★ Requested the analysis report (%s)', 'report_error' => 'Report form error: %s',
-        'book_open' => 'Opened call booking (%s)', 'book_slot' => 'Picked a time: %s', 'book_submit' => '★ Booked a call (%s)', 'ask_click' => 'Went to ask a question', 'leave' => 'Left'];
+        'book_open' => 'Opened call booking (%s)', 'book_slot' => 'Picked a time: %s', 'book_submit' => '★ Booked a call (%s)', 'ask_click' => 'Went to ask a question', 'leave' => 'Left',
+        'visit' => 'Visit no. %s (screen)', 'page' => 'Page: %s', 'dwell' => 'Most time on: %s', 'tap' => 'Tapped something that is not a link: %s', 'rage' => '⚠ Tapped repeatedly: %s',
+        'copy' => 'Copied text: %s', 'back' => 'Came back after %s', 'form_start' => 'Started filling: %s', 'form_submit' => 'Sent: %s', 'form_abandon' => 'Left a form unfinished: %s', 'book_day' => 'Picked a day: %s', 'about_click' => 'Opened “Meet the team”'];
     $srcName = fn($s) => $s === 'email' ? 'Email' : ($s === 'ig' ? 'Instagram' : ($s === '' ? 'Direct / unknown' : $s));
     // funnel per source
     $steps = ['Visits', 'Engaged (20s+ or half the page)', 'Saw the report offer', 'Opened the report form', 'Requested the report', 'Booked a call'];
     $fun = [];
     foreach ($ss as $x) {
+        if (($x['page'] ?? 'concept') !== 'concept') continue;
         $c = $srcName($x['src']); $f = $x['flags'];
         $vals = [true, $x['active'] >= 20 || $x['scroll'] >= 50, !empty($f['nudge_shown']) || !empty($f['report_open']), !empty($f['report_open']), !empty($f['report_submit']), !empty($f['book_submit'])];
         foreach (['All visits', $c] as $k) { $fun[$k] ??= array_fill(0, count($steps), 0); foreach ($vals as $i => $v) if ($v) $fun[$k][$i]++; }
     }
-    echo '<h1>Activity</h1><p class="sub">What visitors do on their concept page: how long they stay, how far they scroll, what they look at and what they click. Team visits are never counted.</p>';
+    $vs = read_json('visits_sync.json', []);
+    echo '<h1>Activity</h1><p class="sub">What visitors do on concept pages, report pages and our own site: time, scroll, sections, clicks, taps, forms and every step of booking. Team visits are never counted.</p>';
+    echo '<form method="post" class="hint" style="margin:-6px 0 16px">' . csrf_field() . 'Every visit is also copied to the <b>Visits</b> tab of the leads sheet (every 30 minutes)' . (!empty($vs['at']) ? ': last copy ' . h(ago(gmdate('c', (int)$vs['at']))) . (isset($vs['rows']) ? ', ' . (int)$vs['rows'] . ' visits' : '') . (!empty($vs['error']) ? ' · <span class="err">' . h($vs['error']) . '</span>' : '') : '') . '. <button class="btn line sm" name="a" value="vsync">Copy now</button></form>';
     echo '<div class="tabs2">'; foreach ([7, 30, 60] as $d) echo '<a href="?p=activity&amp;d=' . $d . ($only ? '&amp;s=' . h($only) : '') . '"' . ($d === $days ? ' style="font-weight:800"' : '') . '>Last ' . $d . ' days</a>'; if ($only) echo '<a href="?p=activity&amp;d=' . $days . '">Show all businesses</a>'; echo '</div>';
     echo '<section class="card"><h2>Funnel' . ($only ? ' for ' . h($only) : '') . '</h2>';
     if (!$ss) echo '<div class="empty">No visits recorded yet. They appear here as soon as someone opens a concept.</div>';
@@ -549,7 +558,7 @@ if ($page === 'activity') {
         if (!empty($f['book_submit'])) $chips .= '<span class="pill ok">Booked a call</span>';
         if (!empty($f['call'])) $chips .= '<span class="pill">Tapped call</span>';
         if (!empty($f['report_open']) && empty($f['report_submit'])) $chips .= '<span class="pill">Opened report form</span>';
-        echo '<details class="card lead visit"><summary><div class="grow"><b>' . h($x['slug']) . '</b><small>' . h(ago($x['start'])) . ' · ' . h($srcName($x['src'])) . ' · ' . h($x['device']) . ' · active ' . $mmss($x['active']) . ' · scrolled ' . (int)$x['scroll'] . '%</small></div>' . $chips . '</summary><ol class="tl">';
+        echo '<details class="card lead visit"><summary><div class="grow"><b>' . h(($x['page'] ?? '') === 'site' ? 'Our site: ' . implode(' → ', $x['pages'] ?: ['page']) : (($x['page'] ?? '') === 'report' ? 'Report: ' . $x['slug'] : $x['slug'])) . '</b><small>' . h(ago($x['start'])) . ' · ' . h($srcName($x['src'])) . ' · ' . h($x['device']) . ' · active ' . $mmss($x['active']) . ' · scrolled ' . (int)$x['scroll'] . '%</small></div>' . $chips . '</summary><ol class="tl">';
         foreach ($x['events'] as $e) { $t = (int)floor($e['t'] / 1000); $l = $label[$e['ev']] ?? $e['ev']; $v = $e['val'] !== '' ? $e['val'] : '—';
             echo '<li><span>' . $mmss($t) . '</span>' . h(str_contains($l, '%s') ? sprintf($l, $v) : $l) . '</li>'; }
         if ($x['scroll']) echo '<li><span>·</span>Deepest scroll: ' . (int)$x['scroll'] . '% · active time ' . $mmss($x['active']) . '</li>';

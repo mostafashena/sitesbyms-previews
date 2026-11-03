@@ -15,10 +15,10 @@ $id = fn($v) => preg_match('/^[a-z0-9]{16}$/', (string)$v) ? (string)$v : '';
 $sid = $id($in['sid'] ?? ''); $vid = $id($in['vid'] ?? '');
 $slug = preg_match('/^[a-z0-9-]{1,60}$/', (string)($in['slug'] ?? '')) ? (string)$in['slug'] : '';
 if (!$sid || !$vid || !$slug) exit;
-$page = in_array($in['page'] ?? '', ['concept', 'report'], true) ? $in['page'] : 'concept';
+$page = in_array($in['page'] ?? '', ['concept', 'report', 'site'], true) ? $in['page'] : 'concept';
 $src = preg_match('/^[a-z0-9-]{1,20}$/', (string)($in['src'] ?? '')) ? (string)$in['src'] : '';
 $device = preg_match('/Mobile|Android|iPhone/i', $ua) ? 'phone' : 'computer';
-$allowed = ['about_click', 'open', 'scroll', 'time', 'section', 'click', 'call', 'email', 'bar_hide', 'bar_show', 'nudge_shown', 'nudge_yes', 'nudge_no',
+$allowed = ['about_click', 'visit', 'page', 'dwell', 'tap', 'rage', 'copy', 'back', 'form_start', 'form_submit', 'form_abandon', 'book_day', 'open', 'scroll', 'time', 'section', 'click', 'call', 'email', 'bar_hide', 'bar_show', 'nudge_shown', 'nudge_yes', 'nudge_no',
             'report_open', 'report_submit', 'report_error', 'book_open', 'book_slot', 'book_submit', 'ask_click', 'leave'];
 $rows = [];
 foreach (array_slice((array)($in['e'] ?? []), 0, 40) as $e) {
@@ -27,3 +27,9 @@ foreach (array_slice((array)($in['e'] ?? []), 0, 40) as $e) {
                'src' => $src, 'device' => $device, 't' => max(0, min(86400000, (int)($e[2] ?? 0)))];
 }
 events_add($rows);
+
+// Every 30 minutes at most: copy the visits into the "Visits" tab of the leads sheet (after the visitor already has the response).
+if ($rows && function_exists('fastcgi_finish_request')) fastcgi_finish_request();
+if ($rows && (read_json('visits_sync.json', [])['at'] ?? 0) < time() - 1800) {
+    try { require_once __DIR__ . '/_google.php'; if (google_key()) visits_sync(); } catch (Throwable $e) { write_json('visits_sync.json', ['at' => time(), 'error' => $e->getMessage()]); }
+}
