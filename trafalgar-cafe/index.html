@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Trafalgar Café | All-day breakfast on Trafalgar Road, Greenwich</title>
+<meta name="description" content="Trafalgar Café, 98 Trafalgar Road, Greenwich SE10. Fry-ups, veggie and vegan breakfasts, bubble and squeak, avocado on toast and porridge, served all day.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Patua+One&family=Karla:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+/* Layout: printed menu card. Words: hearty, unfussy, local. */
+:root{--navy:#1E3350;--cream:#FBF4E4;--card:#FFFCF4;--tomato:#C8432B;--yolk:#F2B632;--ink:#1D1B18;--line:#D9CBAA}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--cream);color:var(--ink);font:400 17px/1.6 Karla,system-ui,sans-serif}
+a{color:inherit}
+h1,h2,h3{font-family:"Patua One",Georgia,serif;font-weight:400;margin:0;line-height:1.08;color:var(--navy)}
+.wrap{width:min(1040px,100% - 32px);margin-inline:auto}
+.topbar{background:var(--navy);color:#fff;font-size:13px;text-align:center;padding:7px 16px}
+header{position:sticky;top:0;z-index:20;background:var(--cream);border-bottom:2px dashed var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:66px;gap:12px}
+.mark{text-decoration:none;line-height:1}
+.mark b{display:block;font:400 25px/1 "Patua One",serif;color:var(--navy)}
+.mark small{display:block;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--tomato);font-weight:700;margin-top:3px}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 22px;border-radius:6px;background:var(--tomato);color:#fff;font-weight:700;text-decoration:none;white-space:nowrap}
+.btn.ghost{background:transparent;color:var(--navy);border:2px solid var(--navy)}
+figure{margin:0;position:relative;overflow:hidden;background:var(--yolk)}
+figure img{display:block;width:100%;height:100%;object-fit:cover}
+.cap{position:absolute;right:8px;bottom:8px;font-size:11px;background:rgba(255,252,244,.92);padding:2px 8px;border-radius:4px;color:var(--ink)}
+.hero{padding:22px 0 8px}
+.hero figure{aspect-ratio:4/3;border-radius:10px}
+.hero .txt{padding:22px 0 6px}
+.kick{font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:var(--tomato);font-weight:700;margin:0 0 8px}
+.hero h1{font-size:clamp(38px,9vw,74px)}
+.hero p.lead{font-size:19px;max-width:34ch;margin:14px 0 20px}
+.row{display:flex;flex-wrap:wrap;gap:10px}
+section{padding:46px 0}
+.about{display:grid;gap:22px}
+.about figure{aspect-ratio:1/1;border-radius:10px}
+.about h2,.menu h2,.gallery h2,.say h2,.visit h2{font-size:clamp(30px,6vw,46px);margin-bottom:12px}
+/* the menu card */
+.menu .card{background:var(--card);border:2px solid var(--navy);border-radius:4px;padding:26px 20px;box-shadow:8px 8px 0 var(--navy);position:relative}
+.menu .card:before{content:"";position:absolute;inset:7px;border:1px solid var(--line);pointer-events:none}
+.menu .head{text-align:center;margin-bottom:18px}
+.menu .head p{margin:6px 0 0;font-size:14px;color:#5a5446}
+.item{display:flex;align-items:baseline;gap:10px;padding:13px 0;border-bottom:1px dotted var(--line)}
+.item:last-child{border-bottom:0}
+.item h3{font-size:21px;white-space:nowrap}
+.item .dots{flex:1;border-bottom:2px dotted var(--line);transform:translateY(-5px)}
+.item .tag{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;background:var(--yolk);padding:2px 8px;border-radius:3px;white-space:nowrap}
+.item p{margin:2px 0 0;font-size:15px;color:#4d483c}
+.it{display:block}
+.gallery .grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.gallery figure{aspect-ratio:1/1;border-radius:8px}
+.gallery figure.wide{grid-column:span 2;aspect-ratio:16/9}
+.say .q{background:var(--navy);color:#fff;border-radius:10px;padding:24px 22px;margin:0 0 14px}
+.say .q p{font:400 22px/1.3 "Patua One",serif;margin:0 0 10px}
+.say .q span{font-size:14px;opacity:.85}
+.say .stars{font-size:15px;font-weight:700;color:var(--tomato);margin:0 0 16px}
+.visit .grid{display:grid;gap:16px}
+.visit .box{background:var(--card);border:2px solid var(--navy);border-radius:6px;padding:20px}
+.visit table{width:100%;border-collapse:collapse}
+.visit td{padding:7px 0;border-bottom:1px dotted var(--line)}
+.visit td:last-child{text-align:right;font-weight:700}
+.small{font-size:13px;color:#5a5446}
+.cta{background:var(--tomato);color:#fff;text-align:center;padding:52px 16px}
+.cta h2{color:#fff;font-size:clamp(32px,7vw,54px);margin-bottom:10px}
+.cta .btn{background:#fff;color:var(--tomato)}
+.cta .btn.ghost{background:transparent;color:#fff;border-color:#fff}
+.cta .row{justify-content:center}
+footer{background:var(--navy);color:#dfe5ee;font-size:14px;padding:26px 0}
+footer .wrap{display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-between}
+@media(min-width:820px){
+ .hero .wrap{display:grid;grid-template-columns:1.1fr 1fr;gap:40px;align-items:center}
+ .hero .txt{order:-1}
+ .about{grid-template-columns:1fr 1.2fr;align-items:center}
+ .menu .card{padding:38px 44px}
+ .gallery .grid{grid-template-columns:repeat(3,1fr)}
+ .gallery figure.wide{grid-column:span 2;aspect-ratio:auto}
+ .say .qs{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+ .visit .grid{grid-template-columns:1fr 1fr}
+}
+</style>
+</head>
+<body>
+<div class="topbar">Design concept prepared for Trafalgar Café by Sites By MS. Not the official website.</div>
+<header>
+ <div class="wrap nav">
+  <a class="mark" href="#top"><b>Trafalgar Café</b><small>98 Trafalgar Road · SE10</small></a>
+  <a class="btn" href="tel:07411096564">Call</a>
+ </div>
+</header>
+
+<main id="top">
+ <section class="hero">
+  <div class="wrap">
+   <figure><img src="https://images.unsplash.com/photo-1541329351076-600b0f9fdf28?w=1600&q=80" alt="A cooked breakfast with egg, tomatoes, mushrooms and black coffee" width="1600" height="1200" onerror="this.parentNode.style.background='#F2B632';this.remove()"><span class="cap">Sample photo</span></figure>
+   <div class="txt">
+    <p class="kick">Greenwich · breakfast all day</p>
+    <h1>A proper breakfast, whatever the time.</h1>
+    <p class="lead">Fry-ups, veggie and vegan plates, bubble and squeak and good strong tea on Trafalgar Road.</p>
+    <div class="row">
+     <a class="btn" href="#menu">See the menu</a>
+     <a class="btn ghost" href="#visit">Opening hours</a>
+    </div>
+   </div>
+  </div>
+ </section>
+
+ <section class="about">
+  <div class="wrap about">
+   <figure><img src="https://images.unsplash.com/photo-1549804795-05e3d7ec4d3c?w=1200&q=80" alt="A café table and chair beside a brick wall and a green plant" width="1200" height="1200" loading="lazy" onerror="this.parentNode.style.background='#F2B632';this.remove()"><span class="cap">Sample photo</span></figure>
+   <div>
+    <p class="kick">Your local caff</p>
+    <h2>Simple room. Big plates.</h2>
+    <p>Trafalgar Café is the kind of place East Greenwich relies on: a simple, relaxed room where breakfast never stops. Come in after the school run, after a walk by the river, or at two in the afternoon when only a fry-up will do.</p>
+    <p>Everyone gets looked after here, including the vegetarians and vegans, with their own full breakfasts on the menu.</p>
+   </div>
+  </div>
+ </section>
+
+ <section class="menu" id="menu">
+  <div class="wrap">
+   <div class="card">
+    <div class="head">
+     <h2>The Menu</h2>
+     <p>Served all day, every day we're open</p>
+    </div>
+    <div class="item"><div class="it"><h3>The full fry-up</h3><p>The classic cooked breakfast, done properly.</p></div><span class="dots"></span><span class="tag">All day</span></div>
+    <div class="item"><div class="it"><h3>Veggie breakfast</h3><p>The full plate without the meat.</p></div><span class="dots"></span><span class="tag">Veggie</span></div>
+    <div class="item"><div class="it"><h3>Vegan breakfast</h3><p>A plant-based fry-up, nobody misses out.</p></div><span class="dots"></span><span class="tag">Vegan</span></div>
+    <div class="item"><div class="it"><h3>Bubble &amp; squeak</h3><p>With bacon and fried eggs.</p></div><span class="dots"></span><span class="tag">Classic</span></div>
+    <div class="item"><div class="it"><h3>Avocado on toast</h3><p>For a lighter start.</p></div><span class="dots"></span><span class="tag">Light</span></div>
+    <div class="item"><div class="it"><h3>Porridge &amp; burgers</h3><p>Warm porridge in the morning, burgers for lunch.</p></div><span class="dots"></span><span class="tag">More</span></div>
+    <p class="small" style="text-align:center;margin:16px 0 0">Prices and the full menu would go here, straight from your menu board.</p>
+   </div>
+  </div>
+ </section>
+
+ <section class="gallery">
+  <div class="wrap">
+   <h2>Fresh off the pass</h2>
+   <div class="grid">
+    <figure class="wide"><img src="https://images.unsplash.com/photo-1525351484163-7529414344d8?w=1600&q=80" alt="Toast with a sunny-side-up egg" width="1600" height="900" loading="lazy" onerror="this.parentNode.style.background='#F2B632';this.remove()"><span class="cap">Sample photo</span></figure>
+    <figure><img src="https://images.unsplash.com/photo-1563311977-d285756282dc?w=900&q=80" alt="A cappuccino with latte art" width="900" height="900" loading="lazy" onerror="this.parentNode.style.background='#1E3350';this.remove()"><span class="cap">Sample photo</span></figure>
+    <figure><img src="https://images.unsplash.com/photo-1761027101486-d0403a229f88?w=900&q=80" alt="Avocado toast with poached egg" width="900" height="900" loading="lazy" onerror="this.parentNode.style.background='#C8432B';this.remove()"><span class="cap">Sample photo</span></figure>
+    <figure><img src="https://images.unsplash.com/photo-1616866866413-0ee9e3f7fbd2?w=900&q=80" alt="Eggs on bread" width="900" height="900" loading="lazy" onerror="this.parentNode.style.background='#F2B632';this.remove()"><span class="cap">Sample photo</span></figure>
+    <figure><img src="https://images.unsplash.com/photo-1612870199268-d33b7e0bd9b0?w=900&q=80" alt="White ceramic mugs on a shelf" width="900" height="900" loading="lazy" onerror="this.parentNode.style.background='#1E3350';this.remove()"><span class="cap">Sample photo</span></figure>
+   </div>
+  </div>
+ </section>
+
+ <section class="say">
+  <div class="wrap">
+   <h2>What people say</h2>
+   <p class="stars">★ 4.7 on Google from 167 reviews</p>
+   <div class="qs">
+    <div class="q"><p>"A popular choice locally for breakfast and brunch all day."</p><span>Thatsup, Greenwich café guide</span></div>
+    <div class="q"><p>"On the menu, you can expect to see a range of fry-ups, including veggie and vegan options."</p><span>Thatsup, Greenwich café guide</span></div>
+   </div>
+   <p class="small">Your own favourite Google reviews would sit here.</p>
+  </div>
+ </section>
+
+ <section class="visit" id="visit">
+  <div class="wrap">
+   <h2>Pop in</h2>
+   <div class="grid">
+    <div class="box">
+     <h3>Opening hours</h3>
+     <table>
+      <tr><td>Wednesday – Saturday</td><td>8.30am – 3pm</td></tr>
+      <tr><td>Sunday</td><td>9am – 3pm</td></tr>
+      <tr><td>Monday – Tuesday</td><td>Check before visiting</td></tr>
+     </table>
+     <p class="small">Hours as listed online; we'd confirm them with you.</p>
+    </div>
+    <div class="box">
+     <h3>Find us</h3>
+     <p>98 Trafalgar Road<br>Greenwich, London SE10 9UW</p>
+     <p><a href="tel:07411096564">07411 096564</a><br><a href="https://www.instagram.com/the_trafalgar_cafe/">@the_trafalgar_cafe</a></p>
+     <a class="btn ghost" href="https://maps.google.com/?q=Trafalgar+Cafe+98+Trafalgar+Road+London+SE10+9UW">Directions</a>
+    </div>
+   </div>
+  </div>
+ </section>
+
+ <div class="cta">
+  <h2>Kettle's on.</h2>
+  <p style="margin:0 0 20px">Breakfast all day on Trafalgar Road. Call ahead for a table.</p>
+  <div class="row">
+   <a class="btn" href="tel:07411096564">Call 07411 096564</a>
+   <a class="btn ghost" href="https://maps.google.com/?q=Trafalgar+Cafe+98+Trafalgar+Road+London+SE10+9UW">Directions</a>
+  </div>
+ </div>
+</main>
+
+<footer>
+ <div class="wrap">
+  <span><b>Trafalgar Café</b> · 98 Trafalgar Road, London SE10 9UW</span>
+  <span>Design concept by Sites By MS. Not the official website.</span>
+ </div>
+</footer>
+<script src="/assets/concept-bar.js" data-name="Trafalgar Café" data-slug="trafalgar-cafe" defer></script>
+</body>
+</html>
