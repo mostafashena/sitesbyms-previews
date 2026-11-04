@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Shoreditch Spa | Boutique day spa on Brick Lane since 2014</title>
+<meta name="description" content="The Shoreditch Spa, 167 Brick Lane, E2 7EE. Massages, Dermalogica facials, HydraFacial, social mani-pedis with complimentary bubbly. Boutique spa for men and women since 2014.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Petrona:ital,wght@0,400;0,600;1,400&family=Urbanist:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+/* Layout: storefront grid. Words: boutique, sociable, restorative. */
+:root{--stone:#EFE9E2;--card:#FFFFFF;--eucalyptus:#4F6F64;--deep:#24322D;--peach:#E8B9A0;--ink:#1F2421;--mute:#69706B;--line:#DCD3C8}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--stone);color:var(--ink);font:400 17px/1.65 Urbanist,system-ui,sans-serif}
+a{color:inherit}
+h1,h2,h3{font-family:Petrona,Georgia,serif;font-weight:400;line-height:1.05;margin:0}
+.wrap{width:min(1180px,100% - 32px);margin-inline:auto}
+.topbar{background:var(--deep);color:#D6E2DC;font-size:13px;text-align:center;padding:7px 16px}
+header{position:sticky;top:0;z-index:20;background:rgba(239,233,226,.96);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:66px;gap:12px}
+.mark{text-decoration:none;line-height:1}
+.mark small{display:block;font-size:10.5px;letter-spacing:.34em;text-transform:uppercase;color:var(--mute)}
+.mark b{font:400 26px Petrona,serif}
+.mark b i{color:var(--eucalyptus)}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 22px;border-radius:14px;background:var(--eucalyptus);color:#fff;font-weight:700;text-decoration:none;white-space:nowrap}
+.btn.peach{background:var(--peach);color:var(--deep)}
+.btn.line{background:transparent;border:1.5px solid var(--ink);color:var(--ink)}
+figure{margin:0;position:relative;overflow:hidden;background:#E2D8CC}
+figure img{display:block;width:100%;height:100%;object-fit:cover}
+figure.nophoto{background:linear-gradient(140deg,#E7DDD2,var(--peach))}
+.cap{position:absolute;right:10px;bottom:10px;font-size:11px;background:rgba(31,36,33,.66);color:#fff;padding:2px 8px;border-radius:999px;z-index:2}
+.grid{display:grid;gap:12px}
+.tile{background:var(--card);border-radius:24px;padding:26px;border:1px solid var(--line);position:relative;overflow:hidden}
+.tile.ph{padding:0;min-height:280px}
+.tile.ph figure{position:absolute;inset:0}
+.tile.dark{background:var(--deep);color:#E6EEEA;border-color:var(--deep)}
+.tile.green{background:var(--eucalyptus);color:#fff;border-color:var(--eucalyptus)}
+.tile.peach{background:var(--peach);border-color:var(--peach)}
+.k{font-size:12px;letter-spacing:.24em;text-transform:uppercase;font-weight:700;color:var(--eucalyptus);margin:0 0 12px}
+.dark .k,.green .k{color:#BFD7CC}
+.hero{padding:22px 0 12px}
+.hero h1{font-size:clamp(50px,9vw,104px)}
+.hero h1 i{color:var(--eucalyptus)}
+.hero p{font-size:19px;max-width:36ch;margin:18px 0 24px}
+.row{display:flex;flex-wrap:wrap;gap:10px}
+.since b{font:400 92px/1 Petrona,serif;display:block}
+.hours div{display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid rgba(255,255,255,.18)}
+section{padding:46px 0 10px}
+h2{font-size:clamp(36px,5.5vw,60px);margin-bottom:18px}
+.svc h3{font-size:28px;margin-bottom:4px}
+.svc .price{font-weight:700;font-size:15px;color:var(--eucalyptus)}
+.svc p{margin:10px 0 0;color:var(--mute);font-size:15.5px}
+.svc .tag{position:absolute;top:18px;right:18px;font-size:12px;font-weight:700;background:var(--stone);border-radius:999px;padding:3px 10px}
+.green .price,.dark .price{color:var(--peach)}
+.green p,.dark p{color:#D6E2DC}
+.q p{font:italic 400 25px/1.35 Petrona,serif;margin:0 0 12px}
+.q small{font-weight:700;font-size:13px;color:var(--mute)}
+.dark .q small,.q.dark small{color:#BFD7CC}
+.brands{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.brands span{border:1px solid currentColor;border-radius:999px;padding:4px 12px;font-size:14px}
+.small{font-size:13.5px;color:var(--mute)}
+.cta{padding:60px 0 70px}
+.cta .tile{text-align:center;padding:56px 22px}
+.cta .row{justify-content:center}
+footer{border-top:1px solid var(--line);padding:24px 0 110px;font-size:13.5px;color:var(--mute)}
+footer .wrap{display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-between}
+.mbar{position:fixed;left:0;right:0;bottom:0;z-index:30;display:grid;grid-template-columns:1fr 1.3fr;gap:8px;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:var(--stone);border-top:1px solid var(--line)}
+@media(min-width:720px){.grid.g2{grid-template-columns:1fr 1fr}}
+@media(min-width:960px){
+ .hero .grid{grid-template-columns:1.4fr 1fr 1fr;grid-template-rows:auto auto}
+ .hero .main{grid-row:span 2;display:flex;flex-direction:column;justify-content:flex-end;min-height:560px}
+ .grid.g3{grid-template-columns:repeat(3,1fr)}
+ .grid.g4{grid-template-columns:repeat(4,1fr)}
+ .span2{grid-column:span 2}
+ .mbar{display:none}
+ footer{padding-bottom:24px}
+}
+@media(max-width:959px){header .btn{display:none}}
+</style>
+</head>
+<body>
+<div class="topbar">Design concept prepared for The Shoreditch Spa by Sites By MS. Not the official website.</div>
+
+<header>
+ <div class="wrap nav">
+  <a class="mark" href="#top" aria-label="The Shoreditch Spa home"><small>The</small><b>Shoreditch <i>Spa</i></b></a>
+  <a class="btn" href="tel:02070339776">Book a treatment</a>
+ </div>
+</header>
+
+<main id="top">
+ <div class="wrap hero">
+  <div class="grid">
+   <div class="tile main">
+    <p class="k">167 Brick Lane · E2</p>
+    <h1>Slow down on <i>Brick Lane.</i></h1>
+    <p>A boutique day spa for men and women: massages and facials downstairs in a quiet zone, social mani-pedis upstairs with a glass of bubbly.</p>
+    <div class="row"><a class="btn" href="tel:02070339776">Call 020 7033 9776</a><a class="btn line" href="#treatments">Treatments</a></div>
+   </div>
+   <div class="tile ph"><figure><img src="https://images.fresha.com/locations/location-profile-images/1452492/4488900/d5f05b8b-eb4b-49bf-910a-b2910d73a57b-TheShoreditchSpa-GB-England-London-Shoreditch-Fresha.jpg?class=venue-gallery-large&amp;f_width=1920&amp;f_quality=75" alt="Inside The Shoreditch Spa" width="1200" height="900" onerror="this.parentNode.classList.add('nophoto');this.remove()"></figure></div>
+   <div class="tile dark since"><p class="k">Since</p><b>2014</b>East London's boutique spa, on Brick Lane for more than ten years.</div>
+   <div class="tile green hours span2" style="grid-column:span 1"><p class="k">Open</p>
+    <div><span>Tue – Thu</span><span>10am – 7.30pm</span></div>
+    <div><span>Fri – Sat</span><span>10am – 7pm</span></div>
+    <div><span>Sun – Mon</span><span>Closed</span></div>
+   </div>
+   <div class="tile ph"><figure><img src="https://images.unsplash.com/photo-1620733723572-11c53f73a416?w=1200&amp;q=80" alt="Candles, a diffuser and a rolled towel" width="1200" height="900" onerror="this.parentNode.classList.add('nophoto');this.remove()"><span class="cap">Sample photo</span></figure></div>
+  </div>
+ </div>
+
+ <section id="treatments">
+  <div class="wrap">
+   <p class="k">The treatment shelf</p>
+   <h2>Pick your moment.</h2>
+   <div class="grid g2 g3">
+    <div class="tile svc"><span class="tag">Facial</span><h3>Dermalogica ProSkin 60</h3><span class="price">1 hour · from £90</span><p>A personalised Dermalogica facial.</p></div>
+    <div class="tile svc green"><span class="tag">Massage</span><h3>Deep Tissue Massage</h3><span class="price">1 hr – 1 hr 30 · from £95</span><p>In the quiet zone downstairs.</p></div>
+    <div class="tile svc"><span class="tag">Facial</span><h3>HydraFacial</h3><span class="price">ask for prices</span><p>The HydraFacial treatment, now on the menu.</p></div>
+    <div class="tile svc"><span class="tag">Nails</span><h3>Ultimate Shoreditch Spa Pedicure</h3><span class="price">1 hr – 1 hr 10 · from £54</span><p>OPI colours, armchairs upstairs and complimentary bubbly.</p></div>
+    <div class="tile svc dark"><span class="tag" style="color:var(--ink)">Package</span><h3>Package B</h3><span class="price">2 hours · 2 treatments · £160</span><p>Two treatments together, saving 11%.</p></div>
+    <div class="tile svc"><span class="tag">Package</span><h3>Package D</h3><span class="price">2 hrs 30 · 3 treatments · £215</span><p>The long afternoon off: three treatments, saving 9%.</p></div>
+   </div>
+   <p class="small" style="margin-top:14px">Prices as listed on Fresha, to be confirmed by the spa. Waxing, body treatments and men's treatments are also available.</p>
+  </div>
+ </section>
+
+ <section>
+  <div class="wrap">
+   <p class="k">Inside the spa</p>
+   <div class="grid g2 g4">
+    <div class="tile ph"><figure><img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=900&amp;q=80" alt="A face mask being applied during a facial" width="900" height="900" loading="lazy" onerror="this.parentNode.classList.add('nophoto');this.remove()"><span class="cap">Sample photo</span></figure></div>
+    <div class="tile ph"><figure><img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=900&amp;q=80" alt="A guest relaxing during a massage" width="900" height="900" loading="lazy" onerror="this.parentNode.classList.add('nophoto');this.remove()"><span class="cap">Sample photo</span></figure></div>
+    <div class="tile ph"><figure><img src="https://images.unsplash.com/photo-1757689314932-bec6e9c39e51?w=900&amp;q=80" alt="Hands massaging a forearm" width="900" height="900" loading="lazy" onerror="this.parentNode.classList.add('nophoto');this.remove()"><span class="cap">Sample photo</span></figure></div>
+    <div class="tile ph"><figure><img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=900&amp;q=80" alt="A pump bottle, towel and pink tulips" width="900" height="900" loading="lazy" onerror="this.parentNode.classList.add('nophoto');this.remove()"><span class="cap">Sample photo</span></figure></div>
+   </div>
+  </div>
+ </section>
+
+ <section>
+  <div class="wrap">
+   <p class="k">Guests say</p>
+   <div class="grid g2 g4">
+    <div class="tile peach"><p class="k" style="color:var(--deep)">Ratings</p><h3 style="font-size:64px">5.0</h3><p style="margin:6px 0 0">from 843 Fresha reviews · 4.7 on Google from 252</p></div>
+    <div class="tile q"><p>I absolutely love coming here for my regular facial.</p><small>Tessa · Treatwell review</small></div>
+    <div class="tile q"><p>Incredible massage and facial, best I've found in the area!</p><small>Phoebe · Treatwell review</small></div>
+    <div class="tile q dark"><p>Excellent mani/pedi. Lasted for ages!</p><small>Fresha review</small></div>
+   </div>
+  </div>
+ </section>
+
+ <section id="visit">
+  <div class="wrap grid g2">
+   <div class="tile">
+    <p class="k">Find us</p>
+    <h2 style="font-size:40px">167 Brick Lane<br>London E2 7EE</h2>
+    <p>A short walk east of Shoreditch High Street station.</p>
+    <div class="row"><a class="btn" href="https://www.google.com/maps/search/?api=1&amp;query=The+Shoreditch+Spa+167+Brick+Lane+London+E2+7EE">Directions</a><a class="btn line" href="tel:02070339776">020 7033 9776</a></div>
+   </div>
+   <div class="tile dark">
+    <p class="k">The team &amp; the products</p>
+    <p>Senior therapists Yadilene, Danute, Myriam and Timandra, working with:</p>
+    <div class="brands"><span>Dermalogica</span><span>Aromatherapy Associates</span><span>OPI</span><span>HydraFacial</span></div>
+    <p style="margin-top:16px"><a href="mailto:info@theshoreditchspa.com">info@theshoreditchspa.com</a> · <a href="https://www.instagram.com/theshoreditchspa/">@theshoreditchspa</a></p>
+   </div>
+  </div>
+ </section>
+
+ <div class="wrap cta">
+  <div class="tile green">
+   <h2>You deserve an afternoon off.</h2>
+   <div class="row"><a class="btn peach" href="tel:02070339776">Book your treatment</a><a class="btn line" style="color:#fff;border-color:#fff" href="mailto:info@theshoreditchspa.com">Email the spa</a></div>
+  </div>
+ </div>
+</main>
+
+<footer>
+ <div class="wrap">
+  <span><b>The Shoreditch Spa</b> · 167 Brick Lane, London E2 7EE</span>
+  <span>Design concept by Sites By MS. Not the official website.</span>
+ </div>
+</footer>
+
+<nav class="mbar" aria-label="Quick actions">
+ <a class="btn line" href="https://www.google.com/maps/search/?api=1&amp;query=The+Shoreditch+Spa+167+Brick+Lane+London+E2+7EE">Directions</a>
+ <a class="btn" href="tel:02070339776">Call to book</a>
+</nav>
+<script src="/assets/concept-bar.js" data-name="The Shoreditch Spa" data-slug="the-shoreditch-spa" defer></script>
+</body>
+</html>
