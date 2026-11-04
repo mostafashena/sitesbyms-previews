@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ivy House Dental Practice | Dentist on Kentish Town Road, Camden</title>
+<meta name="description" content="Ivy House Dental Practice, 51 Kentish Town Road, Camden NW1 8NX. NHS and private dentistry, hygienist, implants, Invisalign and whitening. Open Monday to Saturday.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Text:ital@0;1&family=Figtree:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+/* Layout: minimal monochrome, one ivy-green accent. Words: steady, personal, local. */
+:root{--ink:#111;--paper:#FFF;--grey:#F2F2F0;--mute:#6A6A66;--line:#DEDEDA;--ivy:#2F6B45}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 17px/1.7 Figtree,system-ui,sans-serif}
+a{color:inherit}
+h1,h2,h3{font-family:"DM Serif Text",Georgia,serif;font-weight:400;line-height:1.08;margin:0}
+.wrap{width:min(1100px,100% - 40px);margin-inline:auto}
+.topbar{border-bottom:1px solid var(--line);color:var(--mute);font-size:13px;text-align:center;padding:7px 16px}
+header{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.97);border-bottom:1px solid var(--ink)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:64px;gap:12px}
+.mark{text-decoration:none;display:flex;align-items:baseline;gap:8px}
+.mark b{font:400 24px "DM Serif Text",serif}
+.mark i{font-style:italic;color:var(--ivy)}
+.mark small{font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--mute)}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 24px;background:var(--ink);color:#fff;text-decoration:none;font-weight:500;letter-spacing:.06em;font-size:14px;text-transform:uppercase;white-space:nowrap}
+.btn.line{background:transparent;color:var(--ink);border:1px solid var(--ink)}
+.btn.ivy{background:var(--ivy)}
+figure{margin:0;position:relative;overflow:hidden;background:var(--grey)}
+figure img{display:block;width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.05)}
+figure.nophoto{background:repeating-linear-gradient(90deg,var(--grey) 0 22px,#E7E7E3 22px 44px)}
+.cap{position:absolute;right:8px;bottom:8px;font-size:11px;background:#fff;color:var(--ink);padding:2px 8px}
+.hero{padding:70px 0 40px}
+.kicker{font-size:12px;letter-spacing:.26em;text-transform:uppercase;color:var(--mute);display:flex;gap:14px;flex-wrap:wrap}
+.kicker span:before{content:"";display:inline-block;width:8px;height:8px;background:var(--ivy);border-radius:50%;margin-right:8px;vertical-align:1px}
+.hero h1{font-size:clamp(48px,9vw,112px);margin:26px 0 22px;letter-spacing:-.01em}
+.hero h1 i{color:var(--ivy)}
+.hero .lede{display:grid;gap:22px}
+.hero p{font-size:19px;max-width:40ch;margin:0}
+.row{display:flex;flex-wrap:wrap;gap:12px}
+.hero figure{aspect-ratio:16/9;margin-top:40px}
+section{padding:70px 0;border-top:1px solid var(--ink)}
+.head{display:flex;justify-content:space-between;align-items:baseline;gap:16px;margin-bottom:34px}
+.head span{font-size:12px;letter-spacing:.26em;text-transform:uppercase;color:var(--mute)}
+h2{font-size:clamp(34px,5vw,56px)}
+.about .grid{display:grid;gap:36px}
+.about figure{aspect-ratio:1/1}
+.about p{max-width:54ch}
+.team{border-top:1px solid var(--line);margin-top:24px}
+.team div{display:flex;justify-content:space-between;gap:12px;padding:12px 0;border-bottom:1px solid var(--line)}
+.team span{color:var(--mute);font-size:14.5px;text-align:right}
+.list{display:grid;gap:0}
+.item{display:grid;grid-template-columns:44px 1fr auto;gap:4px 16px;padding:22px 0;border-bottom:1px solid var(--line);align-items:baseline}
+.item .n{font:italic 18px "DM Serif Text",serif;color:var(--ivy)}
+.item h3{font-size:25px}
+.item em{font-style:normal;font-weight:500;white-space:nowrap}
+.item p{grid-column:2/-1;margin:0;color:var(--mute);font-size:15.5px}
+.fine{font-size:13px;color:var(--mute);margin-top:18px}
+.gallery .grid{display:grid;grid-template-columns:1fr 1fr;gap:4px}
+.gallery figure{aspect-ratio:4/5}
+.voices{display:grid;gap:34px}
+blockquote{margin:0;font:400 28px/1.3 "DM Serif Text",serif}
+blockquote cite{display:block;font:500 12px Figtree,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:var(--mute);margin-top:14px;font-style:normal}
+.big{font:400 96px/1 "DM Serif Text",serif}
+.big small{font:500 14px Figtree,sans-serif;color:var(--mute);display:block;margin-top:8px}
+.visit .grid{display:grid;gap:34px}
+table{border-collapse:collapse;width:100%}
+td{padding:10px 0;border-bottom:1px solid var(--line)}
+td:last-child{text-align:right}
+.closed td:last-child{color:var(--mute)}
+.cta{border-top:1px solid var(--ink);padding:80px 0;text-align:center}
+.cta h2{font-size:clamp(40px,7vw,80px);margin-bottom:24px}
+.cta h2 i{color:var(--ivy)}
+.cta .row{justify-content:center}
+footer{border-top:1px solid var(--ink);padding:24px 0 110px;font-size:13px;color:var(--mute)}
+footer .wrap{display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-between}
+.mbar{position:fixed;left:0;right:0;bottom:0;z-index:30;display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--ink);background:#fff}
+.mbar a{min-height:56px}
+@media(min-width:860px){
+ .hero .lede{grid-template-columns:1fr auto;align-items:end}
+ .about .grid{grid-template-columns:.9fr 1.1fr;gap:64px}
+ .list{grid-template-columns:1fr 1fr;column-gap:56px}
+ .gallery .grid{grid-template-columns:repeat(4,1fr)}
+ .voices{grid-template-columns:.8fr 1.1fr 1.1fr;align-items:end}
+ .visit .grid{grid-template-columns:1fr 1fr;gap:64px}
+ .mbar{display:none}
+ footer{padding-bottom:24px}
+}
+@media(max-width:859px){header .btn{display:none}}
+</style>
+</head>
+<body>
+<div class="topbar">Design concept prepared for Ivy House Dental Practice by Sites By MS. Not the official website.</div>
+
+<header>
+ <div class="wrap nav">
+  <a class="mark" href="#top"><b>Ivy <i>House</i></b><small>Dental</small></a>
+  <a class="btn" href="tel:02072841110">Book</a>
+ </div>
+</header>
+
+<main id="top">
+ <div class="wrap hero">
+  <div class="kicker"><span>51 Kentish Town Road</span><span>Camden NW1</span><span>NHS &amp; private</span></div>
+  <h1>Good dentistry, <i>close to home.</i></h1>
+  <div class="lede">
+   <p>A neighbourhood dental practice between Camden Town and Kentish Town: check-ups and hygiene, fillings and crowns, implants, Invisalign and whitening.</p>
+   <div class="row"><a class="btn" href="tel:02072841110">020 7284 1110</a><a class="btn line" href="#treatments">Treatments</a></div>
+  </div>
+  <figure><img src="https://images.unsplash.com/photo-1777331903190-341a3dd0441b?w=1800&amp;q=80" alt="A dentist talking a patient through their treatment" width="1800" height="1013" onerror="this.parentNode.classList.add('nophoto');this.remove()"><span class="cap">Sample photo</span></figure>
+ </div>
+
+ <section class="about">
+  <div class="wrap grid">
+   <figure><img src="https://cdn.whatclinic.com//dentists/uk/london/ivy-house-dental-practice/thumbnails/de4c28298584f92e/ivyhouse.jpg?width=400&amp;height=400&amp;background-color=0xeeede8&amp;operation=pad&amp;float-y=0.25&amp;hmac=712c471f9f969547f6ba56e5729fa192ef4a9718" alt="Ivy House Dental Practice" width="800" height="800" loading="lazy" onerror="this.parentNode.classList.add('nophoto');this.remove()"></figure>
+   <div>
+    <div class="head"><h2>The practice</h2><span>01</span></div>
+    <p>Ivy House is a dental practice on Kentish Town Road, seeing NHS and private patients from Camden and beyond. Patients describe the staff as welcoming and supportive, and more than 500 of them have left a Google review.</p>
+    <div class="team">
+     <div><b>Dr Olawale Adebiyi</b><span>Principal dentist</span></div>
+     <div><b>Dr Jacqueline Campos</b><span>Associate dentist</span></div>
+     <div><b>Dr Areeb Mirza</b><span>Associate dentist</span></div>
+     <div><b>Kudra Nagingo</b><span>Dental hygienist</span></div>
+    </div>
+   </div>
+  </div>
+ </section>
+
+ <section id="treatments">
+  <div class="wrap">
+   <div class="head"><h2>Treatments</h2><span>02</span></div>
+   <div class="list">
+    <div class="item"><span class="n">i.</span><h3>Check-ups</h3><em>from £45</em><p>New patient examinations from £40.</p></div>
+    <div class="item"><span class="n">ii.</span><h3>Hygienist</h3><em>from £60</em><p>Cleaning and gum care with our hygienist.</p></div>
+    <div class="item"><span class="n">iii.</span><h3>Fillings</h3><em>from £100</em><p>Tooth-coloured composite and amalgam.</p></div>
+    <div class="item"><span class="n">iv.</span><h3>Dental implants</h3><em>from £1,750</em><p>Single-tooth implants, after a consultation.</p></div>
+    <div class="item"><span class="n">v.</span><h3>Invisalign</h3><em>from £2,200</em><p>Clear aligner orthodontics.</p></div>
+    <div class="item"><span class="n">vi.</span><h3>Teeth whitening</h3><em>from £250</em><p>Professional whitening.</p></div>
+   </div>
+   <p class="fine">Private "from" prices as listed on WhatClinic, to be confirmed by the practice. NHS treatment is charged at NHS bands. Crowns, bridges, veneers, dentures and root canal treatment are also available.</p>
+  </div>
+ </section>
+
+ <section class="gallery">
+  <div class="wrap">
+   <div class="head"><h2>Inside</h2><span>03</span></div>
+   <div class="grid">
+    <figure><img src="https://images.unsplash.com/photo-1771442873038-dda05b6ca447?w=900&amp;q=80" alt="Gloved hands holding dental examination tools" width="900" height="1125" loading="lazy" onerror="this.parentNode.classList.add('nophoto');this.remove()"><span class="cap">Sample photo</span></figure>
+    <figure><img src="https://images.unsplash.com/photo-1588776814546-daab30f310ce?w=900&amp;q=80" alt="Two dentists in protective gear at work" width="900" height="1125" loading="lazy" onerror="this.parentNode.classList.add('nophoto');this.remove()"><span class="cap">Sample photo</span></figure>
+    <figure><img src="https://images.unsplash.com/photo-1771442873035-474765b40ac6?w=900&amp;q=80" alt="A dental implant and crown held in a gloved hand" width="900" height="1125" loading="lazy" onerror="this.parentNode.classList.add('nophoto');this.remove()"><span class="cap">Sample photo</span></figure>
+    <figure><img src="https://images.unsplash.com/photo-1777445826358-f95518f49b44?w=900&amp;q=80" alt="A dentist explaining an implant on a model" width="900" height="1125" loading="lazy" onerror="this.parentNode.classList.add('nophoto');this.remove()"><span class="cap">Sample photo</span></figure>
+   </div>
+  </div>
+ </section>
+
+ <section>
+  <div class="wrap">
+   <div class="head"><h2>Patients</h2><span>04</span></div>
+   <div class="voices">
+    <div class="big">4.7<small>Google rating · 533 reviews</small></div>
+    <blockquote>The staff are very welcoming and supportive.<cite>Clara · WhatClinic review</cite></blockquote>
+    <blockquote>Always satisfied with the service provided.<cite>Jacqueline · WhatClinic review</cite></blockquote>
+   </div>
+  </div>
+ </section>
+
+ <section class="visit" id="visit">
+  <div class="wrap grid">
+   <div>
+    <div class="head"><h2>Opening hours</h2><span>05</span></div>
+    <table>
+     <tr><td>Monday – Friday</td><td>9am – 6pm</td></tr>
+     <tr><td>Saturday</td><td>10am – 3pm</td></tr>
+     <tr class="closed"><td>Sunday</td><td>Closed</td></tr>
+    </table>
+   </div>
+   <div>
+    <div class="head"><h2>Find us</h2><span>06</span></div>
+    <p style="font:400 26px/1.3 'DM Serif Text',serif;margin:0 0 14px">51 Kentish Town Road<br>Camden, London NW1 8NX</p>
+    <p>A few minutes' walk from Camden Town station.</p>
+    <p><a href="tel:02072841110">020 7284 1110</a><br><a href="mailto:info@ivyhousedental.co.uk">info@ivyhousedental.co.uk</a><br><a href="https://www.instagram.com/ivyhousedentalpractice/">@ivyhousedentalpractice</a></p>
+    <a class="btn line" href="https://www.google.com/maps/search/?api=1&amp;query=Ivy+House+Dental+Practice+51+Kentish+Town+Road+NW1+8NX">Directions</a>
+   </div>
+  </div>
+ </section>
+
+ <div class="cta">
+  <div class="wrap">
+   <h2>Time for your <i>check-up?</i></h2>
+   <div class="row"><a class="btn ivy" href="tel:02072841110">Call 020 7284 1110</a><a class="btn line" href="mailto:info@ivyhousedental.co.uk">Email the practice</a></div>
+  </div>
+ </div>
+</main>
+
+<footer>
+ <div class="wrap">
+  <span><b>Ivy House Dental Practice</b> · 51 Kentish Town Road, London NW1 8NX</span>
+  <span>Design concept by Sites By MS. Not the official website.</span>
+ </div>
+</footer>
+
+<nav class="mbar" aria-label="Quick actions">
+ <a class="btn line" style="border:0" href="https://www.google.com/maps/search/?api=1&amp;query=Ivy+House+Dental+Practice+51+Kentish+Town+Road+NW1+8NX">Directions</a>
+ <a class="btn" href="tel:02072841110">Call to book</a>
+</nav>
+<script src="/assets/concept-bar.js" data-name="Ivy House Dental Practice" data-slug="ivy-house-dental" defer></script>
+</body>
+</html>
