@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dolled Up | Hair, nails &amp; beauty on Hackney Road</title>
+<meta name="description" content="Dolled Up, 257 Hackney Road, E2 8NA. Haircuts, colour and blow-dries, nails, facials, waxing, lashes and brows, makeup and sunbeds, all under one roof.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Sora:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+/* Layout: big-type poster. Words: glam, friendly, all-in-one. */
+:root{--pink:#F45D9A;--candy:#FFD6E6;--black:#121012;--cream:#FFF7FA;--gold:#E8B54A;--mute:#6E5F66}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--cream);color:var(--black);font:400 16.5px/1.65 Sora,system-ui,sans-serif;overflow-x:hidden}
+a{color:inherit}
+h1,h2,h3{font-family:"Abril Fatface",Georgia,serif;font-weight:400;line-height:.92;margin:0}
+.wrap{width:min(1160px,100% - 32px);margin-inline:auto}
+.topbar{background:var(--black);color:var(--candy);font-size:12.5px;text-align:center;padding:7px 16px}
+header{position:sticky;top:0;z-index:20;background:var(--black);color:var(--cream)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:64px;gap:12px}
+.mark{text-decoration:none;font:400 30px/1 "Abril Fatface",serif}
+.mark span{color:var(--pink)}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 24px;background:var(--pink);color:#fff;font-weight:700;text-decoration:none;border-radius:999px;white-space:nowrap}
+.btn.gold{background:var(--gold);color:var(--black)}
+.btn.line{background:transparent;border:2px solid currentColor;color:inherit}
+figure{margin:0;position:relative;overflow:hidden;background:var(--candy)}
+figure img{display:block;width:100%;height:100%;object-fit:cover}
+figure.nophoto{background:repeating-linear-gradient(-45deg,var(--candy) 0 16px,#FFC2D9 16px 32px)}
+.cap{position:absolute;right:10px;bottom:10px;font-size:11px;background:rgba(18,16,18,.7);color:#fff;padding:2px 8px;border-radius:999px;z-index:2}
+.poster{background:var(--pink);color:var(--cream);position:relative;overflow:hidden}
+.poster .in{padding:40px 0 0;position:relative;z-index:1}
+.meta{display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px;font-weight:700;font-size:12px;letter-spacing:.2em;text-transform:uppercase;border-top:2px solid var(--cream);border-bottom:2px solid var(--cream);padding:8px 0}
+.poster h1{font-size:clamp(108px,30vw,330px);letter-spacing:-.02em;margin:26px 0 0;color:var(--cream)}
+.poster h1 span{display:block;color:var(--black);padding-left:.4em}
+.poster p{font-size:clamp(19px,2.6vw,26px);max-width:30ch;margin:20px 0 28px;font-weight:600}
+.poster .row{padding-bottom:38px}
+.poster figure{aspect-ratio:21/9;border-top:4px solid var(--black)}
+.badge{position:absolute;right:18px;top:96px;z-index:2;width:140px;height:140px;border-radius:50%;background:var(--gold);color:var(--black);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;transform:rotate(10deg);border:3px solid var(--black)}
+.badge b{font:400 48px/1 "Abril Fatface",serif}
+.badge small{font-weight:700;font-size:11px;line-height:1.2;padding:0 14px}
+.row{display:flex;flex-wrap:wrap;gap:12px}
+.ticker{background:var(--black);color:var(--candy);white-space:nowrap;overflow:hidden;font:400 26px "Abril Fatface",serif;padding:12px 0}
+.ticker span{display:inline-block;padding-left:100%;animation:tick 26s linear infinite}
+@keyframes tick{to{transform:translateX(-100%)}}
+@media (prefers-reduced-motion:reduce){.ticker span{animation:none;padding-left:16px}}
+section{padding:70px 0}
+h2{font-size:clamp(60px,12vw,140px);margin-bottom:24px}
+h2 em{font-style:normal;color:var(--pink)}
+.about .grid{display:grid;gap:30px;align-items:center}
+.about p{font-size:19px;max-width:44ch}
+.about figure{aspect-ratio:4/5;border:4px solid var(--black)}
+.menu{background:var(--black);color:var(--cream)}
+.menu h2{color:var(--cream)}
+.list{list-style:none;padding:0;margin:0;border-top:2px solid var(--cream)}
+.list li{display:grid;grid-template-columns:1fr auto;gap:4px 16px;padding:18px 0;border-bottom:2px solid rgba(255,247,250,.25);align-items:baseline}
+.list b{font:400 clamp(34px,6vw,64px)/1 "Abril Fatface",serif}
+.list li:nth-child(odd) b{color:var(--pink)}
+.list span{font-size:14px;color:#D8C9D0;text-align:right}
+.gallery .grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.gallery figure{aspect-ratio:1/1;border:3px solid var(--black)}
+.gallery figure.t{aspect-ratio:3/4}
+.revs{display:grid;gap:22px}
+.rev{border-top:6px solid var(--pink);padding-top:14px}
+.rev q{font:400 clamp(30px,4.4vw,48px)/1 "Abril Fatface",serif;display:block}
+.rev small{display:block;margin-top:10px;font-weight:700;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute)}
+.visit{background:var(--candy)}
+.visit .grid{display:grid;gap:20px}
+.card{background:#fff;border:3px solid var(--black);padding:24px;box-shadow:8px 8px 0 var(--black)}
+.card h3{font-size:38px;margin-bottom:12px}
+table{border-collapse:collapse;width:100%}
+td{padding:7px 0;border-bottom:1px dashed rgba(18,16,18,.3)}
+td:last-child{text-align:right;font-weight:700}
+.cta{background:var(--pink);color:var(--cream);text-align:center;padding:70px 16px}
+.cta h2{color:var(--cream)}
+.cta .row{justify-content:center}
+footer{background:var(--black);color:var(--candy);padding:26px 0 110px;font-size:13.5px}
+footer .wrap{display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-between}
+.mbar{position:fixed;left:0;right:0;bottom:0;z-index:30;display:grid;grid-template-columns:1fr 1.3fr;gap:8px;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:var(--black)}
+.mbar .btn.line{color:var(--cream)}
+@media(min-width:860px){
+ .badge{width:190px;height:190px;right:60px;top:110px}
+ .badge b{font-size:66px}
+ .about .grid{grid-template-columns:1.2fr .8fr}
+ .list{display:grid;grid-template-columns:1fr 1fr;column-gap:48px}
+ .gallery .grid{grid-template-columns:repeat(5,1fr)}
+ .revs{grid-template-columns:repeat(3,1fr);gap:40px}
+ .visit .grid{grid-template-columns:1fr 1fr}
+ .mbar{display:none}
+ footer{padding-bottom:26px}
+}
+@media(max-width:859px){header .btn{display:none}}
+</style>
+</head>
+<body>
+<div class="topbar">Design concept prepared for Dolled Up by Sites By MS. Not the official website.</div>
+
+<header>
+ <div class="wrap nav">
+  <a class="mark" href="#top">Dolled Up<span>.</span></a>
+  <a class="btn" href="tel:02034904003">Book now</a>
+ </div>
+</header>
+
+<main id="top">
+ <div class="poster">
+  <div class="badge" aria-hidden="true"><b>4.7★</b><small>1,539 Treatwell reviews</small></div>
+  <div class="wrap in">
+   <div class="meta"><span>Hair · Nails · Beauty</span><span>257 Hackney Road, E2</span></div>
+   <h1>Dolled <span>Up.</span></h1>
+   <p>Cut, colour, nails, lashes and a glow, all under one roof on Hackney Road.</p>
+   <div class="row"><a class="btn gold" href="tel:02034904003">Call 020 3490 4003</a><a class="btn line" href="#menu">What we do</a></div>
+  </div>
+  <figure><img src="https://images.unsplash.com/photo-1633681926022-84c23e8cb2d6?w=1900&amp;q=80" alt="A modern hair salon with black chairs, round mirrors and a brick wall" width="1900" height="814" onerror="this.parentNode.classList.add('nophoto');this.remove()"><span class="cap">Sample photo</span></figure>
+ </div>
+ <div class="ticker" aria-hidden="true"><span>Haircuts ✦ Colour ✦ Blow-dries ✦ Manicures ✦ Pedicures ✦ Facials ✦ Waxing ✦ Lashes ✦ Brows ✦ Makeup ✦ Sunbeds ✦ Updos ✦</span></div>
+
+ <section class="about">
+  <div class="wrap grid">
+   <div>
+    <h2>Treated like <em>you.</em></h2>
+    <p>Dolled Up is a bright, modern salon between Hoxton and Cambridge Heath that treats every client as an individual. Book a fringe trim, a full colour, a party updo or a mani-pedi, or do the lot in one visit.</p>
+    <p>Regulars talk about attentive, sweet hosts and name stylists like Geanina in their reviews.</p>
+   </div>
+   <figure><img src="https://images.unsplash.com/photo-1600948836101-f9ffda59d250?w=1000&amp;q=80" alt="Salon chairs facing round mirrors" width="1000" height="1250" loading="lazy" onerror="this.parentNode.classList.add('nophoto');this.remove()"><span class="cap">Sample photo</span></figure>
+  </div>
+ </section>
+
+ <section class="menu" id="menu">
+  <div class="wrap">
+   <h2>The <em>menu.</em></h2>
+   <ul class="list">
+    <li><b>Hair</b><span>cuts, colour, blow-dries</span></li>
+    <li><b>Nails</b><span>manicures &amp; pedicures</span></li>
+    <li><b>Lashes &amp; brows</b><span>incl. lash extensions</span></li>
+    <li><b>Skin</b><span>facials &amp; waxing</span></li>
+    <li><b>Occasions</b><span>bridal &amp; party updos, makeup</span></li>
+    <li><b>Glow</b><span>sunbed sessions, massage</span></li>
+   </ul>
+   <p style="margin-top:18px;font-size:14px;color:#D8C9D0">Prices and the full treatment list would live here, bookable online.</p>
+  </div>
+ </section>
+
+ <section class="gallery">
+  <div class="wrap grid">
+   <figure class="t"><img src="https://images.unsplash.com/photo-1619607146034-5a05296c8f9a?w=800&amp;q=80" alt="Rows of nail polish on gold shelves" width="800" height="1067" loading="lazy" onerror="this.parentNode.classList.add('nophoto');this.remove()"><span class="cap">Sample photo</span></figure>
+   <figure class="t"><img src="https://images.unsplash.com/photo-1604654894610-df63bc536371?w=800&amp;q=80" alt="Patterned black and tortoiseshell nails" width="800" height="1067" loading="lazy" onerror="this.parentNode.classList.add('nophoto');this.remove()"><span class="cap">Sample photo</span></figure>
+   <figure class="t"><img src="https://images.unsplash.com/photo-1610992015762-45dca7fa3a85?w=800&amp;q=80" alt="Light pink manicured nails" width="800" height="1067" loading="lazy" onerror="this.parentNode.classList.add('nophoto');this.remove()"><span class="cap">Sample photo</span></figure>
+   <figure class="t"><img src="https://images.unsplash.com/photo-1775500835259-d3b3f6d6e2f2?w=800&amp;q=80" alt="Manicure tools laid out on a towel" width="800" height="1067" loading="lazy" onerror="this.parentNode.classList.add('nophoto');this.remove()"><span class="cap">Sample photo</span></figure>
+   <figure class="t"><img src="https://images.unsplash.com/photo-1761718210089-ba3bb5ccb54f?w=800&amp;q=80" alt="A facial treatment" width="800" height="1067" loading="lazy" onerror="this.parentNode.classList.add('nophoto');this.remove()"><span class="cap">Sample photo</span></figure>
+  </div>
+ </section>
+
+ <section>
+  <div class="wrap revs">
+   <div class="rev"><q>Love getting my hair cut here!</q><small>Iona · Treatwell review</small></div>
+   <div class="rev"><q>They are very attentive at all times.</q><small>Zowi · Treatwell review</small></div>
+   <div class="rev"><q>Such sweet hosts!</q><small>M K · Treatwell review</small></div>
+  </div>
+ </section>
+
+ <section class="visit" id="visit">
+  <div class="wrap grid">
+   <div class="card">
+    <h3>Opening hours</h3>
+    <table>
+     <tr><td>Tue – Wed</td><td>11am – 7pm</td></tr>
+     <tr><td>Thursday</td><td>11am – 8pm</td></tr>
+     <tr><td>Friday</td><td>10am – 7pm</td></tr>
+     <tr><td>Saturday</td><td>10am – 5pm</td></tr>
+     <tr><td>Sunday</td><td>11am – 4pm</td></tr>
+    </table>
+    <p style="font-size:13px;color:var(--mute);margin-top:10px">Hours as listed on Thatsup; Monday to confirm.</p>
+   </div>
+   <div class="card">
+    <h3>Find us</h3>
+    <p>257 Hackney Road<br>London E2 8NA</p>
+    <p>About 350m from Hoxton station.</p>
+    <p><a href="tel:02034904003">020 3490 4003</a><br><a href="mailto:info@dolledupshoreditch.co.uk">info@dolledupshoreditch.co.uk</a><br><a href="https://www.instagram.com/dolledupsalonldn/">@dolledupsalonldn</a></p>
+    <a class="btn" href="https://www.google.com/maps/search/?api=1&amp;query=Dolled+Up+257+Hackney+Road+London+E2+8NA">Directions</a>
+   </div>
+  </div>
+ </section>
+
+ <div class="cta">
+  <h2>Get dolled up.</h2>
+  <div class="row"><a class="btn gold" href="tel:02034904003">Book your appointment</a><a class="btn line" href="https://www.instagram.com/dolledupsalonldn/">See our work</a></div>
+ </div>
+</main>
+
+<footer>
+ <div class="wrap">
+  <span><b>Dolled Up</b> · 257 Hackney Road, London E2 8NA</span>
+  <span>Design concept by Sites By MS. Not the official website.</span>
+ </div>
+</footer>
+
+<nav class="mbar" aria-label="Quick actions">
+ <a class="btn line" href="https://www.google.com/maps/search/?api=1&amp;query=Dolled+Up+257+Hackney+Road+London+E2+8NA">Directions</a>
+ <a class="btn" href="tel:02034904003">Call to book</a>
+</nav>
+<script src="/assets/concept-bar.js" data-name="Dolled Up" data-slug="dolled-up" defer></script>
+</body>
+</html>
