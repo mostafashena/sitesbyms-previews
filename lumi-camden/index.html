@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LUMI Camden | All-day brunch, coffee &amp; cocktails on Camden High Street</title>
+<meta name="description" content="LUMI, 82 Camden High Street, NW1 0LT. All-day brunch, creole chicken waffles, pancakes, coffee and cocktails. Open every day 8am to 6pm, walk-ins welcome.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rozha+One&family=Red+Hat+Text:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+/* Layout: printed menu card. Words: bright, quirky, indulgent. */
+:root{--brick:#9C4A36;--blush:#F6DCD3;--gold:#C9A04E;--card:#FFFBF5;--ink:#2B1F1B;--mute:#7A665D;--line:#E8D7CA}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;color:var(--ink);font:400 17px/1.65 "Red Hat Text",system-ui,sans-serif;background:var(--brick) repeating-linear-gradient(0deg,rgba(0,0,0,.06) 0 2px,transparent 2px 26px),var(--brick)}
+body{background-color:var(--brick);background-image:repeating-linear-gradient(0deg,rgba(255,255,255,.07) 0 2px,transparent 2px 28px),repeating-linear-gradient(90deg,rgba(255,255,255,.05) 0 2px,transparent 2px 64px)}
+a{color:inherit}
+h1,h2,h3{font-family:"Rozha One",Georgia,serif;font-weight:400;line-height:1;margin:0}
+.topbar{background:var(--ink);color:#F1DED4;font-size:13px;text-align:center;padding:7px 16px}
+header{position:sticky;top:0;z-index:20;background:rgba(43,31,27,.96);color:var(--card)}
+.nav{max-width:980px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:64px;padding:0 18px;gap:12px}
+.mark{text-decoration:none;font:400 32px/1 "Rozha One",serif;letter-spacing:.12em}
+.mark span{color:var(--gold)}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 22px;border-radius:999px;background:var(--gold);color:var(--ink);font-weight:700;text-decoration:none;white-space:nowrap}
+.btn.dark{background:var(--ink);color:var(--card)}
+.btn.line{background:transparent;border:1.5px solid var(--ink);color:var(--ink)}
+figure{margin:0;position:relative;overflow:hidden;background:var(--blush)}
+figure img{display:block;width:100%;height:100%;object-fit:cover}
+figure.nophoto{background:linear-gradient(135deg,var(--blush),#E9BFAF)}
+.cap{position:absolute;right:8px;bottom:8px;font-size:11px;background:rgba(43,31,27,.7);color:#fff;padding:2px 8px;border-radius:999px}
+.card{max-width:860px;margin:34px auto;background:var(--card);box-shadow:0 30px 70px rgba(0,0,0,.35);padding:12px}
+.card-in{border:1.5px solid var(--gold);outline:1px solid var(--gold);outline-offset:-8px;padding:44px 24px 52px;text-align:center}
+.est{font-size:12px;letter-spacing:.36em;text-transform:uppercase;color:var(--mute)}
+.card h1{font-size:clamp(84px,22vw,190px);letter-spacing:.08em;color:var(--brick);margin:10px 0 0}
+.sub{font:400 24px "Rozha One",serif;color:var(--gold)}
+.lede{max-width:46ch;margin:16px auto 0}
+.row{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:24px}
+.hero-ph{aspect-ratio:3/2;margin:34px 0 0}
+.orn{display:flex;align-items:center;gap:14px;margin:46px auto 26px;max-width:420px;color:var(--gold);font-size:13px;letter-spacing:.32em;text-transform:uppercase}
+.orn:before,.orn:after{content:"";flex:1;height:1px;background:currentColor}
+.about p{max-width:52ch;margin:0 auto 12px}
+.about .pair{display:grid;gap:12px;margin-top:26px}
+.about figure{aspect-ratio:4/3}
+h2{font-size:clamp(36px,7vw,56px);color:var(--brick);margin-bottom:6px}
+.menu{text-align:left;max-width:600px;margin:20px auto 0}
+.dish{display:flex;align-items:baseline;gap:10px;padding:12px 0}
+.dish .n{font:400 23px/1.2 "Rozha One",serif}
+.dish .n i{display:block;font:400 14.5px/1.45 "Red Hat Text",sans-serif;font-style:normal;color:var(--mute);margin-top:3px}
+.dish .dots{flex:1;border-bottom:1.5px dotted #C9B1A1;transform:translateY(-6px);min-width:20px}
+.dish .p{font:400 22px "Rozha One",serif;color:var(--brick)}
+.note{font-size:13.5px;color:var(--mute);margin-top:14px}
+.star{display:inline-block;background:var(--brick);color:var(--card);font:400 15px "Rozha One",serif;padding:2px 10px;border-radius:999px;margin-left:6px;vertical-align:4px}
+.gallery{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:6px}
+.gallery figure{aspect-ratio:1/1}
+.reviews{display:grid;gap:22px;max-width:600px;margin:0 auto}
+.reviews q{font:400 26px/1.3 "Rozha One",serif;quotes:"“" "”"}
+.reviews small{display:block;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--mute);margin-top:6px}
+.score{font:400 74px/1 "Rozha One",serif;color:var(--brick)}
+.hours{max-width:420px;margin:0 auto;text-align:left}
+.hours div{display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid var(--line)}
+.addr{font:400 26px/1.3 "Rozha One",serif;margin-top:16px}
+.stamp{display:inline-block;margin-top:18px;border:2px solid var(--brick);color:var(--brick);padding:6px 14px;border-radius:4px;transform:rotate(-3deg);font-weight:700;letter-spacing:.08em;text-transform:uppercase;font-size:13px}
+footer{color:#F3DDD2;text-align:center;font-size:13.5px;padding:24px 18px 110px}
+.mbar{position:fixed;left:0;right:0;bottom:0;z-index:30;display:grid;grid-template-columns:1fr 1.2fr;gap:8px;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:var(--ink)}
+.mbar .btn.line{border-color:var(--card);color:var(--card)}
+@media(min-width:760px){
+ .card{margin:56px auto;padding:16px}
+ .card-in{padding:64px 64px 72px}
+ .about .pair{grid-template-columns:1fr 1fr}
+ .gallery{grid-template-columns:repeat(4,1fr)}
+ .reviews{grid-template-columns:.7fr 1fr 1fr;max-width:none;align-items:end}
+ .mbar{display:none}
+ footer{padding-bottom:40px}
+}
+@media(max-width:759px){header .btn{display:none}}
+</style>
+</head>
+<body>
+<div class="topbar">Design concept prepared for LUMI Camden by Sites By MS. Not the official website.</div>
+
+<header>
+ <div class="nav">
+  <a class="mark" href="#top">LUMI<span>.</span></a>
+  <a class="btn" href="#menu">See the menu</a>
+ </div>
+</header>
+
+<main id="top">
+ <article class="card">
+  <div class="card-in">
+   <span class="est">Brunch · Coffee · Cocktails</span>
+   <h1>LUMI</h1>
+   <div class="sub">82 Camden High Street</div>
+   <p class="lede">A bright all-day café two minutes from Camden Town station: big brunch plates, specialty desserts, good coffee and a short cocktail list. No bookings, just walk in.</p>
+   <div class="row"><a class="btn dark" href="#menu">Today's menu</a><a class="btn line" href="https://www.google.com/maps/search/?api=1&amp;query=LUMI+82+Camden+High+Street+London+NW1+0LT">Directions</a></div>
+   <figure class="hero-ph"><img src="https://images.unsplash.com/photo-1504754524776-8f4f37790ca0?w=1600&amp;q=80" alt="A brunch spread with waffles, eggs and juice" width="1600" height="1067" onerror="this.parentNode.classList.add('nophoto');this.remove()"><span class="cap">Sample photo</span></figure>
+
+   <div class="orn">Welcome</div>
+   <div class="about">
+    <p>Light walls, exposed brick and a slightly quirky, luxurious look, with a relaxed crowd that comes for brunch and stays for dessert. Fry-ups and eggs Benedict sit happily next to creole chicken waffles and pistachio pancakes.</p>
+    <p>Halal chicken and beef options are on the menu, there's a kids' breakfast, and the outdoor seats watch Camden High Street go by.</p>
+    <div class="pair">
+     <figure><img src="https://images.unsplash.com/photo-1525351484163-7529414344d8?w=1000&amp;q=80" alt="Sourdough toast with a sunny-side-up egg" width="1000" height="750" loading="lazy" onerror="this.parentNode.classList.add('nophoto');this.remove()"><span class="cap">Sample photo</span></figure>
+     <figure><img src="https://images.unsplash.com/photo-1759216279330-c5a83a0a1ebe?w=1000&amp;q=80" alt="A table of brunch dishes with tea and coffee" width="1000" height="750" loading="lazy" onerror="this.parentNode.classList.add('nophoto');this.remove()"><span class="cap">Sample photo</span></figure>
+    </div>
+   </div>
+
+   <div class="orn" id="menu">La carte</div>
+   <h2>All-day favourites</h2>
+   <div class="menu">
+    <div class="dish"><span class="n">Creole Chicken Waffle<span class="star">signature</span><i>Crispy buttermilk chicken on a sweet waffle, plantain, slaw, creole hot or sweet maple syrup</i></span><span class="dots"></span><span class="p">16.90</span></div>
+    <div class="dish"><span class="n">Fry Up<i>Egg, streaky bacon, Cumberland sausage, cherry tomatoes, portobello mushroom, hash brown, beans, brown toast</i></span><span class="dots"></span><span class="p">14.50</span></div>
+    <div class="dish"><span class="n">Veggie Breakfast<i>Halloumi, portobello, organic egg, cheese pastry, crushed avocado, hash brown, falafel, artisan bread</i></span><span class="dots"></span><span class="p">14.50</span></div>
+    <div class="dish"><span class="n">Shakshouka<i>Eggs baked with tomatoes, peppers and crumbled feta, artisan bread</i></span><span class="dots"></span><span class="p">15.90</span></div>
+    <div class="dish"><span class="n">Pancakes<i>A stack with berries, bananas, mascarpone and maple syrup. Ask about the pistachio pancakes</i></span><span class="dots"></span><span class="p">13.90</span></div>
+    <div class="dish"><span class="n">Lumi Burger<i>7oz beef, turkey bacon, soft golden egg, red onion, salad, tomato, mayo, chips</i></span><span class="dots"></span><span class="p">17.50</span></div>
+   </div>
+   <p class="note">Prices in £, as listed on Deliveroo; in-café prices may differ. Smoothies, coffee and cocktails at the bar.</p>
+
+   <div class="orn">From the kitchen</div>
+   <div class="gallery">
+    <figure><img src="https://images.unsplash.com/photo-1484723091739-30a097e8f929?w=800&amp;q=80" alt="Toast with blueberries" width="800" height="800" loading="lazy" onerror="this.parentNode.classList.add('nophoto');this.remove()"><span class="cap">Sample photo</span></figure>
+    <figure><img src="https://images.unsplash.com/photo-1670710028442-06a2df4bdf85?w=800&amp;q=80" alt="A table covered in brunch plates" width="800" height="800" loading="lazy" onerror="this.parentNode.classList.add('nophoto');this.remove()"><span class="cap">Sample photo</span></figure>
+    <figure><img src="https://images.unsplash.com/photo-1529940122574-0096689bc5cf?w=800&amp;q=80" alt="Brunch plate and bowl" width="800" height="800" loading="lazy" onerror="this.parentNode.classList.add('nophoto');this.remove()"><span class="cap">Sample photo</span></figure>
+    <figure><img src="https://images.unsplash.com/photo-1611601184963-9d1de9b79ff3?w=800&amp;q=80" alt="A brunch bowl" width="800" height="800" loading="lazy" onerror="this.parentNode.classList.add('nophoto');this.remove()"><span class="cap">Sample photo</span></figure>
+   </div>
+
+   <div class="orn">They say</div>
+   <div class="reviews">
+    <div><div class="score">4.8</div><small>Google · 3,000+ reviews</small></div>
+    <div><q>All of the food looks amazing.</q><small>Candace Abroad, Camden café guide</small></div>
+    <div><q>This all-day cafe in Camden knows better than to pick a side on the whole war on Avocados thing.</q><small>The Infatuation</small></div>
+   </div>
+
+   <div class="orn" id="visit">Visit</div>
+   <div class="hours">
+    <div><span>Every day</span><span>8am – 6pm</span></div>
+    <div><span>Phone</span><span><a href="tel:02076935493">020 7693 5493</a></span></div>
+    <div><span>Email</span><span><a href="mailto:lumicamden@gmail.com">lumicamden@gmail.com</a></span></div>
+    <div><span>Instagram</span><span><a href="https://www.instagram.com/lumicamden/">@lumicamden</a></span></div>
+   </div>
+   <p class="addr">82 Camden High Street<br>London NW1 0LT</p>
+   <span class="stamp">Walk-ins only</span>
+   <div class="row"><a class="btn dark" href="https://www.google.com/maps/search/?api=1&amp;query=LUMI+82+Camden+High+Street+London+NW1+0LT">Get directions</a><a class="btn line" href="tel:02076935493">Call us</a></div>
+  </div>
+ </article>
+</main>
+
+<footer>
+ <b>LUMI Camden</b> · 82 Camden High Street, London NW1 0LT<br>
+ Design concept by Sites By MS. Not the official website.
+</footer>
+
+<nav class="mbar" aria-label="Quick actions">
+ <a class="btn line" href="tel:02076935493">Call</a>
+ <a class="btn" href="https://www.google.com/maps/search/?api=1&amp;query=LUMI+82+Camden+High+Street+London+NW1+0LT">Directions</a>
+</nav>
+<script src="/assets/concept-bar.js" data-name="LUMI Camden" data-slug="lumi-camden" defer></script>
+</body>
+</html>
