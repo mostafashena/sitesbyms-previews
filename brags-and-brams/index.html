@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Brags &amp; Brams | Café &amp; brunch on Hackney Road</title>
+<meta name="description" content="Brags &amp; Brams, 263-265 Hackney Road: all-day brunch, good coffee and a calm room to work in. Dog-friendly, open from 7am.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&family=Literata:opsz,wght@7..72,400;7..72,600&display=swap" rel="stylesheet">
+<style>
+/* Layout: warm handmade. Words: roomy, generous, neighbourly. */
+:root{--paper:#F6EEDF;--card:#FFFBF3;--clay:#B9573A;--olive:#5E6B3A;--butter:#F1CF7A;--ink:#2E2520;--mute:#76665A}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;color:var(--ink);font:400 17px/1.7 Literata,Georgia,serif;background-color:var(--paper);background-image:radial-gradient(rgba(110,80,50,.07) 1px,transparent 1.3px);background-size:9px 9px}
+a{color:inherit}
+h1,h2,h3{font-family:Kalam,cursive;font-weight:700;line-height:1.05;margin:0}
+.wrap{width:min(1080px,100% - 32px);margin-inline:auto}
+.topbar{background:var(--ink);color:var(--paper);font:13px/1.4 system-ui,sans-serif;text-align:center;padding:7px 16px}
+header{position:sticky;top:0;z-index:20;background:rgba(246,238,223,.96);border-bottom:2px dashed rgba(46,37,32,.35)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:66px;gap:12px}
+.mark{text-decoration:none;font:700 30px/1 Kalam,cursive;color:var(--clay)}
+.mark span{color:var(--olive)}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 24px;background:var(--clay);color:#fff;text-decoration:none;font:700 18px Kalam,cursive;border-radius:40px 34px 42px 30px/30px 40px 32px 44px;box-shadow:3px 3px 0 var(--ink);white-space:nowrap}
+.btn.olive{background:var(--olive)}
+.btn.line{background:var(--card);color:var(--ink);border:2px solid var(--ink);box-shadow:none}
+figure{margin:0;position:relative;overflow:hidden;background:var(--butter)}
+figure img{display:block;width:100%;height:100%;object-fit:cover}
+figure.nophoto{background:repeating-linear-gradient(45deg,var(--butter) 0 14px,#EBC064 14px 28px)}
+.cap{position:absolute;left:10px;bottom:8px;font:12px system-ui,sans-serif;background:rgba(46,37,32,.7);color:#fff;padding:2px 8px;border-radius:4px}
+.polaroid{background:var(--card);padding:12px 12px 40px;box-shadow:0 12px 26px rgba(60,40,20,.18)}
+.polaroid figure{aspect-ratio:4/5}
+.polaroid p{font:20px Kalam,cursive;margin:10px 4px 0;color:var(--mute)}
+.tape{position:relative}
+.tape:before{content:"";position:absolute;top:-12px;left:50%;width:110px;height:26px;margin-left:-55px;background:rgba(241,207,122,.85);transform:rotate(-3deg);z-index:2}
+.hero{padding:52px 0 40px}
+.hero .grid{display:grid;gap:40px;align-items:center}
+.hand{font:400 26px/1.1 Kalam,cursive;color:var(--olive)}
+.hero h1{font-size:clamp(54px,11vw,104px);color:var(--clay);margin:10px 0 18px}
+.hero p{max-width:36ch;font-size:19px}
+.row{display:flex;flex-wrap:wrap;gap:14px;align-items:center;margin-top:26px}
+.hero .polaroid{transform:rotate(2deg)}
+section{padding:60px 0}
+h2{font-size:clamp(38px,6vw,58px);margin-bottom:16px}
+.about .grid{display:grid;gap:34px;align-items:center}
+.about .polaroid{transform:rotate(-2deg);max-width:420px}
+.about p{max-width:56ch}
+.ticks{list-style:none;padding:0;margin:20px 0 0;display:grid;gap:8px}
+.ticks li:before{content:"✓";display:inline-grid;place-items:center;width:28px;height:28px;margin-right:10px;border-radius:50%;background:var(--butter);border:2px solid var(--ink);font-family:system-ui}
+.sheet{background:var(--card);padding:40px 26px;box-shadow:0 10px 26px rgba(60,40,20,.14);background-image:repeating-linear-gradient(transparent 0 35px,rgba(94,107,58,.14) 35px 36px)}
+.sheet ul{list-style:none;padding:0;margin:24px 0 0;display:grid;gap:18px}
+.sheet li b{font:700 26px/1.1 Kalam,cursive;display:block}
+.sheet li span{color:var(--mute);font-size:15.5px}
+.sheet .p{color:var(--clay)}
+.sheet .note{font:21px Kalam,cursive;color:var(--olive);margin-top:22px}
+.gallery .grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.gallery .polaroid:nth-child(odd){transform:rotate(-1.5deg)}
+.gallery .polaroid:nth-child(even){transform:rotate(1.5deg)}
+.gallery .polaroid figure{aspect-ratio:1/1}
+.gallery .polaroid{padding-bottom:12px}
+.notes{display:grid;gap:20px}
+.note-card{background:#FFF0A8;padding:22px;box-shadow:0 8px 16px rgba(60,40,20,.16);transform:rotate(-1.2deg)}
+.note-card:nth-child(2){background:#F7D3C4;transform:rotate(1deg)}
+.note-card:nth-child(3){background:#DDE5C4;transform:rotate(-.6deg)}
+.note-card p{font:24px/1.2 Kalam,cursive;margin:0 0 8px}
+.note-card small{font:600 13px system-ui,sans-serif;color:var(--mute)}
+.visit .grid{display:grid;gap:22px}
+.board{background:#34392A;color:#F3EEDF;border:12px solid #8A6440;border-radius:6px;padding:26px;box-shadow:inset 0 0 50px rgba(0,0,0,.35)}
+.board h3{color:var(--butter);font-size:30px;margin-bottom:10px}
+.board table{border-collapse:collapse;font:22px Kalam,cursive}
+.board td{padding:2px 18px 2px 0}
+.board a{color:#F3EEDF}
+.small{font-size:14px;color:var(--mute)}
+.cta{text-align:center;padding:60px 16px 70px}
+.cta .row{justify-content:center}
+footer{border-top:2px dashed rgba(46,37,32,.35);padding:26px 0 110px;font:14px system-ui,sans-serif;color:var(--mute)}
+footer .wrap{display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-between}
+.mbar{position:fixed;left:0;right:0;bottom:0;z-index:30;display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:var(--paper);border-top:2px solid var(--ink)}
+.mbar .btn{box-shadow:none}
+@media(min-width:820px){
+ .hero .grid{grid-template-columns:1.2fr .8fr}
+ .about .grid{grid-template-columns:.8fr 1.2fr}
+ .sheet{padding:56px 52px}
+ .sheet ul{grid-template-columns:1fr 1fr;column-gap:40px}
+ .gallery .grid{grid-template-columns:repeat(3,1fr)}
+ .notes{grid-template-columns:repeat(3,1fr)}
+ .visit .grid{grid-template-columns:1fr 1fr}
+ .mbar{display:none}
+ footer{padding-bottom:26px}
+}
+@media(max-width:819px){header .btn{display:none}}
+</style>
+</head>
+<body>
+<div class="topbar">Design concept prepared for Brags &amp; Brams by Sites By MS. Not the official website.</div>
+
+<header>
+ <div class="wrap nav">
+  <a class="mark" href="#top">Brags <span>&amp;</span> Brams</a>
+  <a class="btn" href="tel:02079163320">Book a table</a>
+ </div>
+</header>
+
+<main id="top">
+ <section class="hero">
+  <div class="wrap grid">
+   <div>
+    <div class="hand">good morning, Hackney Road!</div>
+    <h1>Brunch, coffee &amp; a seat for as long as you like.</h1>
+    <p>A roomy neighbourhood café between Hoxton and Bethnal Green: egg dishes, topped sourdough, burgers and pasta all day, and coffee made properly. Dogs welcome.</p>
+    <div class="row"><a class="btn" href="tel:02079163320">Call 020 7916 3320</a><a class="btn line" href="#menu">What's cooking</a></div>
+   </div>
+   <div class="tape"><div class="polaroid"><figure><img src="https://images.unsplash.com/photo-1768634003098-9d5848d3b93f?w=1600&amp;q=80" alt="A full breakfast with eggs, sausages and beans" width="1200" height="1500" onerror="this.parentNode.classList.add('nophoto');this.remove()"><span class="cap">Sample photo</span></figure><p>breakfast, served till 5</p></div></div>
+  </div>
+ </section>
+
+ <section class="about">
+  <div class="wrap grid">
+   <div class="polaroid"><figure><img src="https://images.unsplash.com/photo-1706514651616-75d372f11523?w=1200&amp;q=80" alt="A bowl of food on a table next to a laptop" width="1200" height="1500" loading="lazy" onerror="this.parentNode.classList.add('nophoto');this.remove()"><span class="cap">Sample photo</span></figure><p>laptops welcome</p></div>
+   <div>
+    <h2>A calm room on a busy road.</h2>
+    <p>Brags &amp; Brams is a café for a quick bite, a long brunch with friends, or a quiet morning with a laptop. Regulars talk about the friendly service, the generous portions, the lovely interior and the fact that nobody rushes you out.</p>
+    <p>Through the year the café also hosts events, from community get-togethers to a weekly mums' brunch club. There's a second Brags &amp; Brams on Newington Green, too.</p>
+    <ul class="ticks"><li>Dog-friendly</li><li>Work-friendly, with plenty of space</li><li>Clearly marked vegan options</li></ul>
+   </div>
+  </div>
+ </section>
+
+ <section id="menu">
+  <div class="wrap">
+   <div class="sheet">
+    <h2>From the kitchen</h2>
+    <ul>
+     <li><b>Oh So Veggie <span class="p">£16.50</span></b><span>Mushroom, hash brown, roasted tomatoes, halloumi, beans and sourdough. Ask for the vegan version.</span></li>
+     <li><b>Vegan big breakfast</b><span>Tofu scramble, beans, toast, hash browns, veggie sausages and vegetables.</span></li>
+     <li><b>Full English</b><span>A regular's favourite.</span></li>
+     <li><b>Topped sourdough</b><span>Part of the brunch-leaning menu, alongside the egg dishes.</span></li>
+     <li><b>Burgers &amp; pasta</b><span>On the all-day menu, for a proper lunch.</span></li>
+     <li><b>Coffee &amp; juice</b><span>From the coffee bar and juice bar.</span></li>
+    </ul>
+    <p class="note">the full menu, with prices, would sit right here ↑</p>
+   </div>
+  </div>
+ </section>
+
+ <section class="gallery">
+  <div class="wrap">
+   <h2>On the table</h2>
+   <div class="grid">
+    <div class="polaroid"><figure><img src="https://images.unsplash.com/photo-1618666185561-baed3459ff18?w=900&amp;q=80" alt="Eggs and salad on a white plate" width="900" height="900" loading="lazy" onerror="this.parentNode.classList.add('nophoto');this.remove()"><span class="cap">Sample photo</span></figure></div>
+    <div class="polaroid"><figure><img src="https://images.unsplash.com/photo-1649749919206-0f156f1dd92a?w=900&amp;q=80" alt="A glass of orange juice beside a plate of food" width="900" height="900" loading="lazy" onerror="this.parentNode.classList.add('nophoto');this.remove()"><span class="cap">Sample photo</span></figure></div>
+    <div class="polaroid"><figure><img src="https://images.unsplash.com/photo-1560055932-595dab110124?w=900&amp;q=80" alt="A pastry on a plate" width="900" height="900" loading="lazy" onerror="this.parentNode.classList.add('nophoto');this.remove()"><span class="cap">Sample photo</span></figure></div>
+    <div class="polaroid"><figure><img src="https://images.unsplash.com/photo-1618666185697-b4aabeedd8bb?w=900&amp;q=80" alt="Egg with tomato and greens" width="900" height="900" loading="lazy" onerror="this.parentNode.classList.add('nophoto');this.remove()"><span class="cap">Sample photo</span></figure></div>
+    <div class="polaroid"><figure><img src="https://images.unsplash.com/photo-1545696647-804fd9ed2e2e?w=900&amp;q=80" alt="A slice of cake on a plate" width="900" height="900" loading="lazy" onerror="this.parentNode.classList.add('nophoto');this.remove()"><span class="cap">Sample photo</span></figure></div>
+    <div class="polaroid"><figure><img src="https://images.unsplash.com/photo-1655979283362-535e6a167a53?w=900&amp;q=80" alt="A brunch plate" width="900" height="900" loading="lazy" onerror="this.parentNode.classList.add('nophoto');this.remove()"><span class="cap">Sample photo</span></figure></div>
+   </div>
+  </div>
+ </section>
+
+ <section>
+  <div class="wrap">
+   <h2>What regulars say</h2>
+   <div class="notes">
+    <div class="note-card"><p>4.6 stars from more than 340 Google reviews.</p><small>Google</small></div>
+    <div class="note-card"><p>Friendly service, generous portions and a cosy, lively room.</p><small>Summary of diner reviews, Spinach guide</small></div>
+    <div class="note-card"><p>Spacious, relaxed, and no tight time limit on your table.</p><small>Summary of diner reviews, Spinach guide</small></div>
+   </div>
+  </div>
+ </section>
+
+ <section class="visit" id="visit">
+  <div class="wrap grid">
+   <div class="board">
+    <h3>Opening hours</h3>
+    <table>
+     <tr><td>Mon – Fri</td><td>7am – 5pm</td></tr>
+     <tr><td>Sat – Sun</td><td>8am – 5pm</td></tr>
+    </table>
+   </div>
+   <div>
+    <h2>Find us</h2>
+    <p>263-265 Hackney Road<br>London E2</p>
+    <p class="small">About 400m from Hoxton station. (Listings show two postcodes, E2 7SJ and E2 8NA; we'd confirm the right one with you.)</p>
+    <p><a href="tel:02079163320">020 7916 3320</a> · <a href="mailto:info@bragsandbrams.com">info@bragsandbrams.com</a> · <a href="https://www.instagram.com/bragsandbrams/">@bragsandbrams</a></p>
+    <a class="btn olive" href="https://www.google.com/maps/search/?api=1&amp;query=Brags+and+Brams+263+Hackney+Road+London">Directions</a>
+   </div>
+  </div>
+ </section>
+
+ <div class="cta">
+  <div class="hand">see you for brunch?</div>
+  <h2>Pull up a chair.</h2>
+  <div class="row"><a class="btn" href="tel:02079163320">Book a table</a><a class="btn line" href="https://www.google.com/maps/search/?api=1&amp;query=Brags+and+Brams+263+Hackney+Road+London">Get directions</a></div>
+ </div>
+</main>
+
+<footer>
+ <div class="wrap">
+  <span><b>Brags &amp; Brams</b> · 263-265 Hackney Road, London E2 · also on Newington Green</span>
+  <span>Design concept by Sites By MS. Not the official website.</span>
+ </div>
+</footer>
+
+<nav class="mbar" aria-label="Quick actions">
+ <a class="btn line" href="https://www.google.com/maps/search/?api=1&amp;query=Brags+and+Brams+263+Hackney+Road+London">Directions</a>
+ <a class="btn" href="tel:02079163320">Call</a>
+</nav>
+<script src="/assets/concept-bar.js" data-name="Brags &amp; Brams" data-slug="brags-and-brams" defer></script>
+</body>
+</html>
