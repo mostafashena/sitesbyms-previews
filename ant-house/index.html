@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ant House | Vietnamese kitchen &amp; bar, Kingsland Road</title>
+<meta name="description" content="Ant House, 97 Kingsland Road, Shoreditch: home-style Vietnamese cooking, bánh mì, pho, bun cha and cocktails. Open daily from noon.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Paytone+One&family=Be+Vietnam+Pro:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+/* Layout: colour-block playful. Words: bustling, homemade, generous. */
+:root{--red:#C8312B;--chili:#9E1F1A;--gold:#F4B63F;--leaf:#2F6B4F;--rice:#FFF7EA;--ink:#22160F;--mute:#6E5A4B}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--rice);color:var(--ink);font:400 17px/1.65 "Be Vietnam Pro",system-ui,sans-serif}
+a{color:inherit}
+h1,h2,h3{font-family:"Paytone One",sans-serif;font-weight:400;line-height:1.02;margin:0}
+.wrap{width:min(1120px,100% - 32px);margin-inline:auto}
+.topbar{background:var(--ink);color:#F7E6CC;font-size:13px;text-align:center;padding:7px 16px}
+header{position:sticky;top:0;z-index:20;background:var(--rice);border-bottom:3px solid var(--ink)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:64px;gap:12px}
+.mark{display:flex;align-items:center;gap:10px;text-decoration:none}
+.mark b{font:400 26px/1 "Paytone One",sans-serif;letter-spacing:.01em}
+.mark b i{font-style:normal;color:var(--red)}
+.ant{width:34px;height:34px;flex:0 0 auto}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 22px;border-radius:999px;background:var(--red);color:#fff;font-weight:700;text-decoration:none;border:3px solid var(--ink);box-shadow:3px 3px 0 var(--ink);white-space:nowrap}
+.btn.gold{background:var(--gold);color:var(--ink)}
+.btn.ghost{background:var(--rice);color:var(--ink)}
+figure{margin:0;position:relative;overflow:hidden;background:var(--gold)}
+figure img{display:block;width:100%;height:100%;object-fit:cover}
+figure.nophoto{background:linear-gradient(135deg,var(--gold),var(--red))}
+.cap{position:absolute;right:8px;bottom:8px;background:rgba(34,22,15,.72);color:#fff;font-size:11px;padding:2px 8px;border-radius:999px}
+.hero{padding:22px 0 36px}
+.hero .grid{display:grid;gap:14px}
+.block{border:3px solid var(--ink);border-radius:26px;overflow:hidden}
+.b-title{background:var(--red);color:var(--rice);padding:30px 24px 28px;position:relative}
+.b-title h1{font-size:clamp(56px,14vw,128px);letter-spacing:-.01em}
+.b-title h1 span{color:var(--gold);display:block}
+.b-title p{font-size:19px;max-width:30ch;margin:16px 0 22px}
+.b-title .row{display:flex;flex-wrap:wrap;gap:10px}
+.b-photo{aspect-ratio:4/3}
+.b-photo figure{height:100%}
+.b-hours{background:var(--gold);padding:22px 24px}
+.b-hours b{font-family:"Paytone One";font-size:30px;display:block;line-height:1}
+.chip{display:inline-block;margin-top:10px;background:var(--rice);border:2px solid var(--ink);border-radius:999px;padding:3px 12px;font-weight:700;font-size:14px}
+section{padding:60px 0}
+.lbl{font-weight:700;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--red);margin:0 0 10px}
+h2{font-size:clamp(38px,7vw,68px);margin-bottom:18px}
+.about .grid{display:grid;gap:26px;align-items:center}
+.about p{max-width:54ch}
+.about figure{aspect-ratio:1/1;border:3px solid var(--ink);border-radius:26px}
+.menu{background:var(--leaf);color:var(--rice);border-block:3px solid var(--ink)}
+.menu .lbl{color:var(--gold)}
+.dishes{display:grid;gap:14px;list-style:none;padding:0;margin:26px 0 0}
+.dish{background:var(--rice);color:var(--ink);border:3px solid var(--ink);border-radius:22px;padding:20px}
+.dish:nth-child(3n+2){background:var(--gold)}
+.dish:nth-child(3n){background:#F6D7C8}
+.dish h3{font-size:24px;margin-bottom:6px}
+.dish p{margin:0;font-size:15px}
+.note{font-size:14px;opacity:.85;margin-top:18px}
+.gallery .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.gallery figure{aspect-ratio:1/1;border:3px solid var(--ink);border-radius:22px}
+.gallery figure.w{grid-column:span 2;aspect-ratio:16/9}
+.says .grid{display:grid;gap:14px}
+.quote{border:3px solid var(--ink);border-radius:22px;padding:24px;background:#fff}
+.quote.big{background:var(--ink);color:var(--rice)}
+.quote.big b{font:400 64px/1 "Paytone One";color:var(--gold);display:block}
+.quote p{font-size:20px;font-weight:500;margin:6px 0 10px}
+.quote small{font-weight:700;color:var(--mute)}
+.quote.big small{color:#E9CFA8}
+.visit .grid{display:grid;gap:14px}
+.card{border:3px solid var(--ink);border-radius:22px;padding:22px;background:#fff}
+.card.r{background:var(--red);color:var(--rice)}
+.card h3{font-size:24px;margin-bottom:10px}
+.card p{margin:0 0 8px}
+.cta{background:var(--gold);border-top:3px solid var(--ink);text-align:center;padding:56px 16px}
+.cta h2{margin-bottom:20px}
+.cta .row{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
+footer{background:var(--ink);color:#E9CFA8;padding:28px 0 110px;font-size:14px}
+footer .wrap{display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-between}
+.mbar{position:fixed;left:0;right:0;bottom:0;z-index:30;display:grid;grid-template-columns:1fr 1.4fr;gap:8px;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:var(--rice);border-top:3px solid var(--ink)}
+.mbar .btn{box-shadow:none}
+@media(min-width:860px){
+ .hero .grid{grid-template-columns:1.3fr 1fr;grid-template-rows:auto auto}
+ .b-title{grid-row:span 2;padding:48px 44px;display:flex;flex-direction:column;justify-content:flex-end;min-height:540px}
+ .about .grid{grid-template-columns:1.2fr .8fr}
+ .dishes{grid-template-columns:repeat(3,1fr)}
+ .gallery .grid{grid-template-columns:repeat(4,1fr)}
+ .gallery figure.w{grid-column:span 2;aspect-ratio:auto}
+ .says .grid{grid-template-columns:1fr 1.2fr 1.2fr}
+ .visit .grid{grid-template-columns:1fr 1fr 1fr}
+ .mbar{display:none}
+ footer{padding-bottom:28px}
+}
+@media(max-width:859px){header .btn{display:none}}
+</style>
+</head>
+<body>
+<div class="topbar">Design concept prepared for Ant House by Sites By MS. Not the official website.</div>
+
+<header>
+ <div class="wrap nav">
+  <a class="mark" href="#top" aria-label="Ant House home">
+   <svg class="ant" viewBox="0 0 40 40" aria-hidden="true"><circle cx="11" cy="22" r="6" fill="#22160F"/><circle cx="21" cy="21" r="4.5" fill="#C8312B"/><circle cx="30" cy="19" r="5" fill="#22160F"/><path d="M33 15l3-6M31 14l1-7M18 25l-4 8M22 25l1 8M25 23l5 8M17 18l-4-7M23 17l2-8" stroke="#22160F" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
+   <b>Ant <i>House</i></b>
+  </a>
+  <a class="btn" href="tel:02034870421">Call to book</a>
+ </div>
+</header>
+
+<main id="top">
+ <section class="hero">
+  <div class="wrap grid">
+   <div class="block b-title">
+    <h1>Ant House <span>Kingsland Rd.</span></h1>
+    <p>Home-style Vietnamese cooking that started in the owner's own kitchen. Bánh mì, pho, bun cha, sizzling plates and cocktails, from noon until late.</p>
+    <div class="row"><a class="btn gold" href="tel:02034870421">Call 020 3487 0421</a><a class="btn ghost" href="#menu">See the favourites</a></div>
+   </div>
+   <div class="block b-photo">
+    <figure><img src="https://images.unsplash.com/photo-1641440615059-42c8ed3af8c8?w=1600&amp;q=80" alt="A table filled with Vietnamese dishes to share" width="1600" height="1200" onerror="this.parentNode.classList.add('nophoto');this.remove()"><span class="cap">Sample photo</span></figure>
+   </div>
+   <div class="block b-hours">
+    <b>Open from 12pm</b>
+    Lunch, dinner and drinks until 11pm. Walk-ins welcome, takeaway too.
+    <br><span class="chip">★ 4.8 · 589 Google reviews</span>
+   </div>
+  </div>
+ </section>
+
+ <section class="about">
+  <div class="wrap grid">
+   <div>
+    <p class="lbl">Our story</p>
+    <h2>From a home kitchen to Kingsland Road.</h2>
+    <p>Ant House began with family recipes cooked at home, and grew into one of the busiest little dining rooms on Kingsland Road, the street London knows for Vietnamese food.</p>
+    <p>It is relaxed and lively: good for a quick solo lunch, a table of friends or a long dinner with craft beer, house wine and cocktails from the bar. Vegetarian dishes are on the menu too.</p>
+   </div>
+   <figure><img src="https://images.unsplash.com/photo-1715925717150-2a6d181d8846?w=1200&amp;q=80" alt="Freshly made bánh mì sandwiches on a board" width="1200" height="1200" loading="lazy" onerror="this.parentNode.classList.add('nophoto');this.remove()"><span class="cap">Sample photo</span></figure>
+  </div>
+ </section>
+
+ <section class="menu" id="menu">
+  <div class="wrap">
+   <p class="lbl">What people come back for</p>
+   <h2>Six to start with</h2>
+   <ul class="dishes">
+    <li class="dish"><h3>Bánh mì</h3><p>Freshly made baguettes with pork, chicken, or tofu and mushroom. The classic packs five kinds of pork with pâté and coriander.</p></li>
+    <li class="dish"><h3>Bun cha</h3><p>The Hanoi favourite: grilled pork with noodles and herbs, made fresh.</p></li>
+    <li class="dish"><h3>Pho</h3><p>Vietnamese noodle soups, a menu staple.</p></li>
+    <li class="dish"><h3>Sizzling seafood</h3><p>Served on a hot sizzling plate.</p></li>
+    <li class="dish"><h3>Honey-roasted chicken</h3><p>A house favourite. Glutinous rice with a choice of toppings is on the menu too.</p></li>
+    <li class="dish"><h3>Aubergine &amp; tofu</h3><p>Com ca tim nuong nam: grilled aubergine and tofu, very tender.</p></li>
+   </ul>
+   <p class="note">Also on the menu: summer rolls, cheese and prawn spring rolls and fried chicken skin. Prices and the full menu would live here.</p>
+  </div>
+ </section>
+
+ <section class="gallery">
+  <div class="wrap">
+   <p class="lbl">From the kitchen</p>
+   <div class="grid">
+    <figure class="w"><img src="https://images.unsplash.com/photo-1631709497146-a239ef373cf1?w=1600&amp;q=80" alt="Bowl of noodle soup with chopsticks" width="1600" height="900" loading="lazy" onerror="this.parentNode.classList.add('nophoto');this.remove()"><span class="cap">Sample photo</span></figure>
+    <figure><img src="https://images.unsplash.com/photo-1582878826629-29b7ad1cdc43?w=900&amp;q=80" alt="Noodle soup with greens in a white bowl" width="900" height="900" loading="lazy" onerror="this.parentNode.classList.add('nophoto');this.remove()"><span class="cap">Sample photo</span></figure>
+    <figure><img src="https://images.unsplash.com/photo-1628997323766-c846909a7049?w=900&amp;q=80" alt="A cooked rice dish in a brown bowl" width="900" height="900" loading="lazy" onerror="this.parentNode.classList.add('nophoto');this.remove()"><span class="cap">Sample photo</span></figure>
+    <figure><img src="https://images.unsplash.com/photo-1597345637412-9fd611e758f3?w=900&amp;q=80" alt="Clear soup with fresh herbs" width="900" height="900" loading="lazy" onerror="this.parentNode.classList.add('nophoto');this.remove()"><span class="cap">Sample photo</span></figure>
+    <figure><img src="https://images.unsplash.com/photo-1562565652-a0d8f0c59eb4?w=900&amp;q=80" alt="Plates of noodles, vegetables and braised meat" width="900" height="900" loading="lazy" onerror="this.parentNode.classList.add('nophoto');this.remove()"><span class="cap">Sample photo</span></figure>
+   </div>
+  </div>
+ </section>
+
+ <section class="says">
+  <div class="wrap">
+   <p class="lbl">What people say</p>
+   <div class="grid">
+    <div class="quote big"><b>4.8</b><p>from 589 Google reviews</p><small>One of Kingsland Road's best-rated kitchens</small></div>
+    <div class="quote"><p>The bánh mì is the standout, stuffed with five kinds of pork.</p><small>The Infatuation, rated 7.9</small></div>
+    <div class="quote"><p>Relaxed, for solo diners, groups and "anyone, and everyone".</p><small>The Infatuation</small></div>
+   </div>
+  </div>
+ </section>
+
+ <section class="visit" id="visit">
+  <div class="wrap">
+   <p class="lbl">Visit</p>
+   <h2>Find the house</h2>
+   <div class="grid">
+    <div class="card r"><h3>Address</h3><p>97 Kingsland Road<br>Shoreditch, London E2 8AG</p><p>About 250m from Hoxton station.</p><a class="btn gold" href="https://www.google.com/maps/search/?api=1&amp;query=Ant+House+97+Kingsland+Road+London+E2+8AG">Directions</a></div>
+    <div class="card"><h3>Opening hours</h3><p>12pm – 11pm</p><p style="font-size:14px;color:var(--mute)">Hours as listed publicly. We'd confirm Monday opening with you.</p></div>
+    <div class="card"><h3>Get in touch</h3><p><a href="tel:02034870421">020 3487 0421</a></p><p><a href="mailto:antkitchenltd@gmail.com">antkitchenltd@gmail.com</a></p><p><a href="https://www.instagram.com/anthouse.london/">@anthouse.london</a></p></div>
+   </div>
+  </div>
+ </section>
+
+ <div class="cta">
+  <h2>Hungry yet?</h2>
+  <div class="row"><a class="btn" href="tel:02034870421">Call for a table</a><a class="btn ghost" href="https://www.google.com/maps/search/?api=1&amp;query=Ant+House+97+Kingsland+Road+London+E2+8AG">Get directions</a></div>
+ </div>
+</main>
+
+<footer>
+ <div class="wrap">
+  <span><b>Ant House</b> · Vietnamese kitchen &amp; bar · 97 Kingsland Road, London E2 8AG</span>
+  <span>Design concept by Sites By MS. Not the official website.</span>
+ </div>
+</footer>
+
+<nav class="mbar" aria-label="Quick actions">
+ <a class="btn ghost" href="https://www.google.com/maps/search/?api=1&amp;query=Ant+House+97+Kingsland+Road+London+E2+8AG">Directions</a>
+ <a class="btn" href="tel:02034870421">Call to book</a>
+</nav>
+<script src="/assets/concept-bar.js" data-name="Ant House" data-slug="ant-house" defer></script>
+</body>
+</html>
