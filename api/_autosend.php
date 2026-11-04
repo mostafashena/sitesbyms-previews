@@ -65,7 +65,6 @@ function auto_send_one(array $r, string $kind, string $today): array {
 /** Runs the daily send if it is time. Safe to call every few minutes. */
 function autosend_tick(bool $force = false): string {
     $tz = new DateTimeZone(TZ); $now = new DateTime('now', $tz); $today = $now->format('Y-m-d');
-    write_json('cron_heartbeat.json', ['at' => time()]);
     $state = read_json('autosend_state.json', []);
     if (($state['done'] ?? '') === $today && !$force) return 'already done today';
     $set = auto_settings();

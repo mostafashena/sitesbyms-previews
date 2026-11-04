@@ -722,8 +722,11 @@ if ($page === 'settings') {
             . '<label>Send automatically<select name="on"><option' . (strcasecmp($as['Auto-send emails'], 'Yes') === 0 ? ' selected' : '') . '>Yes</option><option' . (strcasecmp($as['Auto-send emails'], 'Yes') !== 0 ? ' selected' : '') . '>No</option></select></label>'
             . '<label>Time (London)<input type="time" name="time" value="' . h($as['Auto-send time (London)']) . '"></label>'
             . '<label>Max emails per day<input type="number" name="max" min="0" max="100" value="' . h($as['Max automatic emails per day']) . '"></label></div>'
-            . '<p class="' . ($hbOk ? 'hint' : 'err') . '">' . ($hbOk ? '✓ The scheduler is running (last check ' . h(ago(gmdate('c', (int)$hb['at']))) . ').' . (!empty($hb['error']) ? ' Last error: ' . h($hb['error']) : '')
-                : '⚠ The scheduler is not running yet, so nothing is sent automatically. In cPanel › Cron Jobs, add a job that runs every 10 minutes (*/10 * * * *) with the command: <code>php ~/public_html/api/_cron.php</code> (use the same php path as your deploy job).') . '</p>'
+            . '<p class="' . ($hbOk && empty($hb['error']) ? 'hint' : 'err') . '">'
+                . (!empty($hb['error']) ? '⚠ The scheduler ran ' . h(ago(gmdate('c', (int)$hb['at']))) . ' but failed: ' . h($hb['error'])
+                  : ($hbOk ? '✓ The scheduler is running (last check ' . h(ago(gmdate('c', (int)$hb['at']))) . (!empty($hb['php']) ? ', PHP ' . h($hb['php']) : '') . (!empty($hb['result']) ? ': ' . h($hb['result']) : '') . ').'
+                  : (!empty($hb['at']) ? '⚠ The scheduler last ran ' . h(ago(gmdate('c', (int)$hb['at']))) . ' and has stopped. Check the cron job in cPanel.'
+                  : '⚠ The scheduler has not run yet. In cPanel › Cron Jobs, add a job every 10 minutes (*/10 * * * *) with the command: <code>/usr/local/bin/php /home/sitesb/public_html/api/_cron.php</code>. This message changes within 10 minutes of the first run.'))) . '</p>'
             . '<button class="btn">Save</button></form>'; }
     echo '<form class="card" method="post">' . csrf_field() . '<input type="hidden" name="a" value="settings"><h2>Calendar &amp; booking</h2>'
         . '<label>Google Calendar secret address (iCal)<input name="ical_url" value="' . h($cfg['ical_url']) . '" placeholder="https://calendar.google.com/calendar/ical/.../basic.ics"><span class="hint">With this, times that are busy in your Google Calendar show as Taken on the booking page.' . ($ical !== null ? ' ' . $ical . ' events read from the calendar just now.' : '') . '</span></label>'
