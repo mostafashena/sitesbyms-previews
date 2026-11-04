@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Glass Coffee | Transparent speciality coffee, BOXPARK Camden</title>
+<meta name="description" content="Glass Coffee, BOXPARK Camden (first floor, unit 49), 192-198 Camden High Street. Speciality coffee roasted in-house, with every ingredient traceable by QR code.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Darker+Grotesque:wght@500;700;900&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* Layout: dark moody, one glowing accent (the blue of the old container). Words: transparent, obsessive, friendly. */
+:root{--night:#0D0F12;--deep:#151922;--line:#262C38;--fog:#AEB6C4;--white:#F3F5F8;--blue:#2F7BFF;--glow:rgba(47,123,255,.45)}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--night);color:var(--white);font:400 15.5px/1.7 "IBM Plex Mono",ui-monospace,monospace}
+a{color:inherit}
+h1,h2,h3{font-family:"Darker Grotesque",system-ui,sans-serif;font-weight:900;line-height:.9;margin:0;letter-spacing:-.01em}
+.wrap{width:min(1120px,100% - 32px);margin-inline:auto}
+.topbar{background:#000;color:var(--fog);font-size:12px;text-align:center;padding:7px 16px}
+header{position:sticky;top:0;z-index:20;background:rgba(13,15,18,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:64px;gap:12px}
+.mark{text-decoration:none;font:900 30px/1 "Darker Grotesque",sans-serif;letter-spacing:.02em}
+.mark span{color:var(--blue);text-shadow:0 0 16px var(--glow)}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 22px;background:var(--blue);color:#fff;font:500 13px "IBM Plex Mono",monospace;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;box-shadow:0 0 26px var(--glow);white-space:nowrap}
+.btn.line{background:transparent;border:1px solid var(--fog);color:var(--white);box-shadow:none}
+figure{margin:0;position:relative;overflow:hidden;background:var(--deep)}
+figure img{display:block;width:100%;height:100%;object-fit:cover}
+figure.nophoto{background:radial-gradient(circle at 70% 30%,rgba(47,123,255,.35),var(--deep) 60%)}
+.cap{position:absolute;right:8px;bottom:8px;font-size:10.5px;background:rgba(0,0,0,.6);color:#fff;padding:2px 8px;z-index:2}
+.hero{position:relative;min-height:84vh;display:flex;align-items:flex-end;overflow:hidden}
+.hero figure{position:absolute;inset:0}
+.hero figure:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(13,15,18,.2),rgba(13,15,18,.92) 85%)}
+.hero .in{position:relative;z-index:1;padding:0 0 60px}
+.code{font-size:12px;color:var(--blue);letter-spacing:.12em}
+.hero h1{font-size:clamp(78px,19vw,220px);margin:12px 0 10px}
+.hero h1 em{font-style:normal;color:var(--blue);text-shadow:0 0 40px var(--glow)}
+.hero p{max-width:46ch;color:#D7DCE4;margin:0 0 24px}
+.row{display:flex;flex-wrap:wrap;gap:12px}
+section{padding:72px 0;border-top:1px solid var(--line)}
+.lbl{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--blue);margin:0 0 16px}
+h2{font-size:clamp(48px,9vw,104px);margin-bottom:22px}
+.about .grid{display:grid;gap:30px;align-items:center}
+.about p{color:#CDD3DD;max-width:56ch}
+.about figure{aspect-ratio:4/5}
+.scan{display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:center;margin-top:24px;border:1px solid var(--line);padding:16px}
+.qr{width:62px;height:62px;background:conic-gradient(var(--white) 0 25%,var(--night) 0 50%,var(--white) 0 75%,var(--night) 0) 0 0/12px 12px;border:5px solid var(--white);box-shadow:0 0 22px var(--glow)}
+.offer .grid{display:grid;gap:1px;background:var(--line);border:1px solid var(--line)}
+.offer .it{background:var(--night);padding:24px 22px}
+.offer .it b{font:900 34px/1 "Darker Grotesque",sans-serif;display:block;margin-bottom:6px}
+.offer .it:hover b{color:var(--blue);text-shadow:0 0 18px var(--glow)}
+.offer .it p{margin:0;color:var(--fog);font-size:14.5px}
+.beans{margin-top:26px;color:var(--fog);font-size:13.5px}
+.beans span{display:inline-block;border:1px solid var(--line);padding:3px 10px;margin:0 6px 8px 0;color:var(--white)}
+.gallery .grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.gallery figure{aspect-ratio:1/1}
+.gallery figure.w{grid-column:span 2;aspect-ratio:16/9}
+.press{display:grid;gap:26px}
+.press blockquote{margin:0;font:700 clamp(30px,4.6vw,48px)/1 "Darker Grotesque",sans-serif}
+.press cite{display:block;font:400 12px "IBM Plex Mono",monospace;color:var(--blue);letter-spacing:.14em;text-transform:uppercase;margin-top:12px;font-style:normal}
+.big{font:900 120px/.8 "Darker Grotesque",sans-serif;color:var(--blue);text-shadow:0 0 40px var(--glow)}
+.visit .grid{display:grid;gap:24px}
+.box{border:1px solid var(--line);padding:22px;background:var(--deep)}
+.box h3{font-size:34px;margin-bottom:10px}
+table{border-collapse:collapse;width:100%}
+td{padding:7px 0;border-bottom:1px dashed var(--line)}
+td:last-child{text-align:right}
+.small{font-size:12.5px;color:var(--fog)}
+.cta{text-align:center;padding:90px 16px;background:radial-gradient(ellipse at 50% 120%,rgba(47,123,255,.35),transparent 60%)}
+.cta .row{justify-content:center}
+footer{border-top:1px solid var(--line);padding:24px 0 110px;font-size:12.5px;color:var(--fog)}
+footer .wrap{display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-between}
+.mbar{position:fixed;left:0;right:0;bottom:0;z-index:30;display:grid;grid-template-columns:1fr 1.2fr;gap:8px;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:rgba(13,15,18,.96);border-top:1px solid var(--line)}
+@media(min-width:860px){
+ .about .grid{grid-template-columns:1.2fr .8fr;gap:60px}
+ .offer .grid{grid-template-columns:repeat(3,1fr)}
+ .gallery .grid{grid-template-columns:repeat(4,1fr)}
+ .gallery figure.w{grid-column:span 2;aspect-ratio:auto}
+ .press{grid-template-columns:.6fr 1fr 1fr;align-items:end}
+ .visit .grid{grid-template-columns:1fr 1fr}
+ .mbar{display:none}
+ footer{padding-bottom:24px}
+}
+@media(max-width:859px){header .btn{display:none}}
+</style>
+</head>
+<body>
+<div class="topbar">Design concept prepared for Glass Coffee by Sites By MS. Not the official website.</div>
+
+<header>
+ <div class="wrap nav">
+  <a class="mark" href="#top">GLASS<span>.</span></a>
+  <a class="btn" href="https://www.google.com/maps/search/?api=1&amp;query=Glass+Coffee+BOXPARK+Camden+192+Camden+High+Street">Find us at BOXPARK</a>
+ </div>
+</header>
+
+<main id="top">
+ <div class="hero">
+  <figure><img src="https://24-social.com/cdn-cgi/image/width=1920,quality=75,format=auto/images/boxpark-1772027367-glass-coffee1/public" alt="A Glass Coffee barista making coffee" width="1920" height="1280" onerror="this.parentNode.classList.add('nophoto');this.remove()"></figure>
+  <div class="wrap in">
+   <div class="code">// BOXPARK CAMDEN · FIRST FLOOR · UNIT 49</div>
+   <h1>See <em>through</em> your coffee.</h1>
+   <p>Speciality coffee roasted in-house, and radically transparent: scan the QR code on your cup to meet the farmers and follow every ingredient back to where it was grown.</p>
+   <div class="row"><a class="btn" href="https://www.google.com/maps/search/?api=1&amp;query=Glass+Coffee+BOXPARK+Camden+192+Camden+High+Street">Get directions</a><a class="btn line" href="#menu">What we pour</a></div>
+  </div>
+ </div>
+
+ <section class="about">
+  <div class="wrap grid">
+   <div>
+    <p class="lbl">// the idea</p>
+    <h2>Know where it comes from.</h2>
+    <p>Glass started with one idea: change the way people think about coffee by showing exactly where it comes from and how it's made. It was founded by Carlo, a Brazilian-born entrepreneur, and became known for its hatch in a bright blue shipping container in a Camden market. Today you'll find it at BOXPARK Camden.</p>
+    <p>The roastery works with separate filter and espresso profiles and loves adventurous processing: thermal shock, anaerobic and co-fermented lots, graded 88 points or more. Ask the team about their favourite producer and be ready for a proper conversation.</p>
+    <div class="scan"><span class="qr" aria-hidden="true"></span><span class="small">Every cup carries a QR code. Scan it to read the story of the farm, the farmer and the community behind your coffee.</span></div>
+   </div>
+   <figure><img src="https://24-social.com/cdn-cgi/image/width=1200,quality=75,format=auto/images/boxpark-1772027393-glass-coffee-filter/public" alt="A barista preparing a filter coffee at Glass" width="1200" height="1500" loading="lazy" onerror="this.parentNode.classList.add('nophoto');this.remove()"></figure>
+  </div>
+ </section>
+
+ <section class="offer" id="menu">
+  <div class="wrap">
+   <p class="lbl">// on the bar</p>
+   <h2>What to order.</h2>
+   <div class="grid">
+    <div class="it"><b>Pour-over</b><p>Single-origin filter, brewed to order. The Infatuation calls them flavourful.</p></div>
+    <div class="it"><b>Espresso &amp; milk</b><p>Milky coffees made with homemade almond milk.</p></div>
+    <div class="it"><b>The brownie</b><p>Gooey, rich and made with good chocolate.</p></div>
+    <div class="it"><b>Tea</b><p>For the non-coffee friend.</p></div>
+    <div class="it"><b>Fresh bakes</b><p>Freshly baked goods on the counter.</p></div>
+    <div class="it"><b>Beans to take home</b><p>Roasted in-house, filter and espresso profiles.</p></div>
+   </div>
+   <p class="beans">Recent lots include: <span>Hacienda Copey ITADAKI Gesha · Costa Rica</span><span>Black Moon Sagittarius Geisha · Panama</span><span>Jose Jijon Typica Mejorado · Ecuador</span><span>Bette Buna Duba · Ethiopia</span></p>
+  </div>
+ </section>
+
+ <section class="gallery">
+  <div class="wrap">
+   <p class="lbl">// behind the bar</p>
+   <div class="grid">
+    <figure class="w"><img src="https://24-social.com/cdn-cgi/image/width=1600,quality=75,format=auto/images/boxpark-1772027421-glass-coffee-boxes/public" alt="The Glass Coffee team taking a delivery" width="1600" height="900" loading="lazy" onerror="this.parentNode.classList.add('nophoto');this.remove()"></figure>
+    <figure><img src="https://s3.eu-west-2.amazonaws.com/wp-media.camdenmarket.com/wp-content/uploads/2022/10/24124915/ACE_BuckStMarket_Apr21_Glass_Coffee-1568x1045.jpg" alt="The original Glass Coffee container at Buck Street Market" width="900" height="900" loading="lazy" onerror="this.parentNode.classList.add('nophoto');this.remove()"></figure>
+    <figure><img src="https://images.unsplash.com/photo-1758221052634-33f352d1318b?w=900&amp;q=80" alt="Hot water poured into a pour-over filter" width="900" height="900" loading="lazy" onerror="this.parentNode.classList.add('nophoto');this.remove()"><span class="cap">Sample photo</span></figure>
+    <figure><img src="https://images.unsplash.com/photo-1609050471053-8636409f9f5b?w=900&amp;q=80" alt="Espresso pouring from a portafilter" width="900" height="900" loading="lazy" onerror="this.parentNode.classList.add('nophoto');this.remove()"><span class="cap">Sample photo</span></figure>
+    <figure><img src="https://images.unsplash.com/photo-1759259639356-7c6e74eed1ec?w=900&amp;q=80" alt="Pouring water over coffee grounds" width="900" height="900" loading="lazy" onerror="this.parentNode.classList.add('nophoto');this.remove()"><span class="cap">Sample photo</span></figure>
+   </div>
+  </div>
+ </section>
+
+ <section>
+  <div class="wrap press">
+   <div><div class="big">4.9</div><p class="small">on Google · 705 reviews</p></div>
+   <blockquote>"One of the best coffee shops in London."<cite>The Infatuation</cite></blockquote>
+   <blockquote>Pour-overs, homemade almond milk and a brownie worth the trip.<cite>Summary of The Infatuation review</cite></blockquote>
+  </div>
+ </section>
+
+ <section class="visit" id="visit">
+  <div class="wrap grid">
+   <div class="box">
+    <h3>Find us</h3>
+    <p>BOXPARK Camden, first floor, unit 49<br>192-198 Camden High Street<br>London NW1 8QP</p>
+    <a class="btn" href="https://www.google.com/maps/search/?api=1&amp;query=Glass+Coffee+BOXPARK+Camden+192+Camden+High+Street">Directions</a>
+   </div>
+   <div class="box">
+    <h3>Hours</h3>
+    <table>
+     <tr><td>Mon – Thu</td><td>9am – 4pm</td></tr>
+     <tr><td>Friday</td><td>10am – 5pm</td></tr>
+     <tr><td>Saturday</td><td>10am – 6pm</td></tr>
+     <tr><td>Sunday</td><td>10am – 5pm</td></tr>
+    </table>
+    <p class="small" style="margin-top:12px">Hours as listed by BOXPARK; we'd confirm them with you. <a href="mailto:carlo@glasscoffee.co.uk">carlo@glasscoffee.co.uk</a> · <a href="https://www.instagram.com/glassfoodanddrink/">@glassfoodanddrink</a></p>
+   </div>
+  </div>
+ </section>
+
+ <div class="cta">
+  <h2>Come and see.</h2>
+  <div class="row"><a class="btn" href="https://www.google.com/maps/search/?api=1&amp;query=Glass+Coffee+BOXPARK+Camden+192+Camden+High+Street">Find Glass at BOXPARK</a><a class="btn line" href="https://www.instagram.com/glassfoodanddrink/">Follow the beans</a></div>
+ </div>
+</main>
+
+<footer>
+ <div class="wrap">
+  <span><b>Glass Coffee</b> · BOXPARK Camden, 192-198 Camden High Street, London NW1 8QP</span>
+  <span>Design concept by Sites By MS. Not the official website.</span>
+ </div>
+</footer>
+
+<nav class="mbar" aria-label="Quick actions">
+ <a class="btn line" href="https://www.instagram.com/glassfoodanddrink/">Instagram</a>
+ <a class="btn" href="https://www.google.com/maps/search/?api=1&amp;query=Glass+Coffee+BOXPARK+Camden+192+Camden+High+Street">Directions</a>
+</nav>
+<script src="/assets/concept-bar.js" data-name="Glass Coffee" data-slug="glass-coffee" defer></script>
+</body>
+</html>
