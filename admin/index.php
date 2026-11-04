@@ -5,6 +5,7 @@
 declare(strict_types=1);
 require __DIR__ . '/../api/_lib.php';
 require __DIR__ . '/../api/_google.php';
+require __DIR__ . '/../api/_autosend.php';
 
 $https = !empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off';
 session_name('sbm_admin');
@@ -114,8 +115,15 @@ if ($csrfOk) {
         $ok = send_mail($b['email'], "Your call link: $when", $txt, FROM_ADDR, [$ics]);
         go($page, $ok ? 'Meet link sent to ' . $b['email'] . '.' : 'Saved, but the email could not be sent. Please send the link yourself.', !$ok);
     }
+    if ($a === 'autosend' && google_key()) {
+        try { $kv = panel_settings() + AUTO_DEFAULTS; } catch (Throwable $e) { $kv = PANEL_DEFAULTS + AUTO_DEFAULTS; }
+        $kv['Auto-send emails'] = ($_POST['on'] ?? '') === 'Yes' ? 'Yes' : 'No';
+        $kv['Auto-send time (London)'] = preg_match('/^([01]\d|2[0-3]):[0-5]\d$/', (string)($_POST['time'] ?? '')) ? (string)$_POST['time'] : '08:00';
+        $kv['Max automatic emails per day'] = (string)max(0, min(100, (int)($_POST['max'] ?? 40)));
+        try { panel_settings_save($kv); go('settings', 'Automatic email settings saved.'); } catch (Throwable $e) { go('settings', 'Could not save: ' . $e->getMessage(), true); }
+    }
     if ($a === 'nightly' && google_key()) {
-        $kv = PANEL_DEFAULTS;
+        try { $kv = panel_settings() + PANEL_DEFAULTS; } catch (Throwable $e) { $kv = PANEL_DEFAULTS; }
         $kv['New concepts per night'] = (string)max(0, min(20, (int)($_POST['n_concepts'] ?? 5)));
         $kv['If nothing is Ready, build the best new candidates'] = ($_POST['auto'] ?? '') === 'Yes' ? 'Yes' : 'No';
         $kv['New candidates per night'] = (string)max(0, min(40, (int)($_POST['n_cand'] ?? 20)));
@@ -354,7 +362,7 @@ function msg_row(array $m, array $typeLabel): string {
 $nav = [
     'Work' => [['home', 'Overview', 'home'], ['outreach', 'Outreach', 'send'], ['leads', 'Leads', 'list']],
     'Clients' => [['calls', 'Calls', 'phone'], ['messages', 'Messages', 'chat']],
-    'Insights' => [['results', 'Results', 'chart'], ['activity', 'Activity', 'pulse'], ['views', 'Concept views', 'eye']],
+    'Insights' => [['daily', 'Daily report', 'send'], ['results', 'Results', 'chart'], ['activity', 'Activity', 'pulse'], ['views', 'Concept views', 'eye']],
     'Admin' => [],
 ];
 if ($pdo && $isOwner) $nav['Admin'][] = ['team', 'Team', 'users'];
@@ -651,6 +659,26 @@ if ($page === 'messages') {
     echo '<h1>Messages</h1><p class="sub">Questions and free concept requests from the website forms.</p>';
     echo '<section class="card">' . ($messages ? implode('', array_map(fn($m) => msg_row($m, $typeLabel), $messages)) : '<div class="empty">No messages yet.</div>') . '</section>';
 }
+if ($page === 'daily') {
+    $files = glob(data_dir() . '/autosend-*.json') ?: []; rsort($files);
+    echo '<h1>Daily report</h1><p class="sub">What was sent automatically each morning, what could not be sent and why, and the Instagram DMs left to do by hand. The same report is emailed to you after each run.</p>';
+    if (!$files) echo '<section class="card"><div class="empty">No automatic run yet. The first report appears after the next morning run (Settings › Automatic emails).</div></section>';
+    foreach (array_slice($files, 0, 21) as $i => $f) {
+        $rep = json_decode((string)file_get_contents($f), true) ?: []; if (!$rep) continue;
+        $nNew = count(array_filter($rep['sent'] ?? [], fn($x) => $x['kind'] === 'first'));
+        echo '<details class="card lead"' . ($i === 0 ? ' open' : '') . '><summary><div class="grow"><b>' . h((new DateTime($rep['date']))->format('l j F')) . '</b><small>' . (!empty($rep['paused']) ? 'Paused, nothing sent' : 'Run ' . h($rep['started'] ?? '') . '–' . h($rep['finished'] ?? '…')) . '</small></div>'
+            . '<span class="pill ok">' . $nNew . ' new</span><span class="pill ok">' . (count($rep['sent'] ?? []) - $nNew) . ' follow-ups</span>' . (!empty($rep['failed']) ? '<span class="pill warn">' . count($rep['failed']) . ' not sent</span>' : '') . '</summary>';
+        echo '<div class="tbl" style="margin:0 20px"><table><thead><tr><th>Time</th><th>What</th><th>Business</th><th>To</th><th></th></tr></thead><tbody>';
+        foreach ($rep['sent'] ?? [] as $x) echo '<tr><td>' . h($x['at']) . '</td><td>' . h(auto_kind_name($x['kind'])) . '</td><td><b>' . h($x['business']) . '</b>' . (!empty($x['note']) ? '<br><small>' . h($x['note']) . '</small>' : '') . '</td><td>' . h($x['to']) . '</td><td><a href="/' . h($x['slug']) . '/?team=1" target="_blank" rel="noopener">Concept</a></td></tr>';
+        if (empty($rep['sent'])) echo '<tr><td colspan="5">Nothing sent.</td></tr>';
+        echo '</tbody></table></div>';
+        if (!empty($rep['failed'])) { echo '<h3 class="chh">Not sent</h3><ul class="tl">'; foreach ($rep['failed'] as $x) echo '<li><span>✗</span><b>' . h($x['business']) . '</b> · ' . h(auto_kind_name($x['kind'])) . ': ' . h($x['why']) . '</li>'; echo '</ul>'; }
+        $man = $rep['manual'] ?? []; echo '<h3 class="chh">Instagram DMs to send by hand (' . count($man) . ')</h3>';
+        if ($man) { echo '<ul class="tl">'; foreach ($man as $x) echo '<li><span>•</span>' . h(str_replace('New email', 'First DM', auto_kind_name($x['kind']))) . ' · <b>' . h($x['business']) . '</b>' . ($x['ig'] ? ' · <a href="https://ig.me/m/' . h($x['ig']) . '" target="_blank" rel="noopener">@' . h($x['ig']) . '</a>' : '') . '</li>'; echo '</ul>'; }
+        $y = $rep['yesterday'] ?? [];
+        echo '<p class="hint" style="margin:10px 20px 18px"><b>Previous 24 hours:</b> ' . (int)($y['mail_opens'] ?? 0) . ' emails opened · ' . count($y['opens'] ?? []) . ' concept opens' . (($y['opens'] ?? []) ? ' (' . h(implode(', ', $y['opens'])) . ')' : '') . ' · reports requested: ' . h(($y['reports'] ?? []) ? implode(', ', $y['reports']) : 'none') . ' · calls booked: ' . h(($y['bookings'] ?? []) ? implode(', ', $y['bookings']) : 'none') . '</p></details>';
+    }
+}
 if ($page === 'views') {
     echo '<h1>Concept views</h1><p class="sub">Who has opened their concept. The first few hours are the best time to follow up.</p><section class="card">';
     if ($bySlug) foreach ($bySlug as $s => $v) echo '<div class="row"><div class="grow"><b>' . h($s) . '</b><small>Last opened ' . h(ago($v['last'])) . ' · ' . h($v['device']) . ($v['from'] ? ' · clicked from ' . h($v['from'] === 'ig' ? 'Instagram DM' : $v['from']) : '') . '</small></div><span class="pill">' . $v['n'] . ($v['n'] === 1 ? ' view' : ' views') . '</span><a class="btn line sm" href="/' . h($s) . '/?team=1" target="_blank" rel="noopener">Open</a></div>';
@@ -686,7 +714,17 @@ if ($page === 'settings') {
             . '<label>New concepts per night<input type="number" name="n_concepts" min="0" max="20" value="' . h($ns['New concepts per night']) . '"></label>'
             . '<label>New candidates to find per night<input type="number" name="n_cand" min="0" max="40" value="' . h($ns['New candidates per night']) . '"></label>'
             . '<label>If nothing is Ready, build the best new candidates<select name="auto"><option' . ($ns['If nothing is Ready, build the best new candidates'] === 'Yes' ? ' selected' : '') . '>Yes</option><option' . ($ns['If nothing is Ready, build the best new candidates'] !== 'Yes' ? ' selected' : '') . '>No</option></select></label>'
-            . '</div><button class="btn">Save</button></form>'; }
+            . '</div><button class="btn">Save</button></form>';
+        $as = $ns + AUTO_DEFAULTS; $hb = read_json('cron_heartbeat.json', []);
+        $hbOk = ($hb['at'] ?? 0) > time() - 1800;
+        echo '<form class="card" method="post" id="autosend">' . csrf_field() . '<input type="hidden" name="a" value="autosend"><h2>Automatic emails</h2>'
+            . '<p class="hint">Every day at this time the panel sends the new emails (rows in Review) and the follow-ups that are due (day 3, 7 and 14), then emails you the daily send report. Instagram DMs stay manual. Emails are never sent when the concept page belongs to another business, the address is invalid or the text has a placeholder.</p><div class="f3">'
+            . '<label>Send automatically<select name="on"><option' . (strcasecmp($as['Auto-send emails'], 'Yes') === 0 ? ' selected' : '') . '>Yes</option><option' . (strcasecmp($as['Auto-send emails'], 'Yes') !== 0 ? ' selected' : '') . '>No</option></select></label>'
+            . '<label>Time (London)<input type="time" name="time" value="' . h($as['Auto-send time (London)']) . '"></label>'
+            . '<label>Max emails per day<input type="number" name="max" min="0" max="100" value="' . h($as['Max automatic emails per day']) . '"></label></div>'
+            . '<p class="' . ($hbOk ? 'hint' : 'err') . '">' . ($hbOk ? '✓ The scheduler is running (last check ' . h(ago(gmdate('c', (int)$hb['at']))) . ').' . (!empty($hb['error']) ? ' Last error: ' . h($hb['error']) : '')
+                : '⚠ The scheduler is not running yet, so nothing is sent automatically. In cPanel › Cron Jobs, add a job that runs every 10 minutes (*/10 * * * *) with the command: <code>php ~/public_html/api/_cron.php</code> (use the same php path as your deploy job).') . '</p>'
+            . '<button class="btn">Save</button></form>'; }
     echo '<form class="card" method="post">' . csrf_field() . '<input type="hidden" name="a" value="settings"><h2>Calendar &amp; booking</h2>'
         . '<label>Google Calendar secret address (iCal)<input name="ical_url" value="' . h($cfg['ical_url']) . '" placeholder="https://calendar.google.com/calendar/ical/.../basic.ics"><span class="hint">With this, times that are busy in your Google Calendar show as Taken on the booking page.' . ($ical !== null ? ' ' . $ical . ' events read from the calendar just now.' : '') . '</span></label>'
         . '<div class="f3"><label>First bookable day<select name="days_ahead">' . implode('', array_map(fn($n) => '<option value="' . $n . '"' . ($n == $cfg['days_ahead'] ? ' selected' : '') . '>' . $n . ($n === 1 ? ' day' : ' days') . ' from today</option>', range(1, 7))) . '</select></label>'
