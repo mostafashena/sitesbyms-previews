@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tania's Unisex Hairdressing | 39 Dockhead, London SE1</title>
+<meta name="description" content="Tania's Unisex Hairdressing, 39 Dockhead, Bermondsey, London SE1 2BS. Haircuts for women and men, colour and blow-dries. Call 020 7064 9233.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,800&display=swap" rel="stylesheet">
+<style>
+/* Layout: warm handmade. Words: friendly, local, everyone-welcome. */
+:root{--clay:#c8664a;--olive:#5e6b3a;--oat:#f6eedf;--cocoa:#3a2a22;--sand:#ead9bf;--mute:#7a6658}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--oat);color:var(--cocoa);font:400 17px/1.7 "Nunito Sans",system-ui,sans-serif}
+a{color:inherit}
+h1,h2,h3{font-family:"Young Serif",Georgia,serif;font-weight:400;margin:0;line-height:1.08}
+.wrap{width:min(1080px,100% - 32px);margin-inline:auto}
+.topbar{background:var(--cocoa);color:var(--sand);font-size:12.5px;text-align:center;padding:7px 16px}
+header{position:sticky;top:0;z-index:20;background:var(--oat);border-bottom:2px dashed var(--sand)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:66px;gap:12px}
+.mark{text-decoration:none;line-height:1}
+.mark b{font:400 26px/1 "Young Serif",serif;display:block}
+.mark small{font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--clay);font-weight:800}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 24px;background:var(--clay);color:#fff;font-weight:800;text-decoration:none;border-radius:999px}
+.btn.olive{background:var(--olive)}
+.btn.line{background:transparent;color:var(--cocoa);border:2px solid var(--cocoa)}
+figure{margin:0;position:relative;overflow:hidden;background:var(--sand);border-radius:18px}
+figure img{display:block;width:100%;height:100%;object-fit:cover}
+figure.nophoto{background:repeating-radial-gradient(circle at 20% 20%,var(--sand) 0 10px,#e2cda9 10px 20px)}
+.cap{position:absolute;left:10px;bottom:10px;font-size:11px;background:rgba(58,42,34,.72);color:#fff;padding:2px 9px;border-radius:999px;z-index:2}
+.polaroid{background:#fff;padding:12px 12px 40px;border-radius:6px;box-shadow:0 10px 30px rgba(58,42,34,.14)}
+.polaroid figure{border-radius:3px}
+.polaroid span.note{position:absolute;left:0;right:0;bottom:10px;text-align:center;font:400 17px "Young Serif",serif;color:var(--mute)}
+.hero{padding:46px 0 64px}
+.hero .grid{display:grid;gap:36px;align-items:center}
+.hero h1{font-size:clamp(46px,8.6vw,94px)}
+.u{background:linear-gradient(transparent 62%,rgba(200,102,74,.35) 62% 90%,transparent 90%)}
+.hero p{font-size:20px;max-width:34ch;margin:20px 0 26px}
+.hero .polaroid{position:relative;transform:rotate(2.5deg);max-width:440px;justify-self:center}
+.hero .polaroid figure{aspect-ratio:4/5}
+.row{display:flex;flex-wrap:wrap;gap:12px}
+section{padding:70px 0}
+h2{font-size:clamp(36px,6vw,60px);margin-bottom:22px}
+.tag{display:inline-block;font-weight:800;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--olive);border:2px dashed var(--olive);border-radius:999px;padding:3px 12px;margin-bottom:14px}
+.about{background:var(--sand)}
+.about .grid{display:grid;gap:34px;align-items:center}
+.about p{font-size:19px;max-width:44ch}
+.about figure{aspect-ratio:1/1;border-radius:50% 50% 18px 18px}
+.chairs{display:grid;gap:16px}
+.chair{background:#fff;border:2px dashed var(--sand);border-radius:18px;padding:22px 22px 20px}
+.chair h3{font-size:26px;margin-bottom:6px}
+.chair h3::before{content:"✂ ";color:var(--clay);font-family:"Nunito Sans",sans-serif}
+.chair p{margin:0;color:var(--mute)}
+.wall{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.wall .polaroid{position:relative}
+.wall .polaroid figure{aspect-ratio:1/1}
+.wall .polaroid:nth-child(odd){transform:rotate(-2deg)}
+.wall .polaroid:nth-child(even){transform:rotate(1.8deg)}
+.kind{background:var(--olive);color:var(--oat);text-align:center}
+.kind .n{font:400 clamp(80px,18vw,180px)/.9 "Young Serif",serif;color:#f3c9b2}
+.kind p{font-size:20px;max-width:36ch;margin:12px auto 0}
+.kind small{display:block;margin-top:14px;color:var(--sand)}
+.visit .grid{display:grid;gap:18px}
+.card{background:#fff;border-radius:18px;padding:26px;border:2px dashed var(--sand)}
+.card h3{font-size:24px;margin-bottom:10px}
+.cta{text-align:center;padding:84px 16px;background:var(--clay);color:#fff}
+.cta h2{font-size:clamp(40px,8vw,84px)}
+.cta .row{justify-content:center}
+.cta .btn{background:#fff;color:var(--clay)}
+footer{background:var(--cocoa);color:var(--sand);font-size:13px;padding:26px 0 96px}
+footer .wrap{display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-between}
+.mbar{position:fixed;left:0;right:0;bottom:0;z-index:30;display:flex;gap:8px;padding:10px 16px;background:var(--oat);border-top:2px dashed var(--sand)}
+.mbar .btn{flex:1;padding:0 10px}
+@media (min-width:860px){
+ .hero .grid{grid-template-columns:1.1fr .9fr}
+ .about .grid{grid-template-columns:.8fr 1.2fr}
+ .chairs{grid-template-columns:repeat(2,1fr)}
+ .wall{grid-template-columns:repeat(4,1fr)}
+ .visit .grid{grid-template-columns:1fr 1fr}
+ .mbar{display:none}
+ footer{padding-bottom:26px}
+}
+@media (prefers-reduced-motion:reduce){.polaroid{transform:none!important}}
+</style>
+</head>
+<body>
+<div class="topbar">Design concept prepared for Tania's Unisex Hairdressing by Sites By MS. Not the official website.</div>
+<header>
+ <div class="wrap nav">
+  <a class="mark" href="#top" aria-label="Tania's Unisex Hairdressing"><b>Tania's</b><small>Unisex hairdressing</small></a>
+  <a class="btn" href="tel:02070649233">Call to book</a>
+ </div>
+</header>
+
+<main id="top">
+ <section class="hero">
+  <div class="wrap grid">
+   <div>
+    <span class="tag">Dockhead · Bermondsey</span>
+    <h1>Your <span class="u">friendly</span> local hairdresser.</h1>
+    <p>Cuts for women and men, colour and blow-dries, on Dockhead, a few minutes from Shad Thames.</p>
+    <div class="row"><a class="btn" href="tel:02070649233">020 7064 9233</a><a class="btn line" href="https://www.treatwell.co.uk/place/tania-s-unisex-hairdressing/">Book online</a></div>
+   </div>
+   <div class="polaroid"><figure><img src="https://images.unsplash.com/photo-1489278353717-f64c6ee8a4d2?w=1200&amp;q=80" alt="A smiling woman with freshly styled hair" width="1000" height="1250" onerror="this.parentNode.classList.add('nophoto');this.remove()"><span class="cap">Sample photo</span></figure><span class="note">fresh from the chair</span></div>
+  </div>
+ </section>
+
+ <section class="about">
+  <div class="wrap grid">
+   <figure><img src="https://images.unsplash.com/photo-1595475884562-073c30d45670?w=1100&amp;q=80" alt="Hands holding hairbrushes, scissors and a tinting brush" width="1100" height="1100" loading="lazy" onerror="this.parentNode.classList.add('nophoto');this.remove()"><span class="cap">Sample photo</span></figure>
+   <div>
+    <span class="tag">About Tania's</span>
+    <h2>Everyone's welcome in the chair.</h2>
+    <p>Tania's is an independent unisex salon at 39 Dockhead, cutting and colouring hair for women and men just south of the river.</p>
+    <p>More than 450 Treatwell reviews, averaging 4.8 stars, say the rest.</p>
+   </div>
+  </div>
+ </section>
+
+ <section>
+  <div class="wrap">
+   <span class="tag">In the salon</span>
+   <h2>What we do</h2>
+   <div class="chairs">
+    <div class="chair"><h3>Ladies' cuts</h3><p>Trims, restyles and a neat finish.</p></div>
+    <div class="chair"><h3>Men's cuts</h3><p>Classic and modern cuts.</p></div>
+    <div class="chair"><h3>Colour</h3><p>Root touch-ups to all-over colour.</p></div>
+    <div class="chair"><h3>Blow-dry</h3><p>A smooth finish for any day.</p></div>
+   </div>
+   <p style="color:var(--mute);margin-top:20px">Full list, prices and free times on <a href="https://www.treatwell.co.uk/place/tania-s-unisex-hairdressing/">Treatwell</a>.</p>
+  </div>
+ </section>
+
+ <section style="padding-top:0">
+  <div class="wrap">
+   <span class="tag">The salon wall</span>
+   <h2>Happy heads</h2>
+   <div class="wall">
+    <div class="polaroid"><figure><img src="https://images.unsplash.com/photo-1605497788044-5a32c7078486?w=800&amp;q=80" alt="A stylist blow-drying a man's hair" width="800" height="800" loading="lazy" onerror="this.parentNode.classList.add('nophoto');this.remove()"><span class="cap">Sample photo</span></figure><span class="note">gents</span></div>
+    <div class="polaroid"><figure><img src="https://images.unsplash.com/photo-1634449571010-02389ed0f9b0?w=800&amp;q=80" alt="A woman having her hair cut" width="800" height="800" loading="lazy" onerror="this.parentNode.classList.add('nophoto');this.remove()"><span class="cap">Sample photo</span></figure><span class="note">ladies</span></div>
+    <div class="polaroid"><figure><img src="https://images.unsplash.com/photo-1560869713-7d0a29430803?w=800&amp;q=80" alt="A stylist holding a curling tong" width="800" height="800" loading="lazy" onerror="this.parentNode.classList.add('nophoto');this.remove()"><span class="cap">Sample photo</span></figure><span class="note">curls</span></div>
+    <div class="polaroid"><figure><img src="https://images.unsplash.com/photo-1600948836101-f9ffda59d250?w=800&amp;q=80" alt="Salon chairs facing round mirrors" width="800" height="800" loading="lazy" onerror="this.parentNode.classList.add('nophoto');this.remove()"><span class="cap">Sample photo</span></figure><span class="note">your seat</span></div>
+   </div>
+  </div>
+ </section>
+
+ <section class="kind">
+  <div class="wrap">
+   <div class="n">4.8</div>
+   <p>stars on Treatwell, from more than 450 client reviews.</p>
+   <small>On the finished site, three real client reviews go here, word for word.</small>
+  </div>
+ </section>
+
+ <section class="visit" id="visit">
+  <div class="wrap">
+   <span class="tag">Visit</span>
+   <h2>Come and see us</h2>
+   <div class="grid">
+    <div class="card"><h3>Where</h3><p>39 Dockhead<br>Bermondsey, London SE1 2BS</p><a class="btn line" href="https://www.google.com/maps/search/?api=1&amp;query=Tania%27s+Unisex+Hairdressing+39+Dockhead+London+SE1+2BS">Directions</a></div>
+    <div class="card"><h3>Book</h3><p>Phone <a href="tel:02070649233">020 7064 9233</a><br>Online on <a href="https://www.treatwell.co.uk/place/tania-s-unisex-hairdressing/">Treatwell</a><br>Instagram <a href="https://www.instagram.com/taniabeautyse1/">@taniabeautyse1</a></p><p style="color:var(--mute);font-size:14px">Opening times: see Treatwell for today's free slots.</p></div>
+   </div>
+  </div>
+ </section>
+
+ <div class="cta">
+  <h2>Time for a trim?</h2>
+  <div class="row"><a class="btn" href="tel:02070649233">Call Tania's</a></div>
+ </div>
+</main>
+
+<footer>
+ <div class="wrap">
+  <span><b>Tania's Unisex Hairdressing</b> · 39 Dockhead, London SE1 2BS</span>
+  <span>Design concept by Sites By MS. Not the official website.</span>
+ </div>
+</footer>
+<nav class="mbar" aria-label="Quick actions">
+ <a class="btn line" href="https://www.treatwell.co.uk/place/tania-s-unisex-hairdressing/">Book online</a>
+ <a class="btn" href="tel:02070649233">Call</a>
+</nav>
+<script src="/assets/concept-bar.js" data-name="Tania&#39;s Unisex Hairdressing" data-slug="tanias-unisex-hair" defer></script>
+</body>
+</html>
