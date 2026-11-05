@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fab Nails &amp; Spa | 84 Tower Bridge Road, London SE1</title>
+<meta name="description" content="Fab Nails &amp; Spa, 84 Tower Bridge Road, London SE1 4TP. Manicures, gel nails and spa pedicures. Call 020 8616 0380 or book online.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;800&family=Public+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+/* Layout: storefront grid. Words: busy, polished, neighbourly. */
+:root{--rose:#b23a5b;--blush:#f7dcd6;--shell:#fff6f3;--ink:#161214;--mute:#6f5f63;--line:#e8cfc8}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--shell);color:var(--ink);font:400 16.5px/1.65 "Public Sans",system-ui,sans-serif}
+a{color:inherit}
+h1,h2,h3{font-family:Syne,system-ui,sans-serif;font-weight:800;margin:0;line-height:1.02}
+.wrap{width:min(1160px,100% - 32px);margin-inline:auto}
+.topbar{background:var(--ink);color:var(--blush);font-size:12.5px;text-align:center;padding:7px 16px}
+header{position:sticky;top:0;z-index:20;background:var(--shell);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:64px;gap:12px}
+.mark{text-decoration:none;font:800 24px/1 Syne,sans-serif;letter-spacing:-.01em}
+.mark span{color:var(--rose)}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 22px;background:var(--rose);color:#fff;font-weight:700;text-decoration:none;border-radius:10px}
+.btn.dark{background:var(--ink)}
+.btn.line{background:#fff;color:var(--ink);border:1px solid var(--ink)}
+figure{margin:0;position:relative;overflow:hidden;background:var(--blush);border-radius:14px}
+figure img{display:block;width:100%;height:100%;object-fit:cover}
+figure.nophoto{background:linear-gradient(160deg,var(--blush),#efc0b6)}
+.cap{position:absolute;left:10px;bottom:10px;font-size:11px;background:rgba(22,18,20,.72);color:#fff;padding:2px 8px;border-radius:6px;z-index:2}
+.shop{padding:18px 0 0}
+.tiles{display:grid;gap:12px}
+.tile{border-radius:14px;overflow:hidden;position:relative}
+.t-hero{min-height:440px;color:#fff}
+.t-hero figure{position:absolute;inset:0;border-radius:0}
+.t-hero::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(22,18,20,.78),rgba(22,18,20,.1) 60%)}
+.t-hero .in{position:absolute;left:22px;right:22px;bottom:24px;z-index:2}
+.t-hero h1{font-size:clamp(40px,7.6vw,82px)}
+.t-hero p{font-size:18px;max-width:34ch;margin:12px 0 18px}
+.t-sign{background:var(--rose);color:#fff;padding:24px;display:flex;flex-direction:column;justify-content:space-between;min-height:200px}
+.t-sign b{font:800 clamp(52px,9vw,96px)/.9 Syne,sans-serif}
+.t-sign span{font-weight:600}
+.t-addr{background:var(--ink);color:var(--blush);padding:24px;min-height:200px;display:flex;flex-direction:column;justify-content:space-between}
+.t-addr h3{font-size:26px;color:#fff}
+.row{display:flex;flex-wrap:wrap;gap:10px}
+section{padding:68px 0}
+.eyebrow{font-weight:700;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--rose);margin-bottom:10px}
+h2{font-size:clamp(34px,5.6vw,58px);margin-bottom:24px}
+.about .grid{display:grid;gap:28px;align-items:center}
+.about p{font-size:18.5px;max-width:46ch}
+.about figure{aspect-ratio:4/3}
+.shelf{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.item{background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px;min-height:150px;display:flex;flex-direction:column;justify-content:space-between}
+.item h3{font-size:22px}
+.item p{margin:8px 0 0;color:var(--mute);font-size:15px}
+.item:first-child{background:var(--blush);border-color:var(--blush)}
+.gallery .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.gallery figure{aspect-ratio:1/1}
+.gallery figure.w{grid-column:span 2;aspect-ratio:2/1}
+.proof{background:var(--blush)}
+.proof .grid{display:grid;gap:20px;align-items:end}
+.proof .n{font:800 clamp(70px,15vw,150px)/.85 Syne,sans-serif;color:var(--rose)}
+.proof p{font-size:19px;max-width:40ch;margin:0}
+.proof small{display:block;margin-top:12px;color:var(--mute)}
+.visit .grid{display:grid;gap:12px}
+.panel{background:#fff;border:1px solid var(--line);border-radius:14px;padding:24px}
+.panel h3{font-size:22px;margin-bottom:10px}
+.cta{background:var(--ink);color:#fff;text-align:center;padding:84px 16px}
+.cta h2{font-size:clamp(38px,8vw,84px)}
+.cta .row{justify-content:center}
+footer{border-top:1px solid var(--line);font-size:13px;color:var(--mute);padding:26px 0 96px}
+footer .wrap{display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-between}
+.mbar{position:fixed;left:0;right:0;bottom:0;z-index:30;display:flex;gap:8px;padding:10px 16px;background:var(--shell);border-top:1px solid var(--line)}
+.mbar .btn{flex:1;padding:0 10px}
+@media (min-width:860px){
+ .tiles{grid-template-columns:2fr 1fr;grid-template-rows:1fr 1fr}
+ .t-hero{grid-row:span 2;min-height:560px}
+ .about .grid{grid-template-columns:1fr 1fr}
+ .shelf{grid-template-columns:repeat(3,1fr)}
+ .gallery .grid{grid-template-columns:repeat(4,1fr)}
+ .gallery figure.w{grid-column:span 2;aspect-ratio:auto}
+ .proof .grid{grid-template-columns:auto 1fr}
+ .visit .grid{grid-template-columns:repeat(3,1fr)}
+ .mbar{display:none}
+ footer{padding-bottom:26px}
+}
+</style>
+</head>
+<body>
+<div class="topbar">Design concept prepared for Fab Nails &amp; Spa by Sites By MS. Not the official website.</div>
+<header>
+ <div class="wrap nav">
+  <a class="mark" href="#top" aria-label="Fab Nails &amp; Spa">Fab <span>Nails</span> &amp; Spa</a>
+  <a class="btn" href="tel:02086160380">Call to book</a>
+ </div>
+</header>
+
+<main id="top">
+ <div class="wrap shop">
+  <div class="tiles">
+   <div class="tile t-hero">
+    <figure><img src="https://images.unsplash.com/photo-1632345031435-8727f6897d53?w=1800&amp;q=80" alt="A client having her nails done at a nail salon" width="1800" height="1200" onerror="this.parentNode.classList.add('nophoto');this.remove()"><span class="cap">Sample photo</span></figure>
+    <div class="in">
+     <h1>Fab nails on<br>Tower Bridge Road.</h1>
+     <p>Manicures, gel colour and spa pedicures, a short walk from Bermondsey Street.</p>
+     <div class="row"><a class="btn" href="https://www.treatwell.co.uk/place/fab-nails-spa">Book online</a><a class="btn line" href="tel:02086160380">020 8616 0380</a></div>
+    </div>
+   </div>
+   <div class="tile t-sign"><b>4.6★</b><span>from 2,000+ Treatwell reviews</span></div>
+   <div class="tile t-addr"><h3>84 Tower Bridge Road</h3><span>London SE1 4TP<br><a href="https://www.google.com/maps/search/?api=1&amp;query=Fab+Nails+%26+Spa+84+Tower+Bridge+Road+London+SE1+4TP">Get directions →</a></span></div>
+  </div>
+ </div>
+
+ <section class="about">
+  <div class="wrap grid">
+   <div>
+    <div class="eyebrow">About the salon</div>
+    <h2>Your local nail bar.</h2>
+    <p>Fab Nails &amp; Spa is an independent salon on Tower Bridge Road. With more than 2,000 Treatwell reviews, it is clearly where a lot of locals go for a quick refresh or a proper pamper.</p>
+   </div>
+   <figure><img src="https://images.unsplash.com/photo-1775500835259-d3b3f6d6e2f2?w=1400&amp;q=80" alt="Manicure tools laid out on a white towel" width="1400" height="1050" loading="lazy" onerror="this.parentNode.classList.add('nophoto');this.remove()"><span class="cap">Sample photo</span></figure>
+  </div>
+ </section>
+
+ <section style="padding-top:0">
+  <div class="wrap">
+   <div class="eyebrow">On the shelf</div>
+   <h2>Treatments</h2>
+   <div class="shelf">
+    <div class="item"><h3>Manicure</h3><p>Shape, cuticle care and polish.</p></div>
+    <div class="item"><h3>Gel nails</h3><p>Long-lasting colour with a glossy finish.</p></div>
+    <div class="item"><h3>Spa pedicure</h3><p>Soak, scrub and polish.</p></div>
+   </div>
+   <p style="color:var(--mute);margin-top:18px">Full treatment list, prices and free slots on <a href="https://www.treatwell.co.uk/place/fab-nails-spa">Treatwell</a> and <a href="https://www.fresha.com/a/fab-nails-spa-london-uk-tower-bridge-road-z001i5h0">Fresha</a>.</p>
+  </div>
+ </section>
+
+ <section class="gallery" style="padding-top:0">
+  <div class="wrap">
+   <div class="eyebrow">In the window</div>
+   <h2>Recent sets</h2>
+   <div class="grid">
+    <figure class="w"><img src="https://images.unsplash.com/photo-1758225490983-0fae7961e425?w=1400&amp;q=80" alt="A nail salon window with a neon sign" width="1400" height="700" loading="lazy" onerror="this.parentNode.classList.add('nophoto');this.remove()"><span class="cap">Sample photo</span></figure>
+    <figure><img src="https://images.unsplash.com/photo-1610992015762-45dca7fa3a85?w=800&amp;q=80" alt="Light pink manicured nails" width="800" height="800" loading="lazy" onerror="this.parentNode.classList.add('nophoto');this.remove()"><span class="cap">Sample photo</span></figure>
+    <figure><img src="https://images.unsplash.com/photo-1612887390768-fb02affea7a6?w=800&amp;q=80" alt="A pink manicure on white fabric" width="800" height="800" loading="lazy" onerror="this.parentNode.classList.add('nophoto');this.remove()"><span class="cap">Sample photo</span></figure>
+    <figure><img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=800&amp;q=80" alt="A pump bottle, towel and pink tulips" width="800" height="800" loading="lazy" onerror="this.parentNode.classList.add('nophoto');this.remove()"><span class="cap">Sample photo</span></figure>
+   </div>
+  </div>
+ </section>
+
+ <section class="proof">
+  <div class="wrap grid">
+   <div class="n">2,000+</div>
+   <div><p>Treatwell reviews, averaging 4.6 stars. That is a lot of happy hands and feet on one street.</p><small>On the finished site, three real client reviews sit here, word for word.</small></div>
+  </div>
+ </section>
+
+ <section class="visit" id="visit">
+  <div class="wrap">
+   <div class="eyebrow">Visit</div>
+   <h2>Book ahead or call</h2>
+   <div class="grid">
+    <div class="panel"><h3>Address</h3><p>84 Tower Bridge Road<br>London SE1 4TP</p><a class="btn line" href="https://www.google.com/maps/search/?api=1&amp;query=Fab+Nails+%26+Spa+84+Tower+Bridge+Road+London+SE1+4TP">Directions</a></div>
+    <div class="panel"><h3>Phone</h3><p><a href="tel:02086160380">020 8616 0380</a></p><p>Instagram <a href="https://www.instagram.com/fab_nailsspa/">@fab_nailsspa</a></p></div>
+    <div class="panel"><h3>Hours</h3><p>See today's free slots on <a href="https://www.treatwell.co.uk/place/fab-nails-spa">Treatwell</a>.</p></div>
+   </div>
+  </div>
+ </section>
+
+ <div class="cta">
+  <h2>Treat yourself today.</h2>
+  <div class="row"><a class="btn" href="https://www.treatwell.co.uk/place/fab-nails-spa">Book online</a><a class="btn line" href="tel:02086160380">Call the salon</a></div>
+ </div>
+</main>
+
+<footer>
+ <div class="wrap">
+  <span><b>Fab Nails &amp; Spa</b> · 84 Tower Bridge Road, London SE1 4TP</span>
+  <span>Design concept by Sites By MS. Not the official website.</span>
+ </div>
+</footer>
+<nav class="mbar" aria-label="Quick actions">
+ <a class="btn line" href="https://www.google.com/maps/search/?api=1&amp;query=Fab+Nails+%26+Spa+84+Tower+Bridge+Road+London+SE1+4TP">Directions</a>
+ <a class="btn" href="tel:02086160380">Call to book</a>
+</nav>
+<script src="/assets/concept-bar.js" data-name="Fab Nails &amp; Spa" data-slug="fab-nails-spa" defer></script>
+</body>
+</html>
