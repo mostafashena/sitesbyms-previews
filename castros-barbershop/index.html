@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Castro's Barbershop | Vintage barbers under the arches, Maltby Street</title>
+<meta name="description" content="Castro's Barbershop, Upstairs at Arch 49, Ropewalk, Maltby Street, Bermondsey SE1. Classic and vintage men's cuts, skin fades and beard trims. Open 7 days.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Libre+Franklin:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+/* Layout: printed menu card / vintage handbill. Words: vintage, passionate, musical. */
+:root{--cream:#F1E7D3;--paper:#F8F1E3;--ink:#1B1714;--ox:#8E2A1E;--brass:#B88A3E;--muted:#5E544A;--line:#D8C9AC}
+*{box-sizing:border-box}
+.hero-grid>*,.story-grid>*,.visit-grid>*,.about>*,.vgrid>*,.grid>*,.team>*,.rv>*,.steps>*,.price-grid>*{min-width:0}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--cream);color:var(--ink);font:400 17px/1.65 "Libre Franklin",system-ui,sans-serif}
+a{color:inherit}
+img{display:block;max-width:100%;height:auto}
+h1,h2,h3{font-family:"Abril Fatface",Georgia,serif;font-weight:400;margin:0;line-height:1.02}
+.wrap{width:min(1120px,100% - 32px);margin-inline:auto}
+.topbar{background:var(--ink);color:var(--cream);font-size:13px;text-align:center;padding:7px 16px}
+header{position:sticky;top:0;z-index:20;background:var(--cream);border-bottom:3px double var(--ink)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:66px;gap:12px}
+.mark{text-decoration:none;display:flex;flex-direction:column;line-height:1}
+.mark b{font:400 30px/1 "Abril Fatface",serif;letter-spacing:.01em}
+.mark small{font-size:10.5px;letter-spacing:.32em;text-transform:uppercase;color:var(--ox);font-weight:800;margin-top:3px}
+.links{display:flex;gap:22px;font-size:14px;font-weight:600}
+.links a{text-decoration:none}
+.links a:hover{color:var(--ox)}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 22px;background:var(--ox);color:var(--paper);font-weight:800;font-size:14px;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;border:2px solid var(--ox);white-space:nowrap}
+.btn:hover{background:var(--ink);border-color:var(--ink)}
+.btn.line{background:transparent;color:var(--ink);border-color:var(--ink)}
+.btn.line:hover{background:var(--ink);color:var(--cream)}
+@media(max-width:820px){.links{display:none}.nav .btn{min-height:42px;padding:0 14px;font-size:12px}}
+
+.hero{padding:44px 0 56px}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:44px;align-items:center}
+.kicker{font-size:12px;letter-spacing:.32em;text-transform:uppercase;font-weight:800;color:var(--ox);display:flex;align-items:center;gap:12px}
+.kicker:before{content:"";width:34px;height:2px;background:var(--ox)}
+.hero h1{font-size:clamp(44px,7vw,84px);margin:18px 0 20px}
+.hero h1 em{font-style:normal;color:var(--ox)}
+.hero p{font-size:19px;max-width:30em;color:var(--muted);margin:0 0 28px}
+.cta{display:flex;gap:12px;flex-wrap:wrap}
+.frame{position:relative;border:3px solid var(--ink);padding:10px;background:var(--paper);transform:rotate(1.2deg);box-shadow:10px 12px 0 var(--ink)}
+.frame img{width:100%;aspect-ratio:4/5;object-fit:cover;filter:saturate(.85) contrast(1.05)}
+.stamp{position:absolute;left:-26px;bottom:34px;background:var(--ox);color:var(--paper);border-radius:50%;width:112px;height:112px;display:grid;place-items:center;text-align:center;font:400 15px/1.15 "Abril Fatface",serif;transform:rotate(-12deg);box-shadow:0 0 0 4px var(--cream),0 0 0 6px var(--ox)}
+.stamp b{display:block;font-size:30px}
+@media(max-width:860px){.hero-grid{grid-template-columns:minmax(0,1fr)}.frame{transform:none;box-shadow:6px 8px 0 var(--ink)}.stamp{left:auto;right:-6px;bottom:-22px;width:96px;height:96px;font-size:13px}.stamp b{font-size:24px}}
+
+.strip{background:var(--ink);color:var(--cream);padding:14px 0;overflow:hidden;font:400 22px/1 "Abril Fatface",serif;white-space:nowrap}
+.strip span{display:inline-block;padding-right:40px}
+.strip i{color:var(--brass);font-style:normal;padding:0 16px}
+
+section{padding:76px 0}
+.sec-h{display:flex;align-items:end;justify-content:space-between;gap:20px;margin-bottom:34px;flex-wrap:wrap}
+.sec-h h2{font-size:clamp(34px,5vw,54px)}
+.sec-h p{margin:0;color:var(--muted);max-width:34em}
+
+.story-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:48px;align-items:center}
+.story-grid img{width:100%;aspect-ratio:1/1;object-fit:cover;border:3px solid var(--ink)}
+.story p{margin:0 0 16px}
+.story .quote{font:400 26px/1.25 "Abril Fatface",serif;color:var(--ox);border-left:4px solid var(--brass);padding-left:18px;margin:24px 0}
+.facts{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+.facts span{border:2px solid var(--ink);padding:6px 12px;font-size:13px;font-weight:800;letter-spacing:.06em;text-transform:uppercase}
+@media(max-width:860px){.story-grid{grid-template-columns:minmax(0,1fr)}}
+
+.menu{background:var(--paper);border-block:3px double var(--ink)}
+.card{border:3px solid var(--ink);padding:34px 38px;background:var(--cream);position:relative}
+.card:before{content:"";position:absolute;inset:7px;border:1px solid var(--ink);pointer-events:none}
+.card h3{font-size:26px;text-align:center;margin-bottom:8px}
+.card .sub{text-align:center;color:var(--muted);font-size:14px;margin:0 0 22px;letter-spacing:.08em;text-transform:uppercase}
+.price-grid{display:grid;grid-template-columns:1fr 1fr;gap:4px 48px}
+.row{display:flex;align-items:baseline;gap:10px;padding:10px 0;border-bottom:1px dashed var(--line)}
+.row b{font-weight:600}
+.row small{display:block;color:var(--muted);font-size:13px}
+.row .dots{flex:1}
+.row .p{font:400 22px/1 "Abril Fatface",serif;color:var(--ox)}
+@media(max-width:760px){.price-grid{grid-template-columns:minmax(0,1fr)}.card{padding:26px 20px}}
+
+.team{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.barber{border:2px solid var(--ink);padding:22px 18px;background:var(--paper)}
+.barber b{display:block;font:400 30px/1 "Abril Fatface",serif;margin-bottom:6px}
+.barber span{font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--ox);font-weight:800}
+.barber p{margin:10px 0 0;font-size:15px;color:var(--muted)}
+@media(max-width:860px){.team{grid-template-columns:1fr 1fr}}
+
+.gallery{display:grid;grid-template-columns:2fr 1fr 1fr;grid-auto-rows:220px;gap:12px}
+.gallery figure{margin:0;position:relative;overflow:hidden;border:2px solid var(--ink);background:var(--line)}
+.gallery figure:first-child{grid-row:span 2}
+.gallery img{width:100%;height:100%;object-fit:cover;filter:saturate(.8)}
+.gallery figcaption{position:absolute;left:8px;bottom:8px;background:rgba(27,23,20,.78);color:var(--cream);font-size:11px;padding:3px 8px;letter-spacing:.04em}
+@media(max-width:760px){.gallery{grid-template-columns:1fr 1fr;grid-auto-rows:160px}.gallery figure:first-child{grid-column:span 2;grid-row:span 1}}
+
+.reviews{background:var(--ink);color:var(--cream)}
+.reviews .sec-h p{color:#CDBFA5}
+.rv{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.rv blockquote{margin:0;border:1px solid #4A4038;padding:26px 24px}
+.rv blockquote p{margin:0 0 14px;font-size:16.5px}
+.rv cite{font-style:normal;color:var(--brass);font-size:13px;letter-spacing:.1em;text-transform:uppercase;font-weight:800}
+.score{font:400 64px/1 "Abril Fatface",serif;color:var(--brass)}
+@media(max-width:860px){.rv{grid-template-columns:minmax(0,1fr)}}
+
+.visit-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px}
+.hours{width:100%;border-collapse:collapse;font-size:16px}
+.hours td{padding:9px 0;border-bottom:1px dashed var(--line)}
+.hours td:last-child{text-align:right;font-weight:600}
+.addr p{margin:0 0 12px}
+.addr strong{font:400 26px/1.2 "Abril Fatface",serif;display:block;margin-bottom:8px}
+@media(max-width:760px){.visit-grid{grid-template-columns:minmax(0,1fr)}}
+
+.final{background:var(--ox);color:var(--paper);text-align:center;padding:70px 0}
+.final h2{font-size:clamp(36px,6vw,64px);margin-bottom:14px}
+.final p{margin:0 auto 26px;max-width:32em;color:#F1D9CF}
+.final .btn{background:var(--paper);color:var(--ox);border-color:var(--paper)}
+.final .btn:hover{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+
+footer{background:var(--ink);color:#BFB29B;font-size:14px;padding:30px 0}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.ph{background:var(--line)}
+</style>
+</head>
+<body>
+<div class="topbar">Design concept prepared for Castro's Barbershop by Sites By MS. Not the official website.</div>
+<header>
+  <div class="wrap nav">
+    <a class="mark" href="#top"><b>Castro's</b><small>Barbershop · Maltby St</small></a>
+    <nav class="links"><a href="#story">Our story</a><a href="#prices">Prices</a><a href="#barbers">Barbers</a><a href="#visit">Visit</a></nav>
+    <a class="btn" href="https://www.treatwell.co.uk/place/castros-barbershop/">Book a chair</a>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <div class="kicker">Bermondsey · Since 2019</div>
+        <h1>Sharp cuts from the <em>'30s to the '60s.</em></h1>
+        <p>A vintage barbershop up the stairs of a railway arch on Maltby Street. Classic scissor cuts, skin fades, side parts and slick backs, with good records on the turntable.</p>
+        <div class="cta"><a class="btn" href="https://www.treatwell.co.uk/place/castros-barbershop/">Book your cut</a><a class="btn line" href="tel:07376523067">Call 07376 523067</a></div>
+      </div>
+      <div class="frame">
+        <img src="https://cdn1.treatwell.net/images/view/v2.i1899332.w1080.h720.x80ED1FF2/" alt="Inside Castro's Barbershop on Maltby Street" width="1080" height="720" onerror="this.onerror=null;this.removeAttribute('src');this.classList.add('ph')">
+        <div class="stamp"><span><b>4.9★</b>2,700+<br>reviews</span></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="strip" aria-hidden="true"><span>Scissor cuts<i>✦</i>Skin fades<i>✦</i>Side parts<i>✦</i>Slick backs<i>✦</i>Beard trims<i>✦</i>Hot towel shaves<i>✦</i>Vinyl on Saturdays<i>✦</i>Scissor cuts<i>✦</i>Skin fades<i>✦</i>Side parts</span></div>
+
+  <section id="story">
+    <div class="wrap story-grid">
+      <img src="https://images.unsplash.com/photo-1585747860715-2ba37e788b70?w=1200&q=80" alt="A black leather barber chair against a brick wall" width="1200" height="1200" loading="lazy" onerror="this.onerror=null;this.removeAttribute('src');this.classList.add('ph')">
+      <div class="story">
+        <div class="kicker">Our story</div>
+        <h2 style="font-size:clamp(34px,5vw,54px);margin:14px 0 20px">One chair, one barber. Now four.</h2>
+        <p>Leo Castro, a barber and record collector from Barcelona, opened Castro's in 2019 with his business partner Aisha Khan, a vintage roots singer. It started with one barber and one chair under the arches on Ropewalk.</p>
+        <p>The specialty is men's hair the way it was worn from the 1930s to the 1960s: Boston cuts, side parts, pompadours and slick backs, alongside modern fades. On Saturdays a vinyl DJ spins records while you wait.</p>
+        <p class="quote">"I like to make it feel like more than a haircut."<br><small style="font:600 13px 'Libre Franklin';color:var(--muted);letter-spacing:.1em;text-transform:uppercase">Leo Castro, master barber</small></p>
+        <div class="facts"><span>Named best barbershop in London</span><span>Corporate Livewire Prestige Awards</span><span>Open 7 days</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="menu" id="prices">
+    <div class="wrap">
+      <div class="sec-h"><h2>The price list</h2><p>Every cut includes a wash and style. Prices as listed for booking online.</p></div>
+      <div class="card">
+        <h3>Castro's Barbershop</h3>
+        <p class="sub">Men · Boys · Beards</p>
+        <div class="price-grid">
+          <div class="row"><div><b>Haircut, shorter hair</b><small>Wash, cut &amp; style · 35 min</small></div><span class="dots"></span><span class="p">£32</span></div>
+          <div class="row"><div><b>Haircut, longer hair</b><small>Wash, cut &amp; style · 55 min</small></div><span class="dots"></span><span class="p">£36</span></div>
+          <div class="row"><div><b>Skin fade</b><small>40 min</small></div><span class="dots"></span><span class="p">£33</span></div>
+          <div class="row"><div><b>Haircut &amp; beard trim</b><small>55 min – 1 hr 10</small></div><span class="dots"></span><span class="p">from £40</span></div>
+          <div class="row"><div><b>Buzz or crew cut</b><small>20 min</small></div><span class="dots"></span><span class="p">£20</span></div>
+          <div class="row"><div><b>Beard trim</b><small>25 min</small></div><span class="dots"></span><span class="p">£19</span></div>
+          <div class="row"><div><b>Head shave &amp; wash</b><small>20 min</small></div><span class="dots"></span><span class="p">£18</span></div>
+          <div class="row"><div><b>Express shave</b><small>15 min</small></div><span class="dots"></span><span class="p">£15</span></div>
+          <div class="row"><div><b>Children's haircut</b><small>Children</small></div><span class="dots"></span><span class="p">£22</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="barbers">
+    <div class="wrap">
+      <div class="sec-h"><h2>The barbers</h2><p>Four chairs, four barbers. Ask for your favourite by name when you book.</p></div>
+      <div class="team">
+        <div class="barber"><b>Leo</b><span>Master barber</span><p>Founder. Vintage and classic cuts are his passion. Rated 4.9 by 1,000+ clients.</p></div>
+        <div class="barber"><b>B.B.</b><span>Barber</span><p>Rated 5.0 by 280+ clients.</p></div>
+        <div class="barber"><b>Yuto</b><span>Barber</span><p>Rated 5.0 by 160+ clients.</p></div>
+        <div class="barber"><b>Hugo</b><span>Barber</span><p>Book Hugo online for traditional and modern cuts.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="wrap">
+      <div class="gallery">
+        <figure><img src="https://images.unsplash.com/photo-1781768526571-ef9c333279c7?w=1400&q=80" alt="A classic barbershop interior with men getting haircuts" width="1400" height="1000" loading="lazy" onerror="this.onerror=null;this.removeAttribute('src')"><figcaption>Sample photo</figcaption></figure>
+        <figure><img src="https://images.unsplash.com/photo-1647140655214-e4a2d914971f?w=800&q=80" alt="A barber cutting a man's hair with scissors" width="800" height="600" loading="lazy" onerror="this.onerror=null;this.removeAttribute('src')"><figcaption>Sample photo</figcaption></figure>
+        <figure><img src="https://images.unsplash.com/photo-1621605815971-fbc98d665033?w=800&q=80" alt="Clippers, scissors and a comb laid out on a board" width="800" height="600" loading="lazy" onerror="this.onerror=null;this.removeAttribute('src')"><figcaption>Sample photo</figcaption></figure>
+        <figure><img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=800&q=80" alt="A man sitting in a barber's chair" width="800" height="600" loading="lazy" onerror="this.onerror=null;this.removeAttribute('src')"><figcaption>Sample photo</figcaption></figure>
+        <figure><img src="https://images.unsplash.com/photo-1783908688260-0c47404926f3?w=800&q=80" alt="A barber finishing a man's haircut" width="800" height="600" loading="lazy" onerror="this.onerror=null;this.removeAttribute('src')"><figcaption>Sample photo</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="reviews">
+    <div class="wrap">
+      <div class="sec-h"><div><div class="score">4.9</div><h2>What the chair says</h2></div><p>From more than 2,700 reviews online.</p></div>
+      <div class="rv">
+        <blockquote><p>"A good barber is hard to find when you have a vintage hairstyle and I am so happy that I found Leo at Castro's. He is truly passionate about vintage cuts and his taste in music is impeccable."</p><cite>Google review</cite></blockquote>
+        <blockquote><p>"Leo Castro is an amazing barber! He gave me a 50's-inspired Boston haircut. I totally recommend him, I'll definitely be back."</p><cite>Google review</cite></blockquote>
+        <blockquote><p>"A master craftsman of the classic style. Top knowledge of music too in a stylish, friendly atmosphere. Best and sharpest cut I can remember having."</p><cite>Google review</cite></blockquote>
+      </div>
+    </div>
+  </section>
+
+  <section id="visit">
+    <div class="wrap visit-grid">
+      <div class="addr">
+        <div class="kicker">Find us</div>
+        <h2 style="font-size:clamp(34px,5vw,54px);margin:14px 0 22px">Up the stairs, under the arches.</h2>
+        <p><strong>Upstairs at Arch 49</strong>Ropewalk, Maltby Street<br>Bermondsey, London SE1 3PA</p>
+        <p>In the Ropewalk arches by Maltby Street Market, between London Bridge and Bermondsey.</p>
+        <div class="cta"><a class="btn" href="https://www.google.com/maps/search/?api=1&query=Castro%27s+Barbershop+Maltby+Street+London+SE1+3PA">Get directions</a><a class="btn line" href="tel:07376523067">07376 523067</a></div>
+      </div>
+      <div>
+        <h3 style="font-size:28px;margin-bottom:12px">Opening hours</h3>
+        <table class="hours">
+          <tr><td>Monday – Thursday</td><td>11:00 – 20:00</td></tr>
+          <tr><td>Friday</td><td>10:00 – 20:00</td></tr>
+          <tr><td>Saturday</td><td>9:00 – 18:00</td></tr>
+          <tr><td>Sunday</td><td>10:00 – 18:00</td></tr>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="final">
+    <div class="wrap">
+      <h2>Your chair is waiting.</h2>
+      <p>Book online in a minute, or just call. Walk out with the sharpest cut you've had in years.</p>
+      <a class="btn" href="https://www.treatwell.co.uk/place/castros-barbershop/">Book a chair</a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Castro's Barbershop · Upstairs at Arch 49, Ropewalk, Maltby Street, London SE1 3PA</span>
+    <span>Design concept by Sites By MS. Not the official website.</span>
+  </div>
+</footer>
+<script src="/assets/concept-bar.js" data-name="Castro&#39;s Barbershop" data-slug="castros-barbershop" defer></script>
+</body>
+</html>
