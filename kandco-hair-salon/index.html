@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>K&amp;Co Hair Salon | Shad Thames, London SE1</title>
+<meta name="description" content="K&amp;Co Hair Salon, 30c Shad Thames, London SE1 2YG. Cuts, colour and care by Kieran, Andrew and Joseph, with Redken and Olaplex.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,600;1,6..96,400&family=Hanken+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+/* Layout: editorial magazine. Words: precise, riverside, trusted. */
+:root{--ink:#1d1b19;--paper:#f4efe7;--brick:#9a4a2e;--stone:#d9cfc0;--mute:#6d655c}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 16.5px/1.7 "Hanken Grotesk",system-ui,sans-serif}
+a{color:inherit}
+h1,h2,h3{font-family:"Bodoni Moda",Georgia,serif;font-weight:400;margin:0;line-height:1.02}
+.wrap{width:min(1140px,100% - 32px);margin-inline:auto}
+.topbar{background:var(--ink);color:var(--stone);font-size:12.5px;text-align:center;padding:7px 16px}
+header{position:sticky;top:0;z-index:20;background:rgba(244,239,231,.96);backdrop-filter:blur(6px);border-bottom:1px solid var(--ink)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:64px;gap:12px}
+.mark{text-decoration:none;font:600 30px/1 "Bodoni Moda",serif;letter-spacing:.02em}
+.mark i{font-style:italic;color:var(--brick);font-weight:400}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 24px;background:var(--ink);color:var(--paper);text-decoration:none;font-weight:700;letter-spacing:.06em;text-transform:uppercase;font-size:13px}
+.btn.brick{background:var(--brick)}
+.btn.line{background:transparent;color:inherit;border:1px solid currentColor}
+figure{margin:0;position:relative;overflow:hidden;background:var(--stone)}
+figure img{display:block;width:100%;height:100%;object-fit:cover}
+figure.nophoto{background:linear-gradient(135deg,var(--stone),#c9b9a4)}
+.cap{position:absolute;left:10px;bottom:10px;font-size:11px;background:rgba(29,27,25,.72);color:#fff;padding:2px 8px;z-index:2}
+.issue{display:flex;justify-content:space-between;font-size:12px;letter-spacing:.18em;text-transform:uppercase;border-bottom:1px solid var(--ink);padding:14px 0;color:var(--mute)}
+.cover{padding:26px 0 60px}
+.cover .grid{display:grid;gap:28px}
+.cover h1{font-size:clamp(54px,11vw,128px);letter-spacing:-.01em}
+.cover h1 i{color:var(--brick)}
+.cover .lede{font-size:clamp(18px,2.2vw,22px);max-width:36ch;margin:20px 0 26px}
+.cover figure{aspect-ratio:4/5}
+.row{display:flex;flex-wrap:wrap;gap:12px}
+section{padding:72px 0;border-top:1px solid var(--ink)}
+.kicker{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--brick);font-weight:700;margin-bottom:12px}
+h2{font-size:clamp(40px,7vw,76px);margin-bottom:26px}
+.story{display:grid;gap:32px}
+.story .cols{columns:1;column-gap:36px;font-size:17.5px}
+.story .cols p:first-child::first-letter{float:left;font:400 82px/.8 "Bodoni Moda",serif;padding:8px 10px 0 0;color:var(--brick)}
+.story figure{aspect-ratio:3/2}
+.team{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--ink);margin-top:30px}
+.team div{padding:18px 12px 0 0}
+.team b{font:400 30px/1 "Bodoni Moda",serif;display:block}
+.team span{font-size:13px;color:var(--mute)}
+.menu ol{list-style:none;counter-reset:m;padding:0;margin:0}
+.menu li{counter-increment:m;display:grid;grid-template-columns:56px 1fr;gap:6px 18px;padding:22px 0;border-bottom:1px solid var(--stone)}
+.menu li::before{content:counter(m,decimal-leading-zero);font:italic 400 28px/1 "Bodoni Moda",serif;color:var(--brick);grid-row:span 2}
+.menu li b{font:400 30px/1.1 "Bodoni Moda",serif}
+.menu li span{color:var(--mute)}
+.gallery .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.gallery figure{aspect-ratio:1/1}
+.gallery figure.tall{grid-row:span 2;aspect-ratio:auto}
+.quote{background:var(--ink);color:var(--paper);border:0}
+.quote .big{font:italic 400 clamp(40px,8vw,92px)/1 "Bodoni Moda",serif}
+.quote .big b{font-style:normal;color:#e0a185}
+.quote p{max-width:52ch;color:var(--stone)}
+.visit .grid{display:grid;gap:30px}
+.visit dl{margin:0;display:grid;grid-template-columns:120px 1fr;gap:12px 16px}
+.visit dt{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--mute);padding-top:4px}
+.visit dd{margin:0;font-size:18px}
+.visit figure{aspect-ratio:16/10}
+.cta{text-align:center;padding:90px 0;border-top:1px solid var(--ink)}
+.cta h2{font-size:clamp(46px,9vw,104px)}
+.cta .row{justify-content:center}
+footer{background:var(--ink);color:var(--stone);font-size:13px;padding:26px 0 96px}
+footer .wrap{display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-between}
+.mbar{position:fixed;left:0;right:0;bottom:0;z-index:30;display:flex;gap:8px;padding:10px 16px;background:var(--paper);border-top:1px solid var(--ink)}
+.mbar .btn{flex:1;padding:0 10px}
+@media (min-width:860px){
+ .cover .grid{grid-template-columns:1.15fr .85fr;align-items:end}
+ .story{grid-template-columns:1fr 1fr;align-items:start}
+ .story .cols{columns:2}
+ .gallery .grid{grid-template-columns:repeat(3,1fr)}
+ .visit .grid{grid-template-columns:1fr 1fr;align-items:center}
+ .mbar{display:none}
+ footer{padding-bottom:26px}
+}
+</style>
+</head>
+<body>
+<div class="topbar">Design concept prepared for K&amp;Co Hair Salon by Sites By MS. Not the official website.</div>
+<header>
+ <div class="wrap nav">
+  <a class="mark" href="#top" aria-label="K&amp;Co Hair Salon">K<i>&amp;</i>Co</a>
+  <a class="btn brick" href="https://www.fresha.com/a/k-co-hair-salon-london-uk-30c-shad-thames-lrbzfra0">Book online</a>
+ </div>
+</header>
+
+<main id="top">
+ <div class="wrap issue"><span>Shad Thames · SE1</span><span>Hair salon</span></div>
+ <section class="cover" style="border:0">
+  <div class="wrap grid">
+   <div>
+    <h1>Good hair,<br><i>by the river.</i></h1>
+    <p class="lede">An independent salon on Shad Thames, a few minutes from Tower Bridge. Cuts, colour and care from a small team that clients keep coming back to.</p>
+    <div class="row"><a class="btn" href="https://www.fresha.com/a/k-co-hair-salon-london-uk-30c-shad-thames-lrbzfra0">Book an appointment</a><a class="btn line" href="tel:02074079514">020 7407 9514</a></div>
+   </div>
+   <figure><img src="https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=1600&amp;q=80" alt="A stylist blow-drying a client's hair with a round brush" width="1200" height="1500" onerror="this.parentNode.classList.add('nophoto');this.remove()"><span class="cap">Sample photo</span></figure>
+  </div>
+ </section>
+
+ <section>
+  <div class="wrap story">
+   <div>
+    <div class="kicker">The salon</div>
+    <h2>Small team.<br>Serious about hair.</h2>
+    <div class="cols">
+     <p>K&amp;Co is a neighbourhood salon tucked into the old warehouse streets of Shad Thames. It is the kind of place where you see the same stylist every visit, and they remember what you asked for last time.</p>
+     <p>The team works with Redken colour and Olaplex bond care, so colour can stay bright and hair can stay healthy, visit after visit.</p>
+    </div>
+    <div class="team">
+     <div><b>Kieran</b><span>Stylist</span></div>
+     <div><b>Andrew</b><span>Stylist</span></div>
+     <div><b>Joseph</b><span>Stylist</span></div>
+    </div>
+   </div>
+   <figure><img src="https://images.unsplash.com/photo-1633681926022-84c23e8cb2d6?w=1600&amp;q=80" alt="A modern salon interior with chairs, round mirrors and a brick wall" width="1500" height="1000" loading="lazy" onerror="this.parentNode.classList.add('nophoto');this.remove()"><span class="cap">Sample photo</span></figure>
+  </div>
+ </section>
+
+ <section class="menu">
+  <div class="wrap">
+   <div class="kicker">In the chair</div>
+   <h2>What we do</h2>
+   <ol>
+    <li><b>Cut &amp; finish</b><span>Restyles, trims and finishing, for women and men.</span></li>
+    <li><b>Colour</b><span>Redken colour, from a gloss refresh to a full change.</span></li>
+    <li><b>Bond care</b><span>Olaplex treatment to protect hair during and after colour.</span></li>
+    <li><b>Blow-dry</b><span>A polished finish for work, dinner or a big day.</span></li>
+   </ol>
+   <p style="color:var(--mute);margin-top:22px">Full menu, prices and live availability on <a href="https://www.fresha.com/a/k-co-hair-salon-london-uk-30c-shad-thames-lrbzfra0">Fresha</a>.</p>
+  </div>
+ </section>
+
+ <section class="gallery">
+  <div class="wrap">
+   <div class="kicker">The work</div>
+   <h2>Recent hair</h2>
+   <div class="grid">
+    <figure class="tall"><img src="https://images.unsplash.com/photo-1634449571010-02389ed0f9b0?w=900&amp;q=80" alt="A client having her hair cut" width="900" height="1200" loading="lazy" onerror="this.parentNode.classList.add('nophoto');this.remove()"><span class="cap">Sample photo</span></figure>
+    <figure><img src="https://images.unsplash.com/photo-1595475884562-073c30d45670?w=900&amp;q=80" alt="Hairbrushes, scissors and a tinting brush" width="900" height="900" loading="lazy" onerror="this.parentNode.classList.add('nophoto');this.remove()"><span class="cap">Sample photo</span></figure>
+    <figure><img src="https://images.unsplash.com/photo-1605497788044-5a32c7078486?w=900&amp;q=80" alt="A stylist blow-drying a man's hair" width="900" height="900" loading="lazy" onerror="this.parentNode.classList.add('nophoto');this.remove()"><span class="cap">Sample photo</span></figure>
+    <figure><img src="https://images.unsplash.com/photo-1560869713-7d0a29430803?w=900&amp;q=80" alt="A stylist holding a curling tong" width="900" height="900" loading="lazy" onerror="this.parentNode.classList.add('nophoto');this.remove()"><span class="cap">Sample photo</span></figure>
+    <figure><img src="https://images.unsplash.com/photo-1600948836101-f9ffda59d250?w=900&amp;q=80" alt="Salon chairs facing round mirrors" width="900" height="900" loading="lazy" onerror="this.parentNode.classList.add('nophoto');this.remove()"><span class="cap">Sample photo</span></figure>
+   </div>
+  </div>
+ </section>
+
+ <section class="quote">
+  <div class="wrap">
+   <div class="kicker" style="color:#e0a185">What clients say</div>
+   <p class="big"><b>5.0</b> on Fresha,<br>from 2,000+ reviews.</p>
+   <p>On the finished site, three of your favourite client reviews sit here, taken word for word from Fresha.</p>
+  </div>
+ </section>
+
+ <section class="visit" id="visit">
+  <div class="wrap grid">
+   <div>
+    <div class="kicker">Visit</div>
+    <h2>Find the salon</h2>
+    <dl>
+     <dt>Address</dt><dd>30c Shad Thames<br>London SE1 2YG</dd>
+     <dt>Phone</dt><dd><a href="tel:02074079514">020 7407 9514</a></dd>
+     <dt>Hours</dt><dd>See live availability on <a href="https://www.fresha.com/a/k-co-hair-salon-london-uk-30c-shad-thames-lrbzfra0">Fresha</a></dd>
+     <dt>Instagram</dt><dd><a href="https://www.instagram.com/kandcosalons/">@kandcosalons</a></dd>
+    </dl>
+    <p style="margin-top:24px"><a class="btn line" href="https://www.google.com/maps/search/?api=1&amp;query=K%26Co+Hair+Salon+30c+Shad+Thames+London+SE1+2YG">Get directions</a></p>
+   </div>
+   <div style="background:var(--brick);color:var(--paper);padding:40px 28px"><div class="kicker" style="color:var(--stone)">Getting here</div><p style="font:400 clamp(30px,4vw,44px)/1.1 'Bodoni Moda',serif;margin:0">Shad Thames, on the south bank by Tower Bridge.</p><p style="margin:16px 0 0;color:var(--stone)">London Bridge and Bermondsey stations are both within walking distance.</p></div>
+  </div>
+ </section>
+
+ <div class="cta">
+  <div class="wrap">
+   <div class="kicker">Next appointment</div>
+   <h2>Your chair is <i>waiting.</i></h2>
+   <div class="row"><a class="btn brick" href="https://www.fresha.com/a/k-co-hair-salon-london-uk-30c-shad-thames-lrbzfra0">Book online</a><a class="btn line" href="tel:02074079514">Call the salon</a></div>
+  </div>
+ </div>
+</main>
+
+<footer>
+ <div class="wrap">
+  <span><b>K&amp;Co Hair Salon</b> · 30c Shad Thames, London SE1 2YG</span>
+  <span>Design concept by Sites By MS. Not the official website.</span>
+ </div>
+</footer>
+<nav class="mbar" aria-label="Quick actions">
+ <a class="btn line" href="tel:02074079514">Call</a>
+ <a class="btn brick" href="https://www.fresha.com/a/k-co-hair-salon-london-uk-30c-shad-thames-lrbzfra0">Book online</a>
+</nav>
+<script src="/assets/concept-bar.js" data-name="K&amp;Co Hair Salon" data-slug="kandco-hair-salon" defer></script>
+</body>
+</html>
