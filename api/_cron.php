@@ -36,6 +36,9 @@ try {
     }
 } catch (Throwable $e) { fwrite(STDERR, 'Mail test error: ' . $e->getMessage() . "\n"); }
 $force = in_array('--now', $argv, true);
+// "Send now" from the API / panel: one extra run today (e.g. the owner raised the daily limit and wants the rest out now).
+$sn = setting_get('autosend_now', null);
+if (is_array($sn) && ($sn['day'] ?? '') === (new DateTime('now', new DateTimeZone(TZ)))->format('Y-m-d')) { setting_set('autosend_now', null); $force = true; }
 // Concept pages taken down (opt-outs): the deploy only adds files, so delete these folders from the live site here.
 foreach ((array)json_decode((string)@file_get_contents(__DIR__ . '/_removed.json'), true) as $gone) {
     $dir = dirname(__DIR__) . '/' . $gone;

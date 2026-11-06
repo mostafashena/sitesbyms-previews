@@ -62,6 +62,9 @@ try {
             $files = glob(data_dir() . '/autosend-*.json') ?: []; rsort($files); $rep = [];
             foreach (array_slice($files, 0, (int)($in['days'] ?? 7)) as $f) $rep[] = json_decode((string)file_get_contents($f), true);
             out(['reports' => $rep, 'state' => read_json('autosend_state.json', []), 'heartbeat' => read_json('cron_heartbeat.json', [])]);
+        case 'sendnow':  // ask the next cron run (within 10 minutes) to send everything that is due now
+            setting_set('autosend_now', ['day' => (new DateTime('now', new DateTimeZone(TZ)))->format('Y-m-d'), 'at' => time()]);
+            out(['ok' => true, 'note' => 'the next cron run sends what is due']);
         case 'messages':
             out(['messages' => array_slice(messages_all(), 0, 200), 'bookings' => bookings_all()]);
         default:
