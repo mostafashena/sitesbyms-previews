@@ -136,6 +136,14 @@ if ($csrfOk) {
         $kv['New candidates per night'] = (string)max(0, min(40, (int)($_POST['n_cand'] ?? 20)));
         try { panel_settings_save($kv); go('settings', 'Nightly settings saved. The next run uses them.'); } catch (Throwable $e) { go('settings', 'Could not save: ' . $e->getMessage(), true); }
     }
+    if ($a === 'rep_skip') {
+        try {
+            $row = (int)$_POST['row']; $lead = lead_get($row, (string)$_POST['orig']);
+            $today = (new DateTime('now', new DateTimeZone(TZ)))->format('Y-m-d');
+            sheet_update_row($row, ['stage' => "Report skipped $today"]);
+            go('outreach', 'Competitive analysis for ' . $lead['company'] . ' skipped.');
+        } catch (Throwable $e) { go('outreach', $e->getMessage(), true); }
+    }
     if ($a === 'rep_send' || $a === 'rep_mark') {
         try {
             $row = (int)$_POST['row']; $lead = lead_get($row, (string)$_POST['orig']); $tok = report_token($lead);
@@ -185,19 +193,20 @@ if ($csrfOk) {
         if ($slug !== '' && $a === 'ounseen') { if ($pdo) { seen_migrate($pdo); $pdo->prepare("DELETE FROM message_seen WHERE slug=? AND how='manual'")->execute([$slug]); } }
         go('results', $a === 'oseen' ? 'Marked as seen.' : 'Seen mark removed.');
     }
-    if (in_array($a, ['owa', 'onowa', 'owarm'], true)) {   // WhatsApp step and warm leads: the team sends in WhatsApp, the panel records it
+    if (in_array($a, ['owa', 'onowa', 'owarm', 'owaskip', 'owarmskip'], true)) {   // WhatsApp step and warm leads: the team sends in WhatsApp, the panel records it
         $row = (int)$_POST['row']; $by = (string)($me['email'] ?? 'team');
         try {
             $lead = null; foreach (sheet_rows() as $x) if ($x['_row'] === $row) { $lead = $x; break; }
             if (!$lead) go('outreach', 'Could not find that business in the sheet any more.', true);
             $body = str_replace("\r", '', (string)($_POST['body'] ?? ''));
-            $kind = ['owa' => 'wa', 'onowa' => 'wa-none', 'owarm' => 'warm'][$a];
+            $kind = ['owa' => 'wa', 'onowa' => 'wa-none', 'owarm' => 'warm', 'owaskip' => 'wa-skip', 'owarmskip' => 'warm'][$a];
+            if ($a === 'owaskip' || $a === 'owarmskip') $body = '(skipped)';
             outreach_log(['row' => $row, 'slug' => $lead['slug'], 'business' => $lead['company'], 'kind' => $kind, 'channel' => 'WhatsApp', 'to' => $lead['phone'], 'subject' => '', 'body' => $a === 'onowa' ? '(no WhatsApp)' : $body, 'mid' => null, 'by' => $by]);
             if ($a === 'owa' && strcasecmp($lead['status'], 'Review') === 0) {   // WhatsApp was the first touch
                 $today = (new DateTime('now', new DateTimeZone(TZ)))->format('Y-m-d');
                 sheet_update_row($row, ['status' => 'Sent', 'sent' => $today, 'message' => $body]);
             }
-            go('outreach', ['owa' => 'WhatsApp to ' . $lead['company'] . ' marked as sent.', 'onowa' => $lead['company'] . ': noted, this number has no WhatsApp.', 'owarm' => $lead['company'] . ' marked as contacted.'][$a]);
+            go('outreach', ['owa' => 'WhatsApp to ' . $lead['company'] . ' marked as sent.', 'onowa' => $lead['company'] . ': noted, this number has no WhatsApp.', 'owarm' => $lead['company'] . ' marked as contacted.', 'owaskip' => 'WhatsApp for ' . $lead['company'] . ' skipped.', 'owarmskip' => $lead['company'] . ' skipped (no personal contact).'][$a]);
         } catch (Throwable $e) { go('outreach', 'Sheet error: ' . $e->getMessage(), true); }
     }
     if (in_array($a, ['osend', 'omark', 'oskip', 'oskipch'], true)) {
@@ -206,7 +215,7 @@ if ($csrfOk) {
         $today = (new DateTime('now', new DateTimeZone(TZ)))->format('Y-m-d');
         $by = (string)($me['email'] ?? 'team');
         try {
-            if ($a === 'oskip') { sheet_update_row($row, ['status' => 'Skip']); go('outreach', "$business moved to Skip."); }
+            if ($a === 'oskip') { sheet_update_row($row, ['status' => 'Skip']); go('outreach', "$business moved to Skip. Nothing more will be sent to them."); }
             $lead = null; foreach (sheet_rows() as $x) if ($x['_row'] === $row) { $lead = $x; break; }
             if (!$lead) go('outreach', "Could not find $business in the sheet any more. Nothing was sent.", true);
             if ($a !== 'oskip' && ($why = lead_mismatch($lead))) go('outreach', "Not sent: $why", true);
@@ -245,9 +254,9 @@ if ($csrfOk) {
             if ($kind === 'first') {
                 if ($anySent && $lead['sent'] === '') $cells['sent'] = $today;
                 if (!$left) $cells['status'] = $anySent ? 'Sent' : 'Skip';
-            } elseif (!$left && $anySent) $cells['reply'] = FOLLOWUP_KINDS[$kind] . ' sent ' . $today;
+            } elseif (!$left) $cells['reply'] = FOLLOWUP_KINDS[$kind] . ($anySent ? ' sent ' : ' skipped ') . $today;   // skipping a follow-up moves on to the next one
             if ($cells) sheet_update_row($row, $cells);
-            go('outreach', $did . ($left ? ' Still to do: ' . implode(' and ', $left) . '.' : ' All done, the sheet is updated.'));
+            go('outreach', $did . ($left ? ' Still to do: ' . implode(' and ', $left) . '.' : ' All done.'));
         } catch (Throwable $e) { go('outreach', 'Sheet error: ' . $e->getMessage(), true); }
     }
     if ($a === 'vsync') {
@@ -464,8 +473,8 @@ if ($page === 'outreach') {
                     . ($slug ? '<a class="btn line sm" href="/' . h($slug) . '/?team=1" target="_blank" rel="noopener">Open concept</a>' : '')
                     . ($isMail ? '<button class="btn sm" name="a" value="osend" onclick="return confirm(\'Send this email to ' . h($r['email']) . '?\')">' . ($kind === 'first' ? 'Send email' : 'Send ' . strtolower(FOLLOWUP_KINDS[$kind])) . '</button>'
                                : '<button type="button" class="btn line sm" data-copy>Copy message</button>' . ($ig ? '<a class="btn line sm" href="https://ig.me/m/' . h($ig) . '" target="_blank" rel="noopener">Open Instagram chat</a>' : '') . '<button class="btn sm" name="a" value="omark">Mark as sent</button>')
-                    . ($both ? '<button class="btn line sm subtle" name="a" value="oskipch" formnovalidate onclick="return confirm(\'Skip ' . ($isMail ? 'the email' : 'Instagram') . ' for ' . h($r['company']) . '?\')">Skip ' . ($isMail ? 'email' : 'Instagram') . '</button>' : '')
-                    . ($kind === 'first' && !$done && $c === end($channels) ? '<button class="btn line sm subtle" name="a" value="oskip" formnovalidate onclick="return confirm(\'Move ' . h($r['company']) . ' to Skip?\')">Skip lead</button>' : '')
+                    . '<button class="btn line sm subtle" name="a" value="oskipch" formnovalidate onclick="return confirm(\'Skip ' . ($isMail ? 'the email' : 'Instagram') . ($kind === 'first' ? '' : ' ' . strtolower(FOLLOWUP_KINDS[$kind])) . ' for ' . h($r['company']) . '?\')">Skip ' . ($kind === 'first' ? '' : 'this ') . ($isMail ? 'email' : 'Instagram') . '</button>'
+                    . ($c === end($channels) ? '<button class="btn line sm subtle" name="a" value="oskip" formnovalidate onclick="return confirm(\'' . ($kind === 'first' ? 'Move ' . h($r['company']) . ' to Skip?' : 'Stop contacting ' . h($r['company']) . '? No more follow-ups will be sent.') . '\')">' . ($kind === 'first' ? 'Skip lead' : 'Stop all follow-ups') . '</button>' : '')
                     . '</div></form>';
             }
             return $o . '</details>';
@@ -490,8 +499,9 @@ if ($page === 'outreach') {
                         . ($email ? '<button class="btn sm" name="a" value="rep_send" onclick="return confirm(\'Send the report to ' . h($email) . '?\')">Send report by email</button>' : '')
                         . ($phone ? '<a class="btn line sm" href="https://wa.me/' . h(wa_number($phone, lead_cc($r['country'])) ?: preg_replace('/\D/', '', $phone)) . '?text=' . rawurlencode($txt) . '" target="_blank" rel="noopener">Open WhatsApp</a>' : '')
                         . ($r['instagram'] ? '<a class="btn line sm" href="https://ig.me/m/' . h(ltrim($r['instagram'], '@')) . '" target="_blank" rel="noopener">Open Instagram chat</a>' : '')
-                        . '<input type="hidden" name="ch" value="' . ($phone ? 'WhatsApp' : 'Instagram DM') . '"><button class="btn line sm" name="a" value="rep_mark">I sent it myself: mark as sent</button></div></form>';
-                }
+                        . '<input type="hidden" name="ch" value="' . ($phone ? 'WhatsApp' : 'Instagram DM') . '"><button class="btn line sm" name="a" value="rep_mark">I sent it myself: mark as sent</button>'
+                        . '<button class="btn line sm subtle" name="a" value="rep_skip" formnovalidate onclick="return confirm(\'Skip the analysis for ' . h($r['company']) . '?\')">Skip</button></div></form>';
+                } else echo '<form method="post" class="leadform">' . csrf_field() . '<input type="hidden" name="row" value="' . $r['_row'] . '"><input type="hidden" name="orig" value="' . h($r['company']) . '"><div class="acts"><button class="btn line sm subtle" name="a" value="rep_skip" onclick="return confirm(\'Skip the analysis for ' . h($r['company']) . '? It will not be built.\')">Skip</button></div></form>';
                 echo '</details>';
             }
         }
@@ -504,6 +514,7 @@ if ($page === 'outreach') {
                 . '<a class="btn line sm" href="/' . h($r['slug']) . '/?team=1" target="_blank" rel="noopener">Open concept</a>'
                 . '<button class="btn line sm" name="a" value="' . $mainAct . '">' . $mainLabel . '</button>'
                 . ($noWa ? '<button class="btn line sm subtle" name="a" value="onowa" formnovalidate>No WhatsApp on this number</button>' : '')
+                . '<button class="btn line sm subtle" name="a" value="' . ($mainAct === 'owarm' ? 'owarmskip' : 'owaskip') . '" formnovalidate>Skip</button>'
                 . '</div></form>';
         };
         echo '<h2 id="warm" class="sec-h">Warm leads</h2><p class="hint">They came back to their concept or read it for 30+ seconds. Reach out personally today: WhatsApp if they have a mobile, otherwise a short call.</p>';
@@ -527,7 +538,7 @@ if ($page === 'outreach') {
         echo '<h2 id="sent" class="sec-h">Sent from the panel</h2><section class="card">';
         $log = outreach_all();
         if ($log) foreach (array_slice($log, 0, 40) as $l) { $sv = $seen[$l['slug']] ?? null;
-            echo '<div class="row"><div class="grow"><b>' . h($l['business']) . '</b> · ' . h(['first' => 'first message', 'report' => 'competitive analysis', 'wa' => 'WhatsApp message', 'wa-none' => 'no WhatsApp on this number', 'warm' => 'warm lead contacted'][$l['kind']] ?? (str_ends_with($l['kind'], '-skip') ? 'skipped' : 'follow-up')) . '<small>' . h($l['channel']) . ($l['to'] ? ' · ' . h($l['to']) : '') . ' · ' . h(ago($l['at'] ?? $l['sent_at'] ?? null)) . ($l['sent_by'] ?? '' ? ' · by ' . h($l['sent_by'] ?? '') : '') . '</small></div>'
+            echo '<div class="row"><div class="grow"><b>' . h($l['business']) . '</b> · ' . h(['first' => 'first message', 'report' => 'competitive analysis', 'wa' => 'WhatsApp message', 'wa-none' => 'no WhatsApp on this number', 'wa-skip' => 'WhatsApp skipped', 'warm' => ($l['body'] ?? '') === '(skipped)' ? 'warm lead skipped' : 'warm lead contacted'][$l['kind']] ?? (str_ends_with($l['kind'], '-skip') ? 'skipped' : 'follow-up')) . '<small>' . h($l['channel']) . ($l['to'] ? ' · ' . h($l['to']) : '') . ' · ' . h(ago($l['at'] ?? $l['sent_at'] ?? null)) . ($l['sent_by'] ?? '' ? ' · by ' . h($l['sent_by'] ?? '') : '') . '</small></div>'
                 . ($sv && strtotime($sv['at']) >= strtotime((string)($l['at'] ?? '')) ? '<span class="pill ok">Opened ' . h(ago($sv['at'])) . ($sv['from'] ? ' · ' . h($sv['from'] === 'ig' ? 'Instagram' : $sv['from']) : '') . '</span>' : '<span class="pill grey">Not opened yet</span>') . '</div>'; }
         else echo '<div class="empty">Nothing sent from the panel yet.</div>';
         echo '</section>';
@@ -551,7 +562,7 @@ if ($page === 'results') {
         $chan = fn($r) => stripos($r['channel'], 'mail') !== false ? 'Email' : (stripos($r['channel'], 'insta') !== false ? 'Instagram DM' : ($r['channel'] ?: 'Other'));
         $vs = []; foreach (array_reverse($views) as $v) $vs[$v['slug']][] = $v;      // oldest first
         $calls = []; foreach ($bookings as $b) if ($b['slug'] && $b['status'] !== 'cancelled') $calls[$b['slug']] = true;
-        $isReply = fn($r) => $r['reply'] !== '' && !preg_match('/^follow-up( \d)? sent/i', $r['reply']);
+        $isReply = fn($r) => $r['reply'] !== '' && !preg_match('/^follow-up( \d)? (sent|skipped)/i', $r['reply']);
         $seenAt = seen_map();
         $stat = []; $list = [];
         $olog = outreach_all();

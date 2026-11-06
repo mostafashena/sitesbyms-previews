@@ -119,7 +119,7 @@ function lead_followup(array $r): ?array {
     if (strcasecmp($r['status'], 'Sent') !== 0 || !($sent = lead_date($r['sent']))) return null;
     $u = trim($r['reply']);
     if ($u === '') { $due = lead_date($r['followup_date']) ?? (clone $sent)->modify('+3 days'); return ['kind' => 'followup', 'due' => $due]; }
-    if (!preg_match('/^follow-up( 2)? sent\s*(.*)$/i', $u, $m)) return null;      // a real reply, or follow-up 3 already sent
+    if (!preg_match('/^follow-up( 2)? (?:sent|skipped)\s*(.*)$/i', $u, $m)) return null;      // a real reply, or follow-up 3 already sent
     $kind = $m[1] ? 'followup3' : 'followup2';
     $due = (clone $sent)->modify($kind === 'followup2' ? '+7 days' : '+14 days');
     if (($prev = lead_date($m[2])) && $prev->modify('+3 days') > $due) $due = $prev;
@@ -211,7 +211,7 @@ function wa_due(array $rows, array $log): array {
     foreach ($rows as $r) {
         if ($r['slug'] === '' || isset($done[$r['_row'] . '|' . $r['slug']]) || isset($done[$r['_row'] . '|']) || !lead_wa($r)) continue;
         $u = trim($r['reply']);
-        if (strcasecmp($r['status'], 'Sent') === 0 && ($s = lead_date($r['sent'])) && $s <= $yday && ($u === '' || preg_match('/^follow-up( \d)? sent/i', $u))) $out[] = $r + ['_wa_first' => false];
+        if (strcasecmp($r['status'], 'Sent') === 0 && ($s = lead_date($r['sent'])) && $s <= $yday && ($u === '' || preg_match('/^follow-up( \d)? (sent|skipped)/i', $u))) $out[] = $r + ['_wa_first' => false];
         elseif (strcasecmp($r['status'], 'Review') === 0 && $r['email'] === '' && $r['instagram'] === '') $out[] = $r + ['_wa_first' => true];
     }
     return $out;
