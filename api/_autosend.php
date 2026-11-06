@@ -24,10 +24,11 @@ function auto_problem(array $r, string $text, string $to, string $subject): ?str
 }
 
 /** The emails due today: new emails (status Review) and follow-ups that are due. */
-function auto_queue(): array {
+function auto_queue(?string $tz = null): array {
     $today = new DateTime('today', new DateTimeZone(TZ)); $log = outreach_all(); $q = [];
     foreach (sheet_rows(true) as $r) {
         if (!in_array('Email', lead_channels($r), true)) continue;
+        if ($tz !== null && lead_tz($r) !== $tz) continue;
         if (strcasecmp($r['status'], 'Review') === 0) $kind = 'first';
         elseif (($fu = lead_followup($r)) && $fu['due'] <= $today) $kind = $fu['kind'];
         else continue;
@@ -63,39 +64,70 @@ function auto_send_one(array $r, string $kind, string $today): array {
 }
 
 /** Runs the daily send if it is time. Safe to call every few minutes. */
+/** Sends each business's emails at the set time in ITS OWN time zone (08:00 in London, Sydney, New York, Dubai...).
+ *  One batch per time zone per local day. The daily report email goes out after the London batch and covers the last 24 hours of all batches. */
 function autosend_tick(bool $force = false): string {
-    $tz = new DateTimeZone(TZ); $now = new DateTime('now', $tz); $today = $now->format('Y-m-d');
+    $tzL = new DateTimeZone(TZ); $nowL = new DateTime('now', $tzL); $todayL = $nowL->format('Y-m-d');
     $state = read_json('autosend_state.json', []);
-    if (($state['done'] ?? '') === $today && !$force) return 'already done today';
+    $done = is_array($state['done'] ?? null) ? $state['done'] : (isset($state['done']) ? [TZ => $state['done']] : []);
     $set = auto_settings();
     [$h, $m] = array_map('intval', explode(':', $set['time']));
-    $start = (clone $now)->setTime($h, $m); $end = (clone $start)->modify('+4 hours');
-    if (!$force && ($now < $start || $now > $end)) return 'not the time (' . $set['time'] . ' London)';
+    $zones = []; try { foreach (sheet_rows(true) as $r) $zones[lead_tz($r)] = true; } catch (Throwable $e) { return 'sheet error: ' . $e->getMessage(); }
+    $zones[TZ] = true;
+    $due = [];
+    foreach (array_keys($zones) as $z) {
+        $now = new DateTime('now', new DateTimeZone($z)); $local = $now->format('Y-m-d');
+        if (($done[$z] ?? '') === $local && !$force) continue;
+        $start = (clone $now)->setTime($h, $m); $end = (clone $start)->modify('+4 hours');
+        if ($force || ($now >= $start && $now <= $end)) $due[$z] = $local;
+    }
+    if (!$due) return 'nothing due now (' . $set['time'] . ' local time in each country)';
 
     $lock = fopen(data_dir() . '/autosend.lock', 'c'); if (!$lock || !flock($lock, LOCK_EX | LOCK_NB)) return 'another run is busy';
     @set_time_limit(0);
-    $rep = read_json("autosend-$today.json", []) + ['date' => $today, 'started' => $now->format('H:i'), 'sent' => [], 'failed' => [], 'paused' => false];
-    if (!$set['on']) $rep['paused'] = true;
-    else {
-        $count = count($rep['sent']);
-        foreach (auto_queue() as $i => $it) {
-            if ($count >= $set['max']) { $rep['failed'][] = ['business' => $it['r']['company'], 'kind' => $it['kind'], 'why' => 'Daily limit of ' . $set['max'] . ' emails reached; it goes out tomorrow.']; continue; }
-            $r = $it['r'];
-            try { [$ok, $note] = auto_send_one($r, $it['kind'], $today); } catch (Throwable $e) { $ok = false; $note = 'Error: ' . $e->getMessage(); }
-            $row = ['business' => $r['company'], 'kind' => $it['kind'], 'to' => $r['email'], 'slug' => $r['slug'], 'at' => (new DateTime('now', $tz))->format('H:i')];
-            if ($ok) { $rep['sent'][] = $row + ['note' => $note]; $count++; if (!getenv('SBM_SHEETS_BASE')) sleep(random_int(20, 45)); }   // spaced out, like a person sending
-            else $rep['failed'][] = $row + ['why' => $note];
-            write_json("autosend-$today.json", $rep);
+    $out = [];
+    foreach ($due as $z => $local) {
+        $rep = read_json("autosend-$todayL.json", []) + ['date' => $todayL, 'started' => $nowL->format('H:i'), 'sent' => [], 'failed' => [], 'paused' => false];
+        $place = auto_zone_name($z);
+        if (!$set['on']) $rep['paused'] = true;
+        else {
+            $count = count(array_filter($rep['sent'], fn($x) => ($x['tz'] ?? TZ) === $z));
+            foreach (auto_queue($z) as $it) {
+                $r = $it['r'];
+                $row = ['business' => $r['company'], 'kind' => $it['kind'], 'to' => $r['email'], 'slug' => $r['slug'], 'tz' => $z, 'place' => $place, 'ts' => time(),
+                        'at' => (new DateTime('now', $tzL))->format('H:i'), 'local' => (new DateTime('now', new DateTimeZone($z)))->format('H:i')];
+                if ($count >= $set['max']) { $rep['failed'][] = $row + ['why' => 'Daily limit of ' . $set['max'] . " emails for $place reached; it goes out tomorrow."]; continue; }
+                try { [$ok, $note] = auto_send_one($r, $it['kind'], $local); } catch (Throwable $e) { $ok = false; $note = 'Error: ' . $e->getMessage(); }
+                if ($ok) { $rep['sent'][] = $row + ['note' => $note]; $count++; if (!getenv('SBM_SHEETS_BASE')) sleep(random_int(20, 45)); }   // spaced out, like a person sending
+                else $rep['failed'][] = $row + ['why' => $note];
+                write_json("autosend-$todayL.json", $rep);
+            }
         }
+        $rep['finished'] = (new DateTime('now', $tzL))->format('H:i');
+        $rep['batches'][$z] = $rep['finished'];
+        write_json("autosend-$todayL.json", $rep);
+        $done[$z] = $local; write_json('autosend_state.json', ['done' => $done, 'at' => time()]);
+        $out[] = $place . ': ' . count(array_filter($rep['sent'], fn($x) => ($x['tz'] ?? TZ) === $z)) . ' sent';
     }
-    $rep['finished'] = (new DateTime('now', $tz))->format('H:i');
-    $rep['manual'] = auto_manual_todo();
-    $rep['yesterday'] = auto_yesterday();
-    write_json("autosend-$today.json", $rep);
-    write_json('autosend_state.json', ['done' => $today, 'at' => time()]);
-    send_mail(TEAM_TO, auto_subject($rep), auto_report_text($rep));
+    if (isset($due[TZ])) {   // one report a day, after the London batch: everything sent in the last 24 hours, all countries
+        $since = time() - 86400; $all = ['date' => $todayL, 'started' => '', 'sent' => [], 'failed' => [], 'paused' => !$set['on']];
+        foreach ([(clone $nowL)->modify('-1 day')->format('Y-m-d'), $todayL] as $d) { $x = read_json("autosend-$d.json", []);
+            foreach (['sent', 'failed'] as $k) foreach ($x[$k] ?? [] as $e) if (($e['ts'] ?? ($d === $todayL ? time() : 0)) >= $since) $all[$k][] = $e; }
+        $rep = read_json("autosend-$todayL.json", []);
+        $rep['manual'] = $all['manual'] = auto_manual_todo();
+        $rep['yesterday'] = $all['yesterday'] = auto_yesterday();
+        write_json("autosend-$todayL.json", $rep);
+        send_mail(TEAM_TO, auto_subject($all), auto_report_text($all));
+    }
     flock($lock, LOCK_UN);
-    return count($rep['sent']) . ' sent, ' . count($rep['failed']) . ' not sent';
+    return implode('; ', $out);
+}
+
+/** Short place name for a time zone. */
+function auto_zone_name(string $z): string {
+    return ['Europe/London' => 'UK', 'Europe/Dublin' => 'Ireland', 'Asia/Dubai' => 'UAE', 'Pacific/Auckland' => 'New Zealand', 'America/New_York' => 'US East', 'America/Chicago' => 'US Central',
+            'America/Denver' => 'US Mountain', 'America/Phoenix' => 'Arizona', 'America/Los_Angeles' => 'US West', 'America/Toronto' => 'Canada East', 'America/Vancouver' => 'Canada West',
+            'America/Edmonton' => 'Alberta', 'Australia/Sydney' => 'Australia East', 'Australia/Brisbane' => 'Queensland', 'Australia/Adelaide' => 'Adelaide', 'Australia/Perth' => 'Perth'][$z] ?? $z;
 }
 
 /** Instagram DMs the team still has to send by hand today. */
@@ -134,14 +166,14 @@ function auto_subject(array $rep): string {
 
 function auto_report_text(array $rep): string {
     $L = [];
-    $L[] = 'Daily send report for ' . (new DateTime($rep['date'], new DateTimeZone(TZ)))->format('l j F Y') . ' (London time)';
+    $L[] = 'Daily send report for ' . (new DateTime($rep['date'], new DateTimeZone(TZ)))->format('l j F Y') . ': the last 24 hours, every country. Each email goes out at the set time in the business\'s own time zone.';
     $L[] = '';
     if (!empty($rep['paused'])) $L[] = 'Automatic sending is paused (panel › Settings › Automatic emails). Nothing was sent.';
     else {
-        $L[] = 'SENT AUTOMATICALLY (' . count($rep['sent']) . ', from ' . $rep['started'] . ' to ' . ($rep['finished'] ?? '') . '):';
-        foreach ($rep['sent'] as $x) $L[] = '  ✓ ' . $x['at'] . '  ' . auto_kind_name($x['kind']) . ' · ' . $x['business'] . ' · ' . $x['to'] . ' · https://sitesbyms.com/' . $x['slug'] . '/' . (!empty($x['note']) ? ' (' . $x['note'] . ')' : '');
+        $L[] = 'SENT AUTOMATICALLY (' . count($rep['sent']) . '):';
+        foreach ($rep['sent'] as $x) $L[] = '  ✓ ' . $x['at'] . ' London' . (!empty($x['place']) ? ' (' . $x['local'] . ' ' . $x['place'] . ')' : '') . '  ' . auto_kind_name($x['kind']) . ' · ' . $x['business'] . ' · ' . $x['to'] . ' · https://sitesbyms.com/' . $x['slug'] . '/' . (!empty($x['note']) ? ' (' . $x['note'] . ')' : '');
         if (!$rep['sent']) $L[] = '  Nothing was due today.';
-        if ($rep['failed']) { $L[] = ''; $L[] = 'NOT SENT (' . count($rep['failed']) . '), please check in the panel:'; foreach ($rep['failed'] as $x) $L[] = '  ✗ ' . auto_kind_name($x['kind']) . ' · ' . $x['business'] . ': ' . $x['why']; }
+        if ($rep['failed']) { $L[] = ''; $L[] = 'NOT SENT (' . count($rep['failed']) . '), please check in the panel:'; foreach ($rep['failed'] as $x) $L[] = '  ✗ ' . auto_kind_name($x['kind']) . ' · ' . $x['business'] . (!empty($x['place']) ? ' (' . $x['place'] . ')' : '') . ': ' . $x['why']; }
     }
     $L[] = '';
     $man = $rep['manual'] ?? [];

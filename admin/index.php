@@ -769,10 +769,10 @@ if ($page === 'settings') {
         $as = $ns + AUTO_DEFAULTS; $hb = read_json('cron_heartbeat.json', []);
         $hbOk = ($hb['at'] ?? 0) > time() - 1800;
         echo '<form class="card" method="post" id="autosend">' . csrf_field() . '<input type="hidden" name="a" value="autosend"><h2>Automatic emails</h2>'
-            . '<p class="hint">Every day at this time the panel sends the new emails (rows in Review) and the follow-ups that are due (day 3, 7 and 14), then emails you the daily send report. Instagram DMs stay manual. Emails are never sent when the concept page belongs to another business, the address is invalid or the text has a placeholder.</p><div class="f3">'
+            . '<p class="hint">Every day at this time in each business&#39;s own time zone (08:00 London, 08:00 Sydney, 08:00 New York, 08:00 Dubai...) the panel sends the new emails (rows in Review) and the follow-ups that are due (day 3, 7 and 14). After the London batch it emails you the daily send report for the last 24 hours, every country. Instagram DMs stay manual. Emails are never sent when the concept page belongs to another business, the address is invalid or the text has a placeholder.</p><div class="f3">'
             . '<label>Send automatically<select name="on"><option' . (strcasecmp($as['Auto-send emails'], 'Yes') === 0 ? ' selected' : '') . '>Yes</option><option' . (strcasecmp($as['Auto-send emails'], 'Yes') !== 0 ? ' selected' : '') . '>No</option></select></label>'
-            . '<label>Time (London)<input type="time" name="time" value="' . h($as['Auto-send time (London)']) . '"></label>'
-            . '<label>Max emails per day<input type="number" name="max" min="0" max="100" value="' . h($as['Max automatic emails per day']) . '"></label></div>'
+            . '<label>Send time (local time of each business)<input type="time" name="time" value="' . h($as['Auto-send time (London)']) . '"></label>'
+            . '<label>Max emails per day, per country<input type="number" name="max" min="0" max="100" value="' . h($as['Max automatic emails per day']) . '"></label></div>'
             . '<p class="' . ($hbOk && empty($hb['error']) ? 'hint' : 'err') . '">'
                 . (!empty($hb['error']) ? '⚠ The scheduler ran ' . h(ago(gmdate('c', (int)$hb['at']))) . ' but failed: ' . h($hb['error'])
                   : ($hbOk ? '✓ The scheduler is running (last check ' . h(ago(gmdate('c', (int)$hb['at']))) . (!empty($hb['php']) ? ', PHP ' . h($hb['php']) : '') . (!empty($hb['result']) ? ': ' . h($hb['result']) : '') . ').'

@@ -180,6 +180,20 @@ function wa_number(string $p, string $cc = 'GB'): string {
     [$re, $pre] = $local[$cc] ?? $local['GB'];
     return preg_match($re, $d) ? $pre . substr($d, 1) : '';
 }
+/** Time zone for a lead's local morning send (from column C country and column D location). */
+function lead_tz(array $r): string {
+    $cc = lead_cc($r['country'] ?? ''); $loc = strtolower(($r['location'] ?? '') . ' ' . ($r['country'] ?? ''));
+    if ($cc === 'US') {
+        if (preg_match('/los angeles|san francisco|san diego|seattle|portland|las vegas|sacramento|san jose|oakland|\b(ca|wa|or|nv)\b|california|washington state|oregon|nevada/', $loc)) return 'America/Los_Angeles';
+        if (preg_match('/denver|phoenix|salt lake|\b(co|az|ut)\b|colorado|arizona|utah/', $loc)) return preg_match('/phoenix|\baz\b|arizona/', $loc) ? 'America/Phoenix' : 'America/Denver';
+        if (preg_match('/chicago|houston|dallas|austin|san antonio|minneapolis|nashville|new orleans|kansas city|\b(tx|il|mn|tn|la|mo)\b|texas|illinois/', $loc)) return 'America/Chicago';
+        return 'America/New_York';
+    }
+    if ($cc === 'CA') return preg_match('/vancouver|victoria|british columbia|\bbc\b/', $loc) ? 'America/Vancouver' : (preg_match('/calgary|edmonton|alberta/', $loc) ? 'America/Edmonton' : 'America/Toronto');
+    if ($cc === 'AU') return preg_match('/perth|western australia/', $loc) ? 'Australia/Perth' : (preg_match('/brisbane|queensland|gold coast/', $loc) ? 'Australia/Brisbane' : (preg_match('/adelaide/', $loc) ? 'Australia/Adelaide' : 'Australia/Sydney'));
+    return ['AE' => 'Asia/Dubai', 'IE' => 'Europe/Dublin', 'NZ' => 'Pacific/Auckland'][$cc] ?? 'Europe/London';
+}
+const BUSINESS_ADDRESS = '114a Maida Vale, London W9 1PT, United Kingdom';
 function lead_wa(array $r): string { return wa_number($r['phone'], lead_cc($r['country'] ?? '')); }
 /** WhatsApp text: $first = no email/DM was sent before (WhatsApp is the first touch). Short, personal, with an easy way out. */
 function lead_wa_text(array $r, bool $first): string {
@@ -297,6 +311,8 @@ function text_to_html(string $text, string $pixel = ''): string {
 /** Sends a plain + HTML email from hello@ with a 1px image that tells us it was opened.
  *  The team copy is a separate email without that image, so our own reading is never counted. Returns the Message-ID or null. */
 function send_outreach(string $to, string $subject, string $text, ?string $inReplyTo = null, string $slug = '', string $kind = 'first'): ?string {
+    // Sender's postal address and an easy opt-out on every outreach email (required for US/Canada, good practice everywhere).
+    if (!str_contains($text, 'Maida Vale')) $text .= "\n\n--\nSites By MS · " . BUSINESS_ADDRESS . "\nNot interested? Just reply \"stop\" and we won't email you again.";
     $mid = '<' . bin2hex(random_bytes(12)) . '@sitesbyms.com>';
     $pixel = $slug ? 'https://sitesbyms.com/api/o.php?s=' . rawurlencode($slug) . '&k=' . $kind : '';
     $build = function (string $html) use ($text, &$b) {
@@ -304,7 +320,7 @@ function send_outreach(string $to, string $subject, string $text, ?string $inRep
         return "--$b\r\nContent-Type: text/plain; charset=UTF-8\r\nContent-Transfer-Encoding: base64\r\n\r\n" . chunk_split(base64_encode($text))
              . "--$b\r\nContent-Type: text/html; charset=UTF-8\r\nContent-Transfer-Encoding: base64\r\n\r\n" . chunk_split(base64_encode($html)) . "--$b--";
     };
-    $head = fn(string $id, string $boundary) => 'From: Sites By MS <' . FROM_ADDR . ">\r\nReply-To: " . FROM_ADDR . "\r\nMessage-ID: $id\r\nMIME-Version: 1.0\r\n"
+    $head = fn(string $id, string $boundary) => 'From: Sites By MS <' . FROM_ADDR . ">\r\nReply-To: " . FROM_ADDR . "\r\nMessage-ID: $id\r\nList-Unsubscribe: <mailto:" . FROM_ADDR . "?subject=stop>\r\nMIME-Version: 1.0\r\n"
              . ($inReplyTo ? "In-Reply-To: $inReplyTo\r\nReferences: $inReplyTo\r\n" : '') . "Content-Type: multipart/alternative; boundary=\"$boundary\"";
     $subj = '=?UTF-8?B?' . base64_encode($subject) . '?=';
     $body = $build(text_to_html($text, $pixel));
