@@ -224,6 +224,7 @@ if ($csrfOk) {
                     foreach (outreach_all() as $o) if ((int)$o['row'] === $row && $o['kind'] === 'first' && $o['channel'] === 'Email' && !empty($o['mid'])) { $reply = $o['mid']; break; }
                     if (stripos($subject, 're:') !== 0) $subject = 'Re: ' . $subject;
                 }
+                if (isset(lead_done($row, $kind, null, $slug)['Email'])) go('outreach', $business . ': this email was already sent (probably by the automatic sending a moment ago). Nothing was sent again.', true);
                 $mid = send_outreach($to, $subject, tracked_links($body, 'email'), $reply, $slug, $kind);
                 if (!$mid) go('outreach', 'The email to ' . $to . ' could not be sent. Nothing was changed.', true);
                 outreach_log(['row' => $row, 'slug' => $slug, 'business' => $business, 'kind' => $kind, 'channel' => 'Email', 'to' => $to, 'subject' => $subject, 'body' => $body, 'mid' => $mid, 'by' => $by]);

@@ -42,6 +42,7 @@ function auto_queue(?string $tz = null): array {
 /** Sends one email for a queued lead and updates the sheet like the panel does. Returns [ok, note]. */
 function auto_send_one(array $r, string $kind, string $today): array {
     $to = strtolower(trim($r['email'])); $subject = $r['subject'];
+    if (isset(lead_done($r['_row'], $kind, null, $r['slug'])['Email'])) return [false, 'Already sent (by the team from the panel) a moment ago; skipped so it is not sent twice.'];
     $text = lead_text($r, 'Email', $kind);
     if ($why = auto_problem($r, $text, $to, $subject)) return [false, $why];
     $reply = null;
