@@ -20,6 +20,21 @@ if (version_compare(PHP_VERSION, '8.0.0', '<')) {
     @file_put_contents($hbFile, json_encode($hb)); fwrite(STDERR, $hb['error'] . "\n"); exit(1);
 }
 require __DIR__ . '/_autosend.php';
+// One-off deliverability test, requested by committing api/_mailtest.json ({"id": "...", "to": "...@srv1.mail-tester.com"}).
+// Sends one realistic outreach email (same path, headers, tracking image and link as the real ones), once per id.
+try {
+    $mt = is_file(__DIR__ . '/_mailtest.json') ? json_decode((string)file_get_contents(__DIR__ . '/_mailtest.json'), true) : null;
+    if ($mt && !empty($mt['id']) && preg_match('/^[a-z0-9-]+@srv\d*\.mail-tester\.com$/i', (string)($mt['to'] ?? ''))) {
+        $done = read_json('mailtest_done.json', []);
+        if (empty($done[$mt['id']])) {
+            $text = "Hi Gjulnara,\n\nYour guests say it best: 4.9 from 425 reviews, and one Lebanese diner wrote that Annab feels like home. When I searched for Annab, though, I mostly found OpenTable and delivery listings, and none of them tell your story.\n\nSo our team made a homepage idea for you: https://sitesbyms.com/\nIt brings your story, menu, private parties and booking together on one page that works well on a phone.\n\nOur team can also put together a free competitive analysis for Annab: how you compare with similar restaurants nearby and where you may be losing customers. Would you like us to send it over? Just reply \"yes\".\n\nBest regards,\nMostafa\nSites By MS\nhello@sitesbyms.com · sitesbyms.com\nWhatsApp / Telegram: +44 7405 760048\n\nIf you'd rather not hear from us again, just reply and let me know.";
+            $ok = send_outreach($mt['to'], 'A homepage idea for Annab Brasserie', tracked_links($text, 'email'), null, 'deliverability-test', 'first');
+            $done[$mt['id']] = ['at' => gmdate('c'), 'to' => $mt['to'], 'ok' => (bool)$ok];
+            write_json('mailtest_done.json', $done);
+            echo date('c') . ' mail test ' . ($ok ? 'sent' : 'FAILED') . ' to ' . $mt['to'] . "\n";
+        }
+    }
+} catch (Throwable $e) { fwrite(STDERR, 'Mail test error: ' . $e->getMessage() . "\n"); }
 $force = in_array('--now', $argv, true);
 try { $res = autosend_tick($force); write_json('cron_heartbeat.json', $hb + ['result' => $res, 'at' => time()]); echo date('c') . ' ' . $res . "\n"; }
 catch (Throwable $e) { fwrite(STDERR, 'Auto-send error: ' . $e->getMessage() . "\n"); write_json('cron_heartbeat.json', $hb + ['error' => $e->getMessage()]); exit(1); }
