@@ -314,7 +314,8 @@ function send_outreach(string $to, string $subject, string $text, ?string $inRep
     // Sender's postal address and an easy opt-out on every outreach email (required for US/Canada, good practice everywhere).
     if (!str_contains($text, 'Maida Vale')) $text .= "\n\n--\nSites By MS · " . BUSINESS_ADDRESS . "\nNot interested? Just reply \"stop\" and we won't email you again.";
     $mid = '<' . bin2hex(random_bytes(12)) . '@sitesbyms.com>';
-    $pixel = $slug ? 'https://sitesbyms.com/api/o.php?s=' . rawurlencode($slug) . '&k=' . $kind : '';
+    // No tracking image: with short emails it costs ~1 spam point (SpamAssassin HTML_IMAGE_ONLY). Interest is measured by link clicks and page visits instead.
+    $pixel = '';
     $build = function (string $html) use ($text, &$b) {
         $b = 'sbm' . bin2hex(random_bytes(8));
         return "--$b\r\nContent-Type: text/plain; charset=UTF-8\r\nContent-Transfer-Encoding: base64\r\n\r\n" . chunk_split(base64_encode($text))
