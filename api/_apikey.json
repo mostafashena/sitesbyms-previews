@@ -1,0 +1,6 @@
+{
+ "sha256": [
+  "700a61f129a066a82ee09a685b7ae916caffb087e862c8e448a11c9b1fc8d8cb"
+ ],
+ "note": "SHA-256 of the API key Claude uses; the key itself is not stored here"
+}

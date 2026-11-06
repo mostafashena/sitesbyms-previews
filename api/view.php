@@ -28,7 +28,7 @@ if (time() - (int)($state[$slug] ?? 0) > 12 * 3600) {
           . "\nGood moment for a friendly call or WhatsApp if you have their number.\n";
     // Their row in the sheet: business name, and a ready WhatsApp message when the number is a UK mobile.
     $lead = null; $name = $slug;
-    try { require_once __DIR__ . '/_google.php'; if (google_key()) $lead = lead_by_slug($slug); } catch (Throwable $e) { $lead = null; }
+    try { require_once __DIR__ . '/_google.php'; if (leads_ready()) $lead = lead_by_slug($slug); } catch (Throwable $e) { $lead = null; }
     if ($lead) {
         $name = $lead['company'];
         $wa = lead_wa($lead);

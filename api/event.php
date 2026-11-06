@@ -48,7 +48,7 @@ if ($rows && $page === 'concept') {
         $name = $slug; $body = "Warm lead: someone at \"$slug\" $warm on a $device.\n\nhttps://sitesbyms.com/$slug/\n";
         try {
             require_once __DIR__ . '/_google.php';
-            if (google_key() && ($lead = lead_by_slug($slug))) {
+            if (leads_ready() && ($lead = lead_by_slug($slug))) {
                 $name = $lead['company'];
                 $body = "Warm lead: someone at " . $lead['company'] . " $warm (on a $device).\nThis is the best moment to reach out personally.\n\nhttps://sitesbyms.com/$slug/\n";
                 if ($wa = lead_wa($lead)) {

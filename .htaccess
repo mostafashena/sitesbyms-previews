@@ -6,3 +6,10 @@ DirectoryIndex index.html index.php
 <FilesMatch "\.(jsonl?|md)$">
   Require all denied
 </FilesMatch>
+# Pass the Authorization header through to PHP (needed by /api/leads.php on CGI/FastCGI hosting)
+SetEnvIf Authorization "(.*)" HTTP_AUTHORIZATION=$1
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteCond %{HTTP:Authorization} .
+  RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+</IfModule>

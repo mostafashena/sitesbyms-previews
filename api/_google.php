@@ -3,6 +3,7 @@
 // Not reachable from the web (.htaccess blocks /api/_*).
 declare(strict_types=1);
 require_once __DIR__ . '/_lib.php';
+require_once __DIR__ . '/_leads.php';   // the leads now live in the database; the sheet code below is only used for the one-time import
 
 const SHEET_ID  = '1NZFcaeoG7fR8--nepcmujsFJAZzfb4r1sCh-_3Lbs-s';
 const SHEET_TAB = 'Sheet1';
@@ -48,7 +49,7 @@ function http_json(string $method, string $url, $body = null, bool $form = false
     return $j;
 }
 
-function sheet_rows(bool $fresh = false): array {
+function gsheet_rows(bool $fresh = false): array {
     static $cache = null; if ($cache !== null && !$fresh) return $cache;
     if (!$fresh) { $fc = read_json('sheet_cache.json', []); if (($fc['at'] ?? 0) > time() - 60 && isset($fc['rows'])) return $cache = $fc['rows']; }
     $t = google_token();
@@ -67,7 +68,7 @@ function sheet_rows(bool $fresh = false): array {
 }
 
 /** Writes cells of one sheet row. $cells: ['status' => 'Sent', ...]. Dates use USER_ENTERED so formulas keep working. */
-function sheet_update_row(int $row, array $cells): void {
+function gsheet_update_row(int $row, array $cells): void {
     @unlink(data_dir() . '/sheet_cache.json');
     $t = google_token(); $raw = []; $typed = [];
     foreach ($cells as $k => $v) {
@@ -259,8 +260,8 @@ function lead_get(int $row, string $company): array {
     throw new RuntimeException("Row $row no longer exists in the sheet. Please reload.");
 }
 /** Adds a lead at the end of the sheet. Returns its sheet row. */
-function sheet_append_lead(array $cells): int {
-    $rows = sheet_rows(true); $n = 0; $last = 1;
+function gsheet_append_lead(array $cells): int {
+    $rows = gsheet_rows(true); $n = 0; $last = 1;
     foreach ($rows as $r) { $n = max($n, (int)$r['row']); $last = max($last, $r['_row']); }
     $line = [];
     foreach (COL as $k => $letter) $line[] = $k === 'row' ? (string)($n + 1) : (string)($cells[$k] ?? '');
@@ -269,14 +270,13 @@ function sheet_append_lead(array $cells): int {
     $t = google_token(); $row = $last + 1;
     http_json('POST', google_api_base() . '/v4/spreadsheets/' . SHEET_ID . '/values:batchUpdate', ['valueInputOption' => 'RAW', 'data' => [['range' => SHEET_TAB . '!A' . $row . ':S' . $row, 'values' => [$line]]]], false, ["Authorization: Bearer $t"]);
     $rest = []; foreach (['reply', 'slug', 'stage', 'payment', 'ig_message', 'ig_followup'] as $k) if (($cells[$k] ?? '') !== '') $rest[$k] = $cells[$k];
-    if ($rest) sheet_update_row($row, $rest);
+    if ($rest) gsheet_update_row($row, $rest);
     return $row;
 }
 
 /* ---------- panel settings stored in the sheet (tab "Panel"), so the nightly run can read them ---------- */
 const PANEL_TAB = 'Panel';
-const PANEL_DEFAULTS = ['New concepts per night' => '5', 'If nothing is Ready, build the best new candidates' => 'Yes', 'New candidates per night' => '20'];
-function panel_settings(): array {
+function gpanel_settings(): array {
     $t = google_token(); $out = PANEL_DEFAULTS;
     try {
         $j = http_json('GET', google_api_base() . '/v4/spreadsheets/' . SHEET_ID . '/values/' . rawurlencode(PANEL_TAB . '!A1:B30'), null, false, ["Authorization: Bearer $t"]);
@@ -284,7 +284,7 @@ function panel_settings(): array {
     } catch (Throwable $e) {}
     return $out;
 }
-function panel_settings_save(array $kv): void {
+function gpanel_settings_save(array $kv): void {
     $t = google_token(); $vals = [['Setting', 'Value']];
     foreach ($kv as $k => $v) $vals[] = [(string)$k, (string)$v];
     http_json('POST', google_api_base() . '/v4/spreadsheets/' . SHEET_ID . '/values:batchUpdate', ['valueInputOption' => 'RAW', 'data' => [['range' => PANEL_TAB . '!A1:B' . count($vals), 'values' => $vals]]], false, ["Authorization: Bearer $t"]);
@@ -375,6 +375,7 @@ const VISITS_TAB = 'Visits';
 
 /** Rewrites the Visits tab with every visit of the last 45 days (newest first). Team visits are never recorded in the first place. */
 function visits_sync(): int {
+    if (leads_store() === 'db') return 0;   // the visits live in the database now; no sheet copy
     write_json('visits_sync.json', ['at' => time()]);   // claim the slot first so parallel requests don't sync twice
     $tz = new DateTimeZone(TZ);
     $names = []; try { foreach (sheet_rows() as $r) if ($r['slug'] !== '') $names[$r['slug']] = $r['company']; } catch (Throwable $e) {}

@@ -47,6 +47,7 @@ if ($page === 'logout') { $_SESSION = []; session_destroy(); header('Location: /
 $me = null;
 if (!empty($_SESSION['uid']) && $pdo) $me = user_by_id((int)$_SESSION['uid']);
 elseif (!empty($_SESSION['legacy']) && !$hasUsers) $me = ['id' => 0, 'name' => 'Team', 'email' => '', 'role' => 'owner', 'legacy' => true];
+$GLOBALS['sbm_actor'] = (string)($me['email'] ?? '') ?: 'team';   // who changed a lead (for the change history)
 
 /* ---------- first run without anything: create the shared password ---------- */
 if (!$me && !$pdo && !$legacy) {
@@ -97,6 +98,12 @@ if (!$me) {
 }
 $isOwner = ($me['role'] ?? '') === 'owner';
 
+/* ---------- download: the whole leads list as CSV (opens in Excel / Google Sheets) ---------- */
+if ($page === 'leadscsv' && leads_ready()) {
+    header('Content-Type: text/csv; charset=UTF-8'); header('Content-Disposition: attachment; filename="sitesbyms-leads-' . gmdate('Y-m-d') . '.csv"');
+    echo "\xEF\xBB\xBF" . leads_csv(sheet_rows(true)); exit;
+}
+
 /* ---------- actions ---------- */
 if ($isPost && !$csrfOk) go($page, 'Your session expired. Please try again.', true);
 if ($csrfOk) {
@@ -115,14 +122,14 @@ if ($csrfOk) {
         $ok = send_mail($b['email'], "Your call link: $when", $txt, FROM_ADDR, [$ics]);
         go($page, $ok ? 'Meet link sent to ' . $b['email'] . '.' : 'Saved, but the email could not be sent. Please send the link yourself.', !$ok);
     }
-    if ($a === 'autosend' && google_key()) {
+    if ($a === 'autosend' && leads_ready()) {
         try { $kv = panel_settings() + AUTO_DEFAULTS; } catch (Throwable $e) { $kv = PANEL_DEFAULTS + AUTO_DEFAULTS; }
         $kv['Auto-send emails'] = ($_POST['on'] ?? '') === 'Yes' ? 'Yes' : 'No';
         $kv['Auto-send time (London)'] = preg_match('/^([01]\d|2[0-3]):[0-5]\d$/', (string)($_POST['time'] ?? '')) ? (string)$_POST['time'] : '08:00';
         $kv['Max automatic emails per day'] = (string)max(0, min(100, (int)($_POST['max'] ?? 40)));
         try { panel_settings_save($kv); go('settings', 'Automatic email settings saved.'); } catch (Throwable $e) { go('settings', 'Could not save: ' . $e->getMessage(), true); }
     }
-    if ($a === 'nightly' && google_key()) {
+    if ($a === 'nightly' && leads_ready()) {
         try { $kv = panel_settings() + PANEL_DEFAULTS; } catch (Throwable $e) { $kv = PANEL_DEFAULTS; }
         $kv['New concepts per night'] = (string)max(0, min(20, (int)($_POST['n_concepts'] ?? 5)));
         $kv['If nothing is Ready, build the best new candidates'] = ($_POST['auto'] ?? '') === 'Yes' ? 'Yes' : 'No';
@@ -256,6 +263,10 @@ if ($csrfOk) {
         try { $n = count(sheet_rows()); go('settings', "Connected to the leads sheet: $n rows read."); }
         catch (Throwable $e) { go('settings', 'Key saved, but the sheet could not be read yet: ' . $e->getMessage() . ' Share the sheet with ' . $k['client_email'] . ' as Editor, then press Test.', true); }
     }
+    if ($a === 'leads_import' && $isOwner) {
+        try { $m = leads_import_from_sheet(); go('settings', ucfirst($m) . '. From now on everything uses the database.'); }
+        catch (Throwable $e) { go('settings', 'Nothing was changed: ' . $e->getMessage(), true); }
+    }
     if ($a === 'gtest') {
         @unlink(data_dir() . '/google-token.json');
         try { $n = count(sheet_rows()); go('settings', "Connected to the leads sheet: $n rows read."); }
@@ -326,7 +337,7 @@ $howLabel = ['Video call (Google Meet)' => 'Video call', 'WhatsApp call' => 'Wha
 
 /* ---------- numbers for the sidebar badges ---------- */
 $badge = ['outreach' => 0, 'leads' => 0, 'calls' => count($upcoming), 'messages' => count($open), 'activity' => 0, 'outreach_hint' => ''];
-if (google_key()) { try {
+if (leads_ready()) { try {
     $tzL = new DateTimeZone(TZ); $todayL = new DateTime('today', $tzL);
     $pd = function (string $d) use ($tzL): ?DateTime { if ($d === '') return null; foreach (['Y-m-d', 'd/m/Y', 'm/d/Y', 'j M Y', 'd.m.Y'] as $f) { $x = DateTime::createFromFormat('!' . $f, $d, $tzL); if ($x) return $x; } return null; };
     $nReady = $nFollow = $nRep = 0; $allRows = sheet_rows(); $olog = outreach_all();
@@ -399,12 +410,12 @@ if ($page === 'home') {
     echo '</section></div>';
     echo '<section class="card"><div class="ch"><h2>Unanswered messages</h2><a href="?p=messages">All messages</a></div>' . ($open ? implode('', array_map(fn($m) => msg_row($m, $typeLabel), array_slice($open, 0, 3))) : '<div class="empty">All caught up.</div>') . '</section>';
     echo '<section class="card"><div class="ch"><h2>Outreach</h2><a href="?p=outreach">Open</a></div><p class="hint">Review the nightly messages and send them from here. The sheet updates itself.</p></section>';
-    echo '<section class="card"><h2>Useful links</h2><div class="links"><a class="btn line" href="https://docs.google.com/spreadsheets/d/1NZFcaeoG7fR8--nepcmujsFJAZzfb4r1sCh-_3Lbs-s/edit" target="_blank" rel="noopener">Leads sheet</a><a class="btn line" href="/demo/" target="_blank">Client portal demo</a><a class="btn line" href="/" target="_blank">Website</a></div></section>';
+    echo '<section class="card"><h2>Useful links</h2><div class="links">' . (leads_store() === 'db' ? '<a class="btn line" href="?p=leads">Leads</a><a class="btn line" href="?p=leadscsv">Download leads (CSV)</a>' : '<a class="btn line" href="https://docs.google.com/spreadsheets/d/1NZFcaeoG7fR8--nepcmujsFJAZzfb4r1sCh-_3Lbs-s/edit" target="_blank" rel="noopener">Leads sheet</a>') . '<a class="btn line" href="/demo/" target="_blank">Client portal demo</a><a class="btn line" href="/" target="_blank">Website</a></div></section>';
 }
 if ($page === 'outreach') {
     echo '<h1>Outreach</h1><p class="sub">Check each message, edit it if you like, and send. Emails go from hello@sitesbyms.com with a tracked link, and the leads sheet updates itself.</p>';
     $rows = null; $gerr = '';
-    if (!google_key()) $gerr = 'setup';
+    if (!leads_ready()) $gerr = 'setup';
     else { try { $rows = sheet_rows(); } catch (Throwable $e) { $gerr = $e->getMessage(); } }
     if ($gerr === 'setup') echo '<section class="card"><h2>Connect the leads sheet first</h2><p>The panel needs a Google key to read and update the sheet. It takes about 10 minutes, once.</p><a class="btn" href="?p=settings#google">Set it up</a></section>';
     elseif ($gerr) echo '<section class="card"><h2>Could not read the sheet</h2><p class="err">' . h($gerr) . '</p><a class="btn line" href="?p=settings#google">Check the Google settings</a></section>';
@@ -531,7 +542,7 @@ if ($page === 'calls') {
 if ($page === 'results') {
     echo '<h1>Results</h1><p class="sub">How each channel is doing: messages sent, how many saw them, how many opened their concept, replies and calls. Your own team\'s clicks are not counted.</p>';
     $rows = null; $gerr = '';
-    if (!google_key()) $gerr = 'The leads sheet is not connected yet (Settings › Leads sheet).';
+    if (!leads_ready()) $gerr = 'The leads sheet is not connected yet (Settings › Leads sheet).';
     else { try { $rows = sheet_rows(); } catch (Throwable $e) { $gerr = $e->getMessage(); } }
     if ($gerr) echo '<section class="card"><p class="err">' . h($gerr) . '</p></section>';
     else {
@@ -601,7 +612,7 @@ if ($page === 'activity') {
     }
     $vs = read_json('visits_sync.json', []);
     echo '<h1>Activity</h1><p class="sub">What visitors do on concept pages, report pages and our own site: time, scroll, sections, clicks, taps, forms and every step of booking. Team visits are never counted.</p>';
-    echo '<form method="post" class="hint" style="margin:-6px 0 16px">' . csrf_field() . 'Every visit is also copied to the <b>Visits</b> tab of the leads sheet (every 30 minutes)' . (!empty($vs['at']) ? ': last copy ' . h(ago(gmdate('c', (int)$vs['at']))) . (isset($vs['rows']) ? ', ' . (int)$vs['rows'] . ' visits' : '') . (!empty($vs['error']) ? ' · <span class="err">' . h($vs['error']) . '</span>' : '') : '') . '. <button class="btn line sm" name="a" value="vsync">Copy now</button></form>';
+    if (leads_store() !== 'db') echo '<form method="post" class="hint" style="margin:-6px 0 16px">' . csrf_field() . 'Every visit is also copied to the <b>Visits</b> tab of the leads sheet (every 30 minutes)' . (!empty($vs['at']) ? ': last copy ' . h(ago(gmdate('c', (int)$vs['at']))) . (isset($vs['rows']) ? ', ' . (int)$vs['rows'] . ' visits' : '') . (!empty($vs['error']) ? ' · <span class="err">' . h($vs['error']) . '</span>' : '') : '') . '. <button class="btn line sm" name="a" value="vsync">Copy now</button></form>';
     echo '<div class="tabs2">'; foreach ([7, 30, 60] as $d) echo '<a href="?p=activity&amp;d=' . $d . ($only ? '&amp;s=' . h($only) : '') . '"' . ($d === $days ? ' style="font-weight:800"' : '') . '>Last ' . $d . ' days</a>'; if ($only) echo '<a href="?p=activity&amp;d=' . $days . '">Show all businesses</a>'; echo '</div>';
     echo '<section class="card"><h2>Funnel' . ($only ? ' for ' . h($only) : '') . '</h2>';
     if (!$ss) echo '<div class="empty">No visits recorded yet. They appear here as soon as someone opens a concept.</div>';
@@ -628,7 +639,7 @@ if ($page === 'activity') {
 }
 if (in_array($page, ['leads', 'lead', 'leadnew'], true)) {
     $rows = null; $gerr = '';
-    if (!google_key()) $gerr = 'The leads sheet is not connected yet (Settings › Leads sheet).';
+    if (!leads_ready()) $gerr = 'The leads sheet is not connected yet (Settings › Leads sheet).';
     else { try { $rows = sheet_rows(); } catch (Throwable $e) { $gerr = $e->getMessage(); } }
     $stClass = ['Candidate' => 'grey', 'Ready' => '', 'Rebuild' => '', 'Review' => '', 'Sent' => 'ok', 'Replied' => 'ok', 'Won' => 'ok', 'Lost' => 'grey', 'Skip' => 'grey'];
     $fieldDefs = [
@@ -657,7 +668,7 @@ if (in_array($page, ['leads', 'lead', 'leadnew'], true)) {
         }));
         usort($list, fn($a, $b) => $b['_row'] <=> $a['_row']);
         $viewsBy = []; foreach ($views as $v) $viewsBy[$v['slug']] = ($viewsBy[$v['slug']] ?? 0) + 1;
-        echo '<div class="ch"><h1>Leads</h1><div class="acts"><a class="btn" href="?p=leadnew">Add a lead</a></div></div><p class="sub">Every business in the leads sheet. Changes you make here are saved straight to the sheet, so it always stays in sync with the nightly work.</p>';
+        echo '<div class="ch"><h1>Leads</h1><div class="acts"><a class="btn line" href="?p=history">Change history</a><a class="btn line" href="?p=leadscsv">Download CSV</a><a class="btn" href="?p=leadnew">Add a lead</a></div></div><p class="sub">' . (leads_store() === 'db' ? 'Every business we work with, stored in the site database. Every change is recorded (who, what, when) and the whole list is backed up every day.' : 'Every business in the leads sheet. Changes you make here are saved straight to the sheet.') . '</p>';
         echo '<div class="tabs2">';
         foreach (array_merge(['active' => 'Active', 'all' => 'All'], array_combine(LEAD_STATUSES, LEAD_STATUSES)) as $k => $lab) echo '<a href="?p=leads&amp;st=' . rawurlencode($k) . '"' . ($k === $st ? ' aria-current="page"' : '') . '>' . h($lab) . ' <i>' . ($count[$k] ?? 0) . '</i></a>';
         echo '</div><form class="search" method="get"><input type="hidden" name="p" value="leads"><input type="hidden" name="st" value="' . h($st) . '"><input name="q" value="' . h($qq) . '" placeholder="Search name, area, email, Instagram, notes…" aria-label="Search leads"><button class="btn line sm">Search</button></form>';
@@ -677,7 +688,7 @@ if (in_array($page, ['leads', 'lead', 'leadnew'], true)) {
         if (!$list) echo '<tr><td colspan="6"><div class="empty">No leads here.</div></td></tr>';
         echo '</tbody></table></div></section>';
     } elseif ($page === 'leadnew') {
-        echo '<h1>Add a lead</h1><p class="sub">It is added to the end of the leads sheet. The nightly run picks up leads with status Ready.</p><form class="card leadedit" method="post">' . csrf_field() . '<input type="hidden" name="a" value="lead_add">';
+        echo '<h1>Add a lead</h1><p class="sub">It is added to the end of the leads list. The nightly run picks up leads with status Ready.</p><form class="card leadedit" method="post">' . csrf_field() . '<input type="hidden" name="a" value="lead_add">';
         foreach (['Business', 'Contact'] as $grp) { echo '<h2>' . $grp . '</h2><div class="fgrid">'; foreach ($fieldDefs[$grp] as $k => $lab) echo $input($k, $lab, ''); echo '</div>'; }
         echo '<h2>Pipeline</h2><div class="fgrid">' . $input('status', 'Status', 'Candidate') . $input('notes', 'Notes (sector, rating, why it is a good lead)', '') . '</div><div class="acts"><button class="btn">Add lead</button><a class="btn line" href="?p=leads">Cancel</a></div></form>';
     } else {
@@ -702,9 +713,21 @@ if (in_array($page, ['leads', 'lead', 'leadnew'], true)) {
             echo '</ul><div class="links">' . ($slug ? '<a class="btn line sm" href="/' . h($slug) . '/?team=1" target="_blank" rel="noopener">Open concept</a>' : '') . ($r['site'] ? ' <a class="btn line sm" href="' . h(preg_match('#^https?://#', $r['site']) ? $r['site'] : 'https://' . $r['site']) . '" target="_blank" rel="noopener">Their website</a>' : '') . '</div></section>';
             echo '<form class="card leadedit" method="post">' . csrf_field() . '<input type="hidden" name="a" value="lead_save"><input type="hidden" name="row" value="' . $r['_row'] . '"><input type="hidden" name="orig" value="' . h($r['company']) . '">';
             foreach ($fieldDefs as $grp => $fs) { echo '<h2>' . $grp . '</h2><div class="fgrid">'; foreach ($fs as $k => $lab) echo $input($k, $lab, $r[$k]); echo '</div>'; }
-            echo '<p class="hint">Follow-up date (from the sheet formula): ' . h($r['followup_date'] ?: '—') . '</p><div class="acts sticky"><button class="btn">Save changes</button><a class="btn line" href="?p=leads">Back</a></div></form>';
+            $hist = leads_store() === 'db' ? leads_history($r['_row'], 30) : [];
+            if ($hist) { echo '<section class="card"><h2>Change history</h2><ul class="tl">'; foreach ($hist as $hx) echo '<li><b>' . h($hx['field']) . '</b> · ' . h(mb_strimwidth((string)$hx['old'], 0, 40, '…') ?: '—') . ' → ' . h(mb_strimwidth((string)$hx['new'], 0, 60, '…') ?: '—') . '<small> · ' . h($hx['by']) . ' · ' . h(ago($hx['at'])) . '</small></li>'; echo '</ul></section>'; }
+            echo '<p class="hint">First follow-up date: ' . h($r['followup_date'] ?: '3 days after sending') . '</p><div class="acts sticky"><button class="btn">Save changes</button><a class="btn line" href="?p=leads">Back</a></div></form>';
         }
     }
+}
+if ($page === 'history') {
+    $hist = leads_store() === 'db' ? leads_history(null, 400) : [];
+    $names = []; try { foreach (sheet_rows() as $x) $names[$x['_row']] = $x['company']; } catch (Throwable $e) {}
+    echo '<p class="crumb"><a href="?p=leads">← Leads</a></p><h1>Change history</h1><p class="sub">Every change to a lead or a setting: by a team member, by the automatic sending, or by Claude in the nightly run. Nothing is ever deleted from this list.</p><section class="card">';
+    if (!$hist) echo '<div class="empty">' . (leads_store() === 'db' ? 'No changes yet.' : 'The history starts once the leads are moved into the database (Settings).') . '</div>';
+    else { echo '<div class="tbl"><table><thead><tr><th>When</th><th>Lead</th><th>Field</th><th>Before</th><th>After</th><th>By</th></tr></thead><tbody>';
+        foreach ($hist as $hx) echo '<tr><td>' . h(ago($hx['at'])) . '</td><td>' . ($hx['row'] ? '<a href="?p=lead&amp;r=' . (int)$hx['row'] . '">' . h($names[$hx['row']] ?? '#' . $hx['row']) . '</a>' : '—') . '</td><td>' . h($hx['field']) . '</td><td class="nt">' . h(mb_strimwidth((string)$hx['old'], 0, 60, '…')) . '</td><td class="nt">' . h(mb_strimwidth((string)$hx['new'], 0, 80, '…')) . '</td><td>' . h($hx['by']) . '</td></tr>';
+        echo '</tbody></table></div>'; }
+    echo '</section>';
 }
 if ($page === 'messages') {
     echo '<h1>Messages</h1><p class="sub">Questions and free concept requests from the website forms.</p>';
@@ -755,12 +778,23 @@ if ($page === 'settings') {
         echo '</section>';
     }
     $gk = google_key();
+    echo '<section class="card" id="leadsdb"><h2>Leads database</h2>';
+    if (leads_store() === 'db') {
+        $bk = read_json('leads_backup.json', []); $nl = count(sheet_rows());
+        echo '<p>✓ ' . $nl . ' leads are stored in the site database. Every change is recorded in the <a href="?p=history">change history</a>. A backup file is saved on the server every day, and the whole list is emailed to the team as a CSV whenever it changed' . (!empty($bk['at']) ? ' (last backup ' . h(ago(gmdate('c', (int)$bk['at']))) . ')' : '') . '.</p><div class="links"><a class="btn line" href="?p=leadscsv">Download all leads (CSV)</a></div>';
+    } else {
+        echo '<p>The leads are still read from the Google Sheet. Moving them into the site database keeps every row number, adds a full change history and daily backups, and the sheet is then no longer used (it stays as an old copy).</p>';
+        if ($isOwner && $gk) echo '<form method="post">' . csrf_field() . '<input type="hidden" name="a" value="leads_import"><button class="btn" onclick="return confirm(\'Move all leads from the Google Sheet into the database now?\')">Move the leads into the database</button></form>';
+    }
+    echo '</section>';
+    if (leads_store() !== 'db') {
     echo '<section class="card" id="google"><h2>Leads sheet (Google)</h2>';
     if ($gk) echo '<p>✓ Google key saved for <b>' . h($gk['client_email']) . '</b>. The leads sheet must be shared with this address as <b>Editor</b>.</p><form method="post">' . csrf_field() . '<input type="hidden" name="a" value="gtest"><button class="btn line">Test connection</button></form>';
     else echo '<p class="hint">Lets the Outreach page read the leads sheet and mark rows as Sent. One-time setup:</p><ol class="steps"><li>Open <a href="https://console.cloud.google.com/projectcreate" target="_blank" rel="noopener">Google Cloud</a> with the m.and.s.design.develop account and create a project called <b>sitesbyms</b>.</li><li>Turn on the <a href="https://console.cloud.google.com/apis/library/sheets.googleapis.com" target="_blank" rel="noopener">Google Sheets API</a> for that project.</li><li>Go to <a href="https://console.cloud.google.com/iam-admin/serviceaccounts" target="_blank" rel="noopener">Service accounts</a> › Create service account › name <b>panel</b> › Done.</li><li>Open it › Keys › Add key › Create new key › <b>JSON</b>. A file downloads.</li><li>Upload that file below.</li><li>In the leads sheet, press Share and add the service account email (shown here after upload) as <b>Editor</b>.</li></ol>';
     if ($isOwner) echo '<form method="post" enctype="multipart/form-data" class="stack">' . csrf_field() . '<input type="hidden" name="a" value="gkey"><label>' . ($gk ? 'Replace the key file' : 'Key file (.json)') . '<input type="file" name="keyfile" accept=".json,application/json"></label><button class="btn' . ($gk ? ' line' : '') . '">Upload key</button></form>';
     echo '</section>';
-    if ($gk) { try { $ns = panel_settings(); } catch (Throwable $e) { $ns = PANEL_DEFAULTS; }
+    }
+    if (leads_ready()) { try { $ns = panel_settings(); } catch (Throwable $e) { $ns = PANEL_DEFAULTS; }
         echo '<form class="card" method="post" id="nightly">' . csrf_field() . '<input type="hidden" name="a" value="nightly"><h2>Nightly run</h2><p class="hint">The nightly run reads these from the leads sheet (tab “Panel”) every night.</p><div class="f3">'
             . '<label>New concepts per night<input type="number" name="n_concepts" min="0" max="20" value="' . h($ns['New concepts per night']) . '"></label>'
             . '<label>New candidates per night, per country (UK, USA, Canada, Australia, UAE)<input type="number" name="n_cand" min="0" max="40" value="' . h($ns['New candidates per night']) . '"></label>'

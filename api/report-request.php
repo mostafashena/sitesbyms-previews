@@ -25,7 +25,7 @@ message_add(['at' => gmdate('c'), 'type' => 'report', 'name' => $name ?: '(not g
     'site' => '', 'slug' => $slug, 'message' => ($team ? '[TEST from the team] ' : '') . 'Asked for the free competitor report from the concept page.', 'file' => '', 'mailed' => true]);
 
 // Mark the lead in the sheet so the nightly run builds the report (column W, Project Stage).
-if (!$team && google_key()) {
+if (!$team && leads_ready()) {
     try { foreach (sheet_rows() as $r) if ($r['slug'] === $slug) {
         if (!str_starts_with($r['stage'], 'Report')) sheet_update_row($r['_row'], ['stage' => 'Report requested ' . gmdate('Y-m-d') . ' · send to: ' . ($contact !== '' ? $contact : 'same channel')]);
         break; } } catch (Throwable $e) {}
