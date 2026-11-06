@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sheba Brick Lane | Family-run curry house since 1974</title>
+<meta name="description" content="Sheba, 136 Brick Lane, London E1. A family-run curry house since 1974, awarded Best Curry House in the UK. Bengal lamb shank, shashlik, tandoori grills. Open daily from noon.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Yeseva+One&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+/* Layout: colour-block playful. Words: generous, proud, lively. */
+:root{--red:#C1272D;--red2:#9C1C22;--saffron:#F2A93B;--teal:#0F5C5C;--cream:#FFF4E2;--ink:#1E1512;--muted:#6E5B50}
+*{box-sizing:border-box}
+.split>*,.dishes>*,.awards>*,.rv>*,.visit-grid>*{min-width:0}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--cream);color:var(--ink);font:400 17px/1.65 "DM Sans",system-ui,sans-serif}
+a{color:inherit}
+img{display:block;max-width:100%;height:auto}
+h1,h2,h3{font-family:"Yeseva One",Georgia,serif;font-weight:400;margin:0;line-height:1.05}
+.wrap{width:min(1160px,100% - 32px);margin-inline:auto}
+.topbar{background:var(--ink);color:#F5E4CC;font-size:13px;text-align:center;padding:7px 16px}
+header{position:sticky;top:0;z-index:20;background:var(--red);color:#fff}
+.nav{display:flex;align-items:center;justify-content:space-between;height:68px;gap:12px}
+.mark{text-decoration:none;font:400 34px/1 "Yeseva One",serif;letter-spacing:.02em}
+.mark small{font:700 11px "DM Sans",sans-serif;letter-spacing:.24em;text-transform:uppercase;color:var(--saffron);margin-left:8px}
+.links{display:flex;gap:24px;font-weight:500}
+.links a{text-decoration:none;opacity:.9}
+.links a:hover{opacity:1;text-decoration:underline}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:50px;padding:0 26px;background:var(--saffron);color:var(--ink);font-weight:700;text-decoration:none;border-radius:14px;white-space:nowrap;box-shadow:0 4px 0 rgba(0,0,0,.25);transition:transform .15s}
+.btn:hover{transform:translateY(-2px)}
+.btn.alt{background:#fff;color:var(--red)}
+.btn.dark{background:var(--teal);color:#fff}
+@media(max-width:860px){.links{display:none}.mark small{display:none}.nav .btn{min-height:42px;padding:0 16px}}
+
+.hero{background:var(--red);color:#fff;padding:40px 0 0;overflow:hidden}
+.split{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:end}
+.badge{display:inline-block;background:var(--saffron);color:var(--ink);font-weight:700;font-size:13px;letter-spacing:.12em;text-transform:uppercase;padding:8px 14px;border-radius:999px;transform:rotate(-2deg)}
+.hero h1{font-size:clamp(48px,8vw,104px);margin:20px 0 18px}
+.hero h1 span{color:var(--saffron)}
+.hero p{font-size:20px;color:#FCE3DF;max-width:30em;margin:0 0 28px}
+.cta{display:flex;gap:12px;flex-wrap:wrap;padding-bottom:48px}
+.plate{position:relative;align-self:stretch;min-height:420px}
+.plate img{position:absolute;inset:0 0 0 0;width:100%;height:100%;object-fit:cover;border-radius:28px 28px 0 0}
+.since{position:absolute;left:-24px;top:30px;background:var(--teal);color:#fff;border-radius:50%;width:132px;height:132px;display:grid;place-items:center;text-align:center;font:400 16px/1.1 "Yeseva One",serif;box-shadow:0 0 0 6px var(--red)}
+.since b{display:block;font-size:38px;color:var(--saffron)}
+@media(max-width:860px){.split{grid-template-columns:minmax(0,1fr)}.plate{min-height:300px}.since{left:auto;right:12px;top:-30px;width:110px;height:110px}.since b{font-size:30px}.cta{padding-bottom:20px}}
+
+section{padding:80px 0}
+.eyebrow{font-weight:700;font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:var(--red);margin-bottom:12px}
+h2{font-size:clamp(38px,6vw,66px)}
+
+.awards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:36px}
+.aw{border-radius:22px;padding:30px 26px;color:#fff}
+.aw:nth-child(1){background:var(--teal)}.aw:nth-child(2){background:var(--red)}.aw:nth-child(3){background:var(--ink)}
+.aw b{display:block;font:400 30px/1.1 "Yeseva One",serif;color:var(--saffron);margin-bottom:10px}
+.aw p{margin:0;color:#F3E7DA}
+@media(max-width:860px){.awards{grid-template-columns:minmax(0,1fr)}}
+
+.story{background:var(--saffron)}
+.story .split{align-items:center}
+.story p{margin:0 0 16px;font-size:18px}
+.story img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:24px;border:6px solid var(--ink)}
+.story figure{margin:0;position:relative}
+.story figcaption{position:absolute;right:14px;bottom:14px;background:rgba(30,21,18,.75);color:#fff;font-size:11px;padding:3px 9px;border-radius:6px}
+
+.dishes{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:36px}
+.dish{background:#fff;border-radius:22px;overflow:hidden;box-shadow:0 6px 0 rgba(30,21,18,.08)}
+.dish figure{margin:0;position:relative;aspect-ratio:4/3;background:#F1DDC0}
+.dish img{width:100%;height:100%;object-fit:cover}
+.dish figcaption{position:absolute;left:10px;top:10px;background:rgba(30,21,18,.7);color:#fff;font-size:11px;padding:2px 8px;border-radius:6px}
+.dish div{padding:18px 20px 22px}
+.dish h3{font-size:24px;margin-bottom:6px}
+.dish p{margin:0 0 10px;color:var(--muted);font-size:15px}
+.dish span{font-weight:700;color:var(--red);font-size:18px}
+@media(max-width:960px){.dishes{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:520px){.dishes{grid-template-columns:minmax(0,1fr)}}
+.more{margin-top:26px;display:flex;flex-wrap:wrap;gap:10px}
+.more span{background:#fff;border:2px solid var(--ink);border-radius:999px;padding:8px 16px;font-weight:500;font-size:15px}
+.more b{color:var(--red)}
+
+.rv-wrap{background:var(--teal);color:#fff}
+.rv-wrap .eyebrow{color:var(--saffron)}
+.rv{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:34px}
+.rv blockquote{margin:0;background:rgba(255,255,255,.08);border-radius:22px;padding:28px 24px}
+.rv p{margin:0 0 12px;font-size:17px}
+.rv cite{font-style:normal;color:var(--saffron);font-weight:700;font-size:13px;letter-spacing:.1em;text-transform:uppercase}
+@media(max-width:860px){.rv{grid-template-columns:minmax(0,1fr)}}
+
+.visit-grid{display:grid;grid-template-columns:1fr 1fr;gap:44px}
+.hours{width:100%;border-collapse:collapse;font-size:17px}
+.hours td{padding:11px 0;border-bottom:2px dashed #E8D3B4}
+.hours td:last-child{text-align:right;font-weight:700}
+.party{background:var(--red);color:#fff;border-radius:24px;padding:28px 26px;margin-top:26px}
+.party h3{font-size:28px;color:var(--saffron);margin-bottom:6px}
+.party p{margin:0}
+@media(max-width:760px){.visit-grid{grid-template-columns:minmax(0,1fr)}}
+
+.final{background:var(--ink);color:#fff;text-align:center;padding:84px 0}
+.final h2 span{color:var(--saffron)}
+.final p{color:#D9C8B8;margin:14px auto 26px;max-width:30em}
+footer{background:var(--red2);color:#FCE3DF;font-size:14px;padding:26px 0}
+footer .wrap{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap}
+.ph{background:#F1DDC0}
+</style>
+</head>
+<body>
+<div class="topbar">Design concept prepared for Sheba Brick Lane by Sites By MS. Not the official website.</div>
+<header>
+  <div class="wrap nav">
+    <a class="mark" href="#top">Sheba<small>Brick Lane · 1974</small></a>
+    <nav class="links"><a href="#story">Our story</a><a href="#menu">Favourites</a><a href="#visit">Visit</a></nav>
+    <a class="btn" href="tel:02072477824">Book a table</a>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap split">
+      <div>
+        <span class="badge">Awarded Best Curry House in the UK</span>
+        <h1>Brick Lane's family <span>curry house.</span></h1>
+        <p>Run by the same family since 1974. Huge Bengal lamb shanks, sizzling shashliks and generous portions, with a fully licensed bar and a warm welcome every day of the week.</p>
+        <div class="cta"><a class="btn" href="tel:02072477824">Call 020 7247 7824</a><a class="btn alt" href="#menu">See the favourites</a></div>
+      </div>
+      <div class="plate">
+        <img src="https://resizer.otstatic.com/v4/photos/47989963-3?width=1280&height=720" alt="Inside Sheba on Brick Lane" width="1280" height="720" onerror="this.onerror=null;this.removeAttribute('src');this.classList.add('ph')">
+        <div class="since"><span><b>50+</b>years on<br>Brick Lane</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="eyebrow">Why people come back</div>
+      <h2>Proud of every plate.</h2>
+      <div class="awards">
+        <div class="aw"><b>Best Curry House in the UK</b><p>Named the UK's best curry house by the Cobra Good Curry Guide.</p></div>
+        <div class="aw"><b>Best on Brick Lane</b><p>Awarded best Indian restaurant on Brick Lane and in East London in 2012.</p></div>
+        <div class="aw"><b>4.7 from 8,800+ reviews</b><p>Our Google rating, from guests from all over the world.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="story" id="story">
+    <div class="wrap split">
+      <figure><img src="https://images.unsplash.com/photo-1784501025488-001592b6ee31?w=1400&q=80" alt="Colourful spices piled high at a market" width="1400" height="1050" loading="lazy" onerror="this.onerror=null;this.removeAttribute('src');this.classList.add('ph')"><figcaption>Sample photo</figcaption></figure>
+      <div>
+        <div class="eyebrow" style="color:var(--ink)">Our story</div>
+        <h2 style="margin-bottom:22px">One family, half a century.</h2>
+        <p>Motabir Ali and his family opened Sheba in 1974, when it was one of the very first curry houses on Brick Lane. The street has changed many times since; Sheba is still run by Motabir Ali's family.</p>
+        <p>We cook Indian, Bangladeshi and Pakistani dishes with fresh, good-quality ingredients, from tandoori grills and seafood to plenty of vegetarian choice. Can't finish? We'll happily pack the rest for you to take home.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="menu">
+    <div class="wrap">
+      <div class="eyebrow">The favourites</div>
+      <h2>What our regulars order.</h2>
+      <div class="dishes">
+        <div class="dish"><figure><img src="https://images.unsplash.com/photo-1596797038530-2c107229654b?w=900&q=80" alt="A rich curry in a black cooking pot" width="900" height="675" loading="lazy" onerror="this.onerror=null;this.removeAttribute('src')"><figcaption>Sample photo</figcaption></figure><div><h3>Bengal Lamb Shank</h3><p>Huge, tender and falling off the bone, in a rich sauce.</p><span>£24.95</span></div></div>
+        <div class="dish"><figure><img src="https://images.unsplash.com/photo-1772730064951-89b427965dbc?w=900&q=80" alt="A bowl of creamy chicken curry with mint" width="900" height="675" loading="lazy" onerror="this.onerror=null;this.removeAttribute('src')"><figcaption>Sample photo</figcaption></figure><div><h3>Butter Chicken</h3><p>Rich, creamy and a guest favourite.</p><span>£16.95</span></div></div>
+        <div class="dish"><figure><img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=900&q=80" alt="Grilled meat and vegetables" width="900" height="675" loading="lazy" onerror="this.onerror=null;this.removeAttribute('src')"><figcaption>Sample photo</figcaption></figure><div><h3>Tandoori Mixed Grill</h3><p>Arrives sizzling hot. A great one to share.</p><span>£23.95</span></div></div>
+        <div class="dish"><figure><img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?w=900&q=80" alt="Golden fried samosas" width="900" height="675" loading="lazy" onerror="this.onerror=null;this.removeAttribute('src')"><figcaption>Sample photo</figcaption></figure><div><h3>Samosas</h3><p>Ask for the sauce our guests rave about.</p><span>Starter</span></div></div>
+      </div>
+      <div class="more"><span>Shashlik Masala <b>£18.95</b></span><span>King Prawn Shashlik Bhuna <b>£21.95</b></span><span>Lobster Bengal Special <b>£22.95</b></span><span>Tandoori Salmon <b>£20.95</b></span><span>Lamb Chop Bhuna <b>£19.95</b></span><span>Chicken Tikka Masala <b>£15.95</b></span></div>
+    </div>
+  </section>
+
+  <section class="rv-wrap">
+    <div class="wrap">
+      <div class="eyebrow">Guests say</div>
+      <h2>Generous, full of flavour.</h2>
+      <div class="rv">
+        <blockquote><p>"The lamb shank was definitely the highlight. It was huge, super tender and literally falling off the bone."</p><cite>Google review</cite></blockquote>
+        <blockquote><p>"No wonder this restaurant has been awarded Best Curry House in the UK. Delicious food, generous portions and a welcoming atmosphere."</p><cite>Google review</cite></blockquote>
+        <blockquote><p>"We came with a large party and I was incredibly impressed by how fast and organized the service was the entire time."</p><cite>Google review</cite></blockquote>
+      </div>
+    </div>
+  </section>
+
+  <section id="visit">
+    <div class="wrap visit-grid">
+      <div>
+        <div class="eyebrow">Find us</div>
+        <h2>136 Brick Lane</h2>
+        <p style="color:var(--muted);margin:16px 0 24px">London E1 6RU. Call ahead for big groups.</p>
+        <div class="cta" style="padding:0"><a class="btn dark" href="https://www.google.com/maps/search/?api=1&query=Sheba+136+Brick+Lane+London+E1+6RU">Get directions</a><a class="btn" href="tel:02072477824">020 7247 7824</a></div>
+        <div class="party"><h3>Celebrating?</h3><p>We have a private room and banquet options for birthdays, office parties and big family dinners. Call us to plan it.</p></div>
+      </div>
+      <div>
+        <h3 style="font-size:30px;margin-bottom:10px">Opening hours</h3>
+        <table class="hours">
+          <tr><td>Monday – Thursday</td><td>12:00 – 23:30</td></tr>
+          <tr><td>Friday – Saturday</td><td>12:00 – 00:00</td></tr>
+          <tr><td>Sunday</td><td>12:00 – 23:30</td></tr>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="final">
+    <div class="wrap">
+      <h2>Hungry? <span>Come to Sheba.</span></h2>
+      <p>Fifty years of family cooking on Brick Lane, and a table waiting for you tonight.</p>
+      <a class="btn" href="tel:02072477824">Book a table</a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Sheba Brick Lane · 136 Brick Lane, London E1 6RU · info@shebabricklane.com</span>
+    <span>Design concept by Sites By MS. Not the official website.</span>
+  </div>
+</footer>
+<script src="/assets/concept-bar.js" data-name="Sheba Brick Lane" data-slug="sheba-brick-lane" defer></script>
+</body>
+</html>
