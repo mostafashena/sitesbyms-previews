@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>La Bouffe | Paris bistro in Parsons Green</title>
+<meta name="description" content="La Bouffe, 116 Wandsworth Bridge Road, London SW6. A Parisian bistro by Lawrence and Emily Hartley: snails, onglet, confit de canard, Paris-Brest.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}
+.disc>*,.menu>*,.note>*,.kids>*,.split>*,.svc>*,.rv>*,.gal>*,.hg>*,.vg>*,.two>*{min-width:0}
+html{scroll-behavior:smooth}
+a{color:inherit}
+img{display:block;max-width:100%;height:auto}
+figure{margin:0;position:relative}
+figcaption{position:absolute;left:10px;bottom:10px;background:rgba(0,0,0,.55);color:#eee;font:500 11px/1.4 system-ui,sans-serif;padding:3px 8px;border-radius:4px}
+.ph{background:rgba(127,127,127,.18);min-height:140px}
+.wrap{width:min(1160px,100% - 32px);margin-inline:auto}
+.wrap>*,[class*=grid]>*,[class*=cols]>*{min-width:0}
+.topbar{font-size:13px;text-align:center;padding:7px 16px}
+header{position:sticky;top:0;z-index:20}
+.nav{display:flex;align-items:center;justify-content:space-between;height:66px;gap:12px}
+.links{display:flex;gap:24px}
+.links a{text-decoration:none}
+@media(max-width:860px){.links{display:none}}
+section{padding:80px 0}
+footer .wrap{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap}
+
+/* Layout: printed menu card. Words: Parisian, cosy, romantic. */
+:root{--paper:#FBF5EA;--red:#B3261E;--ink:#24180F;--mut:#6E5E50;--line:#E2D3BC}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 17px/1.7 Lora,Georgia,serif}
+h1,h2,h3{font-family:"DM Serif Display",Georgia,serif;font-weight:400;margin:0;line-height:1.05}
+.topbar{background:var(--red);color:#fff;font-family:system-ui,sans-serif}
+header{background:var(--paper);border-bottom:2px solid var(--ink)}
+.check{height:14px;background:repeating-conic-gradient(var(--red) 0 25%,#fff 0 50%) 0 0/14px 14px}
+.mark{text-decoration:none;font:400 32px "DM Serif Display",serif;color:var(--red)}
+.links a{font-style:italic;color:var(--mut)}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 24px;background:var(--red);color:#fff;text-decoration:none;font:600 15px system-ui,sans-serif;letter-spacing:.06em;border-radius:2px;white-space:nowrap}
+.btn.l{background:transparent;color:var(--ink);border:1.5px solid var(--ink)}
+.hero{padding:50px 0 70px;text-align:center}
+.hero .k{font-style:italic;color:var(--mut);font-size:19px}
+.hero h1{font-size:clamp(56px,10vw,128px);color:var(--red);margin:6px 0}
+.hero p{max-width:34em;margin:0 auto 28px;font-size:19px;color:var(--mut)}
+.cta{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
+.hero figure{margin-top:46px}
+.hero img{width:100%;aspect-ratio:21/9;object-fit:cover;border:2px solid var(--ink)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.two img{width:100%;aspect-ratio:4/5;object-fit:cover;border:2px solid var(--ink)}
+h2{font-size:clamp(40px,6vw,64px);margin-bottom:18px}
+.card{max-width:760px;margin:0 auto;background:#fff;border:2px solid var(--ink);padding:44px 46px;position:relative}
+.card:before{content:"";position:absolute;inset:8px;border:1px solid var(--ink);pointer-events:none}
+.card h2{text-align:center;color:var(--red)}
+.card .sub{text-align:center;font-style:italic;color:var(--mut);margin:-6px 0 26px}
+.dish{display:flex;justify-content:space-between;gap:16px;padding:12px 0;border-bottom:1px dotted var(--mut)}
+.dish b{font:400 22px "DM Serif Display",serif}
+.dish small{display:block;font-style:italic;color:var(--mut)}
+.dish span{color:var(--red);font-weight:600;white-space:nowrap}
+.gal{display:grid;grid-template-columns:2fr 1fr 1fr;gap:12px}
+.gal img{width:100%;height:100%;aspect-ratio:1/1;object-fit:cover;border:2px solid var(--ink)}
+.rv{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;text-align:center}
+.rv p{font:400 24px/1.35 "DM Serif Display",serif;margin:0 0 10px}
+.rv cite{font-style:italic;color:var(--mut)}
+.vgrid{display:grid;grid-template-columns:1fr 1fr;gap:44px}
+.hours{width:100%;border-collapse:collapse}.hours td{padding:11px 0;border-bottom:1px dotted var(--mut)}.hours td+td{text-align:right}
+footer{background:var(--ink);color:#d8c9b3;font:13px system-ui,sans-serif;padding:24px 0}
+@media(max-width:860px){.two,.vgrid,.rv{grid-template-columns:minmax(0,1fr)}.gal{grid-template-columns:1fr 1fr}.gal figure:first-child{grid-column:span 2}.card{padding:30px 22px}.hero img{aspect-ratio:4/3}.nav .btn{min-height:40px;padding:0 14px}}
+
+</style>
+</head>
+<body>
+<div class="topbar">Design concept prepared for La Bouffe by Sites By MS. Not the official website.</div>
+<header><div class="wrap nav"><a class="mark" href="#top">La Bouffe</a><nav class="links"><a href="#story">Our story</a><a href="#menu">Menu</a><a href="#visit">Visit</a></nav><a class="btn" href="https://www.opentable.com/r/la-bouffe-london">Book a table</a></div><div class="check"></div></header>
+<main id="top">
+<section class="hero"><div class="wrap"><div class="k">Bistrot parisien · Parsons Green</div><h1>La Bouffe</h1><p>A love letter to the bistros of Paris on Wandsworth Bridge Road. Snails, onglet with Café de Paris butter, confit de canard and Paris-Brest, under red checked cloths.</p><div class="cta"><a class="btn" href="https://www.opentable.com/r/la-bouffe-london">Book a table</a><a class="btn l" href="tel:02036407466">020 3640 7466</a></div>
+<figure class=""><img src="https://images.unsplash.com/photo-1778855400007-37cbd89592ef?w=2000&amp;q=80" alt="Steak frites with salad" width="2000" height="860" onerror="this.onerror=null;this.removeAttribute('src');this.classList.add('ph')"><figcaption>Sample photo</figcaption></figure></div></section>
+<section id="story" style="padding-top:0"><div class="wrap two"><figure class=""><img src="https://images.unsplash.com/photo-1600891964092-4316c288032e?w=1200&amp;q=80" alt="Grilled meat on a white plate" width="1200" height="1500" loading="lazy" onerror="this.onerror=null;this.removeAttribute('src');this.classList.add('ph')"><figcaption>Sample photo</figcaption></figure><div><h2>A family's French heritage.</h2><p>La Bouffe is run by husband and wife Lawrence and Emily Hartley, who also own Le Petit Citron in Brook Green. Where Le Petit Citron looks to Provence, La Bouffe is inspired by their family's French heritage and the classic Paris bistro.</p><p>In the kitchen is head chef Harry, formerly of City Social. Expect generous classics done properly and a warm, neighbourhood welcome.</p></div></div></section>
+<section id="menu" style="background:#F3E8D6"><div class="wrap"><div class="card"><h2>La Carte</h2><p class="sub">A taste of the menu</p>
+<div class="dish"><div><b>Escargots</b><small>Snails Montorgueil, garlic &amp; parsley butter</small></div><span>Entrée</span></div>
+<div class="dish"><div><b>Onglet, Café de Paris</b><small>With frites</small></div><span>Plat</span></div>
+<div class="dish"><div><b>Confit de canard</b><small>Slow-cooked duck leg</small></div><span>Plat</span></div>
+<div class="dish"><div><b>Paris-Brest</b><small>Praline cream, choux pastry</small></div><span>Dessert</span></div>
+<div class="dish"><div><b>Prix fixe</b><small>Ask about today's set menu</small></div><span>£33</span></div></div></div></section>
+<section><div class="wrap gal"><figure class=""><img src="https://images.unsplash.com/photo-1588168333986-5078d3ae3976?w=1400&amp;q=80" alt="A seared steak on salad leaves" width="1400" height="1400" loading="lazy" onerror="this.onerror=null;this.removeAttribute('src');this.classList.add('ph')"><figcaption>Sample photo</figcaption></figure><figure class=""><img src="https://images.unsplash.com/photo-1723893905879-0e309c2a8e06?w=800&amp;q=80" alt="Two steaks with parsley" width="800" height="800" loading="lazy" onerror="this.onerror=null;this.removeAttribute('src');this.classList.add('ph')"><figcaption>Sample photo</figcaption></figure><figure class=""><img src="https://images.unsplash.com/photo-1546964124-0cce460f38ef?w=800&amp;q=80" alt="Cooked meat on a tray" width="800" height="800" loading="lazy" onerror="this.onerror=null;this.removeAttribute('src');this.classList.add('ph')"><figcaption>Sample photo</figcaption></figure></div></section>
+<section style="padding-top:0"><div class="wrap"><h2 style="text-align:center">4.9 from 183 reviews</h2><div class="rv">
+<blockquote style="margin:0"><p>"Feels authentically French with a cozy and romantic atmosphere."</p><cite>Google review</cite></blockquote>
+<blockquote style="margin:0"><p>"Their steak frites may be one of the best in London."</p><cite>Google review</cite></blockquote>
+<blockquote style="margin:0"><p>"A beautiful Parisian charm, and the food was just fabulous."</p><cite>Google review</cite></blockquote></div></div></section>
+<section id="visit" style="padding-top:0"><div class="wrap vgrid"><div><h2>116 Wandsworth Bridge Road</h2><p style="color:var(--mut)">London SW6 2TF, Parsons Green.</p><div class="cta" style="justify-content:flex-start"><a class="btn" href="https://www.opentable.com/r/la-bouffe-london">Book a table</a><a class="btn l" href="https://www.google.com/maps/search/?api=1&query=La+Bouffe+116+Wandsworth+Bridge+Road+London">Directions</a></div></div>
+<table class="hours"><tr><td>Monday</td><td>Closed</td></tr><tr><td>Tuesday – Thursday</td><td>17:00 – 21:30</td></tr><tr><td>Friday – Saturday</td><td>12:00 – 15:00, 17:00 – 21:30</td></tr><tr><td>Sunday</td><td>Closed</td></tr></table></div></section>
+</main><footer><div class="wrap"><span>La Bouffe · 116 Wandsworth Bridge Road, London SW6 2TF</span><span>Design concept by Sites By MS. Not the official website.</span></div></footer>
+<script src="/assets/concept-bar.js" data-name="La Bouffe" data-slug="la-bouffe" defer></script>
+</body>
+</html>
