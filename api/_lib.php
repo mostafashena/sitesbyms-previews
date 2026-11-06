@@ -2,7 +2,7 @@
 // Shared helpers for the Sites By MS server scripts. Not reachable from the web (.htaccess blocks files starting with "_").
 declare(strict_types=1);
 
-const TEAM_TO   = 'hello@sitesbyms.com, m.and.s.design.develop@gmail.com';
+const TEAM_TO   = 'm.and.s.design.develop@gmail.com';   // hello@ forwards to this Gmail too, so alerts go here only (no duplicates)
 const FROM_ADDR = 'hello@sitesbyms.com';
 const TZ        = 'Europe/London';
 
