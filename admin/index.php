@@ -763,7 +763,7 @@ if ($page === 'settings') {
     if ($gk) { try { $ns = panel_settings(); } catch (Throwable $e) { $ns = PANEL_DEFAULTS; }
         echo '<form class="card" method="post" id="nightly">' . csrf_field() . '<input type="hidden" name="a" value="nightly"><h2>Nightly run</h2><p class="hint">The nightly run reads these from the leads sheet (tab “Panel”) every night.</p><div class="f3">'
             . '<label>New concepts per night<input type="number" name="n_concepts" min="0" max="20" value="' . h($ns['New concepts per night']) . '"></label>'
-            . '<label>New candidates to find per night<input type="number" name="n_cand" min="0" max="40" value="' . h($ns['New candidates per night']) . '"></label>'
+            . '<label>New candidates per night, per country (UK, USA, Canada, Australia, UAE)<input type="number" name="n_cand" min="0" max="40" value="' . h($ns['New candidates per night']) . '"></label>'
             . '<label>If nothing is Ready, build the best new candidates<select name="auto"><option' . ($ns['If nothing is Ready, build the best new candidates'] === 'Yes' ? ' selected' : '') . '>Yes</option><option' . ($ns['If nothing is Ready, build the best new candidates'] !== 'Yes' ? ' selected' : '') . '>No</option></select></label>'
             . '</div><button class="btn">Save</button></form>';
         $as = $ns + AUTO_DEFAULTS; $hb = read_json('cron_heartbeat.json', []);
