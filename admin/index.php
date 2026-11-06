@@ -527,7 +527,7 @@ if ($page === 'results') {
     }
 }
 if ($page === 'activity') {
-    $days = in_array((int)($_GET['d'] ?? 30), [7, 30, 60], true) ? (int)$_GET['d'] : 30;
+    $days = in_array((int)($_GET['d'] ?? 30), [7, 30, 60], true) ? (int)($_GET['d'] ?? 30) : 30;
     $only = preg_replace('/[^a-z0-9-]/', '', (string)($_GET['s'] ?? ''));
     $ss = sessions_from(events_all($days));
     if ($only) $ss = array_values(array_filter($ss, fn($x) => $x['slug'] === $only));
