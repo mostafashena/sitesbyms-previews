@@ -36,5 +36,12 @@ try {
     }
 } catch (Throwable $e) { fwrite(STDERR, 'Mail test error: ' . $e->getMessage() . "\n"); }
 $force = in_array('--now', $argv, true);
+// Concept pages taken down (opt-outs): the deploy only adds files, so delete these folders from the live site here.
+foreach ((array)json_decode((string)@file_get_contents(__DIR__ . '/_removed.json'), true) as $gone) {
+    $dir = dirname(__DIR__) . '/' . $gone;
+    if (!is_string($gone) || !preg_match('/^[a-z0-9-]{2,60}$/', $gone) || in_array($gone, ['api', 'admin', 'assets', 'about', 'book', 'ask', 'report', 'reports', 'privacy', 'thanks', 'demo'], true) || !is_dir($dir)) continue;
+    foreach (glob($dir . '/{,.}*', GLOB_BRACE) ?: [] as $f) if (is_file($f)) @unlink($f);
+    if (@rmdir($dir)) echo date('c') . " removed /$gone/\n";
+}
 try { $res = autosend_tick($force); write_json('cron_heartbeat.json', $hb + ['result' => $res, 'at' => time()]); echo date('c') . ' ' . $res . "\n"; }
 catch (Throwable $e) { fwrite(STDERR, 'Auto-send error: ' . $e->getMessage() . "\n"); write_json('cron_heartbeat.json', $hb + ['error' => $e->getMessage()]); exit(1); }
