@@ -103,6 +103,7 @@ function lead_text(array $r, string $channel, string $kind): string {
 
 /* ---------- follow-ups: 1st (day 3, text in R/Z), 2nd (day 7) and 3rd (day 14, last) ---------- */
 const FOLLOWUP_KINDS = ['followup' => 'Follow-up', 'followup2' => 'Follow-up 2', 'followup3' => 'Follow-up 3'];
+const WA_PER_DAY = 25;   // WhatsApp messages the team sends by hand per day (keeps the number safe from WhatsApp's spam limits)
 
 function lead_date(string $d): ?DateTime {
     $tz = new DateTimeZone(TZ); $d = trim($d);
@@ -143,7 +144,7 @@ function lead_followup_text(array $r, string $channel, string $kind): string {
     if ($kind === 'followup2') {
         $t = "$hi,\n\n" . ($issue !== '' ? "One more thought on $biz's website. Something we noticed: $issue\n\n" : "One more thought on $biz's website.\n\n")
            . "The homepage idea we made for you shows how this could look:\n$link\n\n"
-           . "Our team can also put together a free analysis report comparing $biz with a few local competitors. If that would be useful, just reply \"yes\".";
+           . "Our team can also put together a free competitive analysis comparing $biz with a few local competitors. If that would be useful, just reply \"yes\".";
     } else {
         $t = "$hi,\n\nI'll leave it here so I don't fill your " . ($ig ? 'messages' : 'inbox') . ". The homepage idea we made for $biz stays online if you'd like another look:\n$link\n\n"
            . "If the timing is ever right, just reply here. We're happy to help, and you see your new site before you pay anything.";
@@ -156,12 +157,51 @@ function lead_by_slug(string $slug): ?array {
     return null;
 }
 /** wa.me number for a UK mobile (07…, +447…), or '' for landlines and anything unclear. */
-function uk_mobile(string $p): string {
-    $d = preg_replace('/\D/', '', $p);
-    if (preg_match('/^07\d{9}$/', $d)) return '44' . substr($d, 1);
-    if (preg_match('/^447\d{9}$/', $d)) return $d;
-    return '';
+function uk_mobile(string $p): string { return wa_number($p, 'GB'); }
+/** Two-letter country code from column C (UK when empty or unknown). */
+function lead_cc(string $c): string {
+    $c = strtolower(trim($c));
+    foreach (['AU' => '/austral|^au$/', 'US' => '/united states|^usa?$|america/', 'CA' => '/canad|^ca$/', 'AE' => '/emirates|^uae$|^ae$|dubai|abu dhabi/', 'IE' => '/ireland|^ie$/', 'NZ' => '/zealand|^nz$/'] as $cc => $re)
+        if (preg_match($re, $c)) return $cc;
+    return 'GB';
 }
+/** wa.me number for a phone that can be on WhatsApp (mobiles; US/Canada numbers can't be told apart, so all count), or '' for landlines and unknowns. */
+function wa_number(string $p, string $cc = 'GB'): string {
+    $t = trim($p); $d = preg_replace('/\D/', '', $t);
+    if ($d === '') return '';
+    $intl = str_starts_with($t, '+') || str_starts_with($d, '00');
+    if (str_starts_with($d, '00')) $d = substr($d, 2);
+    if ($intl || preg_match('/^(447|614|9715|3538|642|1)\d+$/', $d) && strlen($d) >= 11) {
+        foreach (['/^447\d{9}$/', '/^614\d{8}$/', '/^1[2-9]\d{9}$/', '/^9715\d{8}$/', '/^3538\d{8}$/', '/^642\d{7,9}$/'] as $re) if (preg_match($re, $d)) return $d;
+        return '';
+    }
+    $local = ['GB' => ['/^07\d{9}$/', '44'], 'AU' => ['/^04\d{8}$/', '61'], 'AE' => ['/^05\d{8}$/', '971'], 'IE' => ['/^08\d{8}$/', '353'], 'NZ' => ['/^02\d{7,9}$/', '64']];
+    if ($cc === 'US' || $cc === 'CA') return preg_match('/^[2-9]\d{9}$/', $d) ? '1' . $d : '';
+    [$re, $pre] = $local[$cc] ?? $local['GB'];
+    return preg_match($re, $d) ? $pre . substr($d, 1) : '';
+}
+function lead_wa(array $r): string { return wa_number($r['phone'], lead_cc($r['country'] ?? '')); }
+/** WhatsApp text: $first = no email/DM was sent before (WhatsApp is the first touch). Short, personal, with an easy way out. */
+function lead_wa_text(array $r, bool $first): string {
+    $hi = lead_greeting($r); $biz = $r['company']; $link = tracked_links('https://sitesbyms.com/' . $r['slug'] . '/', 'wa');
+    return $first
+        ? "$hi, it's Mostafa from Sites By MS. We made a free homepage idea for $biz, no strings attached:\n$link\n\nIf it's useful, we can also send you a free competitive analysis: how you compare with 4–5 similar businesses nearby. Just reply \"yes\".\n\n(If this isn't for you, just say so and we won't message again.)"
+        : "$hi, it's Mostafa from Sites By MS. I emailed you yesterday about a free homepage idea we made for $biz, in case it got lost:\n$link\n\nHappy to send a free competitive analysis too (how you compare with similar businesses nearby). Just reply \"yes\".\n\n(If this isn't for you, just say so and we won't message again.)";
+}
+/** Leads for the WhatsApp step: day 2 after the first email/DM (no reply yet), or first touch when the row has no email or Instagram. */
+function wa_due(array $rows, array $log): array {
+    $tz = new DateTimeZone(TZ); $yday = (new DateTime('today', $tz))->modify('-1 day');
+    $done = []; foreach ($log as $o) if (str_starts_with((string)$o['kind'], 'wa') || $o['kind'] === 'warm') $done[(int)$o['row'] . '|' . ($o['slug'] ?? '')] = true;
+    $out = [];
+    foreach ($rows as $r) {
+        if ($r['slug'] === '' || isset($done[$r['_row'] . '|' . $r['slug']]) || isset($done[$r['_row'] . '|']) || !lead_wa($r)) continue;
+        $u = trim($r['reply']);
+        if (strcasecmp($r['status'], 'Sent') === 0 && ($s = lead_date($r['sent'])) && $s <= $yday && ($u === '' || preg_match('/^follow-up( \d)? sent/i', $u))) $out[] = $r + ['_wa_first' => false];
+        elseif (strcasecmp($r['status'], 'Review') === 0 && $r['email'] === '' && $r['instagram'] === '') $out[] = $r + ['_wa_first' => true];
+    }
+    return $out;
+}
+
 /** channel => 'sent'|'skipped' for one sheet row and kind, from the panel's log.
  *  Only entries for the row's current concept (slug) count, so a row whose content was corrected can be sent again. */
 function lead_done(int $row, string $kind, ?array $log = null, string $slug = ''): array {

@@ -16,6 +16,7 @@ if (!rate_limit('view', 30, 3600)) { http_response_code(204); exit; }
 $from = preg_match('/^[a-z0-9-]{1,20}$/', (string)($_GET['f'] ?? '')) ? (string)$_GET['f'] : '';
 $ref = $from ? 'via ' . $from : substr((string)($_GET['r'] ?? ''), 0, 200);
 $device = preg_match('/Mobile|Android|iPhone/i', $ua) ? 'phone' : 'computer';
+if (is_meta_bot($device, (string)($_GET['r'] ?? ''))) { http_response_code(204); exit; }   // Meta's DM link preview, not a person
 view_add(['at' => gmdate('c'), 'slug' => $slug, 'device' => $device, 'ref' => $ref, 'ip' => substr(hash('sha256', ($_SERVER['REMOTE_ADDR'] ?? '') . $slug), 0, 12)]);
 
 $state = read_json('view_alerts.json', []);
@@ -30,12 +31,12 @@ if (time() - (int)($state[$slug] ?? 0) > 12 * 3600) {
     try { require_once __DIR__ . '/_google.php'; if (google_key()) $lead = lead_by_slug($slug); } catch (Throwable $e) { $lead = null; }
     if ($lead) {
         $name = $lead['company'];
-        $wa = uk_mobile($lead['phone']);
+        $wa = lead_wa($lead);
         if ($wa) {
             $msg = lead_greeting($lead) . ", it's Mostafa from Sites By MS. Just checking you got the homepage idea we made for " . $lead['company'] . ': ' . tracked_links('https://sitesbyms.com/' . $slug . '/', 'wa')
                  . "\nHappy to tweak anything or answer any questions.";
             $body .= "\nWhatsApp " . $lead['company'] . " with a ready message (" . $lead['phone'] . "):\nhttps://wa.me/$wa?text=" . rawurlencode($msg) . "\n\nThe message it opens with:\n" . $msg . "\n";
-        } elseif ($lead['phone'] !== '') $body .= "\nTheir number is a landline (" . $lead['phone'] . "), so a call is the way, not WhatsApp.\n";
+        } elseif ($lead['phone'] !== '') $body .= "\nTheir number looks like a landline (" . $lead['phone'] . "), so a call is the way, not WhatsApp.\n";
         else $body .= "\nNo phone number on their row.\n";
     }
     $body .= "\nTeam panel: https://sitesbyms.com/admin/?p=views\n";

@@ -137,7 +137,7 @@ if ($csrfOk) {
             $today = (new DateTime('now', new DateTimeZone(TZ)))->format('Y-m-d'); $by = (string)($me['email'] ?? 'team');
             if ($a === 'rep_send') {
                 $to = strtolower(one_line((string)$_POST['to'])); if (!filter_var($to, FILTER_VALIDATE_EMAIL)) go('outreach', 'Please check the email address.', true);
-                $mid = send_outreach($to, 'Your market analysis for ' . $lead['company'], $body, null, $lead['slug'], 'report');
+                $mid = send_outreach($to, 'Your free competitive analysis: ' . $lead['company'], $body, null, $lead['slug'], 'report');
                 if (!$mid) go('outreach', 'The email could not be sent. Nothing was changed.', true);
                 $ch = 'Email';
             } else { $to = one_line((string)($_POST['to'] ?? '')); $mid = null; $ch = one_line((string)($_POST['ch'] ?? 'Instagram DM')); }
@@ -177,6 +177,21 @@ if ($csrfOk) {
         if ($slug !== '' && $a === 'oseen') seen_add($slug, 'first', 'Instagram DM', 'manual');
         if ($slug !== '' && $a === 'ounseen') { if ($pdo) { seen_migrate($pdo); $pdo->prepare("DELETE FROM message_seen WHERE slug=? AND how='manual'")->execute([$slug]); } }
         go('results', $a === 'oseen' ? 'Marked as seen.' : 'Seen mark removed.');
+    }
+    if (in_array($a, ['owa', 'onowa', 'owarm'], true)) {   // WhatsApp step and warm leads: the team sends in WhatsApp, the panel records it
+        $row = (int)$_POST['row']; $by = (string)($me['email'] ?? 'team');
+        try {
+            $lead = null; foreach (sheet_rows() as $x) if ($x['_row'] === $row) { $lead = $x; break; }
+            if (!$lead) go('outreach', 'Could not find that business in the sheet any more.', true);
+            $body = str_replace("\r", '', (string)($_POST['body'] ?? ''));
+            $kind = ['owa' => 'wa', 'onowa' => 'wa-none', 'owarm' => 'warm'][$a];
+            outreach_log(['row' => $row, 'slug' => $lead['slug'], 'business' => $lead['company'], 'kind' => $kind, 'channel' => 'WhatsApp', 'to' => $lead['phone'], 'subject' => '', 'body' => $a === 'onowa' ? '(no WhatsApp)' : $body, 'mid' => null, 'by' => $by]);
+            if ($a === 'owa' && strcasecmp($lead['status'], 'Review') === 0) {   // WhatsApp was the first touch
+                $today = (new DateTime('now', new DateTimeZone(TZ)))->format('Y-m-d');
+                sheet_update_row($row, ['status' => 'Sent', 'sent' => $today, 'message' => $body]);
+            }
+            go('outreach', ['owa' => 'WhatsApp to ' . $lead['company'] . ' marked as sent.', 'onowa' => $lead['company'] . ': noted, this number has no WhatsApp.', 'owarm' => $lead['company'] . ' marked as contacted.'][$a]);
+        } catch (Throwable $e) { go('outreach', 'Sheet error: ' . $e->getMessage(), true); }
     }
     if (in_array($a, ['osend', 'omark', 'oskip', 'oskipch'], true)) {
         $row = (int)$_POST['row']; $kind = isset(FOLLOWUP_KINDS[$_POST['kind'] ?? '']) ? (string)$_POST['kind'] : 'first';
@@ -314,15 +329,18 @@ $badge = ['outreach' => 0, 'leads' => 0, 'calls' => count($upcoming), 'messages'
 if (google_key()) { try {
     $tzL = new DateTimeZone(TZ); $todayL = new DateTime('today', $tzL);
     $pd = function (string $d) use ($tzL): ?DateTime { if ($d === '') return null; foreach (['Y-m-d', 'd/m/Y', 'm/d/Y', 'j M Y', 'd.m.Y'] as $f) { $x = DateTime::createFromFormat('!' . $f, $d, $tzL); if ($x) return $x; } return null; };
-    $nReady = $nFollow = $nRep = 0;
-    foreach (sheet_rows() as $r) {
+    $nReady = $nFollow = $nRep = 0; $allRows = sheet_rows(); $olog = outreach_all();
+    $nWa = min(count(wa_due($allRows, $olog)), WA_PER_DAY);
+    $warmDone = []; foreach ($olog as $o) if ($o['kind'] === 'warm') $warmDone[$o['slug']] = true;
+    $nWarm = 0; $ws = warm_slugs(); foreach ($allRows as $r) if ($r['slug'] !== '' && isset($ws[$r['slug']]) && !isset($warmDone[$r['slug']])) $nWarm++;
+    foreach ($allRows as $r) {
         if ($r['status'] === 'Candidate') $badge['leads']++;
         if ($r['status'] === 'Review') $nReady++;
         if (str_starts_with($r['stage'], 'Report ready')) $nRep++;
         if (($fu = lead_followup($r)) && $fu['due'] <= $todayL) $nFollow++;
     }
-    $badge['outreach'] = $nReady + $nFollow + $nRep;
-    $badge['outreach_hint'] = "$nReady to send · $nFollow follow-ups · $nRep reports";
+    $badge['outreach'] = $nReady + $nFollow + $nRep + $nWa + $nWarm;
+    $badge['outreach_hint'] = "$nWarm warm · $nReady to send · $nWa WhatsApp · $nFollow follow-ups · $nRep analyses";
 } catch (Throwable $e) {} }
 try { $badge['activity'] = count(array_filter(sessions_from(events_all(2)), fn($x) => strtotime($x['start']) > time() - 86400)); } catch (Throwable $e) {}
 
@@ -402,14 +420,21 @@ if ($page === 'outreach') {
         $first = array_values(array_filter($rows, fn($r) => strcasecmp($r['status'], 'Review') === 0));
         $follow = []; $followKind = [];
         foreach ($rows as $r) if (($fu = lead_followup($r)) && $fu['due'] <= $todayD) { $follow[] = $r; $followKind[] = $fu['kind']; }
-        echo '<div class="tabs2"><a href="#ready">Ready to send <i>' . count($first) . '</i></a><a href="#followups">Follow-ups due <i>' . count($follow) . '</i></a><a href="#sent">Sent</a></div>';
         $log = outreach_all();
+        $waAll = wa_due($rows, $log);
+        $waToday = count(array_filter($log, fn($o) => $o['kind'] === 'wa' && substr((string)($o['at'] ?? $o['sent_at'] ?? ''), 0, 10) === gmdate('Y-m-d')));
+        $waList = array_slice($waAll, 0, max(0, WA_PER_DAY - $waToday));
+        $ws = warm_slugs(); $warmDone = []; foreach ($log as $o) if ($o['kind'] === 'warm') $warmDone[$o['slug']] = true;
+        $warmList = array_values(array_filter($rows, fn($r) => $r['slug'] !== '' && isset($ws[$r['slug']]) && !isset($warmDone[$r['slug']])));
+        usort($warmList, fn($x, $y) => strtotime($ws[$y['slug']]['last']) <=> strtotime($ws[$x['slug']]['last']));
+        echo '<div class="tabs2"><a href="#warm">Warm <i>' . count($warmList) . '</i></a><a href="#ready">Ready to send <i>' . count($first) . '</i></a><a href="#wa">WhatsApp <i>' . count($waList) . '</i></a><a href="#followups">Follow-ups due <i>' . count($follow) . '</i></a><a href="#sent">Sent</a></div>';
         $card = function (array $r, string $kind, int $i) use ($seen, $log) {
             $slug = $r['slug']; $sv = $seen[$slug] ?? null;
             $channels = lead_channels($r); $done = lead_done($r['_row'], $kind, $log, $slug); $both = count($channels) > 1; $bad = lead_mismatch($r);
             $ig = preg_replace('#^@|^https?://(www\.)?instagram\.com/#', '', rtrim($r['instagram'], '/'));
             $o = '<details class="card lead"' . ($i === 0 ? ' open' : '') . '><summary><div class="grow"><b>' . h($r['company']) . '</b><small>' . h($r['location']) . '</small></div>'
                 . ($kind !== 'first' ? '<span class="pill">' . (['followup' => '1st follow-up · day 3', 'followup2' => '2nd follow-up · day 7', 'followup3' => 'Last follow-up · day 14'][$kind]) . '</span>' : '')
+                . (isset($GLOBALS['ws'][$slug]) ? '<span class="pill warm">Warm</span>' : '')
                 . ($sv ? '<span class="pill ok">Opened ' . h(ago($sv['at'])) . '</span>' : ($kind !== 'first' ? '<span class="pill grey">Not opened yet</span>' : ''));
             foreach ($channels as $c) $o .= '<span class="pill' . (isset($done[$c]) ? ' ok' : ($c === 'Email' ? '' : ' grey')) . '">' . (isset($done[$c]) ? '✓ ' : '') . ($c === 'Email' ? 'Email' : 'Instagram') . '</span>';
             $o .= '</summary>';
@@ -435,7 +460,7 @@ if ($page === 'outreach') {
         };
         $reps = array_values(array_filter($rows, fn($r) => str_starts_with($r['stage'], 'Report requested') || str_starts_with($r['stage'], 'Report ready')));
         if ($reps) {
-            echo '<h2 id="reports" class="sec-h">Analysis reports</h2>';
+            echo '<h2 id="reports" class="sec-h">Competitive analyses</h2>';
             foreach ($reps as $r) {
                 $tok = report_token($r); $sendTo = preg_match('/send to: (.+)$/', $r['stage'], $m) ? trim($m[1]) : 'same channel';
                 echo '<details class="card lead" open><summary><div class="grow"><b>' . h($r['company']) . '</b><small>' . h($r['stage']) . '</small></div><span class="pill' . ($tok ? ' ok' : ' grey') . '">' . ($tok ? 'Ready to check' : 'Requested · built in the next nightly run') . '</span></summary>';
@@ -444,31 +469,57 @@ if ($page === 'outreach') {
                     $email = filter_var($sendTo, FILTER_VALIDATE_EMAIL) ? $sendTo : $r['email'];
                     $phone = preg_match('/^[0-9 +().-]{7,20}$/', $sendTo) ? $sendTo : '';
                     $greet = $r['owner'] !== '' ? 'Hi ' . explode(' ', $r['owner'])[0] : 'Hi ' . $r['company'] . ' team';
-                    $txt = "$greet,\n\nAs promised, here is the market analysis our team prepared for " . $r['company'] . ":\n$link\n\nIt shows where you lead your local competitors, where you may be losing customers, and three priority actions. Your homepage concept is on the same page.\n\nIf you'd like, we can walk you through it in a short call. You can book a time straight from the page.\n\nBest regards,\nMostafa\nSites By MS\nhello@sitesbyms.com · WhatsApp +44 7405 760048";
+                    $txt = "$greet,\n\nAs promised, here is the free competitive analysis our team prepared for " . $r['company'] . ":\n$link\n\nIt shows where you lead your local competitors, where you may be losing customers, and three priority actions. Your homepage concept is on the same page.\n\nIf you'd like, we can walk you through it in a short call. You can book a time straight from the page.\n\nBest regards,\nMostafa\nSites By MS\nhello@sitesbyms.com · WhatsApp +44 7405 760048";
                     echo '<p class="hint" style="margin:14px 20px 0"><b>1.</b> Check the report first: <a href="/report/?k=' . h($tok) . '&amp;team=1" target="_blank" rel="noopener">open the report</a>. If anything is wrong, tell Claude before sending.</p>';
                     echo '<form method="post" class="leadform">' . csrf_field() . '<input type="hidden" name="row" value="' . $r['_row'] . '"><input type="hidden" name="orig" value="' . h($r['company']) . '">'
                         . '<p class="hint"><b>2.</b> Send it. They asked to receive it: ' . h($sendTo) . '</p>'
                         . ($email ? '<label>Email to<input type="email" name="to" value="' . h($email) . '"></label>' : '<input type="hidden" name="to" value="' . h($phone ?: $r['instagram']) . '">')
                         . '<label>Message<textarea name="body" rows="10">' . h($txt) . '</textarea></label><div class="acts">'
                         . ($email ? '<button class="btn sm" name="a" value="rep_send" onclick="return confirm(\'Send the report to ' . h($email) . '?\')">Send report by email</button>' : '')
-                        . ($phone ? '<a class="btn line sm" href="https://wa.me/' . h(preg_replace('/\D/', '', preg_replace('/^0/', '44', $phone))) . '?text=' . rawurlencode($txt) . '" target="_blank" rel="noopener">Open WhatsApp</a>' : '')
+                        . ($phone ? '<a class="btn line sm" href="https://wa.me/' . h(wa_number($phone, lead_cc($r['country'])) ?: preg_replace('/\D/', '', $phone)) . '?text=' . rawurlencode($txt) . '" target="_blank" rel="noopener">Open WhatsApp</a>' : '')
                         . ($r['instagram'] ? '<a class="btn line sm" href="https://ig.me/m/' . h(ltrim($r['instagram'], '@')) . '" target="_blank" rel="noopener">Open Instagram chat</a>' : '')
                         . '<input type="hidden" name="ch" value="' . ($phone ? 'WhatsApp' : 'Instagram DM') . '"><button class="btn line sm" name="a" value="rep_mark">I sent it myself: mark as sent</button></div></form>';
                 }
                 echo '</details>';
             }
         }
+        $waForm = function (array $r, string $text, string $mainAct, string $mainLabel, bool $noWa) {
+            $wa = lead_wa($r);
+            return '<form method="post" class="leadform">' . csrf_field() . '<input type="hidden" name="row" value="' . (int)$r['_row'] . '">'
+                . '<label>Message<textarea name="body" rows="' . max(5, substr_count($text, "\n") + 3) . '">' . h($text) . '</textarea></label><div class="acts">'
+                . ($wa ? '<a class="btn sm" data-wa="' . h($wa) . '" href="https://wa.me/' . h($wa) . '?text=' . rawurlencode($text) . '" target="_blank" rel="noopener">Open WhatsApp</a>' : '')
+                . ($r['phone'] !== '' ? '<a class="btn line sm" href="tel:' . h(preg_replace('/[^0-9+]/', '', $r['phone'])) . '">Call ' . h($r['phone']) . '</a>' : '')
+                . '<a class="btn line sm" href="/' . h($r['slug']) . '/?team=1" target="_blank" rel="noopener">Open concept</a>'
+                . '<button class="btn line sm" name="a" value="' . $mainAct . '">' . $mainLabel . '</button>'
+                . ($noWa ? '<button class="btn line sm subtle" name="a" value="onowa" formnovalidate>No WhatsApp on this number</button>' : '')
+                . '</div></form>';
+        };
+        echo '<h2 id="warm" class="sec-h">Warm leads</h2><p class="hint">They came back to their concept or read it for 30+ seconds. Reach out personally today: WhatsApp if they have a mobile, otherwise a short call.</p>';
+        if ($warmList) foreach ($warmList as $r) { $w = $ws[$r['slug']];
+            $txt = lead_greeting($r) . ", it's Mostafa from Sites By MS. Thanks for taking a look at the homepage idea for " . $r['company'] . "! Would a free competitive analysis be useful too? It shows how you compare with 4–5 similar businesses nearby, and three clear steps to win more customers. Happy to send it over, or answer any questions here.";
+            echo '<details class="card lead" open><summary><div class="grow"><b>' . h($r['company']) . '</b><small>' . h($r['location']) . ' · ' . $w['visits'] . ' visit' . ($w['visits'] > 1 ? 's' : '') . ' · up to ' . (int)$w['active'] . ' s reading · last ' . h(ago($w['last'])) . '</small></div><span class="pill warm">Warm</span>'
+                . (lead_wa($r) ? '<span class="pill">WhatsApp</span>' : ($r['phone'] !== '' ? '<span class="pill grey">Landline: call</span>' : '<span class="pill grey">No phone</span>')) . '</summary>'
+                . $waForm($r, $txt, 'owarm', 'Contacted: mark as done', false) . '</details>';
+        } else echo '<div class="card"><div class="empty">No warm leads right now. When someone comes back or reads their concept for a while, they show up here and you get an email.</div></div>';
         echo '<h2 id="ready" class="sec-h">Ready to send</h2>';
         echo $first ? implode('', array_map($card, $first, array_fill(0, count($first), 'first'), array_keys($first))) : '<div class="card"><div class="empty">Nothing waiting. New messages appear here after the nightly run.</div></div>';
+        echo '<h2 id="wa" class="sec-h">WhatsApp</h2><p class="hint">Day 2 after the first email (only mobiles, no reply yet), and first messages for businesses with no email or Instagram. Send by hand in WhatsApp, up to ' . WA_PER_DAY . ' a day' . ($waToday ? " ($waToday sent today)" : '') . '. If WhatsApp says the number is not on WhatsApp, press "No WhatsApp".</p>';
+        if ($waList) foreach ($waList as $i => $r)
+            echo '<details class="card lead"' . ($i === 0 ? ' open' : '') . '><summary><div class="grow"><b>' . h($r['company']) . '</b><small>' . h($r['location']) . ' · ' . h($r['phone']) . '</small></div>'
+                . (isset($ws[$r['slug']]) ? '<span class="pill warm">Warm</span>' : '') . '<span class="pill' . ($r['_wa_first'] ? '' : ' grey') . '">' . ($r['_wa_first'] ? 'First message' : 'Day 2 after email') . '</span>'
+                . (($sv = $seen[$r['slug']] ?? null) ? '<span class="pill ok">Opened ' . h(ago($sv['at'])) . '</span>' : '') . '</summary>'
+                . $waForm($r, lead_wa_text($r, $r['_wa_first']), 'owa', 'Sent: mark as sent', true) . '</details>';
+        else echo '<div class="card"><div class="empty">' . ($waAll ? 'Daily limit reached. The rest show up tomorrow.' : 'No WhatsApp messages due.') . '</div></div>';
         echo '<h2 id="followups" class="sec-h">Follow-ups due</h2>';
         echo $follow ? implode('', array_map($card, $follow, $followKind, array_keys($follow))) : '<div class="card"><div class="empty">No follow-ups due today.</div></div>';
         echo '<h2 id="sent" class="sec-h">Sent from the panel</h2><section class="card">';
         $log = outreach_all();
         if ($log) foreach (array_slice($log, 0, 40) as $l) { $sv = $seen[$l['slug']] ?? null;
-            echo '<div class="row"><div class="grow"><b>' . h($l['business']) . '</b> · ' . h($l['kind'] === 'first' ? 'first message' : ($l['kind'] === 'report' ? 'analysis report' : 'follow-up')) . '<small>' . h($l['channel']) . ($l['to'] ? ' · ' . h($l['to']) : '') . ' · ' . h(ago($l['at'] ?? $l['sent_at'] ?? null)) . ($l['sent_by'] ?? '' ? ' · by ' . h($l['sent_by'] ?? '') : '') . '</small></div>'
+            echo '<div class="row"><div class="grow"><b>' . h($l['business']) . '</b> · ' . h(['first' => 'first message', 'report' => 'competitive analysis', 'wa' => 'WhatsApp message', 'wa-none' => 'no WhatsApp on this number', 'warm' => 'warm lead contacted'][$l['kind']] ?? (str_ends_with($l['kind'], '-skip') ? 'skipped' : 'follow-up')) . '<small>' . h($l['channel']) . ($l['to'] ? ' · ' . h($l['to']) : '') . ' · ' . h(ago($l['at'] ?? $l['sent_at'] ?? null)) . ($l['sent_by'] ?? '' ? ' · by ' . h($l['sent_by'] ?? '') : '') . '</small></div>'
                 . ($sv && strtotime($sv['at']) >= strtotime((string)($l['at'] ?? '')) ? '<span class="pill ok">Opened ' . h(ago($sv['at'])) . ($sv['from'] ? ' · ' . h($sv['from'] === 'ig' ? 'Instagram' : $sv['from']) : '') . '</span>' : '<span class="pill grey">Not opened yet</span>') . '</div>'; }
         else echo '<div class="empty">Nothing sent from the panel yet.</div>';
         echo '</section>';
+        echo '<script>document.querySelectorAll("[data-wa]").forEach(function(a){a.addEventListener("click",function(){a.href="https://wa.me/"+a.dataset.wa+"?text="+encodeURIComponent(a.closest("form").querySelector("textarea").value)})})</script>';
         echo '<script>document.querySelectorAll("[data-copy]").forEach(function(b){b.addEventListener("click",function(){var t=b.closest("form").querySelector("textarea");var done=function(){b.textContent="Copied ✓";setTimeout(function(){b.textContent="Copy message"},2000)};if(navigator.clipboard){navigator.clipboard.writeText(t.value).then(done,function(){t.select();document.execCommand("copy");done()})}else{t.select();document.execCommand("copy");done()}})})</script>';
     }
 }
@@ -534,7 +585,7 @@ if ($page === 'activity') {
     $mmss = fn(int $s) => floor($s / 60) . ':' . str_pad((string)($s % 60), 2, '0', STR_PAD_LEFT);
     $label = ['open' => 'Opened the page', 'scroll' => 'Scrolled to %s%%', 'section' => 'Saw “%s”', 'click' => 'Clicked “%s”', 'call' => 'Tapped call: %s', 'email' => 'Tapped email: %s',
         'bar_hide' => 'Hid our bar', 'bar_show' => 'Brought our bar back', 'nudge_shown' => 'Saw the report offer', 'nudge_yes' => 'Said yes to the report offer', 'nudge_no' => 'Closed the report offer',
-        'report_open' => 'Opened the report form (%s)', 'report_submit' => '★ Requested the analysis report (%s)', 'report_error' => 'Report form error: %s',
+        'report_open' => 'Opened the report form (%s)', 'report_submit' => '★ Requested the competitive analysis (%s)', 'report_error' => 'Report form error: %s',
         'book_open' => 'Opened call booking (%s)', 'book_slot' => 'Picked a time: %s', 'book_submit' => '★ Booked a call (%s)', 'ask_click' => 'Went to ask a question', 'leave' => 'Left',
         'visit' => 'Visit no. %s (screen)', 'page' => 'Page: %s', 'dwell' => 'Most time on: %s', 'tap' => 'Tapped something that is not a link: %s', 'rage' => '⚠ Tapped repeatedly: %s',
         'copy' => 'Copied text: %s', 'back' => 'Came back after %s', 'form_start' => 'Started filling: %s', 'form_submit' => 'Sent: %s', 'form_abandon' => 'Left a form unfinished: %s', 'book_day' => 'Picked a day: %s', 'about_click' => 'Opened “Meet the team”'];
@@ -745,7 +796,7 @@ layout($page, $nav, $body, $err ?: $flash, $err ? true : $flashBad, count($open)
 function head(string $title): string {
     return '<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><meta name="robots" content="noindex, nofollow"><title>' . h($title) . ' · Sites By MS team panel</title>'
         . '<link rel="icon" href="/assets/brand/favicon.png"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>'
-        . '<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="/admin/admin.css?v=4"></head><body>';
+        . '<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="/admin/admin.css?v=5"></head><body>';
 }
 function auth_page(string $title, string $inner): void {
     echo head($title) . '<main class="auth"><img src="/assets/brand/logo-on-dark.png" alt="Sites By MS" class="logo"><div class="box"><h1>' . h($title) . '</h1>' . $inner . '</div></main></body></html>';

@@ -180,6 +180,11 @@
     + '.sbm-err{margin:0 0 12px;color:#B42318;font-size:14px;font-weight:600}.sbm-err[hidden]{display:none}'
     + '.sbm-go{width:100%;border:0;cursor:pointer;min-height:52px;font-size:16px}.sbm-go:disabled{opacity:.6;cursor:default}'
     + '.sbm-done b{display:block;font-size:19px;color:#0E1430;margin-bottom:6px}.sbm-done p{margin:0 0 10px;color:#3B4160;line-height:1.55}.sbm-done a{color:#5B2FE0;font-weight:700}'
+    + '.sbm-inline{background:#F6F2FF;color:#0E1430;padding:56px 16px 64px;scroll-margin-bottom:140px;font-family:"Plus Jakarta Sans",system-ui,sans-serif;border-top:1px solid #E6DEFF}'
+    + '.sbm-in-wrap{max-width:720px;margin:0 auto;text-align:center}.sbm-inline .sbm-nwho{justify-content:center;margin-bottom:12px}'
+    + '.sbm-inline h2{font:800 clamp(24px,4vw,34px)/1.2 "Plus Jakarta Sans",system-ui,sans-serif;margin:0 0 10px;color:#0E1430;text-transform:none;letter-spacing:0}'
+    + '.sbm-inline p{margin:0 auto 22px;max-width:36em;font-size:16px;line-height:1.6;color:#4A5070}'
+    + '.sbm-inline .sbm-btn{display:inline-flex;font-size:16px;padding:14px 26px;border:0;cursor:pointer}'
     + '.sbm-nudge{position:fixed;z-index:2147483001;right:calc(20px + env(safe-area-inset-right,0px));width:min(360px,calc(100% - 20px));background:#fff;color:#0E1430;border-radius:18px;padding:18px 18px 16px;box-shadow:0 24px 60px rgba(7,15,55,.35);font-family:"Plus Jakarta Sans",system-ui,sans-serif;animation:sbmUp .35s ease-out;border:1px solid #ECE8F5}'
     + '@keyframes sbmUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}'
     + '.sbm-nudge b{display:block;font-size:16px;font-weight:800;padding-right:28px;line-height:1.35}'
@@ -204,9 +209,9 @@
   var bar = document.createElement('div');
   bar.className = 'sbm-bar'; bar.setAttribute('role', 'region'); bar.setAttribute('aria-label', 'About this concept');
   bar.innerHTML = '<img src="/assets/brand/mark-sm-dark.png" alt="Sites By MS">'
-    + '<div class="sbm-txt"><b></b><span>Get a free market analysis for your business from our team.</span></div>'
+    + '<div class="sbm-txt"><b></b><span>Get a free competitive analysis of your business from our team.</span></div>'
     + '<div class="sbm-acts"><a class="sbm-btn sbm-ask" href="/book/' + q + '">Book a call</a>'
-    + '<a class="sbm-btn sbm-book sbm-rep" href="#report">Free analysis report</a></div>'
+    + '<a class="sbm-btn sbm-book sbm-rep" href="#report">Free competitive analysis</a></div>'
     + '<button class="sbm-x" type="button" aria-label="Hide this bar"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>';
   bar.querySelector('.sbm-txt b').textContent = 'This concept was made for ' + name + ' by Sites By MS';
 
@@ -289,7 +294,7 @@
   var asked = store('sbm_rep_' + slug) === '1';
   function openReport(from) {
     hideNudge(); track('report_open', from || '');
-    var sh = sheet('Free analysis report for ' + name, 'Prepared by the Sites By MS team · ready within 24 hours');
+    var sh = sheet('Free competitive analysis for ' + name, 'Prepared by the Sites By MS team · ready within 24 hours');
     if (asked) { sh.body.innerHTML = '<div class="sbm-done"><b>You\'ve already asked for it 👍</b><p>Our team is preparing your analysis and will send it within 24 hours.</p></div>'; return; }
     sh.body.innerHTML = '<p class="sbm-lead">Our team compares <b>' + esc(name) + ' with 4–5 local competitors</b> and shows you where you lead, where you lose customers, and what to do about it.</p>'
       + '<ul class="sbm-list">'
@@ -311,7 +316,7 @@
         .then(function (j) {
           if (!j.ok) throw new Error(j.error || 'Something went wrong. Please try again.');
           asked = true; store('sbm_rep_' + slug, '1'); track('report_submit', f.contact.value ? (/@/.test(f.contact.value) ? 'email' : 'whatsapp') : 'no contact', true);
-          sh.body.innerHTML = '<div class="sbm-done"><b>Thank you. Our team is on it.</b><p>Your analysis report will be ready within 24 hours and we\'ll send it' + (f.contact.value ? ' to <span></span>' : ' to you') + '. It opens on your own private page, together with this concept.</p>'
+          sh.body.innerHTML = '<div class="sbm-done"><b>Thank you. Our team is on it.</b><p>Your competitive analysis will be ready within 24 hours and we\'ll send it' + (f.contact.value ? ' to <span></span>' : ' to you') + '. It opens on your own private page, together with this concept.</p>'
             + '<p>Questions in the meantime? <a class="sbm-askl" href="/ask/' + q + '">Ask us anything</a>.</p></div>';
           var sp = sh.body.querySelector('.sbm-done span'); if (sp) sp.textContent = f.contact.value;
           var al = sh.body.querySelector('.sbm-askl'); if (al) al.onclick = function () { track('ask_click', 'after report', true); };
@@ -320,25 +325,40 @@
     };
   }
 
-  // One gentle nudge per visit: after 12 seconds or when the visitor has scrolled half the page.
+  // One gentle nudge per visit: only after the visitor has read a while (30 s on the page) or scrolled past 60% of it.
   var nudge = null;
   function hideNudge() { if (nudge) { nudge.remove(); nudge = null; } }
   function showNudge() {
     if (asked || nudge || document.querySelector('.sbm-sheet-bg') || bar.hidden) return;
+    var ib = document.querySelector('.sbm-inline'); if (ib) { var rb = ib.getBoundingClientRect(); if (rb.top < innerHeight && rb.bottom > 0) return; }   // the in-page offer is already on screen
     try { if (sessionStorage.getItem('sbm_nudged')) return; sessionStorage.setItem('sbm_nudged', '1'); } catch (e) {}
-    nudge = document.createElement('div'); nudge.className = 'sbm-nudge'; nudge.setAttribute('role', 'dialog'); nudge.setAttribute('aria-label', 'Free analysis report');
+    nudge = document.createElement('div'); nudge.className = 'sbm-nudge'; nudge.setAttribute('role', 'dialog'); nudge.setAttribute('aria-label', 'Free competitive analysis');
     nudge.innerHTML = '<button type="button" class="sbm-nx" aria-label="Close">×</button><div class="sbm-nwho"><img src="/assets/team/mostafa-avatar-3.jpg" alt="" width="28" height="28">Mostafa · Sites By MS team</div><b></b><p>Our team will show you where you lead your local competitors, and where you lose customers to them.</p>'
       + '<div class="sbm-nacts"><button type="button" class="sbm-btn sbm-book">Get it free</button><button type="button" class="sbm-btn sbm-later">Not now</button></div>';
-    nudge.querySelector('b').textContent = 'Free analysis report for ' + name;
+    nudge.querySelector('b').textContent = 'Free competitive analysis for ' + name;
     nudge.querySelector('.sbm-book').onclick = function () { track('nudge_yes'); openReport('nudge'); };
     nudge.querySelector('.sbm-later').onclick = nudge.querySelector('.sbm-nx').onclick = function () { track('nudge_no'); hideNudge(); };
     nudge.style.bottom = (bar.offsetHeight + 34) + 'px';
     document.body.appendChild(nudge); track('nudge_shown');
   }
-  setTimeout(showNudge, 12000);
+  var nudgeT = 0, nudgeI = setInterval(function () { if (document.visibilityState === 'visible' && ++nudgeT >= 30) { clearInterval(nudgeI); showNudge(); } }, 1000);
   window.addEventListener('scroll', function onS() {
-    if (window.scrollY > (document.documentElement.scrollHeight - innerHeight) * 0.5) { window.removeEventListener('scroll', onS); showNudge(); }
+    if (window.scrollY > (document.documentElement.scrollHeight - innerHeight) * 0.6) { window.removeEventListener('scroll', onS); clearInterval(nudgeI); showNudge(); }
   }, { passive: true });
+
+  // A calm, fixed offer inside the page, just before the footer (always there, never pops up).
+  function inlineOffer() {
+    if (document.querySelector('.sbm-inline')) return;
+    var box = document.createElement('section'); box.className = 'sbm-inline'; box.setAttribute('aria-label', 'Free competitive analysis');
+    box.innerHTML = '<div class="sbm-in-wrap"><div class="sbm-nwho"><img src="/assets/team/mostafa-avatar-3.jpg" alt="" width="28" height="28">Mostafa · Sites By MS team</div>'
+      + '<h2></h2><p>We compare you with 4–5 businesses like yours nearby: who customers find first, who looks more trustworthy online, and three clear steps to win more of them. Free, within 24 hours, no strings attached.</p>'
+      + '<button type="button" class="sbm-btn sbm-book">Get my free competitive analysis</button></div>';
+    box.querySelector('h2').textContent = 'Free competitive analysis for ' + name;
+    box.querySelector('button').onclick = function () { openReport('inline'); };
+    var foot = document.querySelector('body > footer') || document.querySelector('footer');
+    if (foot && foot.parentNode) foot.parentNode.insertBefore(box, foot); else document.body.appendChild(box);
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', inlineOffer); else inlineOffer();
 
   pill.onclick = function () { show(true); track('bar_show'); };
 

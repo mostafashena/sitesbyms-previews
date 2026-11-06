@@ -309,8 +309,9 @@ function message_handled(string $id, bool $done): void {
 
 /* ---------- concept views ---------- */
 function views_all(): array {
-    if ($p = db()) return array_map(fn($r) => ['slug' => $r['slug'], 'device' => $r['device'], 'ref' => $r['ref'], 'at' => iso($r['created_at'])], $p->query('SELECT * FROM concept_views ORDER BY created_at DESC, id DESC LIMIT 2000')->fetchAll());
-    return array_reverse(read_lines('views.jsonl'));
+    $all = ($p = db()) ? array_map(fn($r) => ['slug' => $r['slug'], 'device' => $r['device'], 'ref' => $r['ref'], 'at' => iso($r['created_at'])], $p->query('SELECT * FROM concept_views ORDER BY created_at DESC, id DESC LIMIT 2000')->fetchAll())
+                       : array_reverse(read_lines('views.jsonl'));
+    return array_values(array_filter($all, fn($v) => !is_meta_bot((string)($v['device'] ?? ''), (string)($v['ref'] ?? ''))));
 }
 function view_add(array $v): void {
     if ($p = db()) { $p->prepare('INSERT INTO concept_views (slug,device,ref,ip_hash,created_at) VALUES (?,?,?,?,UTC_TIMESTAMP())')->execute([$v['slug'], $v['device'], $v['ref'], $v['ip']]); return; }
@@ -366,7 +367,22 @@ function events_all(int $days = 60): array {
     }
     return array_reverse(read_lines('events.jsonl'));
 }
-/** Groups events into visits (sessions), newest first, with a summary of each. */
+/** Warm leads: a concept opened on 2+ separate visits, or read for 30+ active seconds. slug => ['visits','active','last']. */
+function warm_slugs(?array $sessions = null): array {
+    $by = [];
+    foreach ($sessions ?? sessions_from(events_all(30)) as $x) {
+        if (($x['page'] ?? 'concept') !== 'concept') continue;
+        $b = &$by[$x['slug']]; $b ??= ['visits' => 0, 'active' => 0, 'last' => $x['start']];
+        $b['visits']++; foreach ($x['events'] as $e) if ($e['ev'] === 'visit') $b['visits'] = max($b['visits'], (int)$e['val']);
+        $b['active'] = max($b['active'], (int)$x['active']); if (strtotime($x['start']) > strtotime($b['last'])) $b['last'] = $x['start']; unset($b);
+    }
+    return array_filter($by, fn($b) => $b['visits'] >= 2 || $b['active'] >= 30);
+}
+/** Meta's link-preview crawler (fires when the team sends an Instagram/Facebook DM): a desktop visit referred by *facebook.com. Never a real visitor in our data. */
+function is_meta_bot(string $device, string $ref): bool {
+    return $device === 'computer' && preg_match('#(^|[/.])facebook\.com#i', $ref) === 1;
+}
+/** Groups events into visits (sessions), newest first, with a summary of each. Meta's preview crawler is left out. */
 function sessions_from(array $events): array {
     $s = [];
     foreach (array_reverse($events) as $e) {   // oldest first
@@ -374,12 +390,13 @@ function sessions_from(array $events): array {
         $s[$k] ??= ['sid' => $k, 'vid' => $e['vid'], 'slug' => $e['slug'], 'page' => $e['page'] ?? 'concept', 'pages' => [], 'src' => '', 'device' => $e['device'], 'start' => $e['at'], 'end' => $e['at'], 'active' => 0, 'scroll' => 0, 'events' => [], 'flags' => []];
         $x = &$s[$k]; $x['end'] = $e['at'];
         if ($e['src'] !== '' && $x['src'] === '') $x['src'] = $e['src'];
+        if ($e['ev'] === 'open' && is_meta_bot((string)$e['device'], (string)$e['val'])) $x['bot'] = true;
         if ($e['ev'] === 'time') $x['active'] = max($x['active'], (int)$e['val']);
         elseif ($e['ev'] === 'scroll') $x['scroll'] = max($x['scroll'], (int)$e['val']);
         else { $x['events'][] = $e; $x['flags'][$e['ev']] = true; if ($e['ev'] === 'page') $x['pages'][] = preg_replace('/ [(←].*$/u', '', $e['val']); }
         unset($x);
     }
-    $out = array_values($s);
+    $out = array_values(array_filter($s, fn($x) => empty($x['bot'])));
     usort($out, fn($a, $b) => strtotime($b['start']) <=> strtotime($a['start']));
     return $out;
 }

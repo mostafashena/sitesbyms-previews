@@ -15,7 +15,7 @@ $date = !empty($R['created']) ? date('j F Y', strtotime((string)$R['created'])) 
 $yn = function ($v) { $v = strtolower(trim((string)$v)); if ($v === '') return '<span class="na">–</span>'; if (in_array($v, ['yes', 'y', 'true', 'good'], true)) return '<span class="yes">✓</span>'; if (in_array($v, ['no', 'n', 'false', 'none'], true)) return '<span class="no">✕</span>'; return '<span class="mid">' . e(ucfirst($v)) . '</span>'; };
 ?><!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="robots" content="noindex,nofollow"><title>Market analysis · <?= e($name) ?> · Sites By MS</title>
+<meta name="robots" content="noindex,nofollow"><title>Competitive analysis · <?= e($name) ?> · Sites By MS</title>
 <link rel="icon" href="/assets/brand/favicon.png"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap">
 <style>
 :root{--navy:#070F37;--violet:#8557FC;--violet-d:#5B2FE0;--cream:#FBF5ED;--ink:#0E1430;--muted:#5B6180;--line:#E8E3F1;--ok:#127A4B;--bad:#B42318}
@@ -47,7 +47,7 @@ section.card.next{background:var(--navy);color:var(--cream);border:0}.next h2{co
 .foot{color:var(--muted);font-size:13px;text-align:center;margin-top:24px}
 </style></head><body>
 <header class="top"><div class="wrap"><img src="/assets/brand/logo-on-dark.png" alt="Sites By MS"><a class="cta" href="#next">Talk to our team</a></div></header>
-<div class="hero"><div class="wrap"><small>Market analysis<?= $date ? ' · ' . e($date) : '' ?></small><h1><?= e($name) ?> and its local competitors</h1><p><?= e($R['summary'] ?? '') ?></p></div></div>
+<div class="hero"><div class="wrap"><small>Free competitive analysis<?= $date ? ' · ' . e($date) : '' ?></small><h1><?= e($name) ?> and its local competitors</h1><p><?= e($R['summary'] ?? '') ?></p></div></div>
 <main class="wrap">
 <section class="card" id="position"><h2>Market position</h2><p class="lead">How <?= e($name) ?> compares with <?= count($comps) ?> similar businesses nearby<?= !empty($R['area']) ? ' in ' . e($R['area']) : '' ?>.</p>
 <div class="tbl"><table><thead><tr><th>Business</th><th>Rating</th><th>Reviews</th><th>Website</th><th>Works on mobile</th><th>Online booking / ordering</th><th>Notes</th></tr></thead><tbody>
@@ -61,7 +61,7 @@ section.card.next{background:var(--navy);color:var(--cream);border:0}.next h2{co
 <?php if ($slug && is_dir(dirname(__DIR__) . '/' . $slug)): ?><section class="card concept" id="concept"><div><h2>Your new homepage concept</h2><p class="lead">We designed this for <?= e($name) ?> to fix the points above: clear on a phone, easy to book or call, and true to your brand.</p><a class="btn p" href="/<?= e($slug) ?>/?from=report" data-ev="concept">Open the full concept</a></div>
 <div class="frame"><iframe src="/<?= e($slug) ?>/?from=report&amp;embed=1" title="Concept preview" loading="lazy" tabindex="-1"></iframe></div></section><?php endif; ?>
 <section class="card next" id="next"><h2>Next step</h2><p>A short call with our team: we walk you through the report and what a new website would do for <?= e($name) ?>. Free, no obligation.</p>
-<div class="row"><a class="btn p" href="/book/?b=<?= rawurlencode($name) ?>&amp;s=<?= e($slug) ?>" data-ev="book">Book a 15-min call</a><a class="btn l" href="https://wa.me/447405760048?text=<?= rawurlencode('Hi, about the analysis report for ' . $name) ?>" data-ev="whatsapp">WhatsApp us</a><a class="btn l" href="/ask/?b=<?= rawurlencode($name) ?>&amp;s=<?= e($slug) ?>" data-ev="ask">Ask a question</a></div>
+<div class="row"><a class="btn p" href="/book/?b=<?= rawurlencode($name) ?>&amp;s=<?= e($slug) ?>" data-ev="book">Book a 15-min call</a><a class="btn l" href="https://wa.me/447405760048?text=<?= rawurlencode('Hi, about the competitive analysis for ' . $name) ?>" data-ev="whatsapp">WhatsApp us</a><a class="btn l" href="/ask/?b=<?= rawurlencode($name) ?>&amp;s=<?= e($slug) ?>" data-ev="ask">Ask a question</a></div>
 <div class="who"><img src="/assets/team/mostafa-avatar-3.jpg" alt="Mostafa, founder of Sites By MS" width="56" height="56"><div><b>Mostafa &amp; the Sites By MS team</b><span>You talk to the founder; our team researched this report and designed your concept. <a href="/about/" data-ev="about">Meet the team</a></span></div></div></section>
 <p class="foot">Prepared for <?= e($name) ?> by the Sites By MS team · hello@sitesbyms.com · sitesbyms.com</p>
 </main>

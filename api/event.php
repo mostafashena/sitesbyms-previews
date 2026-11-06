@@ -20,6 +20,12 @@ $src = preg_match('/^[a-z0-9-]{1,20}$/', (string)($in['src'] ?? '')) ? (string)$
 $device = preg_match('/Mobile|Android|iPhone/i', $ua) ? 'phone' : 'computer';
 $allowed = ['about_click', 'visit', 'page', 'dwell', 'tap', 'rage', 'copy', 'back', 'form_start', 'form_submit', 'form_abandon', 'book_day', 'open', 'scroll', 'time', 'section', 'click', 'call', 'email', 'bar_hide', 'bar_show', 'nudge_shown', 'nudge_yes', 'nudge_no',
             'report_open', 'report_submit', 'report_error', 'book_open', 'book_slot', 'book_submit', 'ask_click', 'leave'];
+// Meta's DM link preview: drop its whole visit (its first batch carries the 'open' event with the facebook.com referrer).
+$bots = read_json('bot_sids.json', []);
+if (isset($bots[$sid])) exit;
+foreach ((array)($in['e'] ?? []) as $e) if (is_array($e) && ($e[0] ?? '') === 'open' && is_meta_bot($device, (string)($e[1] ?? ''))) {
+    $bots[$sid] = time(); $bots = array_filter($bots, fn($t) => $t > time() - 86400); write_json('bot_sids.json', $bots); exit;
+}
 $rows = [];
 foreach (array_slice((array)($in['e'] ?? []), 0, 40) as $e) {
     if (!is_array($e) || !in_array($e[0] ?? '', $allowed, true)) continue;
@@ -27,6 +33,34 @@ foreach (array_slice((array)($in['e'] ?? []), 0, 40) as $e) {
                'src' => $src, 'device' => $device, 't' => max(0, min(86400000, (int)($e[2] ?? 0)))];
 }
 events_add($rows);
+
+// Warm lead alert (once per concept): this visit is their 2nd+, or they have read for 30+ seconds.
+if ($rows && $page === 'concept') {
+    $warm = false;
+    foreach ($rows as $r) {
+        if ($r['ev'] === 'visit' && (int)$r['val'] >= 2) $warm = 'came back for visit ' . (int)$r['val'];
+        if ($r['ev'] === 'time' && (int)$r['val'] >= 30) $warm = $warm ?: 'read the page for ' . (int)$r['val'] . ' seconds';
+    }
+    $wa_state = read_json('warm_alerts.json', []);
+    if ($warm && empty($wa_state[$slug])) {
+        $wa_state[$slug] = time(); write_json('warm_alerts.json', $wa_state);
+        if (function_exists('fastcgi_finish_request')) fastcgi_finish_request();
+        $name = $slug; $body = "Warm lead: someone at \"$slug\" $warm on a $device.\n\nhttps://sitesbyms.com/$slug/\n";
+        try {
+            require_once __DIR__ . '/_google.php';
+            if (google_key() && ($lead = lead_by_slug($slug))) {
+                $name = $lead['company'];
+                $body = "Warm lead: someone at " . $lead['company'] . " $warm (on a $device).\nThis is the best moment to reach out personally.\n\nhttps://sitesbyms.com/$slug/\n";
+                if ($wa = lead_wa($lead)) {
+                    $msg = lead_greeting($lead) . ", it's Mostafa from Sites By MS. Thanks for taking a look at the homepage idea for " . $lead['company'] . "! Would a free competitive analysis be useful too? It shows how you compare with 4–5 similar businesses nearby, and three clear steps to win more customers. Happy to send it over, or answer any questions here.";
+                    $body .= "\nWhatsApp them now (" . $lead['phone'] . "):\nhttps://wa.me/$wa?text=" . rawurlencode($msg) . "\n\nThe message it opens with:\n$msg\n";
+                } elseif ($lead['phone'] !== '') $body .= "\nTheir number (" . $lead['phone'] . ") looks like a landline, so a short friendly call works best.\n";
+                if ($lead['email'] !== '') $body .= "\nEmail: " . $lead['email'] . "\n";
+            }
+        } catch (Throwable $e) {}
+        send_mail(TEAM_TO, "🔥 Warm lead: $name", $body . "\nTeam panel: https://sitesbyms.com/admin/?p=outreach#warm\n");
+    }
+}
 
 // Every 30 minutes at most: copy the visits into the "Visits" tab of the leads sheet (after the visitor already has the response).
 if ($rows && function_exists('fastcgi_finish_request')) fastcgi_finish_request();

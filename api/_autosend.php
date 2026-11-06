@@ -153,7 +153,7 @@ function auto_report_text(array $rep): string {
     $L[] = 'LAST 24 HOURS:';
     $L[] = '  Emails opened: ' . (int)($y['mail_opens'] ?? 0);
     $L[] = '  Concepts opened (' . count($y['opens'] ?? []) . '): ' . (($y['opens'] ?? []) ? implode(', ', $y['opens']) : 'none');
-    $L[] = '  Analysis reports requested: ' . (($y['reports'] ?? []) ? implode(', ', $y['reports']) : 'none');
+    $L[] = '  Competitive analyses requested: ' . (($y['reports'] ?? []) ? implode(', ', $y['reports']) : 'none');
     $L[] = '  Calls booked: ' . (($y['bookings'] ?? []) ? implode(', ', $y['bookings']) : 'none');
     $L[] = '';
     $L[] = 'Full report: https://sitesbyms.com/admin/?p=daily';
