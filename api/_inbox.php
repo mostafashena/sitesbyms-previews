@@ -66,14 +66,25 @@ function inbox_relay(int $max = 25): string {
         if (stripos($from, INBOX_USER . '@' . INBOX_DOMAIN) !== false) continue;     // our own alerts and copies
         preg_match('/[\w.+\'-]+@[\w-]+(\.[\w-]+)+/', $from, $em); $addr = strtolower($em[0] ?? '');
         $text = mime_text($raw);
+        if ($text === '') { [, $bodyRaw] = mime_split($raw); $text = trim(html_entity_decode(strip_tags((string)(preg_match('/^[A-Za-z0-9+\/=\s]+$/', trim(substr($bodyRaw, 0, 2000))) ? base64_decode(preg_replace('/\s+/', '', $bodyRaw)) : quoted_printable_decode($bodyRaw))), ENT_QUOTES, 'UTF-8')); $text = mb_substr(preg_replace("/\n{3,}/", "\n\n", $text), 0, 6000); }
         $entry = ['at' => gmdate('c', $mt ?: time()), 'from' => $from, 'email' => $addr, 'subject' => $subject, 'date' => mime_header($h['date'] ?? ''), 'folder' => $kind, 'text' => mb_substr($text, 0, 6000)];
         append_line('inbox.jsonl', $entry);
         $body = "New email to hello@sitesbyms.com" . ($kind === 'spam' ? " (it landed in the SPAM folder)" : '') . ".\n\nFrom: $from\nDate: " . $entry['date'] . "\nSubject: $subject\n\nPress Reply in Gmail to answer them directly (the reply goes to $addr).\n\n----------------------------------------\n\n" . mb_substr($text, 0, 20000) . "\n";
-        send_mail(TEAM_TO, '[hello@] ' . $subject, $body, $addr ?: FROM_ADDR, [['name' => 'original-message.eml', 'type' => 'application/octet-stream', 'data' => $raw]]);
+        // Plain text only: Gmail silently dropped the first copies that carried the original message as an attachment.
+        $ok = send_mail(TEAM_TO, 'Reply from ' . ($addr ?: 'someone') . ': ' . $subject, $body, $addr ?: FROM_ADDR);
+        $log = read_json('inbox_mailed.json', []); $log[$id] = ['ok' => $ok, 'at' => time()]; write_json('inbox_mailed.json', array_slice($log, -300, null, true));
         $n++;
     }
     if (count($seen) > 5000) $seen = array_slice($seen, -4000, null, true);
     write_json('inbox_seen.json', $seen);
     return $n ? "$n new email(s) copied to Gmail" : 'no new email';
+}
+/** Forget the last $days days so the next run copies those emails to Gmail again. */
+function inbox_resend(int $days = 3): int {
+    $seen = read_json('inbox_seen.json', []); $cut = time() - $days * 86400; $n = 0;
+    foreach ($seen as $id => $t) if ((int)$t >= $cut) { unset($seen[$id]); $n++; }
+    write_json('inbox_seen.json', $seen);
+    $keep = array_values(array_filter(read_lines("inbox.jsonl"), fn($x) => strtotime($x["at"]) < $cut)); file_put_contents(data_dir() . "/inbox.jsonl", implode("", array_map(fn($x) => json_encode($x, JSON_UNESCAPED_UNICODE) . "\n", $keep)));
+    return $n;
 }
 function inbox_recent(int $limit = 100): array { return array_slice(array_reverse(read_lines('inbox.jsonl')), 0, $limit); }

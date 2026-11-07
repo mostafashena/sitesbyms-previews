@@ -68,6 +68,9 @@ try {
         case 'inbox':    // emails that arrived at hello@ (copied to Gmail by the cron)
             require_once __DIR__ . '/_inbox.php';
             out(['inbox' => inbox_recent(min(300, (int)($in['limit'] ?? 100))), 'mailbox_found' => (bool)inbox_dirs()]);
+        case 'inbox_resend':
+            require_once __DIR__ . '/_inbox.php';
+            out(['ok' => true, 'will_resend' => inbox_resend(max(1, min(7, (int)($in['days'] ?? 3)))), 'mailed_log' => read_json('inbox_mailed.json', [])]);
         case 'messages':
             out(['messages' => array_slice(messages_all(), 0, 200), 'bookings' => bookings_all()]);
         default:
