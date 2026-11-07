@@ -143,8 +143,9 @@ function lead_followup_text(array $r, string $channel, string $kind): string {
     $hi = lead_greeting($r); $biz = $r['company']; $link = 'https://sitesbyms.com/' . $r['slug'] . '/';
     $issue = lead_issue($r); $ig = $channel === 'Instagram DM';
     if ($kind === 'followup2') {
-        $t = "$hi,\n\n" . ($issue !== '' ? "One more thought on $biz's website. Something we noticed: $issue\n\n" : "One more thought on $biz's website.\n\n")
-           . "The homepage idea we made for you shows how this could look:\n$link\n\n"
+        // No website "issue" is repeated here: claims about a site must be checked the same day (owner's rule, 7 Nov 2026), and this goes out a week later.
+        $t = "$hi,\n\nOne more thought on $biz. New customers usually decide in a few seconds, from whatever they find first when they search for you.\n\n"
+           . "The homepage idea we made puts your best reviews, what you offer and a one-tap way to get in touch right there:\n$link\n\n"
            . "Our team can also put together a free competitive analysis comparing $biz with a few local competitors. If that would be useful, just reply \"yes\".";
     } else {
         $t = "$hi,\n\nI'll leave it here so I don't fill your " . ($ig ? 'messages' : 'inbox') . ". The homepage idea we made for $biz stays online if you'd like another look:\n$link\n\n"
