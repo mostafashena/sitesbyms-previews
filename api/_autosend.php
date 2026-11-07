@@ -35,7 +35,7 @@ function auto_queue(?string $tz = null): array {
         if (isset(lead_done($r['_row'], $kind, $log, $r['slug'])['Email'])) continue;
         $q[] = ['r' => $r, 'kind' => $kind];
     }
-    usort($q, fn($a, $b) => ($a['kind'] === 'first') <=> ($b['kind'] === 'first'));   // follow-ups first, they are time-sensitive
+    usort($q, fn($a, $b) => ($b['kind'] === 'first') <=> ($a['kind'] === 'first'));   // new emails first (fresh concepts are the best chance of a reply); a follow-up can wait a day if the daily limit is reached
     return $q;
 }
 
