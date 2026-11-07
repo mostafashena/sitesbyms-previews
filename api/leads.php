@@ -65,6 +65,9 @@ try {
         case 'sendnow':  // ask the next cron run (within 10 minutes) to send everything that is due now
             setting_set('autosend_now', ['day' => (new DateTime('now', new DateTimeZone(TZ)))->format('Y-m-d'), 'at' => time()]);
             out(['ok' => true, 'note' => 'the next cron run sends what is due']);
+        case 'inbox':    // emails that arrived at hello@ (copied to Gmail by the cron)
+            require_once __DIR__ . '/_inbox.php';
+            out(['inbox' => inbox_recent(min(300, (int)($in['limit'] ?? 100))), 'mailbox_found' => (bool)inbox_dirs()]);
         case 'messages':
             out(['messages' => array_slice(messages_all(), 0, 200), 'bookings' => bookings_all()]);
         default:

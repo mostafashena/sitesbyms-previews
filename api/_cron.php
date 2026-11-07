@@ -51,6 +51,9 @@ if (is_file(__DIR__ . '/_migrate_leads.json') && leads_store() !== 'db') {
     try { $mr = leads_import_from_sheet(); send_mail(TEAM_TO, 'Leads moved into the database', "$mr.\n\nFrom now on the panel and the nightly run use the database. The Google Sheet is left as it was, as an old copy; changes there are no longer read.\nA backup of the whole list is emailed to you every day it changes.\n"); echo date('c') . " $mr\n"; }
     catch (Throwable $e) { echo date('c') . ' leads import failed: ' . $e->getMessage() . "\n"; write_json('leads_import_error.json', ['at' => time(), 'error' => $e->getMessage()]); }
 }
+// hello@ mailbox -> Gmail (a fresh copy from our own domain; plain forwarding gets dropped by Gmail).
+require_once __DIR__ . '/_inbox.php';
+try { $ir = inbox_relay(); if ($ir !== 'no new email') echo date('c') . " inbox: $ir\n"; } catch (Throwable $e) { echo date('c') . ' inbox failed: ' . $e->getMessage() . "\n"; }
 try { $br = leads_daily_backup(); if ($br !== 'backup already done today') echo date('c') . " $br\n"; } catch (Throwable $e) { echo date('c') . ' backup failed: ' . $e->getMessage() . "\n"; }
 $GLOBALS['sbm_actor'] = 'auto-send';
 try { $res = autosend_tick($force); write_json('cron_heartbeat.json', $hb + ['result' => $res, 'at' => time()]); echo date('c') . ' ' . $res . "\n"; }
