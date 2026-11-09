@@ -209,7 +209,7 @@
   var bar = document.createElement('div');
   bar.className = 'sbm-bar'; bar.setAttribute('role', 'region'); bar.setAttribute('aria-label', 'About this concept');
   bar.innerHTML = '<img src="/assets/brand/mark-sm-dark.png" alt="Sites By MS">'
-    + '<div class="sbm-txt"><b></b><span>Get a free competitive analysis of your business from our team.</span></div>'
+    + '<div class="sbm-txt"><b></b><span>120+ businesses in 6 countries · Get a free competitive analysis from our team.</span></div>'
     + '<div class="sbm-acts"><a class="sbm-btn sbm-ask" href="/book/' + q + '">Book a call</a>'
     + '<a class="sbm-btn sbm-book sbm-rep" href="#report">Free competitive analysis</a></div>'
     + '<button class="sbm-x" type="button" aria-label="Hide this bar"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>';
@@ -350,7 +350,7 @@
   function inlineOffer() {
     if (document.querySelector('.sbm-inline')) return;
     var box = document.createElement('section'); box.className = 'sbm-inline'; box.setAttribute('aria-label', 'Free competitive analysis');
-    box.innerHTML = '<div class="sbm-in-wrap"><div class="sbm-nwho"><img src="/assets/team/mostafa-avatar-3.jpg" alt="" width="28" height="28">Mostafa · Sites By MS team</div>'
+    box.innerHTML = '<div class="sbm-in-wrap"><div class="sbm-nwho"><img src="/assets/team/mostafa-avatar-3.jpg" alt="" width="28" height="28">Mostafa · Sites By MS team</div><p style="font-size:13px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:#6B4EE6;margin:0 auto 8px">120+ businesses in 6 countries already have a concept from our team</p>'
       + '<h2></h2><p>We compare you with 4–5 businesses like yours nearby: who customers find first, who looks more trustworthy online, and three clear steps to win more of them. Free, within 24 hours, no strings attached.</p><p style="font-size:14px;margin-top:-10px">And beyond the website, we can be your growth team: customer data, marketing automation, promotions and monthly reports.</p>'
       + '<button type="button" class="sbm-btn sbm-book">Get my free competitive analysis</button></div>';
     box.querySelector('h2').textContent = 'Free competitive analysis for ' + name;
