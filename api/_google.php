@@ -144,12 +144,12 @@ function lead_followup_text(array $r, string $channel, string $kind): string {
     $issue = lead_issue($r); $ig = $channel === 'Instagram DM';
     if ($kind === 'followup2') {
         // No website "issue" is repeated here: claims about a site must be checked the same day (owner's rule, 7 Nov 2026), and this goes out a week later.
-        $t = "$hi,\n\nOne more thought on $biz. New customers usually decide in a few seconds, from whatever they find first when they search for you.\n\n"
-           . "The homepage idea we made puts your best reviews, what you offer and a one-tap way to get in touch right there:\n$link\n\n"
-           . "Our team can also put together a free competitive analysis comparing $biz with a few local competitors. If that would be useful, just reply \"yes\".";
+        $t = "$hi,\n\nOne more thought on $biz. We don't just build websites: we work as a growth team for businesses like yours, looking after the website, customer data, marketing automation, reminders and promotions, and regular reports on how you compare with competitors, so you can focus on your clients.\n\n"
+           . "The homepage idea we made for you is a first step:\n$link\n\n"
+           . "A good place to start is a free competitive analysis comparing $biz with a few local competitors. If that would be useful, just reply \"yes\".";
     } else {
         $t = "$hi,\n\nI'll leave it here so I don't fill your " . ($ig ? 'messages' : 'inbox') . ". The homepage idea we made for $biz stays online if you'd like another look:\n$link\n\n"
-           . "If the timing is ever right, just reply here. We're happy to help, and you see your new site before you pay anything.";
+           . "Whenever you'd like a hand with your website, marketing or customer follow-up, just reply here. We're happy to be your growth team, and you see your new site before you pay anything.";
     }
     return $t . ($ig ? "\n\nMostafa, Sites By MS" : "\n\nBest regards,\nMostafa\nSites By MS\nhello@sitesbyms.com · WhatsApp +44 7405 760048");
 }
@@ -201,7 +201,7 @@ function lead_wa(array $r): string { return wa_number($r['phone'], lead_cc($r['c
 function lead_wa_text(array $r, bool $first): string {
     $hi = lead_greeting($r); $biz = $r['company']; $link = tracked_links('https://sitesbyms.com/' . $r['slug'] . '/', 'wa');
     return $first
-        ? "$hi, it's Mostafa from Sites By MS. We made a free homepage idea for $biz, no strings attached:\n$link\n\nIf it's useful, we can also send you a free competitive analysis: how you compare with 4–5 similar businesses nearby. Just reply \"yes\".\n\n(If this isn't for you, just say so and we won't message again.)"
+        ? "$hi, it's Mostafa from Sites By MS. We made a free homepage idea for $biz, no strings attached:\n$link\n\nIf it's useful, we can also send you a free competitive analysis: how you compare with 4–5 similar businesses nearby. Just reply \"yes\". Beyond websites, we also look after marketing automation, promotions and reports for businesses like yours.\n\n(If this isn't for you, just say so and we won't message again.)"
         : "$hi, it's Mostafa from Sites By MS. I emailed you yesterday about a free homepage idea we made for $biz, in case it got lost:\n$link\n\nHappy to send a free competitive analysis too (how you compare with similar businesses nearby). Just reply \"yes\".\n\n(If this isn't for you, just say so and we won't message again.)";
 }
 /** Leads for the WhatsApp step: day 2 after the first email/DM (no reply yet), or first touch when the row has no email or Instagram. */

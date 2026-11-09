@@ -351,7 +351,7 @@
     if (document.querySelector('.sbm-inline')) return;
     var box = document.createElement('section'); box.className = 'sbm-inline'; box.setAttribute('aria-label', 'Free competitive analysis');
     box.innerHTML = '<div class="sbm-in-wrap"><div class="sbm-nwho"><img src="/assets/team/mostafa-avatar-3.jpg" alt="" width="28" height="28">Mostafa · Sites By MS team</div>'
-      + '<h2></h2><p>We compare you with 4–5 businesses like yours nearby: who customers find first, who looks more trustworthy online, and three clear steps to win more of them. Free, within 24 hours, no strings attached.</p>'
+      + '<h2></h2><p>We compare you with 4–5 businesses like yours nearby: who customers find first, who looks more trustworthy online, and three clear steps to win more of them. Free, within 24 hours, no strings attached.</p><p style="font-size:14px;margin-top:-10px">And beyond the website, we can be your growth team: customer data, marketing automation, promotions and monthly reports.</p>'
       + '<button type="button" class="sbm-btn sbm-book">Get my free competitive analysis</button></div>';
     box.querySelector('h2').textContent = 'Free competitive analysis for ' + name;
     box.querySelector('button').onclick = function () { openReport('inline'); };
