@@ -38,41 +38,17 @@
 
       <div class="show" id="show" aria-roledescription="carousel" aria-label="Example websites">
         <div class="frame">
-          <div class="chrome" aria-hidden="true"><i></i><i></i><i></i><span class="url">sitesbyms.com/<b id="showUrl">ember-and-oak</b></span></div>
+          <div class="chrome" aria-hidden="true"><i></i><i></i><i></i><span class="url">sitesbyms.com/<b id="showUrl">work/linden-vale-dental</b></span></div>
           <div class="stage">
-            <div class="mock m1 on" role="group" aria-label="Example 1 of 4: a grill restaurant">
-              <nav><b>EMBER &amp; OAK</b><span>Menu · Story · Visit</span><em>Book a table</em></nav>
-              <div class="body">
-                <div class="ph"><span style="letter-spacing:.2em;text-transform:uppercase;color:#E2702F;font-size:8.5px">Wood-fired grill · Bristol</span><h4>Cooked over<br>open flame.</h4></div>
-                <div class="row3"><div><b>Tonight</b>Ribeye, hispi cabbage</div><div><b>Sunday roast</b>From 12pm</div><div><b>4.8 ★</b>612 Google reviews</div></div>
-              </div>
-            </div>
-            <div class="mock m2" role="group" aria-label="Example 2 of 4: a florist">
-              <nav><b>Bloom Lane</b><span>Bouquets · Weddings · Shop</span><em>Order flowers</em></nav>
-              <div class="body">
-                <div><span style="font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase">Same-day delivery</span><h4>Flowers that<br>say it for you.</h4><div class="tiles"><span></span><span></span><span></span></div></div>
-                <div class="ph"></div>
-              </div>
-            </div>
-            <div class="mock m3" role="group" aria-label="Example 3 of 4: a dental clinic">
-              <nav><b>Harbour Dental</b><span>Treatments · Team · Prices</span><em>Book online</em></nav>
-              <div class="body">
-                <div style="display:grid;gap:10px;align-content:center"><h4>Calm, gentle dental care.</h4><span style="font-size:10px;opacity:.8">NHS and private patients welcome. Evening appointments.</span><div class="card"><b>Next free check-up</b><div class="slot"><i>Mon 9:30</i><i>Tue 17:15</i><i>Wed 12:00</i></div></div></div>
-                <div class="ph">Reception · 1200 × 900</div>
-              </div>
-            </div>
-            <div class="mock m4" role="group" aria-label="Example 4 of 4: a hair salon">
-              <nav><b>STUDIO NOVE</b><span>Cuts · Colour · Team</span><em>Book now</em></nav>
-              <div class="body">
-                <h4>Hair,<br>done properly.</h4>
-                <div class="strip"><span></span><span></span><span></span></div>
-              </div>
-            </div>
+            <a class="mock live on" href="/work/linden-vale-dental/" target="_blank" rel="noopener" role="group" aria-label="Example 1 of 4: Dental clinic"><iframe src="/work/linden-vale-dental/" title="Dental clinic example" loading="eager" tabindex="-1" scrolling="no"></iframe></a>
+            <a class="mock live" href="/work/maison-lumiere-skin/" target="_blank" rel="noopener" role="group" aria-label="Example 2 of 4: Skin clinic"><iframe src="/work/maison-lumiere-skin/" title="Skin clinic example" loading="lazy" tabindex="-1" scrolling="no"></iframe></a>
+            <a class="mock live" href="/work/northline-physio/" target="_blank" rel="noopener" role="group" aria-label="Example 3 of 4: Physiotherapy"><iframe src="/work/northline-physio/" title="Physiotherapy example" loading="lazy" tabindex="-1" scrolling="no"></iframe></a>
+            <a class="mock live" href="/work/forge-form-studio/" target="_blank" rel="noopener" role="group" aria-label="Example 4 of 4: Boxing &amp; strength studio"><iframe src="/work/forge-form-studio/" title="Boxing &amp; strength studio example" loading="lazy" tabindex="-1" scrolling="no"></iframe></a>
           </div>
         </div>
-        <div class="cap"><span id="showCap"><b>Restaurant</b> · example concept</span>
+        <div class="cap"><span id="showCap"><b>Dental clinic</b> · example concept (fictional business)</span>
           <div class="dots" role="group" aria-label="Choose example">
-            <button type="button" aria-label="Restaurant" aria-current="true"></button><button type="button" aria-label="Florist"></button><button type="button" aria-label="Dental clinic"></button><button type="button" aria-label="Hair salon"></button>
+            <button type="button" aria-label="Dental clinic" aria-current="true"></button><button type="button" aria-label="Skin clinic"></button><button type="button" aria-label="Physiotherapy"></button><button type="button" aria-label="Boxing and strength studio"></button>
           </div>
         </div>
       </div>
@@ -166,14 +142,14 @@
 (function(){
   var show = document.getElementById('show'); if (!show) return;
   var mocks = show.querySelectorAll('.mock'), dots = show.querySelectorAll('.dots button');
-  var urls = ['ember-and-oak','bloom-lane','harbour-dental','studio-nove'], caps = ['Restaurant','Florist','Dental clinic','Hair salon'];
+  var urls = ['work/linden-vale-dental','work/maison-lumiere-skin','work/northline-physio','work/forge-form-studio'], caps = ['Dental clinic','Skin clinic','Physiotherapy','Boxing &amp; strength studio'];
   var i = 0, timer = null, still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   function go(n){
     mocks[i].classList.remove('on'); dots[i].removeAttribute('aria-current');
     i = (n + mocks.length) % mocks.length;
     mocks[i].classList.add('on'); dots[i].setAttribute('aria-current','true');
     document.getElementById('showUrl').textContent = urls[i];
-    document.getElementById('showCap').innerHTML = '<b>' + caps[i] + '</b> · example concept';
+    document.getElementById('showCap').innerHTML = '<b>' + caps[i] + '</b> · example concept (fictional business)';
   }
   function play(){ if (!still) { stop(); timer = setInterval(function(){ go(i+1); }, 3800); } }
   function stop(){ if (timer) clearInterval(timer); timer = null; }
@@ -183,6 +159,13 @@
   document.addEventListener('visibilitychange', function(){ document.hidden ? stop() : play(); });
   play();
 })();
+</script>
+<style>.mock.live{display:block}.mock.live iframe{position:absolute;left:0;top:0;width:1280px;height:840px;border:0;transform-origin:0 0;pointer-events:none;background:#fff}</style>
+<script>
+(function(){function fit(){document.querySelectorAll('.mock.live').forEach(function(m){var w=m.clientWidth||m.parentNode.clientWidth;var f=m.querySelector('iframe');if(f&&w)f.style.transform='scale('+(w/1280)+')';});}
+window.addEventListener('resize',fit);document.addEventListener('DOMContentLoaded',fit);fit();
+document.querySelectorAll('#show .dots button').forEach(function(d,n){d.addEventListener('click',function(){var f=document.querySelectorAll('.mock.live iframe')[n];if(f)f.loading='eager';});});
+setTimeout(function(){document.querySelectorAll('.mock.live iframe').forEach(function(f){f.loading='eager';});},1500);})();
 </script>
 <script src="/assets/track.js" data-page="home" defer></script>
 </body>
