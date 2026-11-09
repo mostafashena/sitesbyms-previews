@@ -23,7 +23,7 @@ $state = read_json('view_alerts.json', []);
 if (time() - (int)($state[$slug] ?? 0) > 12 * 3600) {
     $state[$slug] = time(); write_json('view_alerts.json', $state);
     $london = new DateTime('now', new DateTimeZone(TZ));
-    $body = "Someone just opened the concept for \"$slug\" on a $device.\n\nhttps://sitesbyms.com/$slug/\n"
+    $body = "Someone just opened the concept for \"$slug\" on a $device.\n\nhttps://sitesbyms.com/$slug/?team=1\n"
           . 'Time: ' . $london->format('D j M, H:i') . " (London)\n" . ($ref ? 'Came from: ' . ($from === 'email' ? 'your email' : ($from === 'ig' ? 'your Instagram DM' : ($from === 'wa' ? 'your WhatsApp message' : $ref))) . "\n" : '')
           . "\nGood moment for a friendly call or WhatsApp if you have their number.\n";
     // Their row in the sheet: business name, and a ready WhatsApp message when the number is a UK mobile.

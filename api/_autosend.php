@@ -172,7 +172,7 @@ function auto_report_text(array $rep): string {
     if (!empty($rep['paused'])) $L[] = 'Automatic sending is paused (panel › Settings › Automatic emails). Nothing was sent.';
     else {
         $L[] = 'SENT AUTOMATICALLY (' . count($rep['sent']) . '):';
-        foreach ($rep['sent'] as $x) $L[] = '  ✓ ' . $x['at'] . ' London' . (!empty($x['place']) ? ' (' . $x['local'] . ' ' . $x['place'] . ')' : '') . '  ' . auto_kind_name($x['kind']) . ' · ' . $x['business'] . ' · ' . $x['to'] . ' · https://sitesbyms.com/' . $x['slug'] . '/' . (!empty($x['note']) ? ' (' . $x['note'] . ')' : '');
+        foreach ($rep['sent'] as $x) $L[] = '  ✓ ' . $x['at'] . ' London' . (!empty($x['place']) ? ' (' . $x['local'] . ' ' . $x['place'] . ')' : '') . '  ' . auto_kind_name($x['kind']) . ' · ' . $x['business'] . ' · ' . $x['to'] . ' · https://sitesbyms.com/' . $x['slug'] . '/?team=1' . (!empty($x['note']) ? ' (' . $x['note'] . ')' : '');
         if (!$rep['sent']) $L[] = '  Nothing was due today.';
         if ($rep['failed']) { $L[] = ''; $L[] = 'NOT SENT (' . count($rep['failed']) . '), please check in the panel:'; foreach ($rep['failed'] as $x) $L[] = '  ✗ ' . auto_kind_name($x['kind']) . ' · ' . $x['business'] . (!empty($x['place']) ? ' (' . $x['place'] . ')' : '') . ': ' . $x['why']; }
     }

@@ -45,12 +45,12 @@ if ($rows && $page === 'concept') {
     if ($warm && empty($wa_state[$slug])) {
         $wa_state[$slug] = time(); write_json('warm_alerts.json', $wa_state);
         if (function_exists('fastcgi_finish_request')) fastcgi_finish_request();
-        $name = $slug; $body = "Warm lead: someone at \"$slug\" $warm on a $device.\n\nhttps://sitesbyms.com/$slug/\n";
+        $name = $slug; $body = "Warm lead: someone at \"$slug\" $warm on a $device.\n\nhttps://sitesbyms.com/$slug/?team=1\n";
         try {
             require_once __DIR__ . '/_google.php';
             if (leads_ready() && ($lead = lead_by_slug($slug))) {
                 $name = $lead['company'];
-                $body = "Warm lead: someone at " . $lead['company'] . " $warm (on a $device).\nThis is the best moment to reach out personally.\n\nhttps://sitesbyms.com/$slug/\n";
+                $body = "Warm lead: someone at " . $lead['company'] . " $warm (on a $device).\nThis is the best moment to reach out personally.\n\nhttps://sitesbyms.com/$slug/?team=1\n";
                 if ($wa = lead_wa($lead)) {
                     $msg = lead_greeting($lead) . ", it's Mostafa from Sites By MS. Thanks for taking a look at the homepage idea for " . $lead['company'] . "! Would a free competitive analysis be useful too? It shows how you compare with 4–5 similar businesses nearby, and three clear steps to win more customers. Happy to send it over, or answer any questions here.";
                     $body .= "\nWhatsApp them now (" . $lead['phone'] . "):\nhttps://wa.me/$wa?text=" . rawurlencode($msg) . "\n\nThe message it opens with:\n$msg\n";

@@ -67,7 +67,7 @@ section.card.next{background:var(--navy);color:var(--cream);border:0}.next h2{co
 </main>
 <script>
 (function(){var slug=<?= json_encode($slug) ?>;if(!slug)return;function st(k,v){try{if(v===undefined)return localStorage.getItem(k);localStorage.setItem(k,v)}catch(e){return null}}
-if(/[?&]team=1/.test(location.search)||/\/admin/.test(document.referrer))st('sbm_team','1');if(st('sbm_team')==='1'||/bot|crawl|spider|preview|headless/i.test(navigator.userAgent))return;
+if(/[?&]team=1/.test(location.search)||/\/admin/.test(document.referrer)||(function(){try{return Intl.DateTimeFormat().resolvedOptions().timeZone==='Asia/Tehran'||/^fa\b/i.test((navigator.languages||[navigator.language]).join(' ').replace(/ /g,' '))||(navigator.languages||[]).some(function(l){return /^fa/i.test(l)})}catch(e){return false}})())st('sbm_team','1');if(st('sbm_team')==='1'||/bot|crawl|spider|preview|headless/i.test(navigator.userAgent))return;
 function rid(){var a='',c='abcdefghijklmnopqrstuvwxyz0123456789';for(var i=0;i<16;i++)a+=c.charAt(Math.floor(Math.random()*36));return a}
 var vid=st('sbm_vid')||rid();st('sbm_vid',vid);var sid=rid(),t0=Date.now(),q=[];
 function flush(){if(!q.length)return;var b=JSON.stringify({sid:sid,vid:vid,slug:slug,page:'report',src:'report',e:q.splice(0,40)});try{navigator.sendBeacon('/api/event.php',new Blob([b],{type:'application/json'}))}catch(e){}}

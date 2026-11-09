@@ -14,7 +14,7 @@
   var q = '?b=' + encodeURIComponent(name) + (slug ? '&s=' + slug : '');
 
   function store(k, v) { try { if (v === undefined) return localStorage.getItem(k); localStorage.setItem(k, v); } catch (e) { return null; } }
-  if (/[?&]team=1/.test(location.search) || /\/admin/.test(document.referrer)) store('sbm_team', '1');
+  if (/[?&]team=1/.test(location.search) || /\/admin/.test(document.referrer) || (function(){try{return Intl.DateTimeFormat().resolvedOptions().timeZone==='Asia/Tehran'||/^fa\b/i.test((navigator.languages||[navigator.language]).join(' ').replace(/ /g,' '))||(navigator.languages||[]).some(function(l){return /^fa/i.test(l)})}catch(e){return false}})()) store('sbm_team', '1');
   if (/[?&]team=0/.test(location.search)) { try { localStorage.removeItem('sbm_team'); } catch (e) {} }
 
   // View alert (one beacon per page load, never for the team or bots).
