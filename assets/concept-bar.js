@@ -184,6 +184,11 @@
     + '.sbm-in-wrap{max-width:720px;margin:0 auto;text-align:center}.sbm-inline .sbm-nwho{justify-content:center;margin-bottom:12px}'
     + '.sbm-inline h2{font:800 clamp(24px,4vw,34px)/1.2 "Plus Jakarta Sans",system-ui,sans-serif;margin:0 0 10px;color:#0E1430;text-transform:none;letter-spacing:0}'
     + '.sbm-inline p{margin:0 auto 22px;max-width:36em;font-size:16px;line-height:1.6;color:#4A5070}'
+    + '.sbm-proof{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));margin:30px auto 0;max-width:560px;background:#fff;border:1px solid #E6DEFF;border-radius:18px;padding:16px 6px;box-shadow:0 12px 30px rgba(91,47,224,.10)}'
+    + '.sbm-proof div{display:flex;flex-direction:column;align-items:center;gap:4px;padding:0 8px;border-left:1px solid #EEE8FF}.sbm-proof div:first-child{border-left:0}'
+    + '.sbm-proof b{font:800 30px/1 "Plus Jakarta Sans",system-ui,sans-serif;letter-spacing:-.03em;background:linear-gradient(135deg,#5B2FE0,#8557FC 60%,#B08CFF);-webkit-background-clip:text;background-clip:text;color:transparent}'
+    + '.sbm-proof span{font-size:13px;line-height:1.3;color:#4A5070}.sbm-proof i{display:block;font-style:normal;font-size:13px;letter-spacing:1px;margin-top:3px}'
+    + '@media (max-width:480px){.sbm-proof b{font-size:24px}.sbm-proof span{font-size:12px}.sbm-proof i{display:none}}'
     + '.sbm-inline .sbm-btn{display:inline-flex;font-size:16px;padding:14px 26px;border:0;cursor:pointer}'
     + '.sbm-nudge{position:fixed;z-index:2147483001;right:calc(20px + env(safe-area-inset-right,0px));width:min(360px,calc(100% - 20px));background:#fff;color:#0E1430;border-radius:18px;padding:18px 18px 16px;box-shadow:0 24px 60px rgba(7,15,55,.35);font-family:"Plus Jakarta Sans",system-ui,sans-serif;animation:sbmUp .35s ease-out;border:1px solid #ECE8F5}'
     + '@keyframes sbmUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}'
@@ -209,7 +214,7 @@
   var bar = document.createElement('div');
   bar.className = 'sbm-bar'; bar.setAttribute('role', 'region'); bar.setAttribute('aria-label', 'About this concept');
   bar.innerHTML = '<img src="/assets/brand/mark-sm-dark.png" alt="Sites By MS">'
-    + '<div class="sbm-txt"><b></b><span>120+ businesses in 6 countries · Get a free competitive analysis from our team.</span></div>'
+    + '<div class="sbm-txt"><b></b><span>Get a free competitive analysis of your business from our team.</span></div>'
     + '<div class="sbm-acts"><a class="sbm-btn sbm-ask" href="/book/' + q + '">Book a call</a>'
     + '<a class="sbm-btn sbm-book sbm-rep" href="#report">Free competitive analysis</a></div>'
     + '<button class="sbm-x" type="button" aria-label="Hide this bar"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>';
@@ -350,9 +355,10 @@
   function inlineOffer() {
     if (document.querySelector('.sbm-inline')) return;
     var box = document.createElement('section'); box.className = 'sbm-inline'; box.setAttribute('aria-label', 'Free competitive analysis');
-    box.innerHTML = '<div class="sbm-in-wrap"><div class="sbm-nwho"><img src="/assets/team/mostafa-avatar-3.jpg" alt="" width="28" height="28">Mostafa · Sites By MS team</div><p style="font-size:13px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:#6B4EE6;margin:0 auto 8px">120+ businesses in 6 countries already have a concept from our team</p>'
+    box.innerHTML = '<div class="sbm-in-wrap"><div class="sbm-nwho"><img src="/assets/team/mostafa-avatar-3.jpg" alt="" width="28" height="28">Mostafa · Sites By MS team</div>'
       + '<h2></h2><p>We compare you with 4–5 businesses like yours nearby: who customers find first, who looks more trustworthy online, and three clear steps to win more of them. Free, within 24 hours, no strings attached.</p><p style="font-size:14px;margin-top:-10px">And beyond the website, we can be your growth team: customer data, marketing automation, promotions and monthly reports.</p>'
-      + '<button type="button" class="sbm-btn sbm-book">Get my free competitive analysis</button></div>';
+      + '<button type="button" class="sbm-btn sbm-book">Get my free competitive analysis</button>'
+      + '<div class="sbm-proof"><div><b>120+</b><span>businesses in our system</span></div><div><b>6</b><span>countries <i>🇬🇧 🇺🇸 🇨🇦 🇦🇺 🇳🇿 🇦🇪</i></span></div><div><b>24h</b><span>free analysis</span></div></div></div>';
     box.querySelector('h2').textContent = 'Free competitive analysis for ' + name;
     box.querySelector('button').onclick = function () { openReport('inline'); };
     var foot = document.querySelector('body > footer') || document.querySelector('footer');
