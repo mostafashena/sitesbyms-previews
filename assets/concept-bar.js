@@ -187,8 +187,8 @@
     + '.sbm-proof{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));margin:30px auto 0;max-width:560px;background:#fff;border:1px solid #E6DEFF;border-radius:18px;padding:16px 6px;box-shadow:0 12px 30px rgba(91,47,224,.10)}'
     + '.sbm-proof div{display:flex;flex-direction:column;align-items:center;gap:4px;padding:0 8px;border-left:1px solid #EEE8FF}.sbm-proof div:first-child{border-left:0}'
     + '.sbm-proof b{font:800 30px/1 "Plus Jakarta Sans",system-ui,sans-serif;letter-spacing:-.03em;background:linear-gradient(135deg,#5B2FE0,#8557FC 60%,#B08CFF);-webkit-background-clip:text;background-clip:text;color:transparent}'
-    + '.sbm-proof span{font-size:13px;line-height:1.3;color:#4A5070}.sbm-proof i{display:block;font-style:normal;font-size:13px;letter-spacing:1px;margin-top:3px}'
-    + '@media (max-width:480px){.sbm-proof b{font-size:24px}.sbm-proof span{font-size:12px}.sbm-proof i{display:none}}'
+    + '.sbm-proof span{font-size:13px;line-height:1.3;color:#4A5070}.sbm-proof i{display:flex;gap:4px;justify-content:center;font-style:normal;margin-top:6px}.sbm-proof i img{width:18px;height:13px;border-radius:2px;box-shadow:0 0 0 1px rgba(14,20,48,.12);object-fit:cover}'
+    + '@media (max-width:480px){.sbm-proof b{font-size:24px}.sbm-proof span{font-size:12px}.sbm-proof i{display:grid;grid-template-columns:repeat(3,15px);gap:3px;justify-content:center}.sbm-proof i img{width:15px;height:11px}}'
     + '.sbm-inline .sbm-btn{display:inline-flex;font-size:16px;padding:14px 26px;border:0;cursor:pointer}'
     + '.sbm-nudge{position:fixed;z-index:2147483001;right:calc(20px + env(safe-area-inset-right,0px));width:min(360px,calc(100% - 20px));background:#fff;color:#0E1430;border-radius:18px;padding:18px 18px 16px;box-shadow:0 24px 60px rgba(7,15,55,.35);font-family:"Plus Jakarta Sans",system-ui,sans-serif;animation:sbmUp .35s ease-out;border:1px solid #ECE8F5}'
     + '@keyframes sbmUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}'
@@ -358,7 +358,7 @@
     box.innerHTML = '<div class="sbm-in-wrap"><div class="sbm-nwho"><img src="/assets/team/mostafa-avatar-3.jpg" alt="" width="28" height="28">Mostafa · Sites By MS team</div>'
       + '<h2></h2><p>We compare you with 4–5 businesses like yours nearby: who customers find first, who looks more trustworthy online, and three clear steps to win more of them. Free, within 24 hours, no strings attached.</p><p style="font-size:14px;margin-top:-10px">And beyond the website, we can be your growth team: customer data, marketing automation, promotions and monthly reports.</p>'
       + '<button type="button" class="sbm-btn sbm-book">Get my free competitive analysis</button>'
-      + '<div class="sbm-proof"><div><b>120+</b><span>businesses in our system</span></div><div><b>6</b><span>countries <i>🇬🇧 🇺🇸 🇨🇦 🇦🇺 🇳🇿 🇦🇪</i></span></div><div><b>24h</b><span>free analysis</span></div></div></div>';
+      + '<div class="sbm-proof"><div><b>120+</b><span>businesses in our system</span></div><div><b>6</b><span>countries <i><img src="/assets/flags/gb.svg" alt="United Kingdom" title="United Kingdom" width="18" height="13"><img src="/assets/flags/us.svg" alt="USA" title="USA" width="18" height="13"><img src="/assets/flags/ca.svg" alt="Canada" title="Canada" width="18" height="13"><img src="/assets/flags/au.svg" alt="Australia" title="Australia" width="18" height="13"><img src="/assets/flags/nz.svg" alt="New Zealand" title="New Zealand" width="18" height="13"><img src="/assets/flags/ae.svg" alt="UAE" title="UAE" width="18" height="13"></i></span></div><div><b>24h</b><span>free analysis</span></div></div></div>';
     box.querySelector('h2').textContent = 'Free competitive analysis for ' + name;
     box.querySelector('button').onclick = function () { openReport('inline'); };
     var foot = document.querySelector('body > footer') || document.querySelector('footer');
