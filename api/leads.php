@@ -71,6 +71,18 @@ try {
         case 'inbox_resend':
             require_once __DIR__ . '/_inbox.php';
             out(['ok' => true, 'will_resend' => inbox_resend(max(1, min(7, (int)($in['days'] ?? 3)))), 'mailed_log' => read_json('inbox_mailed.json', [])]);
+        case 'personal':   // queue a personal email for the team to check and send from the panel: {row, company, to, subject, body}; or {remove: id}
+            $q = (array)setting_get('personal_emails', []);
+            if (!empty($in['remove'])) { $q = array_values(array_filter($q, fn($x) => $x['id'] !== $in['remove'])); setting_set('personal_emails', $q); out(['ok' => true, 'queue' => $q]); }
+            if (!empty($in['body'])) {
+                $row = (int)($in['row'] ?? 0); $cur = null; foreach (sheet_rows(true) as $x) if ($x['_row'] === $row) $cur = $x;
+                if (!$cur) out(['error' => "row $row does not exist"], 404);
+                if (trim((string)($in['company'] ?? '')) !== $cur['company']) out(['error' => "row $row is “{$cur['company']}”"], 409);
+                if (!filter_var((string)$in['to'], FILTER_VALIDATE_EMAIL)) out(['error' => 'bad email'], 400);
+                $q[] = ['id' => bin2hex(random_bytes(6)), 'row' => $row, 'company' => $cur['company'], 'slug' => $cur['slug'], 'to' => (string)$in['to'], 'subject' => (string)$in['subject'], 'body' => (string)$in['body'], 'why' => (string)($in['why'] ?? ''), 'at' => gmdate('c')];
+                setting_set('personal_emails', $q);
+            }
+            out(['ok' => true, 'queue' => $q]);
         case 'messages':
             out(['messages' => array_slice(messages_all(), 0, 200), 'bookings' => bookings_all()]);
         default:

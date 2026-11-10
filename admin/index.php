@@ -136,6 +136,25 @@ if ($csrfOk) {
         $kv['New candidates per night'] = (string)max(0, min(40, (int)($_POST['n_cand'] ?? 20)));
         try { panel_settings_save($kv); go('settings', 'Nightly settings saved. The next run uses them.'); } catch (Throwable $e) { go('settings', 'Could not save: ' . $e->getMessage(), true); }
     }
+    if ($a === 'pe_send' || $a === 'pe_skip') {
+        try {
+            $q = (array)setting_get('personal_emails', []); $id = (string)$_POST['id']; $it = null;
+            foreach ($q as $x) if ($x['id'] === $id) $it = $x;
+            if (!$it) go('outreach', 'That email is no longer in the list.', true);
+            $rest = array_values(array_filter($q, fn($x) => $x['id'] !== $id));
+            if ($a === 'pe_skip') { setting_set('personal_emails', $rest); go('outreach', 'Email to ' . $it['company'] . ' skipped.'); }
+            $to = strtolower(one_line((string)$_POST['to'])); if (!filter_var($to, FILTER_VALIDATE_EMAIL)) go('outreach', 'Please check the email address.', true);
+            $subject = one_line((string)$_POST['subject']); $body = trim(str_replace("\r", '', (string)$_POST['body']));
+            if ($subject === '' || $body === '') go('outreach', 'Subject and message are needed.', true);
+            $prev = null; foreach (outreach_all() as $o) if ((int)$o['row'] === (int)$it['row'] && !empty($o['mid']) && $o['channel'] === 'Email') { $prev = $o['mid']; break; }   // reply in their latest thread
+            $mid = send_outreach($to, $subject, $body, $prev, (string)$it['slug'], 'personal');
+            if (!$mid) go('outreach', 'The email could not be sent. Nothing was changed.', true);
+            outreach_log(['row' => (int)$it['row'], 'slug' => (string)$it['slug'], 'business' => $it['company'], 'kind' => 'personal', 'channel' => 'Email', 'to' => $to, 'subject' => $subject, 'body' => $body, 'mid' => $mid, 'by' => (string)($me['email'] ?? 'team')]);
+            setting_set('personal_emails', $rest);
+            try { $l = lead_get((int)$it['row'], $it['company']); $today = (new DateTime('now', new DateTimeZone(TZ)))->format('Y-m-d'); sheet_update_row((int)$it['row'], ['notes' => trim($l['notes'] . " | Personal email sent $today: $subject")]); } catch (Throwable $e) {}
+            go('outreach', 'Email sent to ' . $it['company'] . ' from hello@sitesbyms.com.');
+        } catch (Throwable $e) { go('outreach', $e->getMessage(), true); }
+    }
     if ($a === 'rep_skip') {
         try {
             $row = (int)$_POST['row']; $lead = lead_get($row, (string)$_POST['orig']);
@@ -479,6 +498,21 @@ if ($page === 'outreach') {
             }
             return $o . '</details>';
         };
+        $pe = (array)setting_get('personal_emails', []);
+        if ($pe) {
+            echo '<h2 id="personal" class="sec-h">Personal emails (written by Claude)</h2>';
+            foreach ($pe as $it) {
+                echo '<details class="card lead" open><summary><div class="grow"><b>' . h($it['company']) . '</b><small>' . h($it['why'] ?: 'Personal follow-up') . '</small></div><span class="pill ok">Ready to send</span></summary>'
+                    . '<div class="links" style="margin:14px 20px 0">' . ($it['slug'] ? '<a class="btn line sm" href="/' . h($it['slug']) . '/?team=1" target="_blank" rel="noopener">Open concept</a> ' : '') . '<a class="btn line sm" href="?p=lead&amp;r=' . (int)$it['row'] . '">Lead details</a></div>'
+                    . '<form method="post" class="leadform">' . csrf_field() . '<input type="hidden" name="id" value="' . h($it['id']) . '">'
+                    . '<label>Email to<input type="email" name="to" value="' . h($it['to']) . '"></label>'
+                    . '<label>Subject<input name="subject" value="' . h($it['subject']) . '"></label>'
+                    . '<label>Message<textarea name="body" rows="14">' . h($it['body']) . '</textarea></label>'
+                    . '<p class="hint">Sent from hello@sitesbyms.com, as a reply in their latest email thread with us. You can edit it first.</p><div class="acts">'
+                    . '<button class="btn sm" name="a" value="pe_send" onclick="return confirm(\'Send this email to ' . h($it['to']) . '?\')">Send email</button>'
+                    . '<button class="btn line sm subtle" name="a" value="pe_skip" formnovalidate onclick="return confirm(\'Skip this email?\')">Skip</button></div></form></details>';
+            }
+        }
         $reps = array_values(array_filter($rows, fn($r) => str_starts_with($r['stage'], 'Report requested') || str_starts_with($r['stage'], 'Report ready')));
         if ($reps) {
             echo '<h2 id="reports" class="sec-h">Competitive analyses</h2>';
