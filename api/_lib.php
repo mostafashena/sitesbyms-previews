@@ -372,6 +372,7 @@ function warm_slugs(?array $sessions = null): array {
     $by = [];
     foreach ($sessions ?? sessions_from(events_all(30)) as $x) {
         if (($x['page'] ?? 'concept') !== 'concept') continue;
+        if ((int)$x['active'] < 10) continue;   // email security scanners open links within seconds of delivery (several 4–6 s visits at once): not a person
         $b = &$by[$x['slug']]; $b ??= ['visits' => 0, 'active' => 0, 'last' => $x['start']];
         $b['visits']++; foreach ($x['events'] as $e) if ($e['ev'] === 'visit') $b['visits'] = max($b['visits'], (int)$e['val']);
         $b['active'] = max($b['active'], (int)$x['active']); if (strtotime($x['start']) > strtotime($b['last'])) $b['last'] = $x['start']; unset($b);
