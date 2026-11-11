@@ -1,0 +1,105 @@
+{
+ "slug": "vibes-aesthetic-clinic",
+ "business": "Vibes Aesthetic Clinic",
+ "area": "Jumeirah 1, Al Wasl Road",
+ "summary": "Patients love Vibes: 4.9 from 102 reviews, many from people who arrived anxious and left calm. But on Al Wasl Road you are up against a clinic with 427 five-star reviews, and every morning before 12pm, people looking for a dentist nearby can only reach your competitors.",
+ "you": {
+  "rating": "4.9",
+  "reviews": "102",
+  "website": "",
+  "mobile": "",
+  "booking": "",
+  "notes": "Opens 12pm; calm, unhurried care praised"
+ },
+ "competitors": [
+  {
+   "name": "Leila Hariri Dental & Medical Aesthetics",
+   "rating": "5.0",
+   "reviews": "427",
+   "website": "",
+   "mobile": "",
+   "booking": "",
+   "notes": "Al Wasl Road; open 9am, 7 days"
+  },
+  {
+   "name": "Royal Dental & Aesthetic Care",
+   "rating": "4.7",
+   "reviews": "56",
+   "website": "",
+   "mobile": "",
+   "booking": "",
+   "notes": "Al Wasl Road; open 10am, 7 days"
+  },
+  {
+   "name": "Scandinavian Dental Clinic",
+   "rating": "4.9",
+   "reviews": "29",
+   "website": "",
+   "mobile": "",
+   "booking": "",
+   "notes": "Al Wasl Road; open from 9am"
+  }
+ ],
+ "visibility": "In our search for dental clinics on Al Wasl Road, a nearby clinic with four times your number of reviews and longer hours appeared alongside you. Patients comparing at a glance see the bigger number first.",
+ "lead": [
+  "Reviews describe a calm, beautiful clinic where nobody feels rushed: a powerful message for anxious patients.",
+  "Doctors and reception are praised by name (Dr. Sharief, Dr. Fatima, Shahad).",
+  "Late opening on Thursdays (until 10pm) suits working patients."
+ ],
+ "lose": [
+  "Every morning until 12pm, someone with toothache nearby can only book with a competitor.",
+  "A competitor has 427 reviews to your 102, so at a glance it looks like the safer choice.",
+  "Patients who don't know you yet can't see your calm approach before they choose."
+ ],
+ "gaps": [
+  {
+   "title": "Morning patients go elsewhere",
+   "detail": "Dental pain doesn't wait until noon. Without a way to book online 24/7, morning searchers call whichever clinic answers first."
+  },
+  {
+   "title": "Your happiest patients aren't leaving reviews",
+   "detail": "You clearly delight people, yet a nearby clinic has four times as many reviews. Without an automatic review request after each visit, that gap keeps growing."
+  },
+  {
+   "title": "No reason for past patients to come back",
+   "detail": "Check-up reminders and gentle follow-ups bring patients back every six months. Without them, many simply drift away."
+  }
+ ],
+ "actions": [
+  {
+   "title": "Let patients book online, any time",
+   "why": "A booking page that works at 7am means morning searchers book with you instead of calling a competitor."
+  },
+  {
+   "title": "Ask every happy patient for a review automatically",
+   "why": "A short message after each visit closes the review gap with the clinics around you within months."
+  },
+  {
+   "title": "Send six-month check-up reminders",
+   "why": "Doable today with your patient list: regular reminders keep patients coming back to you."
+  }
+ ],
+ "plan": [
+  {
+   "when": "Week 1",
+   "title": "Your new website with 24/7 booking",
+   "detail": "A calm, fast site that shows your team and treatments, with online booking for every hour you're closed."
+  },
+  {
+   "when": "Week 2",
+   "title": "Automatic review requests",
+   "detail": "A friendly message after each appointment, so your happy patients become five-star reviews."
+  },
+  {
+   "when": "Week 3",
+   "title": "Check-up reminders and follow-ups",
+   "detail": "Six-month reminders and aftercare messages that go out by themselves."
+  },
+  {
+   "when": "Week 4",
+   "title": "Your first monthly report",
+   "detail": "Where you stand against the clinics on Al Wasl Road, and what to do next."
+  }
+ ],
+ "created": "2026-11-11"
+}

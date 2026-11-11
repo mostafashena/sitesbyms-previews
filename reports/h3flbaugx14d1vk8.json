@@ -1,0 +1,105 @@
+{
+ "slug": "erin-aesthetics-subiaco",
+ "business": "Erin Aesthetics",
+ "area": "Subiaco, Perth",
+ "summary": "Erin Aesthetics is the clear leader in Subiaco: 768 five-star reviews, more than every nearby clinic combined. The risk now isn't competitors being better; it's demand you can't capture. When you're fully booked or closed, clients find clinics that are open.",
+ "you": {
+  "rating": "5.0",
+  "reviews": "768",
+  "website": "",
+  "mobile": "",
+  "booking": "",
+  "notes": "Closed Mondays and Sundays; often fully booked"
+ },
+ "competitors": [
+  {
+   "name": "Ultimate Aesthetics Subiaco",
+   "rating": "5.0",
+   "reviews": "237",
+   "website": "",
+   "mobile": "",
+   "booking": "",
+   "notes": "Barker Road; open Mondays, Saturdays to 4pm"
+  },
+  {
+   "name": "Skin Ave Co",
+   "rating": "5.0",
+   "reviews": "149",
+   "website": "",
+   "mobile": "",
+   "booking": "",
+   "notes": "Hay Street; skin clinic"
+  },
+  {
+   "name": "About Face Cosmetic Studio",
+   "rating": "5.0",
+   "reviews": "10",
+   "website": "",
+   "mobile": "",
+   "booking": "",
+   "notes": "Rokeby Road; weekdays only"
+  }
+ ],
+ "visibility": "In our search for cosmetic clinics in Subiaco, you appear as the most-reviewed clinic by far. Your reputation is your biggest asset.",
+ "lead": [
+  "768 five-star reviews: more than three times the next clinic nearby.",
+  "Clients praise honest advice for their budget and written aftercare.",
+  "Named practitioners (Erin, Elayne, Megan) build trust with first-timers."
+ ],
+ "lose": [
+  "When you're fully booked, clients who can't get in try the next clinic, and may stay there.",
+  "A nearby clinic is open on Mondays and later on Saturdays.",
+  "First-timers can't easily see your treatments and prices before they decide."
+ ],
+ "gaps": [
+  {
+   "title": "Fully booked means turning clients away",
+   "detail": "Reviews mention you being completely booked out. Without a waitlist that automatically offers cancelled slots, those clients book elsewhere."
+  },
+  {
+   "title": "Re-booking depends on clients remembering",
+   "detail": "Anti-wrinkle and skin treatments need regular top-ups. Without automatic reminders at the right time, loyal clients can drift to whoever is available."
+  },
+  {
+   "title": "Your reputation isn't working for you online",
+   "detail": "768 five-star reviews is extraordinary, but new clients need one clear place that shows them why, with booking in one tap."
+  }
+ ],
+ "actions": [
+  {
+   "title": "Add a waitlist that fills cancellations automatically",
+   "why": "Every cancelled slot goes straight to someone waiting, instead of an empty chair or a lost client."
+  },
+  {
+   "title": "Send treatment top-up reminders",
+   "why": "A timely reminder (for example, around 12 weeks after anti-wrinkle) keeps loyal clients with you."
+  },
+  {
+   "title": "Show your reviews and aftercare on your own page",
+   "why": "Doable today: pin your best reviews and aftercare form where first-timers look first."
+  }
+ ],
+ "plan": [
+  {
+   "when": "Week 1",
+   "title": "Your new website with online booking",
+   "detail": "Your treatments, team and 768 reviews in one place, with one-tap booking."
+  },
+  {
+   "when": "Week 2",
+   "title": "Smart waitlist",
+   "detail": "Cancelled slots offered automatically to clients waiting, so you never lose them."
+  },
+  {
+   "when": "Week 3",
+   "title": "Top-up reminders and aftercare",
+   "detail": "Messages timed to each treatment, sent by themselves."
+  },
+  {
+   "when": "Week 4",
+   "title": "Your first monthly report",
+   "detail": "Bookings, rebookings and how you compare with Subiaco clinics."
+  }
+ ],
+ "created": "2026-11-11"
+}

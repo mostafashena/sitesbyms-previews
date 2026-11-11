@@ -1,0 +1,114 @@
+{
+ "slug": "recentre-health-balham",
+ "business": "reCentre Health",
+ "area": "Balham, London",
+ "summary": "reCentre Health has 501 five-star reviews and real recovery stories, from ACL prehab to hip replacements. But Balham is crowded: a clinic across the road has 850 reviews, and another nearby is open until 9:15pm and on Sundays.",
+ "you": {
+  "rating": "5.0",
+  "reviews": "501",
+  "website": "",
+  "mobile": "",
+  "booking": "",
+  "notes": "Physio, osteopathy, Pilates; closed Sundays"
+ },
+ "competitors": [
+  {
+   "name": "Reform Physiotherapy",
+   "rating": "5.0",
+   "reviews": "216",
+   "website": "",
+   "mobile": "",
+   "booking": "",
+   "notes": "Balham; open to 9:15pm and Sundays"
+  },
+  {
+   "name": "Balham Physio",
+   "rating": "4.9",
+   "reviews": "206",
+   "website": "",
+   "mobile": "",
+   "booking": "",
+   "notes": "Balham Hill; Saturdays to 2:30pm"
+  },
+  {
+   "name": "Excellence Physiotherapy (Clapham)",
+   "rating": "4.9",
+   "reviews": "23",
+   "website": "",
+   "mobile": "",
+   "booking": "",
+   "notes": "Open 7 days"
+  },
+  {
+   "name": "Clapham Physiotherapy",
+   "rating": "5.0",
+   "reviews": "40",
+   "website": "",
+   "mobile": "",
+   "booking": "",
+   "notes": "Weekdays only"
+  }
+ ],
+ "visibility": "In our search for physiotherapy in Balham, several five-star clinics appeared side by side, including a much larger multi-site clinic directly opposite you. New patients compare quickly and pick whoever looks easiest to book.",
+ "lead": [
+  "501 five-star reviews with detailed surgery recovery stories.",
+  "Next-day appointments, an in-house gym and an exercise app.",
+  "Physio, osteopathy and Pilates under one roof."
+ ],
+ "lose": [
+  "A nearby clinic is open until 9:15pm and on Sundays, which suits commuters.",
+  "A large clinic opposite you has more reviews, so it looks like the default choice.",
+  "Your surgery recovery expertise isn't obvious to someone searching after an injury."
+ ],
+ "gaps": [
+  {
+   "title": "Evening and Sunday patients go elsewhere",
+   "detail": "Commuters searching after work or at weekends find clinics that are open. Online booking lets them reserve your next slot instead."
+  },
+  {
+   "title": "Surgery patients don't know you specialise",
+   "detail": "Pre- and post-surgery rehab is where you shine, but someone searching 'ACL rehab Balham' can't see it."
+  },
+  {
+   "title": "Finished patients disappear",
+   "detail": "Without follow-ups and Pilates offers after discharge, patients who loved you rarely come back for maintenance."
+  }
+ ],
+ "actions": [
+  {
+   "title": "Make surgery rehab a clear speciality",
+   "why": "A page for ACL, hip and knee rehab turns searches into referrals."
+  },
+  {
+   "title": "Let patients book any time",
+   "why": "Online booking captures the commuters searching in the evening."
+  },
+  {
+   "title": "Offer Pilates to discharged patients",
+   "why": "Doable today: an email to past patients keeps them with you for the long term."
+  }
+ ],
+ "plan": [
+  {
+   "when": "Week 1",
+   "title": "Your new website with online booking",
+   "detail": "Your services, gym and specialities, with booking open 24/7."
+  },
+  {
+   "when": "Week 2",
+   "title": "Speciality pages",
+   "detail": "ACL, hip and post-surgery rehab pages that bring in the right patients."
+  },
+  {
+   "when": "Week 3",
+   "title": "Follow-ups and Pilates offers",
+   "detail": "Automatic messages after discharge that bring patients back."
+  },
+  {
+   "when": "Week 4",
+   "title": "Your first monthly report",
+   "detail": "Bookings and how you compare with Balham clinics."
+  }
+ ],
+ "created": "2026-11-11"
+}

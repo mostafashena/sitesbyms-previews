@@ -1,0 +1,114 @@
+{
+ "slug": "physio-on-queen",
+ "business": "Physio On Queen",
+ "area": "Downtown Toronto",
+ "summary": "Physio On Queen has loyal patients: some have followed Simo for nearly eight years, and Ziad's sessions get described as a real before and after. But nearby clinics open at 7am and have more than twice your reviews, so new patients often find them first.",
+ "you": {
+  "rating": "4.9",
+  "reviews": "212",
+  "website": "",
+  "mobile": "",
+  "booking": "",
+  "notes": "Opens 10am; closed weekends"
+ },
+ "competitors": [
+  {
+   "name": "Rebalance Sports Medicine",
+   "rating": "4.9",
+   "reviews": "452",
+   "website": "",
+   "mobile": "",
+   "booking": "",
+   "notes": "Yonge St; from 7am"
+  },
+  {
+   "name": "Foundation Physiotherapy",
+   "rating": "4.9",
+   "reviews": "317",
+   "website": "",
+   "mobile": "",
+   "booking": "",
+   "notes": "Edward St; to 8pm, Saturdays"
+  },
+  {
+   "name": "Royal Physiotherapy Clinic",
+   "rating": "5.0",
+   "reviews": "128",
+   "website": "",
+   "mobile": "",
+   "booking": "",
+   "notes": "Adelaide St; from 8am"
+  },
+  {
+   "name": "The Orthopaedic Therapy Clinic",
+   "rating": "4.9",
+   "reviews": "85",
+   "website": "",
+   "mobile": "",
+   "booking": "",
+   "notes": "King St W; from 8am"
+  }
+ ],
+ "visibility": "In our search for physiotherapy in downtown Toronto, clinics with more reviews and earlier hours appeared alongside you.",
+ "lead": [
+  "Deep loyalty: patients have followed Simo for almost eight years.",
+  "Hands-on 45-minute sessions that patients describe as transformative.",
+  "Great location at Queen Station."
+ ],
+ "lose": [
+  "Nearby clinics open from 7am; you open at 10am.",
+  "Competitors have 300–450 reviews to your 212.",
+  "New patients can't see your hands-on approach before they choose."
+ ],
+ "gaps": [
+  {
+   "title": "Before-work patients go elsewhere",
+   "detail": "Downtown workers want 7–9am appointments. If they can't see when you're free, they book a clinic that shows it."
+  },
+  {
+   "title": "Your loyal patients could bring more",
+   "detail": "Patients who've stayed eight years are your best marketing. An automatic review request and a referral message would grow your reviews fast."
+  },
+  {
+   "title": "No reason to return after discharge",
+   "detail": "Without check-ins after treatment, patients only come back when they're in pain again, and may go elsewhere."
+  }
+ ],
+ "actions": [
+  {
+   "title": "Ask loyal patients for reviews and referrals",
+   "why": "Doable today: a short message to your regulars closes the review gap."
+  },
+  {
+   "title": "Show your hands-on approach",
+   "why": "Ziad's and Simo's style is your difference; make it visible before patients book."
+  },
+  {
+   "title": "Let patients book online",
+   "why": "Real-time availability wins patients who would otherwise call another clinic."
+  }
+ ],
+ "plan": [
+  {
+   "when": "Week 1",
+   "title": "Your new website with online booking",
+   "detail": "Your team and approach, with real-time availability."
+  },
+  {
+   "when": "Week 2",
+   "title": "Review and referral requests",
+   "detail": "Automatic messages that turn loyal patients into new ones."
+  },
+  {
+   "when": "Week 3",
+   "title": "Check-ins after discharge",
+   "detail": "Gentle follow-ups that bring patients back before the pain does."
+  },
+  {
+   "when": "Week 4",
+   "title": "Your first monthly report",
+   "detail": "How you compare with downtown clinics, and what to do next."
+  }
+ ],
+ "created": "2026-11-11"
+}

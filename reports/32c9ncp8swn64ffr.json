@@ -1,0 +1,114 @@
+{
+ "slug": "rebuild-physio-toronto",
+ "business": "Rebuild Physiotherapy",
+ "area": "Downtown Toronto",
+ "summary": "Rebuild has 420 five-star reviews and patients who say every session counts. But downtown Toronto works long hours: nearby clinics open at 7am, stay open until 8pm and see patients on Saturdays, while you close at 5pm on weekdays.",
+ "you": {
+  "rating": "5.0",
+  "reviews": "420",
+  "website": "",
+  "mobile": "",
+  "booking": "",
+  "notes": "Mon–Fri 8:30am–5pm; closed weekends"
+ },
+ "competitors": [
+  {
+   "name": "Rebalance Sports Medicine",
+   "rating": "4.9",
+   "reviews": "452",
+   "website": "",
+   "mobile": "",
+   "booking": "",
+   "notes": "Yonge St; from 7am"
+  },
+  {
+   "name": "Foundation Physiotherapy",
+   "rating": "4.9",
+   "reviews": "317",
+   "website": "",
+   "mobile": "",
+   "booking": "",
+   "notes": "Edward St; to 8pm, Saturdays"
+  },
+  {
+   "name": "Royal Physiotherapy Clinic",
+   "rating": "5.0",
+   "reviews": "128",
+   "website": "",
+   "mobile": "",
+   "booking": "",
+   "notes": "Adelaide St; weekdays"
+  },
+  {
+   "name": "The Orthopaedic Therapy Clinic",
+   "rating": "4.9",
+   "reviews": "85",
+   "website": "",
+   "mobile": "",
+   "booking": "",
+   "notes": "King St W; weekdays"
+  }
+ ],
+ "visibility": "In our search for physiotherapy in downtown Toronto, several clinics with similar ratings appeared together, most with longer hours than yours.",
+ "lead": [
+  "420 reviews, all five stars.",
+  "Patients praise root-cause assessment and 'never an unnecessary session'.",
+  "Convenient Queens Quay location."
+ ],
+ "lose": [
+  "Office workers who can only come before 8:30am, after 5pm or on Saturday book elsewhere.",
+  "Clinics with similar ratings appear next to you in every search.",
+  "Your speciality in post-surgery rehab isn't visible to new patients."
+ ],
+ "gaps": [
+  {
+   "title": "Your hours don't match downtown life",
+   "detail": "Most office workers can only come early, late or at weekends. Online booking and clear availability help you keep the ones you can fit in."
+  },
+  {
+   "title": "Every patient looks the same in a search",
+   "detail": "With similar ratings everywhere, your 'no unnecessary sessions' promise is what makes you different, but nobody sees it before booking."
+  },
+  {
+   "title": "Insurance-covered patients don't come back",
+   "detail": "Many patients have yearly coverage they forget to use. A reminder before it resets brings them back."
+  }
+ ],
+ "actions": [
+  {
+   "title": "Show your promise: no unnecessary sessions",
+   "why": "It's the message that makes patients choose you over similar clinics."
+  },
+  {
+   "title": "Remind patients about unused insurance coverage",
+   "why": "Doable today: a short email to past patients before year-end."
+  },
+  {
+   "title": "Let patients book online",
+   "why": "Patients see your next free slot instantly instead of calling around."
+  }
+ ],
+ "plan": [
+  {
+   "when": "Week 1",
+   "title": "Your new website with online booking",
+   "detail": "Your approach and services, with real-time availability."
+  },
+  {
+   "when": "Week 2",
+   "title": "Insurance and rebooking reminders",
+   "detail": "Automatic messages that bring patients back when coverage resets."
+  },
+  {
+   "when": "Week 3",
+   "title": "Review requests",
+   "detail": "A short message after each discharge that keeps your reviews growing."
+  },
+  {
+   "when": "Week 4",
+   "title": "Your first monthly report",
+   "detail": "How you compare with downtown clinics, and what to do next."
+  }
+ ],
+ "created": "2026-11-11"
+}
