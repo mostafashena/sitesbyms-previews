@@ -4,6 +4,7 @@ declare(strict_types=1);
 require __DIR__ . '/../api/_lib.php';
 header('X-Robots-Tag: noindex, nofollow');
 $k = (string)($_GET['k'] ?? '');
+if ($k === '' && preg_match('/(?:^|[?&])k=([a-z0-9]{16})/', (string)($_SERVER['QUERY_STRING'] ?? ''), $km)) $k = $km[1];   // links sent as ?from=ig?k=… on 11 Nov still open
 $f = dirname(__DIR__) . '/reports/' . $k . '.json';
 $R = preg_match('/^[a-z0-9]{16}$/', $k) && is_file($f) ? json_decode((string)file_get_contents($f), true) : null;
 function e($s): string { return htmlspecialchars((string)$s, ENT_QUOTES, 'UTF-8'); }

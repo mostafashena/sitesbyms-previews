@@ -297,7 +297,13 @@ function report_token(array $r): string { return preg_match('/Report (?:ready|se
 
 /** Adds ?from=email to sitesbyms.com concept links. */
 function tracked_links(string $text, string $from = 'email'): string {
-    return preg_replace_callback('#(?:https?://)?sitesbyms\.com/([a-z0-9-]+)/?(\?from=[a-z0-9-]+)?#i', fn($m) => 'https://sitesbyms.com/' . strtolower($m[1]) . '/?from=' . $from, $text);
+    // keeps any existing query (e.g. /report/?k=<token>): 11 Nov 2026 a report link became /report/?from=ig?k=… and showed "report not found"
+    return preg_replace_callback('#(?:https?://)?sitesbyms\.com/([a-z0-9-]+)/?(\?[^\s)<>"\']*)?#i', function ($m) use ($from) {
+        parse_str(ltrim($m[2] ?? '', '?'), $q); unset($q['from']); $q['from'] = $from;
+        $tail = rtrim($m[2] ?? '', '.,;:!');  $punct = substr($m[2] ?? '', strlen($tail));   // keep sentence punctuation outside the link
+        if ($tail !== ($m[2] ?? '')) { parse_str(ltrim($tail, '?'), $q); unset($q['from']); $q['from'] = $from; }
+        return 'https://sitesbyms.com/' . strtolower($m[1]) . '/?' . http_build_query($q) . $punct;
+    }, $text);
 }
 function text_to_html(string $text, string $pixel = ''): string {
     $h = htmlspecialchars($text, ENT_QUOTES, 'UTF-8');
