@@ -20,6 +20,7 @@ $isPhone = (bool)preg_match('/^[0-9 +().-]{7,20}$/', $contact);
 if ($contact !== '' && !$isEmail && !$isPhone) $fail('Please enter an email address or a WhatsApp number, or leave it empty.');
 
 $team = !empty($_COOKIE['sbm_team']) || is_team_visit();
+if ($contact === '' && !empty($in['oneclick']) && leads_ready()) { try { foreach (sheet_rows() as $r) if ($r['slug'] === $slug && filter_var($r['email'], FILTER_VALIDATE_EMAIL)) { $contact = $r['email']; $isEmail = true; break; } } catch (Throwable $e) {} }   // one-tap request: send to the email we contacted
 message_add(['at' => gmdate('c'), 'type' => 'report', 'name' => $name ?: '(not given)', 'business' => $business, 'email' => $isEmail ? $contact : '',
     'phone' => $isPhone ? $contact : '', 'slot' => '', 'how' => '', 'reply' => $isEmail ? 'Email' : ($isPhone ? 'WhatsApp' : 'Same channel as our message'),
     'site' => '', 'slug' => $slug, 'message' => ($team ? '[TEST from the team] ' : '') . 'Asked for the free competitor report from the concept page.', 'file' => '', 'mailed' => true]);

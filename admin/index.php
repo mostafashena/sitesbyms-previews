@@ -472,7 +472,9 @@ if ($page === 'outreach') {
             $slug = $r['slug']; $sv = $seen[$slug] ?? null;
             $channels = lead_channels($r); $done = lead_done($r['_row'], $kind, $log, $slug); $both = count($channels) > 1; $bad = lead_mismatch($r);
             $ig = preg_replace('#^@|^https?://(www\.)?instagram\.com/#', '', rtrim($r['instagram'], '/'));
+            $grp = preg_match('/\[Group ([AB])\]/', $r['notes'], $gm) ? $gm[1] : '';
             $o = '<details class="card lead"' . ($i === 0 ? ' open' : '') . '><summary><div class="grow"><b>' . h($r['company']) . '</b><small>' . h($r['location']) . '</small></div>'
+                . ($grp ? '<span class="pill" style="background:' . ($grp === 'A' ? '#EDE7FF;color:#5B2FE0' : '#E3F4EC;color:#147A4B') . '" title="' . ($grp === 'A' ? 'Test group A: competitive analysis sent first' : 'Test group B: concept first, analysis with one tap') . '">' . ($grp === 'A' ? 'Group A · report first' : 'Group B · concept first') . '</span>' : '')
                 . ($kind !== 'first' ? '<span class="pill">' . (['followup' => '1st follow-up · day 3', 'followup2' => '2nd follow-up · day 7', 'followup3' => 'Last follow-up · day 14'][$kind]) . '</span>' : '')
                 . (isset($GLOBALS['ws'][$slug]) ? '<span class="pill warm">Warm</span>' : '')
                 . ($sv ? '<span class="pill ok">Opened ' . h(ago($sv['at'])) . '</span>' : ($kind !== 'first' ? '<span class="pill grey">Not opened yet</span>' : ''));

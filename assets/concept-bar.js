@@ -11,6 +11,7 @@
   if (/[?&]embed=1/.test(location.search)) return;   // small preview inside the report page
   var name = me.getAttribute('data-name') || 'your business';
   var slug = (me.getAttribute('data-slug') || '').replace(/[^a-z0-9-]/g, '');
+  var oneClick = me.getAttribute('data-ab') === 'b';   // test group B (11 Nov): the analysis is requested with one tap, no form and no pop-up
   var q = '?b=' + encodeURIComponent(name) + (slug ? '&s=' + slug : '');
 
   function store(k, v) { try { if (v === undefined) return localStorage.getItem(k); localStorage.setItem(k, v); } catch (e) { return null; } }
@@ -301,6 +302,18 @@
     hideNudge(); track('report_open', from || '');
     var sh = sheet('Free competitive analysis for ' + name, 'Prepared by the Sites By MS team · ready within 24 hours');
     if (asked) { sh.body.innerHTML = '<div class="sbm-done"><b>You\'ve already asked for it 👍</b><p>Our team is preparing your analysis and will send it within 24 hours.</p></div>'; return; }
+    if (oneClick) {
+      sh.body.innerHTML = '<div class="sbm-done"><b>Sending your request…</b></div>';
+      fetch('/api/report-request.php', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ slug: slug, business: name, contact: '', oneclick: 1 }) })
+        .then(function (r) { return r.json().catch(function () { return { ok: false }; }); })
+        .then(function (j) {
+          if (!j.ok) throw new Error(j.error || 'Something went wrong. Please try again.');
+          asked = true; store('sbm_rep_' + slug, '1'); track('report_submit', 'one-click', true);
+          sh.body.innerHTML = '<div class="sbm-done"><b>Done. Our team is on it 👍</b><p>Your free competitive analysis for ' + esc(name) + ' will be ready within 24 hours. We\'ll send it to the email we contacted you on.</p><p>Questions in the meantime? <a href="/ask/' + q + '">Ask us anything</a>.</p></div>';
+        })
+        .catch(function (x) { track('report_error', x.message); sh.body.innerHTML = '<div class="sbm-done"><b>Something went wrong</b><p>' + esc(x.message) + '</p></div>'; });
+      return;
+    }
     sh.body.innerHTML = '<p class="sbm-lead">Our team compares <b>' + esc(name) + ' with 4–5 local competitors</b> and shows you where you lead, where you lose customers, and what to do about it.</p>'
       + '<ul class="sbm-list">'
       + '<li><i>1</i><span><b>Market position</b>: how you stand against local competitors</span></li>'
@@ -334,7 +347,7 @@
   var nudge = null;
   function hideNudge() { if (nudge) { nudge.remove(); nudge = null; } }
   function showNudge() {
-    if (asked || nudge || document.querySelector('.sbm-sheet-bg') || bar.hidden) return;
+    if (oneClick || asked || nudge || document.querySelector('.sbm-sheet-bg') || bar.hidden) return;
     var ib = document.querySelector('.sbm-inline'); if (ib) { var rb = ib.getBoundingClientRect(); if (rb.top < innerHeight && rb.bottom > 0) return; }   // the in-page offer is already on screen
     try { if (sessionStorage.getItem('sbm_nudged')) return; sessionStorage.setItem('sbm_nudged', '1'); } catch (e) {}
     nudge = document.createElement('div'); nudge.className = 'sbm-nudge'; nudge.setAttribute('role', 'dialog'); nudge.setAttribute('aria-label', 'Free competitive analysis');
