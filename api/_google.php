@@ -117,6 +117,8 @@ function lead_date(string $d): ?DateTime {
  *  A follow-up is never due less than 3 days after the previous one. */
 function lead_followup(array $r): ?array {
     if (strcasecmp($r['status'], 'Sent') !== 0 || !($sent = lead_date($r['sent']))) return null;
+    // a lead that asked for / received the analysis, or got a personal email, is a conversation now: no more cold follow-ups (11 Nov 2026, Allure got one after its report)
+    if (preg_match('/^Report (requested|ready|sent)/i', (string)$r['stage']) || stripos((string)$r['notes'], 'Personal email sent') !== false) return null;
     $u = trim($r['reply']);
     if ($u === '') { $due = lead_date($r['followup_date']) ?? (clone $sent)->modify('+3 days'); return ['kind' => 'followup', 'due' => $due]; }
     if (!preg_match('/^follow-up( 2)? (?:sent|skipped)\s*(.*)$/i', $u, $m)) return null;      // a real reply, or follow-up 3 already sent
