@@ -113,5 +113,12 @@
    "result": "Results were led by directory pages for other paediatric osteopaths (Marble Arch, Bow) and a Mumsnet thread. Your online booking page appeared, but no page explaining your baby and pregnancy care.",
    "meaning": "Parents searching for exactly what you are best at don't find a page that tells them you do it."
   }
- ]
+ ],
+ "headline": {
+  "number": "0 of 16",
+  "title": "We searched your exact name and address. Your website appeared in none of the 16 results.",
+  "detail": "For \"baby osteopath Fulham\", the top results were directory pages for other paediatric osteopaths, not you."
+ },
+ "scenario": "It's 11pm and a new mum's three-week-old won't settle or feed on one side. A friend mentioned 'an osteopath for babies' and she searches \"baby osteopath Fulham\". She finds directory pages for clinics in Marble Arch and Bow, and a Mumsnet thread. Nothing tells her that the gentlest baby osteopaths in Fulham are a ten-minute walk away. She books whoever she finds first.",
+ "nochange": "Your specialism stays hidden behind directories, and parents keep choosing whoever they can find at night. The families who would have come to you for years, mum, baby and later the whole family, start with someone else."
 }

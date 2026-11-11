@@ -126,5 +126,12 @@
    "result": "Balham Physio's own website came first, followed by directory pages (WhatClinic, Fresha, Treatwell, Doctify). reCentre appeared only through a WhatClinic listing.",
    "meaning": "Someone looking for a physio in Balham is far more likely to land on a competitor."
   }
- ]
+ ],
+ "headline": {
+  "number": "0 of 17",
+  "title": "We searched \"reCentre Health Balham\". Your website appeared in none of the 17 results.",
+  "detail": "A competitor's website appeared three times. Directories with three different versions of your opening hours filled most of the rest."
+ },
+ "scenario": "It's 9pm. Someone tears a calf muscle on a run across Tooting Common and searches \"physiotherapy Balham\" on their phone. The first result is another clinic's website, with a 'Book online' button and a number they can tap to call. reCentre, with 501 five-star reviews, appears only as a line in a directory list. They book the first clinic in under a minute.",
+ "nochange": "Your reviews keep growing, but patients who search keep landing on directories and on the clinic that shows up first. Every month that continues, competitors with fewer reviews book patients who would have chosen you, and some of them stay for years."
 }

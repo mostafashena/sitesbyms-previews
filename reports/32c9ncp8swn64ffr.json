@@ -122,5 +122,12 @@
    "result": "Rebuild did not appear. Pages for Foundation Physiotherapy, Rebalance Sports Medicine, Cornerstone and Lifemark came up, plus Fresha and Medimap lists.",
    "meaning": "Downtown workers searching for a physio near the office find your competitors, not you."
   }
- ]
+ ],
+ "headline": {
+  "number": "4 – 0",
+  "title": "Physiotherapy near Union Station: four competitors appeared in our search. Rebuild didn't.",
+  "detail": "Searching your own name returned 20 results: directories and your booking page, but not your website."
+ },
+ "scenario": "A lawyer two blocks from Union Station has had hip pain for weeks. At lunch she searches \"physiotherapy downtown Toronto\". She sees Foundation, Rebalance, Cornerstone and Lifemark. She books one that's open after 5pm. She never learns there was a clinic down the road with 420 five-star reviews and a promise of no unnecessary sessions.",
+ "nochange": "Your patients love you, but new ones can't find you, and the clinics they do find stay open later. Each month, the gap in reviews and visibility closes from their side, not yours."
 }

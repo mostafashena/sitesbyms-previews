@@ -122,5 +122,12 @@
    "result": "Physio On Queen did not appear. Foundation, Rebalance, Cornerstone and Lifemark did.",
    "meaning": "New patients nearby find other clinics first."
   }
- ]
+ ],
+ "headline": {
+  "number": "11",
+  "title": "Searching \"Physio On Queen\" returned 11 separate Medimap pages, and no website of your own.",
+  "detail": "Physio, osteopathy, massage, chiropractic and naturopathy are scattered across third-party pages. For physiotherapy near Union Station, other clinics appeared and you didn't."
+ },
+ "scenario": "A commuter gets a stiff neck after a car accident and a colleague says 'try Physio On Queen'. He searches the name and gets a list of near-identical directory pages, none of which shows Ziad's or Simo's hands-on approach, prices or a clear booking button. He closes the tab and books a clinic whose own website came up first.",
+ "nochange": "Referrals from loyal patients keep leaking at the moment people search your name. Competitors with clearer websites and earlier hours keep winning the patients who would have become your next eight-year regulars."
 }

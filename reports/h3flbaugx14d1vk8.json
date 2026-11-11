@@ -108,5 +108,12 @@
    "result": "A 2022 So Perth article about your expansion came first. Your own site appeared under a temporary address (swan-kale-s6c4.squarespace.com) rather than erinaesthetics.com.au, alongside Fresha, magicpin and directory pages.",
    "meaning": "Your website is live, but search shows it under an address that looks unofficial, so some people may not trust or click it."
   }
- ]
+ ],
+ "headline": {
+  "number": "768",
+  "title": "Five-star reviews, more than every other clinic in Subiaco combined. But search shows your website as \"swan-kale-s6c4.squarespace.com\".",
+  "detail": "A 2022 magazine article comes first when people search your name. Your real website address doesn't appear at all."
+ },
+ "scenario": "Someone sees your work on a friend and searches \"Erin Aesthetics Subiaco\". The first result is a 2022 article. Further down there's a link to 'swan-kale-s6c4.squarespace.com', which looks unofficial, so she hesitates and taps a Fresha listing instead, where other clinics with free slots this week sit right next to you.",
+ "nochange": "Your reputation keeps growing faster than your online presence. When you're fully booked, or when someone hesitates at an odd-looking link, clients drift to clinics with fewer reviews and stay there for their next treatments."
 }

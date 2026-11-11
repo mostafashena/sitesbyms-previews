@@ -117,5 +117,12 @@
    "result": "Your own website did not appear. Results mixed in skin clinics in Paddington, London (Treatwell, Doctify UK), a Birdeye review page for you, and a Time Out feature on a nearby competitor, Lisa Rush Skin Clinic.",
    "meaning": "Searching your name shows clinics on the other side of the world and a magazine feature about a competitor."
   }
- ]
+ ],
+ "headline": {
+  "number": "0 of 18",
+  "title": "We searched for Restoration Medicine. Your website appeared in none of the 18 results.",
+  "detail": "Instead: skin clinics in Paddington, London, and a Time Out feature about a skin clinic around the corner from you."
+ },
+ "scenario": "A bride-to-be hears that 'Aisling at Restoration Medicine fixed my skin before my wedding'. She searches it and finds clinics in London and a Time Out article about another Paddington skin clinic. That clinic is open late on Mondays and has a feature in a magazine. She books a consultation there.",
+ "nochange": "Your honest, no-pressure approach stays a secret kept in reviews, and five-star competitors with stronger online presence keep winning the clients who would have travelled hours to see you."
 }
