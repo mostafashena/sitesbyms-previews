@@ -84,5 +84,55 @@
    "title": "Show course dates and prices clearly",
    "why": "Beginners want to know when the next Level 1 starts and what it costs before they commit. You can post this on your Google profile and Instagram today."
   }
+ ],
+ "headline": {
+  "number": "7 vs 0",
+  "title": "We searched \"boxing gym Shoreditch kickboxing classes\". Seven directory pages about Paragon appeared, and not one was your own website.",
+  "detail": "Thatsup, CourseTakers, Tripaligner, Playsport and others describe your gym in their words. Time Out and other guides to London's best boxing gyms took the remaining spots."
+ },
+ "search": [
+  {
+   "query": "boxing gym Shoreditch kickboxing classes",
+   "result": "Thatsup's Paragon page came first, followed by 'best boxing studios in London' guides (Time Out, Yahoo, The Nudge) and six more directory pages about Paragon. Your own website didn't appear.",
+   "meaning": "People are looking for exactly what you offer, and finding you, but on other people's pages, with no clear way to book your free taster."
+  }
+ ],
+ "gaps": [
+  {
+   "title": "Your free taster is buried",
+   "detail": "Reviews say the free taster is what got people started, but someone landing on a directory page about Paragon can't see when the next taster is or book it."
+  },
+  {
+   "title": "Guides send people to other gyms",
+   "detail": "'Best boxing gyms in London' lists rank high for these searches. When Paragon isn't on them, readers sign up with the gyms that are."
+  },
+  {
+   "title": "Sundays and larger gyms",
+   "detail": "Some competitors open on Sundays and offer MMA, BJJ and kids' classes; without a clear page for your courses, newcomers assume bigger means better."
+  }
+ ],
+ "scenario": "Someone who has wanted to try kickboxing for months finally searches \"boxing gym Shoreditch\" on a Sunday evening. He finds a directory page about Paragon with no timetable and no booking button, then a Time Out list of London's best boxing gyms. One of them has a 'Book your free class' button. He books it for Tuesday.",
+ "nochange": "Your 212 five-star reviews keep growing, but the people searching for exactly what you do keep meeting you on other people's pages without a way to book. Each one who signs up elsewhere is a member who could have stayed for years.",
+ "plan": [
+  {
+   "when": "Week 1",
+   "title": "Your own website with taster booking",
+   "detail": "Course dates, prices and a one-tap 'Book your free taster' button."
+  },
+  {
+   "when": "Week 2",
+   "title": "Reminders that fill classes",
+   "detail": "Automatic reminders before each taster and course start, so fewer people miss them."
+  },
+  {
+   "when": "Week 3",
+   "title": "Follow-ups that convert tasters",
+   "detail": "A message after the taster with the next Level 1 start date and an easy way to join."
+  },
+  {
+   "when": "Week 4",
+   "title": "Your first monthly report",
+   "detail": "Tasters booked, members joined and how you compare with nearby gyms."
+  }
  ]
 }

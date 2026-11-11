@@ -98,12 +98,12 @@ function lead_text(array $r, string $channel, string $kind): string {
         $t = $kind === 'first' ? $r['ig_message'] : $r['ig_followup'];
         if ($t !== '') return $t;
     }
-    if ($kind === 'followup2' || $kind === 'followup3') return lead_followup_text($r, $channel, $kind);
+    if ($kind === 'followup2' || $kind === 'followup3' || str_starts_with($kind, 'rfollow')) return lead_followup_text($r, $channel, $kind);
     return $kind === 'first' ? $r['message'] : $r['followup'];
 }
 
 /* ---------- follow-ups: 1st (day 3, text in R/Z), 2nd (day 7) and 3rd (day 14, last) ---------- */
-const FOLLOWUP_KINDS = ['followup' => 'Follow-up', 'followup2' => 'Follow-up 2', 'followup3' => 'Follow-up 3'];
+const FOLLOWUP_KINDS = ['followup' => 'Follow-up', 'followup2' => 'Follow-up 2', 'followup3' => 'Follow-up 3', 'rfollow1' => 'Report follow-up', 'rfollow2' => 'Report follow-up 2', 'rfollow3' => 'Report follow-up 3'];
 const WA_PER_DAY = 25;   // WhatsApp messages the team sends by hand per day (keeps the number safe from WhatsApp's spam limits)
 
 function lead_date(string $d): ?DateTime {
@@ -117,8 +117,22 @@ function lead_date(string $d): ?DateTime {
  *  A follow-up is never due less than 3 days after the previous one. */
 function lead_followup(array $r): ?array {
     if (strcasecmp($r['status'], 'Sent') !== 0 || !($sent = lead_date($r['sent']))) return null;
-    // a lead that asked for / received the analysis, or got a personal email, is a conversation now: no more cold follow-ups (11 Nov 2026, Allure got one after its report)
-    if (preg_match('/^Report (requested|ready|sent)/i', (string)$r['stage']) || stripos((string)$r['notes'], 'Personal email sent') !== false) return null;
+    // After the analysis: follow-ups that fit where the lead is (owner, 11 Nov 2026). Requested/ready: we owe them the report, so nothing.
+    if (preg_match('/^Report (requested|ready)/i', (string)$r['stage'])) return null;
+    if (preg_match('/^Report sent (\d{4}-\d{2}-\d{2})/i', (string)$r['stage'], $rm) && ($base = lead_date($rm[1]))) {
+        if (preg_match_all('/Personal email sent (\d{4}-\d{2}-\d{2})/', (string)$r['notes'], $pm)) foreach ($pm[1] as $d) if (($pd = lead_date($d)) && $pd > $base) $base = $pd;   // a personal email counts as a touch
+        $u = trim($r['reply']);
+        if (preg_match('/^Report follow-up( [23])? (?:sent|skipped)\s*(.*)$/i', $u, $m)) {
+            $n = $m[1] ? (int)trim($m[1]) : 1; if ($n >= 3) return null;
+            $kind = 'rfollow' . ($n + 1); $due = (clone $base)->modify($n === 1 ? '+10 days' : '+21 days');
+            if (($prev = lead_date($m[2])) && $prev->modify('+4 days') > $due) $due = $prev;
+            return ['kind' => $kind, 'due' => $due];
+        }
+        if ($u !== '' && !preg_match('/^follow-up/i', $u)) return null;   // a real reply: the team takes over
+        $due = (clone $base)->modify('+4 days');
+        if (preg_match('/(\d{4}-\d{2}-\d{2})/', $u, $um) && ($ud = lead_date($um[1])) && $ud->modify('+4 days') > $due) $due = $ud;   // not straight after a cold follow-up
+        return ['kind' => 'rfollow1', 'due' => $due];
+    }
     $u = trim($r['reply']);
     if ($u === '') { $due = lead_date($r['followup_date']) ?? (clone $sent)->modify('+3 days'); return ['kind' => 'followup', 'due' => $due]; }
     if (!preg_match('/^follow-up( 2)? (?:sent|skipped)\s*(.*)$/i', $u, $m)) return null;      // a real reply, or follow-up 3 already sent
@@ -144,7 +158,20 @@ function lead_greeting(array $r): string {
 function lead_followup_text(array $r, string $channel, string $kind): string {
     $hi = lead_greeting($r); $biz = $r['company']; $link = 'https://sitesbyms.com/' . $r['slug'] . '/';
     $issue = lead_issue($r); $ig = $channel === 'Instagram DM';
-    if ($kind === 'followup2') {
+    $tok = preg_match('/^Report sent \S+ · ([a-z0-9]{16})/i', (string)$r['stage'], $tm) ? $tm[1] : '';
+    $rep = 'https://sitesbyms.com/report/?k=' . $tok; $book = 'https://sitesbyms.com/book/?b=' . rawurlencode($biz) . '&s=' . $r['slug'];
+    if ($kind === 'rfollow1') {
+        $t = "$hi,\n\nI wanted to check you received the competitive analysis we prepared for $biz:\n$rep\n\n"
+           . "The section most owners find useful is \"What this is costing you\": the moments when people who are looking for a business like yours end up choosing someone else. Most of it can be fixed quickly.\n\n"
+           . "Would a 15-minute call to walk you through it be helpful? You can pick a time here:\n$book";
+    } elseif ($kind === 'rfollow2') {
+        $t = "$hi,\n\nA quick thought after our analysis of $biz. The report ends with what our team would do in your first 30 days: your own website with online booking, automatic review requests and reminders, promotions to past clients, and a monthly report like the one we sent.\n\n"
+           . "We work as a growth team, so you don't have to manage any of it yourself, and you see your new site before you pay anything.\n\n"
+           . "Your analysis: $rep\nHappy to talk it through: $book";
+    } elseif ($kind === 'rfollow3') {
+        $t = "$hi,\n\nI'll leave it here so I don't fill your " . ($ig ? 'messages' : 'inbox') . ". Your competitive analysis and homepage concept stay online if you'd like to come back to them:\n$rep\n\n"
+           . "Whenever the timing is right, just reply and our team will pick it up from there.";
+    } elseif ($kind === 'followup2') {
         // No website "issue" is repeated here: claims about a site must be checked the same day (owner's rule, 7 Nov 2026), and this goes out a week later.
         $t = "$hi,\n\nOne more thought on $biz. We don't just build websites: we work as a growth team for businesses like yours, looking after the website, customer data, marketing automation, reminders and promotions, and regular reports on how you compare with competitors, so you can focus on your clients.\n\n"
            . "The homepage idea we made for you is a first step:\n$link\n\n"

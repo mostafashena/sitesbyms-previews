@@ -84,5 +84,55 @@
    "title": "Explain Endolift and EndoFirm in plain words",
    "why": "These are your most distinctive treatments. A simple page on who they suit, what to expect and how to book a consultation helps people choose you over a general clinic."
   }
+ ],
+ "headline": {
+  "number": "0 of 20",
+  "title": "We searched \"Allure Skin Aesthetics Marylebone\". Your own website appeared in none of the 20 results.",
+  "detail": "Your Treatwell page came first, followed by a different clinic with a similar name (AS Allure Aesthetics) and Treatwell lists of 66 other skin clinics in Marylebone."
+ },
+ "search": [
+  {
+   "query": "Allure Skin Aesthetics Marylebone",
+   "result": "Treatwell came first, then WhatClinic's page for \"AS Allure Aesthetics\", a different clinic, then Treatwell lists of skin clinics in Marylebone and a nearby competitor's page (Skin Life).",
+   "meaning": "Someone searching your exact name is shown a similarly named clinic and dozens of alternatives before they could ever reach a website of yours."
+  }
+ ],
+ "gaps": [
+  {
+   "title": "Your name leads to a list of 66 alternatives",
+   "detail": "Treatwell is the first result for your name, and its Marylebone pages list dozens of other skin clinics right next to you. Every visit there is a chance to be compared and lost."
+  },
+  {
+   "title": "A clinic with almost the same name",
+   "detail": "'AS Allure Aesthetics' appears second when people search for you. Some clients will end up at the wrong clinic without realising."
+  },
+  {
+   "title": "Evening clients go elsewhere",
+   "detail": "Nearby clinics stay open until 8pm and 9pm; you close at 7pm on weekdays. Clients who work in the West End book whoever is open after work."
+  }
+ ],
+ "scenario": "A friend raves about her Endolift results at Allure. That evening, after work, she searches \"Allure Skin Aesthetics Marylebone\". Treatwell comes first, then a clinic called 'AS Allure Aesthetics'. She opens Treatwell, sees 66 skin clinics in Marylebone, one of them open until 9pm tonight, and books there.",
+ "nochange": "Your perfect 5.0 keeps growing, but clients who search for you keep landing on a marketplace full of competitors and a clinic with almost your name. The longer that continues, the more of your word-of-mouth ends up booked somewhere else.",
+ "plan": [
+  {
+   "when": "Week 1",
+   "title": "Your own website with online booking",
+   "detail": "Your doctors, Endolift and EndoFirm explained simply, and booking in one tap, so searches for 'Allure' land on you."
+  },
+  {
+   "when": "Week 2",
+   "title": "Automatic review requests",
+   "detail": "A friendly message after each treatment, so your perfect rating keeps growing."
+  },
+  {
+   "when": "Week 3",
+   "title": "Reminders and promotions",
+   "detail": "Top-up reminders and offers to past clients, sent by themselves."
+  },
+  {
+   "when": "Week 4",
+   "title": "Your first monthly report",
+   "detail": "How you compare with Marylebone clinics, and what to do next."
+  }
  ]
 }

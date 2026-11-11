@@ -249,7 +249,8 @@ if ($csrfOk) {
                 if ($subject === '') go('outreach', 'Please add a subject for ' . $business . '.', true);
                 $reply = null;
                 if ($kind !== 'first') {
-                    foreach (outreach_all() as $o) if ((int)$o['row'] === $row && $o['kind'] === 'first' && $o['channel'] === 'Email' && !empty($o['mid'])) { $reply = $o['mid']; break; }
+                    $want = str_starts_with($kind, 'rfollow') ? 'report' : 'first';
+                    foreach (outreach_all() as $o) if ((int)$o['row'] === $row && $o['kind'] === $want && $o['channel'] === 'Email' && !empty($o['mid'])) { $reply = $o['mid']; break; }
                     if (stripos($subject, 're:') !== 0) $subject = 'Re: ' . $subject;
                 }
                 if (isset(lead_done($row, $kind, null, $slug)['Email'])) go('outreach', $business . ': this email was already sent (probably by the automatic sending a moment ago). Nothing was sent again.', true);
@@ -476,7 +477,7 @@ if ($page === 'outreach') {
             $tno = $grp && !empty(end($gm)[1]) ? end($gm)[1] : '1';
             $o = '<details class="card lead"' . ($i === 0 ? ' open' : '') . '><summary><div class="grow"><b>' . h($r['company']) . '</b><small>' . h($r['location']) . '</small></div>'
                 . ($grp ? '<span class="pill" style="background:' . ($grp === 'A' ? '#EDE7FF;color:#5B2FE0' : '#E3F4EC;color:#147A4B') . '" title="' . ($grp === 'A' ? 'Test group A: competitive analysis sent first' : 'Test group B: concept first, analysis with one tap') . '">' . ('Test ' . $tno . ' · ' . $grp . ($tno === '1' ? ($grp === 'A' ? ' · report first' : ' · concept first') : '')) . '</span>' : '')
-                . ($kind !== 'first' ? '<span class="pill">' . (['followup' => '1st follow-up · day 3', 'followup2' => '2nd follow-up · day 7', 'followup3' => 'Last follow-up · day 14'][$kind]) . '</span>' : '')
+                . ($kind !== 'first' ? '<span class="pill">' . (['followup' => '1st follow-up · day 3', 'followup2' => '2nd follow-up · day 7', 'followup3' => 'Last follow-up · day 14', 'rfollow1' => 'After the report · 1', 'rfollow2' => 'After the report · 2', 'rfollow3' => 'After the report · last'][$kind] ?? $kind) . '</span>' : '')
                 . (isset($GLOBALS['ws'][$slug]) ? '<span class="pill warm">Warm</span>' : '')
                 . ($sv ? '<span class="pill ok">Opened ' . h(ago($sv['at'])) . '</span>' : ($kind !== 'first' ? '<span class="pill grey">Not opened yet</span>' : ''));
             foreach ($channels as $c) $o .= '<span class="pill' . (isset($done[$c]) ? ' ok' : ($c === 'Email' ? '' : ' grey')) . '">' . (isset($done[$c]) ? '✓ ' : '') . ($c === 'Email' ? 'Email' : 'Instagram') . '</span>';
@@ -489,7 +490,7 @@ if ($page === 'outreach') {
                 if (isset($done[$c])) { $o .= '<p class="hint">' . ($done[$c] === 'sent' ? '✓ Sent' : 'Skipped') . '.</p>'; continue; }
                 $text = tracked_links(lead_text($r, $c, $kind), $isMail ? 'email' : 'ig');
                 $o .= '<form method="post" class="leadform">' . csrf_field() . '<input type="hidden" name="row" value="' . (int)$r['_row'] . '"><input type="hidden" name="kind" value="' . $kind . '"><input type="hidden" name="business" value="' . h($r['company']) . '"><input type="hidden" name="slug" value="' . h($slug) . '"><input type="hidden" name="channel" value="' . h($c) . '">';
-                if ($isMail) $o .= '<div class="f2x"><label>To<input type="email" name="to" value="' . h($r['email']) . '" required></label><label>Subject<input name="subject" value="' . h($kind !== 'first' && stripos($r['subject'], 're:') !== 0 ? 'Re: ' . $r['subject'] : $r['subject']) . '" required></label></div>';
+                if ($isMail) $o .= '<div class="f2x"><label>To<input type="email" name="to" value="' . h($r['email']) . '" required></label><label>Subject<input name="subject" value="' . h(str_starts_with($kind, 'rfollow') ? 'Re: Your free competitive analysis: ' . $r['company'] : ($kind !== 'first' && stripos($r['subject'], 're:') !== 0 ? 'Re: ' . $r['subject'] : $r['subject'])) . '" required></label></div>';
                 else $o .= '<input type="hidden" name="to" value="' . h($ig) . '"><p class="hint">Send this in Instagram, then press Mark as sent. ' . ($ig ? 'Account: <a href="https://instagram.com/' . h($ig) . '" target="_blank" rel="noopener">@' . h($ig) . '</a>' : 'No Instagram handle in the sheet.') . '</p>';
                 $o .= '<label>' . ($kind === 'first' ? 'Message' : FOLLOWUP_KINDS[$kind]) . '<textarea name="body" rows="' . max(6, min(18, substr_count($text, "\n") + 3)) . '">' . h($text) . '</textarea></label><div class="acts">'
                     . ($slug ? '<a class="btn line sm" href="/' . h($slug) . '/?team=1" target="_blank" rel="noopener">Open concept</a>' : '')

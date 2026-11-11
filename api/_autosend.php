@@ -47,7 +47,9 @@ function auto_send_one(array $r, string $kind, string $today): array {
     if ($why = auto_problem($r, $text, $to, $subject)) return [false, $why];
     $reply = null;
     if ($kind !== 'first') {
-        foreach (outreach_all() as $o) if ((int)$o['row'] === $r['_row'] && $o['kind'] === 'first' && $o['channel'] === 'Email' && !empty($o['mid'])) { $reply = $o['mid']; break; }
+        $want = str_starts_with($kind, 'rfollow') ? 'report' : 'first';   // report follow-ups reply in the report's thread
+        foreach (outreach_all() as $o) if ((int)$o['row'] === $r['_row'] && $o['kind'] === $want && $o['channel'] === 'Email' && !empty($o['mid'])) { $reply = $o['mid']; break; }
+        if ($want === 'report') $subject = 'Your free competitive analysis: ' . $r['company'];
         if (stripos($subject, 're:') !== 0) $subject = 'Re: ' . $subject;
     }
     $mid = send_outreach($to, $subject, tracked_links($text, 'email'), $reply, $r['slug'], $kind);
@@ -156,7 +158,7 @@ function auto_yesterday(): array {
     return ['opens' => array_values(array_unique($opens)), 'reports' => array_values(array_unique($rep)), 'bookings' => array_values(array_unique($book)), 'mail_opens' => $mailOpens];
 }
 
-function auto_kind_name(string $k): string { return ['first' => 'New email', 'followup' => '1st follow-up', 'followup2' => '2nd follow-up', 'followup3' => 'Last follow-up'][$k] ?? $k; }
+function auto_kind_name(string $k): string { return ['first' => 'New email', 'followup' => '1st follow-up', 'followup2' => '2nd follow-up', 'followup3' => 'Last follow-up', 'rfollow1' => 'Report follow-up', 'rfollow2' => 'Report follow-up 2', 'rfollow3' => 'Report follow-up 3 (last)'][$k] ?? $k; }
 
 function auto_subject(array $rep): string {
     $d = (new DateTime($rep['date'], new DateTimeZone(TZ)))->format('D j M');
