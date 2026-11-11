@@ -40,7 +40,7 @@
    "notes": "Al Wasl Road; open from 9am"
   }
  ],
- "visibility": "In our search for dental clinics on Al Wasl Road, a nearby clinic with four times your number of reviews and longer hours appeared alongside you. Patients comparing at a glance see the bigger number first.",
+ "visibility": "In our searches your own website did not appear, even for your name. For \"dental implants clinic Jumeirah Dubai\", directories and competitors' websites took every result.",
  "lead": [
   "Reviews describe a calm, beautiful clinic where nobody feels rushed: a powerful message for anxious patients.",
   "Doctors and reception are praised by name (Dr. Sharief, Dr. Fatima, Shahad).",
@@ -53,16 +53,16 @@
  ],
  "gaps": [
   {
+   "title": "Your name sends patients to other clinics",
+   "detail": "When we searched 'Vibes Aesthetic Clinic Dubai', a directory and pages for other clinics appeared instead of your website. Word-of-mouth referrals can leak away at that moment."
+  },
+  {
    "title": "Morning patients go elsewhere",
    "detail": "Dental pain doesn't wait until noon. Without a way to book online 24/7, morning searchers call whichever clinic answers first."
   },
   {
    "title": "Your happiest patients aren't leaving reviews",
    "detail": "You clearly delight people, yet a nearby clinic has four times as many reviews. Without an automatic review request after each visit, that gap keeps growing."
-  },
-  {
-   "title": "No reason for past patients to come back",
-   "detail": "Check-up reminders and gentle follow-ups bring patients back every six months. Without them, many simply drift away."
   }
  ],
  "actions": [
@@ -101,5 +101,17 @@
    "detail": "Where you stand against the clinics on Al Wasl Road, and what to do next."
   }
  ],
- "created": "2026-11-11"
+ "created": "2026-11-11",
+ "search": [
+  {
+   "query": "Vibes Aesthetic Clinic Dubai dental Al Wasl",
+   "result": "Your own website did not appear. A directory listing (zavis) came first, followed by pages for other clinics (Etoile Polyclinic, Dentgen, Sansaya) and general Doctify and WhatClinic lists.",
+   "meaning": "Patients who hear about you and search your name are shown other clinics."
+  },
+  {
+   "query": "dental implants clinic Jumeirah Dubai",
+   "result": "WhatClinic and Doctify implant pages, and competitors' own pages (Dr Joy Dental, Queens Medical Center). Vibes did not appear.",
+   "meaning": "Implants are one of your strengths, but people searching for them in Jumeirah find other clinics."
+  }
+ ]
 }

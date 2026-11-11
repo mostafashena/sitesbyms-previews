@@ -49,7 +49,7 @@
    "notes": "King St W; from 8am"
   }
  ],
- "visibility": "In our search for physiotherapy in downtown Toronto, clinics with more reviews and earlier hours appeared alongside you.",
+ "visibility": "In our searches your own website did not appear, even for your exact name and address. Medimap lists you on eleven separate pages, one per service, and nearby competitors appear for general physiotherapy searches.",
  "lead": [
   "Deep loyalty: patients have followed Simo for almost eight years.",
   "Hands-on 45-minute sessions that patients describe as transformative.",
@@ -62,16 +62,16 @@
  ],
  "gaps": [
   {
+   "title": "Your clinic is scattered across a dozen pages",
+   "detail": "Searching your name returned eleven separate Medimap pages and a health directory, but not your own website. New patients can't see everything you offer, from physio to osteopathy and naturopathy, in one place."
+  },
+  {
    "title": "Before-work patients go elsewhere",
    "detail": "Downtown workers want 7–9am appointments. If they can't see when you're free, they book a clinic that shows it."
   },
   {
    "title": "Your loyal patients could bring more",
    "detail": "Patients who've stayed eight years are your best marketing. An automatic review request and a referral message would grow your reviews fast."
-  },
-  {
-   "title": "No reason to return after discharge",
-   "detail": "Without check-ins after treatment, patients only come back when they're in pain again, and may go elsewhere."
   }
  ],
  "actions": [
@@ -110,5 +110,17 @@
    "detail": "How you compare with downtown clinics, and what to do next."
   }
  ],
- "created": "2026-11-11"
+ "created": "2026-11-11",
+ "search": [
+  {
+   "query": "Physio On Queen 1 Queen St E Toronto",
+   "result": "Your own website did not appear. The results were the Toronto Central Healthline listing and eleven separate Medimap pages (physiotherapy, osteopathy, massage, chiropractic, naturopathy).",
+   "meaning": "Your services are split across a dozen third-party pages instead of one place you control."
+  },
+  {
+   "query": "physiotherapy downtown Toronto Union Station",
+   "result": "Physio On Queen did not appear. Foundation, Rebalance, Cornerstone and Lifemark did.",
+   "meaning": "New patients nearby find other clinics first."
+  }
+ ]
 }

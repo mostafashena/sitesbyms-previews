@@ -8,8 +8,8 @@
   "reviews": "420",
   "website": "",
   "mobile": "",
-  "booking": "",
-  "notes": "Mon–Fri 8:30am–5pm; closed weekends"
+  "booking": "yes",
+  "notes": "Online booking (Jane); Mon–Fri 8:30am–5pm"
  },
  "competitors": [
   {
@@ -49,7 +49,7 @@
    "notes": "King St W; weekdays"
   }
  ],
- "visibility": "In our search for physiotherapy in downtown Toronto, several clinics with similar ratings appeared together, most with longer hours than yours.",
+ "visibility": "In our search for physiotherapy near Union Station, Rebuild did not appear while several competitors did. Searching your name returned directories and your booking page, but not your own website.",
  "lead": [
   "420 reviews, all five stars.",
   "Patients praise root-cause assessment and 'never an unnecessary session'.",
@@ -66,8 +66,8 @@
    "detail": "Most office workers can only come early, late or at weekends. Online booking and clear availability help you keep the ones you can fit in."
   },
   {
-   "title": "Every patient looks the same in a search",
-   "detail": "With similar ratings everywhere, your 'no unnecessary sessions' promise is what makes you different, but nobody sees it before booking."
+   "title": "Invisible in the searches that matter",
+   "detail": "When we searched for physiotherapy near Union Station, four competitors appeared and Rebuild didn't. Your 420 five-star reviews can't win patients who never see you."
   },
   {
    "title": "Insurance-covered patients don't come back",
@@ -110,5 +110,17 @@
    "detail": "How you compare with downtown clinics, and what to do next."
   }
  ],
- "created": "2026-11-11"
+ "created": "2026-11-11",
+ "search": [
+  {
+   "query": "Rebuild Physiotherapy Queens Quay Toronto",
+   "result": "Your own website did not appear. Medimap, your booking page, Sun Life's provider page, MapQuest and several directory sites did.",
+   "meaning": "Patients who look you up by name land on third-party pages."
+  },
+  {
+   "query": "physiotherapy downtown Toronto Union Station",
+   "result": "Rebuild did not appear. Pages for Foundation Physiotherapy, Rebalance Sports Medicine, Cornerstone and Lifemark came up, plus Fresha and Medimap lists.",
+   "meaning": "Downtown workers searching for a physio near the office find your competitors, not you."
+  }
+ ]
 }

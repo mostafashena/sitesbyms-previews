@@ -6,10 +6,10 @@
  "you": {
   "rating": "5.0",
   "reviews": "768",
-  "website": "",
+  "website": "yes",
   "mobile": "",
-  "booking": "",
-  "notes": "Closed Mondays and Sundays; often fully booked"
+  "booking": "yes",
+  "notes": "Online booking; spring specials with prices; Subiaco and Hillarys"
  },
  "competitors": [
   {
@@ -40,7 +40,7 @@
    "notes": "Rokeby Road; weekdays only"
   }
  ],
- "visibility": "In our search for cosmetic clinics in Subiaco, you appear as the most-reviewed clinic by far. Your reputation is your biggest asset.",
+ "visibility": "In our search for your name, your website appeared under a squarespace.com address instead of erinaesthetics.com.au, after a 2022 article and next to several directories. Your reputation is huge; your online home isn't keeping up with it.",
  "lead": [
   "768 five-star reviews: more than three times the next clinic nearby.",
   "Clients praise honest advice for their budget and written aftercare.",
@@ -61,8 +61,8 @@
    "detail": "Anti-wrinkle and skin treatments need regular top-ups. Without automatic reminders at the right time, loyal clients can drift to whoever is available."
   },
   {
-   "title": "Your reputation isn't working for you online",
-   "detail": "768 five-star reviews is extraordinary, but new clients need one clear place that shows them why, with booking in one tap."
+   "title": "Your website shows up under the wrong address",
+   "detail": "Search shows your site as 'swan-kale-s6c4.squarespace.com'. To a first-time client that looks unofficial, and it splits the trust your 768 reviews have earned."
   }
  ],
  "actions": [
@@ -75,8 +75,8 @@
    "why": "A timely reminder (for example, around 12 weeks after anti-wrinkle) keeps loyal clients with you."
   },
   {
-   "title": "Show your reviews and aftercare on your own page",
-   "why": "Doable today: pin your best reviews and aftercare form where first-timers look first."
+   "title": "Fix how your website appears in search",
+   "why": "Make sure Google shows erinaesthetics.com.au, not a temporary Squarespace address; this is quick to fix."
   }
  ],
  "plan": [
@@ -101,5 +101,12 @@
    "detail": "Bookings, rebookings and how you compare with Subiaco clinics."
   }
  ],
- "created": "2026-11-11"
+ "created": "2026-11-11",
+ "search": [
+  {
+   "query": "Erin Aesthetics Subiaco",
+   "result": "A 2022 So Perth article about your expansion came first. Your own site appeared under a temporary address (swan-kale-s6c4.squarespace.com) rather than erinaesthetics.com.au, alongside Fresha, magicpin and directory pages.",
+   "meaning": "Your website is live, but search shows it under an address that looks unofficial, so some people may not trust or click it."
+  }
+ ]
 }

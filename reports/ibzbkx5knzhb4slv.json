@@ -25,10 +25,10 @@
    "name": "Balham Physio",
    "rating": "4.9",
    "reviews": "206",
-   "website": "",
-   "mobile": "",
-   "booking": "",
-   "notes": "Balham Hill; Saturdays to 2:30pm"
+   "website": "yes",
+   "mobile": "yes",
+   "booking": "yes",
+   "notes": "Website first in search; online booking; tap-to-call"
   },
   {
    "name": "Excellence Physiotherapy (Clapham)",
@@ -49,7 +49,7 @@
    "notes": "Weekdays only"
   }
  ],
- "visibility": "In our search for physiotherapy in Balham, several five-star clinics appeared side by side, including a much larger multi-site clinic directly opposite you. New patients compare quickly and pick whoever looks easiest to book.",
+ "visibility": "In our search for \"physiotherapy Balham\", a competitor's website came first and your own site did not appear at all, not even when we searched your name. Directory listings also show different opening hours for you: one lists 8am–9pm, another Monday 9:30am–2pm and Friday 2–9pm, while Google shows 8am–8pm.",
  "lead": [
   "501 five-star reviews with detailed surgery recovery stories.",
   "Next-day appointments, an in-house gym and an exercise app.",
@@ -62,8 +62,12 @@
  ],
  "gaps": [
   {
-   "title": "Evening and Sunday patients go elsewhere",
-   "detail": "Commuters searching after work or at weekends find clinics that are open. Online booking lets them reserve your next slot instead."
+   "title": "People searching for you find others first",
+   "detail": "Your own website didn't appear when we searched 'reCentre Health Balham'. Directories and a competitor's site did. Every patient who searches your name is one click from someone else."
+  },
+  {
+   "title": "Three different sets of opening hours",
+   "detail": "Directory pages list your hours as 8am–9pm, as 'Monday 9:30am–2pm and Friday 2–9pm', and Google as 8am–8pm. Patients who see the wrong hours may not even try to book."
   },
   {
    "title": "Surgery patients don't know you specialise",
@@ -76,8 +80,8 @@
  ],
  "actions": [
   {
-   "title": "Make surgery rehab a clear speciality",
-   "why": "A page for ACL, hip and knee rehab turns searches into referrals."
+   "title": "Get your own website to the top of your own name",
+   "why": "A fast site linked from your Google profile and directories, so searches for reCentre land on you, not on a competitor."
   },
   {
    "title": "Let patients book any time",
@@ -110,5 +114,17 @@
    "detail": "Bookings and how you compare with Balham clinics."
   }
  ],
- "created": "2026-11-11"
+ "created": "2026-11-11",
+ "search": [
+  {
+   "query": "reCentre Health Balham physiotherapy",
+   "result": "Your own website did not appear. The results were directory pages (WhatClinic, NPN, Birdeye, Doctify, Bupa Finder) and a competitor's website, Balham Physio.",
+   "meaning": "Even people searching for you by name are sent to directories and a competitor first."
+  },
+  {
+   "query": "physiotherapy Balham",
+   "result": "Balham Physio's own website came first, followed by directory pages (WhatClinic, Fresha, Treatwell, Doctify). reCentre appeared only through a WhatClinic listing.",
+   "meaning": "Someone looking for a physio in Balham is far more likely to land on a competitor."
+  }
+ ]
 }

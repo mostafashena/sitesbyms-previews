@@ -49,7 +49,7 @@
    "notes": "Heeley Street; Saturdays to 1pm"
   }
  ],
- "visibility": "In our search for skin clinics in Paddington, five clinics with perfect or near-perfect ratings appeared together. When everyone has five stars, the clinic that explains itself best wins the booking.",
+ "visibility": "In our search for your name, your own site did not appear; results mixed in Paddington, London clinics and a Time Out article about a nearby competitor. When five-star clinics surround you, being found by name matters.",
  "lead": [
   "Clients say you never push products: rare and very valuable in this industry.",
   "Clients travel hours to see you; brides-to-be trust you with their skin.",
@@ -62,16 +62,16 @@
  ],
  "gaps": [
   {
+   "title": "Your name shows a competitor's feature",
+   "detail": "When we searched for Restoration Medicine, a Time Out feature about a nearby skin clinic appeared, along with clinics in Paddington, London, but not your website."
+  },
+  {
    "title": "Your difference is invisible to new clients",
    "detail": "'Never pushes products' is your strongest story, but it only lives in reviews. New clients choosing between five-star clinics never see it."
   },
   {
    "title": "Long-term plans rely on memory",
    "detail": "Skin plans and anti-ageing treatments work over months. Without automatic reminders and check-ins, clients lose momentum."
-  },
-  {
-   "title": "Bridal clients are a season you could plan for",
-   "detail": "Reviews show brides trust you. A simple pre-wedding skin plan, promoted at the right time, would bring more of them."
   }
  ],
  "actions": [
@@ -110,5 +110,12 @@
    "detail": "How you compare with Paddington and Woollahra clinics, and what to do next."
   }
  ],
- "created": "2026-11-11"
+ "created": "2026-11-11",
+ "search": [
+  {
+   "query": "Restoration Medicine Paddington skin clinic",
+   "result": "Your own website did not appear. Results mixed in skin clinics in Paddington, London (Treatwell, Doctify UK), a Birdeye review page for you, and a Time Out feature on a nearby competitor, Lisa Rush Skin Clinic.",
+   "meaning": "Searching your name shows clinics on the other side of the world and a magazine feature about a competitor."
+  }
+ ]
 }

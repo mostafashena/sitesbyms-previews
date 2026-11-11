@@ -8,8 +8,8 @@
   "reviews": "441",
   "website": "",
   "mobile": "",
-  "booking": "",
-  "notes": "Baby and pregnancy osteopathy; closed Sundays"
+  "booking": "yes",
+  "notes": "Online booking (Jane); baby and pregnancy osteopathy; closed Sundays"
  },
  "competitors": [
   {
@@ -40,7 +40,7 @@
    "notes": "Physio and rehab; open to 8pm"
   }
  ],
- "visibility": "In our search for osteopaths in Fulham, several five-star practices appeared together, including one open every day until 9pm. New parents searching late at night compare quickly.",
+ "visibility": "In our searches your own website did not appear, even for your exact name and address; directories and your booking page did. For \"baby osteopath Fulham\", directory pages for other paediatric osteopaths came first.",
  "lead": [
   "441 five-star reviews: the most of any osteopath nearby.",
   "A rare specialism in baby and pregnancy osteopathy.",
@@ -48,17 +48,17 @@
  ],
  "lose": [
   "Another clinic on Fulham Road is open 7am–9pm, seven days a week.",
-  "Parents of newborns search at odd hours and book whoever they can reach.",
+  "Parents searching for baby osteopathy find directory pages for other clinics first.",
   "Your baby and pregnancy expertise isn't obvious from a listing."
  ],
  "gaps": [
   {
-   "title": "New parents search at night",
-   "detail": "With a newborn, the search happens at 11pm. Without online booking, they choose a clinic that lets them book right then."
+   "title": "Parents can't see your specialism",
+   "detail": "When we searched 'baby osteopath Fulham', other paediatric osteopaths and directories came first. Your booking page appeared, but nothing that explains your baby and pregnancy care to a worried parent."
   },
   {
-   "title": "Your specialism is your best marketing",
-   "detail": "Baby and pregnancy osteopathy sets you apart, but only reviews mention it. A dedicated page would make you the obvious choice."
+   "title": "Directories show different hours",
+   "detail": "One directory lists 9am–7:30pm with a late Wednesday; Google shows 8am–7pm. Conflicting hours make new patients hesitate."
   },
   {
    "title": "Families could stay for years",
@@ -71,8 +71,8 @@
    "why": "Make your specialism the first thing parents see."
   },
   {
-   "title": "Let parents book online, any hour",
-   "why": "Capture the late-night searches instead of losing them."
+   "title": "Put your booking page behind a proper homepage",
+   "why": "You already have online booking; a homepage that explains your care and links to it turns searches into appointments."
   },
   {
    "title": "Partner with local breastfeeding clinics",
@@ -101,5 +101,17 @@
    "detail": "How you compare with Fulham clinics, and what to do next."
   }
  ],
- "created": "2026-11-11"
+ "created": "2026-11-11",
+ "search": [
+  {
+   "query": "Fulham Osteopaths 769 Fulham Road",
+   "result": "Your own website did not appear. The results were Fresha, WhatClinic, Doctify, the council directory and the osteopathy register. One directory lists your hours as 9am–7:30pm (Wednesday 8:30am–8:30pm), different from Google.",
+   "meaning": "People who already know your name land on directories with inconsistent hours."
+  },
+  {
+   "query": "baby osteopath Fulham",
+   "result": "Results were led by directory pages for other paediatric osteopaths (Marble Arch, Bow) and a Mumsnet thread. Your online booking page appeared, but no page explaining your baby and pregnancy care.",
+   "meaning": "Parents searching for exactly what you are best at don't find a page that tells them you do it."
+  }
+ ]
 }
