@@ -1,0 +1,142 @@
+{
+ "slug": "the-row-dental-edinburgh",
+ "business": "The Row Dental",
+ "area": "New Town, Edinburgh",
+ "created": "2026-11-12",
+ "summary": "The Row Dental has the highest rating among the New Town practices we compared: 463 reviews, all five stars, in barely two years. But when people search for you, your main website is nowhere to be seen, and practices nearby are open into the evening while you close at 5:30pm.",
+ "headline": {
+  "number": "0 of 19",
+  "title": "We searched \"The Row Dental Edinburgh Albany Street\". Your main website appeared in none of the 19 results.",
+  "detail": "Instead: Google Sites pages, Google Docs presentations and other pages using your name, plus directory listings. To a patient, that can look confusing rather than reassuring."
+ },
+ "you": {
+  "rating": "5.0",
+  "reviews": "463",
+  "website": "",
+  "mobile": "",
+  "booking": "",
+  "notes": "Mon–Thu to 5:30pm, Fri to 5pm; IV sedation"
+ },
+ "competitors": [
+  {
+   "name": "Edinburgh Dental Specialists",
+   "rating": "4.8",
+   "reviews": "382",
+   "website": "",
+   "mobile": "",
+   "booking": "",
+   "notes": "Rose Street; implants and specialist care"
+  },
+  {
+   "name": "Integrated Dentalcare",
+   "rating": "4.9",
+   "reviews": "365",
+   "website": "",
+   "mobile": "",
+   "booking": "",
+   "notes": "Manor Place; open to 6pm Wednesdays"
+  },
+  {
+   "name": "Edinburgh Dental Studio",
+   "rating": "5.0",
+   "reviews": "270",
+   "website": "",
+   "mobile": "",
+   "booking": "",
+   "notes": "Randolph Place; open to 8pm Mon–Thu"
+  },
+  {
+   "name": "103 Dental and Implant Practice",
+   "rating": "4.8",
+   "reviews": "118",
+   "website": "",
+   "mobile": "",
+   "booking": "",
+   "notes": "East London Street; payment plans"
+  },
+  {
+   "name": "New Town Dental Care",
+   "rating": "4.9",
+   "reviews": "39",
+   "website": "",
+   "mobile": "",
+   "booking": "",
+   "notes": "Henderson Row; open to 7pm Tue–Wed"
+  }
+ ],
+ "search": [
+  {
+   "query": "The Row Dental Edinburgh Albany Street",
+   "result": "Your main website did not appear. The results were Google Sites pages and blog posts, Google Docs presentations, a Pixieset page, a Product Hunt profile, a Substack page, Doctify, Birdeye and inspection reports.",
+   "meaning": "A new patient who searches your name meets a scatter of unofficial-looking pages instead of one clear home with a booking button."
+  },
+  {
+   "query": "composite bonding Edinburgh dentist",
+   "result": "WhatClinic and Doctify lists and other practices came first. Your name appeared only on a standalone page hosted on Amazon S3, not on your own website.",
+   "meaning": "Bonding is one of the treatments your reviews praise most, but people searching for it find lists of other practices first."
+  }
+ ],
+ "visibility": "In our searches your main website did not appear, even for your exact name and street. Many pages carrying your name did, hosted on Google Sites, Google Docs and Amazon S3, which a patient may find confusing.",
+ "lead": [
+  "463 five-star reviews since opening in 2023: the highest rating among the practices we compared.",
+  "Reviews praise composite bonding, Invisalign and a calm, caring team.",
+  "IV sedation and gentle care for anxious patients."
+ ],
+ "lose": [
+  "Three nearby practices are open later (until 6pm, 7pm and 8pm); you close at 5:30pm.",
+  "Patients searching for you meet a scatter of unofficial-looking pages before any booking option.",
+  "People searching for composite bonding in Edinburgh find directory lists of other practices first."
+ ],
+ "gaps": [
+  {
+   "title": "Your name leads to a maze of pages",
+   "detail": "Google Sites, Google Docs, Pixieset, Substack: when we searched your name, these came up instead of your website. A nervous patient looking for reassurance finds confusion instead."
+  },
+  {
+   "title": "After-work patients go elsewhere",
+   "detail": "Edinburgh Dental Studio is open until 8pm, New Town Dental Care until 7pm. People who can only come after work book with them."
+  },
+  {
+   "title": "Your best treatments aren't found",
+   "detail": "Composite bonding and Invisalign drive your best reviews, yet searches for them in Edinburgh show directory lists and other practices first."
+  }
+ ],
+ "scenario": "A young professional who has hated her smile for years reads about composite bonding and searches \"composite bonding Edinburgh dentist\" at 9pm. She finds WhatClinic and Doctify lists and another practice that's open until 8pm on weekdays. She never sees The Row, even though your patients say they now can't stop grinning. She books a consultation with the practice that opens late.",
+ "nochange": "Your reviews keep pouring in, but searches for your name and your best treatments keep pointing patients to directories, scattered pages and practices that open later. Each one who books elsewhere is a smile makeover, and years of check-ups, that went to someone else.",
+ "actions": [
+  {
+   "title": "Give patients one clear home online",
+   "why": "A fast website that appears first for your name, with booking in one tap, replaces the scatter of pages patients find today."
+  },
+  {
+   "title": "Create pages for bonding and Invisalign",
+   "why": "Turn the treatments your reviews praise most into searches that find you."
+  },
+  {
+   "title": "Offer one late evening",
+   "why": "Doable without us: even one late day a week wins after-work patients from practices that open late."
+  }
+ ],
+ "plan": [
+  {
+   "when": "Week 1",
+   "title": "Your new website with online booking",
+   "detail": "Your team, treatments and 463 reviews in one place that shows up first for your name."
+  },
+  {
+   "when": "Week 2",
+   "title": "Treatment pages",
+   "detail": "Composite bonding, Invisalign and sedation pages written for people searching for them."
+  },
+  {
+   "when": "Week 3",
+   "title": "Reminders and review requests",
+   "detail": "Check-up reminders and review requests that go out by themselves."
+  },
+  {
+   "when": "Week 4",
+   "title": "Your first monthly report",
+   "detail": "How you compare with New Town practices, and what to do next."
+  }
+ ]
+}
