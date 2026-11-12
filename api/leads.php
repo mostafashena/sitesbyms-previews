@@ -83,6 +83,13 @@ try {
                 setting_set('personal_emails', $q);
             }
             out(['ok' => true, 'queue' => $q]);
+        case 'mailcheck':  // deliverability: DNS records seen from the server, plus bounces in the mailbox
+            $q = fn($n, $t) => array_map(fn($r) => $r['txt'] ?? ($r['target'] ?? ''), (array)@dns_get_record($n, $t));
+            $d = 'sitesbyms.com'; $dk = [];
+            foreach (['default', 'x', 'google', 'selector1', 'mail', 'dkim'] as $sel) if ($v = $q("$sel._domainkey.$d", DNS_TXT)) $dk[$sel] = $v;
+            require_once __DIR__ . '/_inbox.php';
+            $b = array_values(array_filter(inbox_recent(300), fn($x) => preg_match('/mailer-daemon|postmaster|undeliver|delivery status|returned mail|failure notice/i', ($x['from'] ?? '') . ' ' . ($x['subject'] ?? ''))));
+            out(['spf' => array_values(array_filter($q($d, DNS_TXT), fn($t) => str_starts_with($t, 'v=spf1'))), 'dmarc' => $q("_dmarc.$d", DNS_TXT), 'dkim' => $dk, 'mx' => $q($d, DNS_MX), 'a' => array_map(fn($r) => $r['ip'], (array)@dns_get_record($d, DNS_A)), 'server_ip' => $_SERVER['SERVER_ADDR'] ?? '', 'bounces' => array_map(fn($x) => [$x['at'], $x['from'], $x['subject']], $b)]);
         case 'messages':
             out(['messages' => array_slice(messages_all(), 0, 200), 'bookings' => bookings_all()]);
         default:
