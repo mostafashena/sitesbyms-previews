@@ -326,6 +326,7 @@ function report_token(array $r): string { return preg_match('/Report (?:ready|se
 
 /** Adds ?from=email to sitesbyms.com concept links. */
 function tracked_links(string $text, string $from = 'email'): string {
+    if ($from === 'email') return $text;   // 12 Nov 2026: clean links in emails (deliverability); visits still show up by page
     // keeps any existing query (e.g. /report/?k=<token>): 11 Nov 2026 a report link became /report/?from=ig?k=… and showed "report not found"
     return preg_replace_callback('#(?:https?://)?sitesbyms\.com/([a-z0-9-]+)/?(\?[^\s)<>"\']*)?#i', function ($m) use ($from) {
         parse_str(ltrim($m[2] ?? '', '?'), $q); unset($q['from']); $q['from'] = $from;
