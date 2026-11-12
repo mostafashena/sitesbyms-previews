@@ -351,6 +351,15 @@ function send_outreach(string $to, string $subject, string $text, ?string $inRep
     // Sender's postal address and an easy opt-out on every outreach email (required for US/Canada, good practice everywhere).
     if (!str_contains($text, 'Maida Vale')) $text .= "\n\n--\nSites By MS · " . BUSINESS_ADDRESS . "\nNot interested? Just reply \"stop\" and we won't email you again.";
     $mid = '<' . bin2hex(random_bytes(12)) . '@sitesbyms.com>';
+    // An email without any link (Test 2 B "plain" first emails, team replies) goes out as ONE text/plain part with no List-Unsubscribe header:
+    // Gmail reads HTML + List-Unsubscribe as a newsletter (Promotions tab). The postal address and the "stop" line stay in the text.
+    if (!preg_match('#https?://#i', $text)) {
+        $ph = fn(string $id) => 'From: Sites By MS <' . FROM_ADDR . ">\r\nReply-To: " . FROM_ADDR . "\r\nMessage-ID: $id\r\nMIME-Version: 1.0\r\n"
+             . ($inReplyTo ? "In-Reply-To: $inReplyTo\r\nReferences: $inReplyTo\r\n" : '') . "Content-Type: text/plain; charset=UTF-8\r\nContent-Transfer-Encoding: base64";
+        $ok = @mail($to, '=?UTF-8?B?' . base64_encode($subject) . '?=', chunk_split(base64_encode($text)), $ph($mid), '-f' . FROM_ADDR);
+        if ($ok) @mail('m.and.s.design.develop@gmail.com', '=?UTF-8?B?' . base64_encode('[Sent] ' . $subject) . '?=', chunk_split(base64_encode("Sent to $to\n\n" . $text)), $ph('<' . bin2hex(random_bytes(12)) . '@sitesbyms.com>'), '-f' . FROM_ADDR);
+        return $ok ? $mid : null;
+    }
     // No tracking image: with short emails it costs ~1 spam point (SpamAssassin HTML_IMAGE_ONLY). Interest is measured by link clicks and page visits instead.
     $pixel = '';
     $build = function (string $html) use ($text, &$b) {
