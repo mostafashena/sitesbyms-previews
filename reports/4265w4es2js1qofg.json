@@ -1,0 +1,128 @@
+{
+ "slug": "glasgow-spinal-care",
+ "business": "Glasgow Spinal Care",
+ "area": "Anniesland, Glasgow West End",
+ "headline": {
+  "number": "0 of 14",
+  "title": "We searched \"chiropractor Anniesland Glasgow\". Your own website appeared in none of the 14 results.",
+  "detail": "Your booking page came first, then directory pages (NPN, Poyst, WhatClinic, Fresha, Yabsta) describing chiropractors in their own words. Someone comparing clinics never reaches a page that explains your approach."
+ },
+ "summary": "Glasgow Spinal Care has something rare: 83 reviews at 4.8 from patients who say you explain every step and never over-promise, plus on-site spinal X-ray. But in our search, your own website didn't appear at all, and a chiropractor a mile away with 54 five-star reviews looks just as good on a listing.",
+ "you": {
+  "rating": "4.8",
+  "reviews": "83",
+  "website": "",
+  "mobile": "",
+  "booking": "yes",
+  "notes": "Chiro + on-site X-ray; closed weekends; Friday to 1pm"
+ },
+ "competitors": [
+  {
+   "name": "West End Chiropractic",
+   "rating": "5.0",
+   "reviews": "54",
+   "website": "",
+   "mobile": "",
+   "booking": "",
+   "notes": "Gardner Street, Partick; open to 7:30pm Mon and Thu"
+  },
+  {
+   "name": "The Osteopaths Physiotherapy & Injury Rehab",
+   "rating": "5.0",
+   "reviews": "429",
+   "website": "",
+   "mobile": "",
+   "booking": "",
+   "notes": "Hope Street; open to 7pm, Saturdays to 7pm"
+  },
+  {
+   "name": "Glasgow Osteopaths (Natural Health Service)",
+   "rating": "4.8",
+   "reviews": "29",
+   "website": "",
+   "mobile": "",
+   "booking": "",
+   "notes": "High Street; open 7 days, to 8pm weekdays"
+  },
+  {
+   "name": "Drysdale Osteopathy",
+   "rating": "5.0",
+   "reviews": "80",
+   "website": "",
+   "mobile": "",
+   "booking": "",
+   "notes": "Finnieston; Saturdays to 6pm"
+  }
+ ],
+ "search": [
+  {
+   "query": "chiropractor Anniesland Glasgow",
+   "result": "Your Jane booking page came first, followed by NPN, Poyst, WhatClinic, Fresha and other directories. Your own website (chiropractor-glasgow.uk) did not appear in the 14 results.",
+   "meaning": "People searching for exactly what you do find a booking form or a directory, not the story of why patients trust you."
+  }
+ ],
+ "visibility": "In our search for a chiropractor in Anniesland, your booking page appeared but your own website did not. Clinics with more reviews and longer hours appear right alongside you in Glasgow listings.",
+ "lead": [
+  "Patients praise Dr Morris for explaining every step: no surprises, no over-promising.",
+  "On-site spinal X-ray, with referrals accepted from other clinics.",
+  "A welcoming reception team, named in reviews, which reassures nervous first-timers."
+ ],
+ "lose": [
+  "Nobody can book with you on a Saturday; several clinics nearby open on Saturdays and one is open seven days.",
+  "A clinic in the city centre has 429 reviews, so at a glance it looks like the safer choice.",
+  "Your strengths (X-ray, honesty, Gonstead technique) only live in reviews, not on a page that new patients read."
+ ],
+ "gaps": [
+  {
+   "title": "Weekend back pain goes elsewhere",
+   "detail": "Backs give out on Saturdays too. When you're closed and there's no page explaining when the next slot is, people book whichever clinic is open."
+  },
+  {
+   "title": "Your honesty is invisible",
+   "detail": "'No over-promising' is a powerful reason to choose you, but someone comparing listings never reads it."
+  },
+  {
+   "title": "Happy patients aren't asked for reviews",
+   "detail": "83 reviews is strong, but a city-centre clinic has 429. Without an automatic review request after each visit, that gap keeps growing."
+  }
+ ],
+ "actions": [
+  {
+   "title": "Give patients one page that explains your approach",
+   "why": "X-ray, Gonstead, clear explanations and real reviews in one place turns comparison shoppers into bookings."
+  },
+  {
+   "title": "Ask every happy patient for a review automatically",
+   "why": "A short message after each visit steadily closes the review gap with larger clinics."
+  },
+  {
+   "title": "Pin your X-ray and referral service on your Google profile",
+   "why": "Doable today: other chiropractors and patients searching for spinal imaging will find you first."
+  }
+ ],
+ "plan": [
+  {
+   "when": "Week 1",
+   "title": "Your new website with booking built in",
+   "detail": "Your approach, team and X-ray service, with one-tap booking from any phone."
+  },
+  {
+   "when": "Week 2",
+   "title": "Automatic review requests",
+   "detail": "A friendly message after each appointment, so happy patients become five-star reviews."
+  },
+  {
+   "when": "Week 3",
+   "title": "Reminders and recall",
+   "detail": "Maintenance-visit reminders that go out by themselves, so patients stay on track."
+  },
+  {
+   "when": "Week 4",
+   "title": "Your first monthly report",
+   "detail": "Where you stand against Glasgow West End clinics, and what to do next."
+  }
+ ],
+ "scenario": "It's Saturday morning in Jordanhill and a dad's back locks as he lifts his son into the car. He searches \"chiropractor near me\" and sees your listing, closed until Monday, next to a booking-site page for a clinic open today. He books there, and by Monday he has a new chiropractor. (Illustration.)",
+ "nochange": "Your reviews keep growing slowly, but every weekend and every evening, people who would love your honest approach meet a listing or a directory instead. The clinics with more reviews and longer hours keep looking like the default choice.",
+ "created": "2026-11-13"
+}

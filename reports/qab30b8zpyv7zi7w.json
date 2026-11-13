@@ -1,0 +1,128 @@
+{
+ "slug": "village-osteopaths-timperley",
+ "business": "The Village Osteopaths",
+ "area": "Timperley, Altrincham",
+ "headline": {
+  "number": "4 – 0",
+  "title": "We searched \"osteopath Timperley\". Four sites describing your clinic came first (Doctify, the osteopathy register, Treatwell, your booking page), and none of them was your own website.",
+  "detail": "Patients choosing between you and the clinics nearby read other people's summaries of you, with no place where you explain the Perrin Technique, your team or your family care."
+ },
+ "summary": "The Village Osteopaths is the clinic families in Timperley stay with for years: 60 reviews at 4.9 and patients who say you helped them avoid surgery. But you're surrounded by five-star clinics with more reviews, and in our search there was no website of your own explaining why you're different.",
+ "you": {
+  "rating": "4.9",
+  "reviews": "60",
+  "website": "",
+  "mobile": "",
+  "booking": "yes",
+  "notes": "Osteopathy, Perrin Technique; Saturdays to 5pm"
+ },
+ "competitors": [
+  {
+   "name": "Chews Health",
+   "rating": "5.0",
+   "reviews": "144",
+   "website": "",
+   "mobile": "",
+   "booking": "",
+   "notes": "Timperley Sports Club; physio and S&C, to 8pm"
+  },
+  {
+   "name": "ProSpinal",
+   "rating": "5.0",
+   "reviews": "117",
+   "website": "",
+   "mobile": "",
+   "booking": "",
+   "notes": "Hale; IDD therapy, to 7pm weekdays"
+  },
+  {
+   "name": "S2 Physiotherapy",
+   "rating": "5.0",
+   "reviews": "41",
+   "website": "",
+   "mobile": "",
+   "booking": "",
+   "notes": "Riddings Road, Timperley; open to 9pm"
+  },
+  {
+   "name": "Cheshire Physiotherapy Centre",
+   "rating": "5.0",
+   "reviews": "27",
+   "website": "",
+   "mobile": "",
+   "booking": "",
+   "notes": "Barrington Road, Altrincham"
+  }
+ ],
+ "search": [
+  {
+   "query": "osteopath Timperley",
+   "result": "Doctify's page about you came first, then the General Osteopathic Council register, Treatwell and your Jane booking page. No website of your own appeared; the rest were general articles about osteopathy.",
+   "meaning": "Patients find you, but only through other sites' summaries, with nothing that explains your specialities in your own words."
+  }
+ ],
+ "visibility": "In our search for an osteopath in Timperley, you dominated the top results, but only through directory and booking pages. Nearby clinics with more reviews and evening hours appear right alongside you on maps.",
+ "lead": [
+  "Families come back over many years, often several generations.",
+  "The Perrin Technique: a rare speciality patients describe as transformative.",
+  "Open Saturdays until 5pm, and praised for putting children at ease."
+ ],
+ "lose": [
+  "Clinics nearby open until 8pm or 9pm; you close at 7pm at the latest.",
+  "A Timperley clinic has 144 reviews to your 60, so on a map it looks like the default choice.",
+  "Patients looking for Perrin Technique or children's care can't find a page about it."
+ ],
+ "gaps": [
+  {
+   "title": "Your speciality has no home",
+   "detail": "The Perrin Technique brings people from far away, but someone searching for it never reaches a page of yours that explains it."
+  },
+  {
+   "title": "Reviews aren't keeping pace",
+   "detail": "You've treated families for years, yet newer clinics nearby have twice the reviews. An automatic request after each visit would change that."
+  },
+  {
+   "title": "Evening patients go elsewhere",
+   "detail": "People searching after work find clinics open until 9pm. Online booking at least lets them reserve your next slot."
+  }
+ ],
+ "actions": [
+  {
+   "title": "Give the Perrin Technique its own page",
+   "why": "People searching for it are ready to travel; a clear page turns that search into a booking."
+  },
+  {
+   "title": "Ask every happy patient for a review automatically",
+   "why": "Families who've trusted you for years are your best advocates; a simple message closes the review gap."
+  },
+  {
+   "title": "Update your Google profile with Saturday hours and services",
+   "why": "Doable today: list Perrin Technique, children's care and ear wax removal so you show up for those searches."
+  }
+ ],
+ "plan": [
+  {
+   "when": "Week 1",
+   "title": "Your own website with booking",
+   "detail": "Your team, Perrin Technique and family care explained, with one-tap booking."
+  },
+  {
+   "when": "Week 2",
+   "title": "Automatic review requests",
+   "detail": "A friendly message after each visit, so long-time patients finally leave reviews."
+  },
+  {
+   "when": "Week 3",
+   "title": "Recall and check-in reminders",
+   "detail": "Messages that bring patients back for maintenance before pain returns."
+  },
+  {
+   "when": "Week 4",
+   "title": "Your first monthly report",
+   "detail": "Bookings and how you compare with Timperley and Altrincham clinics."
+  }
+ ],
+ "scenario": "A woman in Sale has read about the Perrin Technique and searches for a practitioner nearby. She finds a Treatwell page listing your clinic, but no explanation of the treatment and no way to see who you are. A clinic with a clear page and 144 reviews looks safer, so she books there instead. (Illustration.)",
+ "nochange": "Your loyal families keep coming, but new patients keep meeting directory summaries instead of you. Clinics with more reviews and longer hours keep growing around you.",
+ "created": "2026-11-13"
+}

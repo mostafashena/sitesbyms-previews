@@ -1,0 +1,128 @@
+{
+ "slug": "essential-osteopathy-glasgow",
+ "business": "Essential Osteopathy",
+ "area": "Berkeley Street, Glasgow",
+ "headline": {
+  "number": "0 of 23",
+  "title": "We searched \"baby osteopath Glasgow\". Your booking page came first, but your own website appeared nowhere in 23 results.",
+  "detail": "Parents who click land on a list of appointment times, not on a page that explains cranial osteopathy for babies or shows what other parents say about you. The rest of the page was directories, NHS pages and articles."
+ },
+ "summary": "Essential Osteopathy is exactly what worried parents in Glasgow are searching for: 95 reviews at 4.9, many describing unsettled babies who were 'like a different baby' after seeing Fiona. But parents can't see that when they search; they find a booking form, and a nearby clinic with 80 five-star reviews that's open on Saturdays.",
+ "you": {
+  "rating": "4.9",
+  "reviews": "95",
+  "website": "",
+  "mobile": "",
+  "booking": "yes",
+  "notes": "Babies, pregnancy, adults; closed Fri–Sun"
+ },
+ "competitors": [
+  {
+   "name": "Drysdale Osteopathy",
+   "rating": "5.0",
+   "reviews": "80",
+   "website": "",
+   "mobile": "",
+   "booking": "",
+   "notes": "Kelvingrove Street, Finnieston; Saturdays 10am–6pm"
+  },
+  {
+   "name": "The Osteopaths Physiotherapy & Injury Rehab",
+   "rating": "5.0",
+   "reviews": "429",
+   "website": "",
+   "mobile": "",
+   "booking": "",
+   "notes": "Hope Street; Mon–Sat to 7pm"
+  },
+  {
+   "name": "Natural Health Service (Osteopaths)",
+   "rating": "4.9",
+   "reviews": "52",
+   "website": "",
+   "mobile": "",
+   "booking": "",
+   "notes": "High Street; open 7 days"
+  },
+  {
+   "name": "Perform Osteopathy",
+   "rating": "5.0",
+   "reviews": "20",
+   "website": "",
+   "mobile": "",
+   "booking": "",
+   "notes": "Oxford Street; treats children"
+  }
+ ],
+ "search": [
+  {
+   "query": "baby osteopath Glasgow",
+   "result": "Your Jane booking pages came first and second. Your own website (essentialosteopathy.co.uk) did not appear. The other results were directories (WhatClinic, Top Doctors, Fresha), NHS pages and general articles.",
+   "meaning": "Google already sees you as the answer, but parents land on a booking form with no reassurance, no explanation and no reviews."
+  }
+ ],
+ "visibility": "In our search for a baby osteopath in Glasgow, your booking pages came first, a great sign. But your own website did not appear, so parents never see the explanations and reviews that would reassure them.",
+ "lead": [
+  "Parents describe dramatic changes in unsettled babies after one or two sessions.",
+  "Care through pregnancy and after birth, which builds lifelong family patients.",
+  "Fiona explains pain clearly, which adult patients say changed how they manage it."
+ ],
+ "lose": [
+  "You're closed Friday to Sunday; parents of a crying baby on a Saturday find clinics that are open.",
+  "A city-centre clinic has 429 reviews, so it looks like the safer bet at a glance.",
+  "Parents can't read about cranial osteopathy for babies before they book, so the nervous ones hesitate."
+ ],
+ "gaps": [
+  {
+   "title": "Weekend parents can't reach you",
+   "detail": "Reflux and unsettled nights don't keep office hours. A parent searching on Saturday sees you closed and books the clinic that is open."
+  },
+  {
+   "title": "Nervous parents need reassurance first",
+   "detail": "Handing a newborn to someone new is a big step. Without a page that explains what happens and shows other parents' stories, many never book."
+  },
+  {
+   "title": "Pregnancy patients don't come back with their baby",
+   "detail": "You treat mums in pregnancy, but without a gentle follow-up after the birth, they may not think of you for their baby."
+  }
+ ],
+ "actions": [
+  {
+   "title": "Create a page for parents of babies",
+   "why": "What happens in a session, what parents notice, and their own words: this turns a nervous search into a booking."
+  },
+  {
+   "title": "Follow up with pregnancy patients after the birth",
+   "why": "A short, timed message offering a newborn check keeps families with you."
+  },
+  {
+   "title": "Pin your baby reviews on your Google profile",
+   "why": "Doable today: reply to and highlight parents' reviews so they show first."
+  }
+ ],
+ "plan": [
+  {
+   "when": "Week 1",
+   "title": "Your new website for parents and adults",
+   "detail": "Clear pages for babies, pregnancy and adults, with booking in one tap."
+  },
+  {
+   "when": "Week 2",
+   "title": "Newborn follow-ups",
+   "detail": "Automatic, gentle messages to pregnancy patients after their due date."
+  },
+  {
+   "when": "Week 3",
+   "title": "Review requests and reminders",
+   "detail": "Happy parents asked for a review; follow-up sessions reminded automatically."
+  },
+  {
+   "when": "Week 4",
+   "title": "Your first monthly report",
+   "detail": "Bookings and how you compare with Glasgow clinics."
+  }
+ ],
+ "scenario": "At 11pm on a Friday a mum in Partick is rocking a baby who hasn't settled all week. She searches \"baby osteopath Glasgow\" and finds your booking page: a list of dates, nothing about babies. She keeps scrolling, finds a clinic that explains cranial osteopathy and is open on Saturday, and books it. (Illustration.)",
+ "nochange": "Google keeps sending parents to your booking page, and some of them keep leaving because they can't see why to trust you. Each one who books elsewhere takes their next baby, and their friends, with them.",
+ "created": "2026-11-13"
+}
