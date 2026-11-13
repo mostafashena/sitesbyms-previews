@@ -1,0 +1,128 @@
+{
+ "slug": "gastown-physio-pilates",
+ "business": "Gastown Physio & Pilates",
+ "area": "Gastown, Vancouver",
+ "headline": {
+  "number": "145 vs 871",
+  "title": "In our search you came first, but six blocks away Yaletown Wellness has 871 reviews and is open on Sundays.",
+  "detail": "Your site led the results for \"physiotherapy Gastown Vancouver\". Next came Medimap, Fresha and MVMTLAB, a Gastown clinic with 204 five-star reviews. When people compare at a glance, the bigger number wins."
+ },
+ "summary": "Gastown Physio & Pilates is in a strong position: 145 five-star reviews and your own site at the top of our search. The risk now is the review race downtown. Yaletown Wellness has 871 reviews, MVMTLAB in Gastown has 204, and both look like the safer choice to someone comparing on a map.",
+ "you": {
+  "rating": "5.0",
+  "reviews": "145",
+  "website": "",
+  "mobile": "",
+  "booking": "yes",
+  "notes": "Physio + clinical Pilates + IMS; from 6:30am weekdays"
+ },
+ "competitors": [
+  {
+   "name": "MVMTLAB",
+   "rating": "5.0",
+   "reviews": "204",
+   "website": "",
+   "mobile": "",
+   "booking": "",
+   "notes": "Water Street, Gastown; physio, chiro, RMT"
+  },
+  {
+   "name": "Yaletown Wellness",
+   "rating": "4.8",
+   "reviews": "871",
+   "website": "",
+   "mobile": "",
+   "booking": "",
+   "notes": "Hamilton Street; open 7 days"
+  },
+  {
+   "name": "Allan McGavin Sports Medicine – Yaletown",
+   "rating": "4.9",
+   "reviews": "116",
+   "website": "",
+   "mobile": "",
+   "booking": "",
+   "notes": "Mainland Street; Saturdays to 2pm"
+  },
+  {
+   "name": "Aquarius Physiotherapy Yaletown",
+   "rating": "4.9",
+   "reviews": "56",
+   "website": "",
+   "mobile": "",
+   "booking": "",
+   "notes": "Davie Street; weekdays"
+  }
+ ],
+ "search": [
+  {
+   "query": "physiotherapy Gastown Vancouver",
+   "result": "Your own site appeared first and second. Then Medimap, Fresha, Yellow Pages, Sports Clinic Finder and MVMTLAB's site.",
+   "meaning": "You win the search, which is rare. Now the battle is the review count and what people see when they compare."
+  }
+ ],
+ "visibility": "In our search for physiotherapy in Gastown, your own site came first: a great position. On the map, nearby clinics with more reviews and Sunday hours sit right next to you.",
+ "lead": [
+  "Your own site tops the search for physiotherapy in Gastown.",
+  "Open from 6:30am on weekdays, ideal for downtown workers.",
+  "Patients say they walk past nearer clinics to keep seeing your physios."
+ ],
+ "lose": [
+  "A clinic six blocks away has 871 reviews and is open on Sundays.",
+  "MVMTLAB in Gastown has 204 five-star reviews to your 145.",
+  "Patients who finish treatment rarely come back for Pilates without a nudge."
+ ],
+ "gaps": [
+  {
+   "title": "The review race is being lost slowly",
+   "detail": "Your patients love you, but without an automatic review request after each plan of care, larger clinics keep pulling ahead."
+  },
+  {
+   "title": "Pilates is an untapped second service",
+   "detail": "Discharged patients are perfect for clinical Pilates, but without a timed invitation they simply stop coming."
+  },
+  {
+   "title": "Sunday searchers go elsewhere",
+   "detail": "When you're closed, online booking with clear next-available slots keeps them from choosing the clinic that's open."
+  }
+ ],
+ "actions": [
+  {
+   "title": "Ask every patient for a review at discharge",
+   "why": "One automatic message closes the gap with clinics that have hundreds more reviews."
+  },
+  {
+   "title": "Invite discharged patients to clinical Pilates",
+   "why": "Keeps them strong, and keeps them with you."
+  },
+  {
+   "title": "Show your 6:30am start on Google and your site",
+   "why": "Doable today: early hours are a real reason for downtown workers to choose you."
+  }
+ ],
+ "plan": [
+  {
+   "when": "Week 1",
+   "title": "A refreshed website with booking built in",
+   "detail": "Your physios, Pilates and early hours, with one-tap booking."
+  },
+  {
+   "when": "Week 2",
+   "title": "Automatic review requests",
+   "detail": "A friendly message at the end of every plan of care."
+  },
+  {
+   "when": "Week 3",
+   "title": "Pilates invitations and recall",
+   "detail": "Timed messages that turn discharged patients into Pilates clients."
+  },
+  {
+   "when": "Week 4",
+   "title": "Your first monthly report",
+   "detail": "Reviews, rebookings and how you compare with downtown clinics."
+  }
+ ],
+ "scenario": "A software developer in Gastown hurts his back on Saturday and searches \"physio near me\" on Sunday. He sees your clinic, closed, with 145 reviews, and a wellness clinic in Yaletown with 871 reviews, open now. He books there on Monday and stays. (Illustration.)",
+ "nochange": "You keep winning the search, but the review gap keeps widening. Over time, the bigger number starts winning the patients who would have loved your physios.",
+ "created": "2026-11-13"
+}

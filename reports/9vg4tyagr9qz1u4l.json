@@ -1,0 +1,128 @@
+{
+ "slug": "foundation-body-lab",
+ "business": "Foundation Body Lab",
+ "area": "Mount Pleasant, Vancouver",
+ "headline": {
+  "number": "482 vs 112",
+  "title": "Four blocks away, Couve Health has 482 five-star reviews and is open until 8pm, seven days a week.",
+  "detail": "In our search for a chiropractor on Main Street, two Medimap pages about you appeared, but not your own website. Nearby, Couve Health, StudioHealth (226 reviews) and Northwest Rehab (190) compete for the same patients."
+ },
+ "summary": "Foundation Body Lab offers something patients love: chiro, massage, acupuncture and naturopathy in one calm place, seven days a week. But Main Street is crowded, a clinic four blocks away has more than four times your reviews, and in our search your own website did not appear.",
+ "you": {
+  "rating": "4.8",
+  "reviews": "112",
+  "website": "",
+  "mobile": "",
+  "booking": "yes",
+  "notes": "Chiro, RMT, acupuncture, naturopathy; open 7 days"
+ },
+ "competitors": [
+  {
+   "name": "Couve Health Chiropractic & Physiotherapy",
+   "rating": "5.0",
+   "reviews": "482",
+   "website": "",
+   "mobile": "",
+   "booking": "",
+   "notes": "W Broadway at Main; to 8pm, 7 days"
+  },
+  {
+   "name": "StudioHealth – ChiroWorks",
+   "rating": "5.0",
+   "reviews": "226",
+   "website": "",
+   "mobile": "",
+   "booking": "",
+   "notes": "4196 Main St; open 7 days"
+  },
+  {
+   "name": "Northwest Rehab Group",
+   "rating": "4.9",
+   "reviews": "190",
+   "website": "",
+   "mobile": "",
+   "booking": "",
+   "notes": "2830 Main St; Saturdays to 2pm"
+  },
+  {
+   "name": "My Rest Health Studio",
+   "rating": "5.0",
+   "reviews": "175",
+   "website": "",
+   "mobile": "",
+   "booking": "",
+   "notes": "3456 Main St; acupuncture, RMT; 7 days"
+  }
+ ],
+ "search": [
+  {
+   "query": "chiropractor Mount Pleasant Vancouver Main Street",
+   "result": "Medimap pages for Jointworks, Main Street Chiropractic and Northwest Rehab came first; two Medimap pages about Foundation Body Lab appeared further down. Your own website did not appear in the 18 results.",
+   "meaning": "When patients find you, it's through a directory that lists you next to every competitor on Main Street."
+  }
+ ],
+ "visibility": "In our search for a chiropractor on Main Street, you appeared only through Medimap directory pages. Several nearby clinics with more reviews are also open seven days.",
+ "lead": [
+  "Five disciplines under one roof, including naturopathy and facial acupuncture.",
+  "Open seven days, including Sundays.",
+  "Patients say you get them in quickly when something flares up."
+ ],
+ "lose": [
+  "A clinic four blocks away has 482 five-star reviews and stays open until 8pm every day.",
+  "Two other Main Street clinics with more reviews are also open seven days.",
+  "On a directory page, your 'whole team in one place' advantage is invisible."
+ ],
+ "gaps": [
+  {
+   "title": "Your biggest strength is hard to see",
+   "detail": "Patients love having chiro, massage, acupuncture and naturopathy together, but a directory listing can't show how that works for them."
+  },
+  {
+   "title": "The review gap keeps growing",
+   "detail": "Clinics nearby have two to four times your reviews. Without automatic requests, the gap widens every month."
+  },
+  {
+   "title": "Patients use one service, not all five",
+   "detail": "A massage client may never try acupuncture or naturopathy unless you invite them at the right time."
+  }
+ ],
+ "actions": [
+  {
+   "title": "Show how your team works together",
+   "why": "A clear page that guides people to the right practitioner turns comparison into bookings."
+  },
+  {
+   "title": "Ask every patient for a review automatically",
+   "why": "It's the fastest way to close the gap with the clinics around you."
+  },
+  {
+   "title": "Cross-introduce your services",
+   "why": "Doable today: a short note to massage clients about acupuncture and chiro keeps them in your clinic."
+  }
+ ],
+ "plan": [
+  {
+   "when": "Week 1",
+   "title": "Your new website with booking built in",
+   "detail": "Every discipline explained, with a 'which practitioner is right for me?' guide."
+  },
+  {
+   "when": "Week 2",
+   "title": "Automatic review requests",
+   "detail": "A friendly message after each visit."
+  },
+  {
+   "when": "Week 3",
+   "title": "Cross-service introductions",
+   "detail": "Timed messages that introduce patients to the rest of your team."
+  },
+  {
+   "when": "Week 4",
+   "title": "Your first monthly report",
+   "detail": "Bookings and how you compare with Main Street clinics."
+  }
+ ],
+ "scenario": "A barista on Main Street wakes up with a stiff neck on Sunday. She searches \"chiropractor Main Street Vancouver\", sees a directory listing you alongside a clinic with 482 reviews open until 8pm, and books the bigger number. She never learns you were open too, with massage and acupuncture in the same visit. (Illustration.)",
+ "nochange": "Main Street keeps getting more crowded, and the clinics with more reviews keep winning the comparison. Your all-in-one advantage stays a secret to anyone who hasn't been in.",
+ "created": "2026-11-13"
+}

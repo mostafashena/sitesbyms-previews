@@ -1,0 +1,128 @@
+{
+ "slug": "broadway-at-yew-chiropractic",
+ "business": "Broadway AT Yew Chiropractic & Massage",
+ "area": "Kitsilano, Vancouver",
+ "headline": {
+  "number": "0 of 18",
+  "title": "We searched \"chiropractor Kitsilano Vancouver\". Your booking page came third, but your own website appeared nowhere in 18 results.",
+  "detail": "Patients who clicked saw a booking page and an announcement, not your team or how your practitioners work together. Myodetox, a multi-city chain, appeared twice above you."
+ },
+ "summary": "Broadway AT Yew has 227 reviews at 4.8 and patients who have come for years because your practitioners work together on one plan. But a few blocks away, clinics with 358 and 551 reviews stay open later, one is open seven days, and in our search only your booking page appeared.",
+ "you": {
+  "rating": "4.8",
+  "reviews": "227",
+  "website": "",
+  "mobile": "",
+  "booking": "yes",
+  "notes": "Chiro, physio, RMT, acupuncture; to 5:30pm; closed Sundays"
+ },
+ "competitors": [
+  {
+   "name": "Complete Physio",
+   "rating": "5.0",
+   "reviews": "551",
+   "website": "",
+   "mobile": "",
+   "booking": "",
+   "notes": "W Broadway; to 8pm Mon–Thu"
+  },
+  {
+   "name": "MSK Health and Performance Clinic",
+   "rating": "4.9",
+   "reviews": "358",
+   "website": "",
+   "mobile": "",
+   "booking": "",
+   "notes": "W 4th Ave; to 8pm, Saturdays"
+  },
+  {
+   "name": "Broadway at Burrard Chiropractic",
+   "rating": "4.8",
+   "reviews": "117",
+   "website": "",
+   "mobile": "",
+   "booking": "",
+   "notes": "W Broadway; open 7 days, to 7pm"
+  },
+  {
+   "name": "Etio Health",
+   "rating": "5.0",
+   "reviews": "98",
+   "website": "",
+   "mobile": "",
+   "booking": "",
+   "notes": "Same block of W Broadway; chiro + physio"
+  }
+ ],
+ "search": [
+  {
+   "query": "chiropractor Kitsilano Vancouver",
+   "result": "Medimap pages for Myodetox and Qi Integrated Health came first, then your Jane booking page. The rest were a BIA article, clinic finders, Myodetox's booking page and job postings. Your own website (vancouverbackpain.com) did not appear.",
+   "meaning": "Google sends people to your booking page, but they never see the team approach that keeps your patients for years."
+  }
+ ],
+ "visibility": "In our search for a chiropractor in Kitsilano, your booking page appeared third, but your own website did not. Nearby clinics with longer hours and more reviews compete for the same searches.",
+ "lead": [
+  "227 reviews and patients who have come for years.",
+  "Chiro, physio, massage and acupuncture working together on one plan.",
+  "Trusted through pregnancy, and praised for putting nervous patients at ease."
+ ],
+ "lose": [
+  "You close at 5:30pm; clinics nearby stay open until 7 or 8pm, and one is open on Sundays.",
+  "Two clinics within a few blocks have 358 and 551 reviews.",
+  "Your team approach is invisible on a booking page."
+ ],
+ "gaps": [
+  {
+   "title": "After-work patients go elsewhere",
+   "detail": "Many people can only come after 5:30pm. When they search, they find clinics that are open, unless they can book your next slot online in seconds."
+  },
+  {
+   "title": "Your team approach doesn't show",
+   "detail": "'Practitioners who work together' is why patients stay for years, but new patients can't see it before they book."
+  },
+  {
+   "title": "Pregnancy patients are a natural niche",
+   "detail": "Expecting mothers praise you, but there's no page for them to find when they search."
+  }
+ ],
+ "actions": [
+  {
+   "title": "Explain your team approach on your own site",
+   "why": "It's your clearest difference from single-discipline clinics nearby."
+  },
+  {
+   "title": "Create a page for pregnancy care",
+   "why": "Chiro, acupuncture and massage through every trimester is a search people make."
+  },
+  {
+   "title": "Reply to reviews and ask regulars for new ones",
+   "why": "Doable today: your long-time patients are your best advocates."
+  }
+ ],
+ "plan": [
+  {
+   "when": "Week 1",
+   "title": "Your refreshed website with booking built in",
+   "detail": "Your team and approach explained, with one-tap booking."
+  },
+  {
+   "when": "Week 2",
+   "title": "Automatic review requests",
+   "detail": "A friendly message after each visit."
+  },
+  {
+   "when": "Week 3",
+   "title": "Pregnancy and recall programmes",
+   "detail": "Timed messages for expecting mothers and maintenance visits."
+  },
+  {
+   "when": "Week 4",
+   "title": "Your first monthly report",
+   "detail": "Bookings and how you compare with West Broadway clinics."
+  }
+ ],
+ "scenario": "A nurse finishing a shift at 6pm searches \"chiropractor Kitsilano\" for her aching back. Your booking page shows nothing until tomorrow, while a clinic a few blocks away is open until 8pm. She books there tonight, and it becomes her clinic. (Illustration.)",
+ "nochange": "Your loyal patients stay, but new ones keep choosing the clinics that are open later and look bigger online. Over time, the strip's growth passes you by.",
+ "created": "2026-11-13"
+}

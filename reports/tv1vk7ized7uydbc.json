@@ -1,0 +1,128 @@
+{
+ "slug": "balanced-beast-pt",
+ "business": "Balanced Beast Physical Therapy",
+ "area": "San Marcos, CA",
+ "headline": {
+  "number": "0 of 18",
+  "title": "We searched \"physical therapy San Marcos CA\". Balanced Beast appeared in none of the 18 results, even though some of them were clinics in San Marcos, Texas.",
+  "detail": "Hospital groups, Luna (home PT), Select Physical Therapy and directory pages filled the list. People searching for a PT in your city were shown clinics in another state before you."
+ },
+ "summary": "Balanced Beast has 99 five-star reviews, and patients who tried other clinics say the difference is seeing the same Doctor of PT every visit. But in our search you didn't appear, and a nearby clinic with 134 five-star reviews stays open until 7pm.",
+ "you": {
+  "rating": "5.0",
+  "reviews": "99",
+  "website": "",
+  "mobile": "",
+  "booking": "yes",
+  "notes": "One-on-one DPT; Wednesday to noon; closed weekends"
+ },
+ "competitors": [
+  {
+   "name": "Longevity Physical Therapy – San Marcos",
+   "rating": "5.0",
+   "reviews": "134",
+   "website": "",
+   "mobile": "",
+   "booking": "",
+   "notes": "E San Marcos Blvd; open to 7pm"
+  },
+  {
+   "name": "ProResults Physical Therapy (San Marcos)",
+   "rating": "4.8",
+   "reviews": "186",
+   "website": "",
+   "mobile": "",
+   "booking": "",
+   "notes": "Las Posas Rd"
+  },
+  {
+   "name": "Spine & Sport Physical Therapy – San Marcos",
+   "rating": "4.6",
+   "reviews": "62",
+   "website": "",
+   "mobile": "",
+   "booking": "",
+   "notes": "Montiel Rd; multi-site group"
+  },
+  {
+   "name": "Spine & Sport – Twin Oaks Valley",
+   "rating": "4.5",
+   "reviews": "48",
+   "website": "",
+   "mobile": "",
+   "booking": "",
+   "notes": "Multi-site group"
+  }
+ ],
+ "search": [
+  {
+   "query": "physical therapy San Marcos CA",
+   "result": "Results included CHRISTUS Health and texpts.com (San Marcos, Texas), Luna, Select Physical Therapy and Scripps directory pages. Balanced Beast was not among the 18 results.",
+   "meaning": "Even a search for your own city doesn't lead to you, so new patients rarely hear about the one-on-one care your reviews describe."
+  }
+ ],
+ "visibility": "In our search for physical therapy in San Marcos, you did not appear. Directories, hospital groups and even clinics in San Marcos, Texas took the results.",
+ "lead": [
+  "99 reviews, all five stars, many from people let down by other clinics.",
+  "The same Doctor of PT every visit: a clear, powerful difference.",
+  "A complimentary first visit, and a welcoming clinic (with Nikko the dog)."
+ ],
+ "lose": [
+  "A nearby clinic with 134 five-star reviews is open until 7pm; you close at noon on Wednesdays.",
+  "Patients comparing clinics can't see that you offer a complimentary first visit.",
+  "Your 'same doctor every time' promise is buried in reviews."
+ ],
+ "gaps": [
+  {
+   "title": "Frustrated patients can't find you",
+   "detail": "Your best patients come from clinics where they saw a different assistant every time. People searching for a better option right now don't find you."
+  },
+  {
+   "title": "Your free first visit is invisible",
+   "detail": "Reviews mention it, but someone deciding between clinics never sees it."
+  },
+  {
+   "title": "Discharged patients drift away",
+   "detail": "Without check-ins after discharge, patients don't come back when the next injury happens."
+  }
+ ],
+ "actions": [
+  {
+   "title": "Lead with 'same Doctor of PT, every visit'",
+   "why": "It's the reason patients switch to you; put it front and center."
+  },
+  {
+   "title": "Show the complimentary first visit clearly",
+   "why": "It removes the risk for hesitant patients comparing clinics."
+  },
+  {
+   "title": "Reply to recent reviews and ask happy patients for more",
+   "why": "Doable today: replies show you care, and new reviews keep you ahead of nearby clinics."
+  }
+ ],
+ "plan": [
+  {
+   "when": "Week 1",
+   "title": "Your new website with booking built in",
+   "detail": "Your approach, team and complimentary first visit, with one-tap booking."
+  },
+  {
+   "when": "Week 2",
+   "title": "Review requests",
+   "detail": "Automatic messages after each plan of care, so happy patients become reviews."
+  },
+  {
+   "when": "Week 3",
+   "title": "Check-ins after discharge",
+   "detail": "Messages that bring patients back before small aches become injuries."
+  },
+  {
+   "when": "Week 4",
+   "title": "Your first monthly report",
+   "detail": "Bookings and how you compare with San Marcos clinics."
+  }
+ ],
+ "scenario": "A runner in San Marcos has seen a different assistant every visit at her current PT and still has knee pain. She searches \"physical therapy San Marcos CA\" on her lunch break, sees a hospital group and a home-PT service, and books whichever has a slot. She never finds the clinic where she'd see the same doctor every time. (Illustration.)",
+ "nochange": "Patients who would love your approach keep landing at the clinics you're the antidote to. Your reviews grow slowly, while groups with bigger budgets keep the search results.",
+ "created": "2026-11-13"
+}

@@ -1,0 +1,128 @@
+{
+ "slug": "etio-health-vancouver",
+ "business": "Etio Health",
+ "area": "Kitsilano, Vancouver",
+ "headline": {
+  "number": "0 of 18",
+  "title": "We searched \"chiropractor Kitsilano Vancouver\". Etio Health appeared in none of the 18 results.",
+  "detail": "Myodetox (a multi-city chain), Broadway AT Yew's booking page, directories and job postings took the page. Patients looking for a chiropractor on West Broadway never met the one with 98 five-star reviews."
+ },
+ "summary": "Etio Health has 98 five-star reviews from patients who say you explain why pain happens, not just treat it. But West Broadway is one of Vancouver's most crowded strips for chiro and physio, and in our search you didn't appear at all, while clinics with 358 and 551 reviews sit a few blocks away.",
+ "you": {
+  "rating": "5.0",
+  "reviews": "98",
+  "website": "",
+  "mobile": "",
+  "booking": "yes",
+  "notes": "Chiro + physio + clinical Pilates; closed Sun–Mon"
+ },
+ "competitors": [
+  {
+   "name": "Complete Physio",
+   "rating": "5.0",
+   "reviews": "551",
+   "website": "",
+   "mobile": "",
+   "booking": "",
+   "notes": "W Broadway; open from 7am"
+  },
+  {
+   "name": "MSK Health and Performance Clinic",
+   "rating": "4.9",
+   "reviews": "358",
+   "website": "",
+   "mobile": "",
+   "booking": "",
+   "notes": "W 4th Ave; open to 8pm, Saturdays"
+  },
+  {
+   "name": "Broadway AT Yew Chiropractic & Massage",
+   "rating": "4.8",
+   "reviews": "227",
+   "website": "",
+   "mobile": "",
+   "booking": "",
+   "notes": "Same block of W Broadway; Saturdays"
+  },
+  {
+   "name": "Broadway at Burrard Chiropractic",
+   "rating": "4.8",
+   "reviews": "117",
+   "website": "",
+   "mobile": "",
+   "booking": "",
+   "notes": "W Broadway; open 7 days"
+  }
+ ],
+ "search": [
+  {
+   "query": "chiropractor Kitsilano Vancouver",
+   "result": "Medimap pages for Myodetox and Qi Integrated Health came first, then Broadway AT Yew's booking page, a BIA article, a clinic finder and Myodetox's booking page. Etio Health did not appear in the 18 results.",
+   "meaning": "On the busiest health strip in Kitsilano, people searching for a chiropractor meet everyone except you."
+  }
+ ],
+ "visibility": "In our search for a chiropractor in Kitsilano, you did not appear. On the map, clinics with two to five times your reviews are within a few blocks.",
+ "lead": [
+  "98 reviews, all five stars.",
+  "Chiro and physio with clinical Pilates under one roof.",
+  "Patients say you explain the cause and give exercises to heal faster."
+ ],
+ "lose": [
+  "You're closed Sundays and Mondays; one clinic nearby is open seven days.",
+  "Clinics a few blocks away have 358 and 551 reviews.",
+  "Car-accident and postpartum patients can't see that you specialise in them."
+ ],
+ "gaps": [
+  {
+   "title": "Invisible on the busiest strip",
+   "detail": "West Broadway has a dozen clinics. Without showing up in search, your five-star care is a secret to most of Kitsilano."
+  },
+  {
+   "title": "Monday back pain books elsewhere",
+   "detail": "Weekend injuries get booked on Monday morning, the day you're closed."
+  },
+  {
+   "title": "ICBC and postpartum patients don't find you",
+   "detail": "Car-accident recovery and postpartum care come up in your reviews, but nobody searching for them can see it."
+  }
+ ],
+ "actions": [
+  {
+   "title": "Create pages for car-accident and postpartum recovery",
+   "why": "Specific searches bring specific patients who are ready to book."
+  },
+  {
+   "title": "Ask every patient for a review automatically",
+   "why": "A steady flow of reviews narrows the gap with the big clinics nearby."
+  },
+  {
+   "title": "Add your services and ICBC billing to your Google profile",
+   "why": "Doable today: it helps you show up for the searches you're missing."
+  }
+ ],
+ "plan": [
+  {
+   "when": "Week 1",
+   "title": "Your new website with booking built in",
+   "detail": "Chiro, physio and Pilates explained, with one-tap booking."
+  },
+  {
+   "when": "Week 2",
+   "title": "Automatic review requests",
+   "detail": "A friendly message after each visit."
+  },
+  {
+   "when": "Week 3",
+   "title": "Recall and reminders",
+   "detail": "Messages that bring patients back for maintenance."
+  },
+  {
+   "when": "Week 4",
+   "title": "Your first monthly report",
+   "detail": "Bookings and how you compare with West Broadway clinics."
+  }
+ ],
+ "scenario": "A teacher in Kitsilano is rear-ended on Friday. On Monday morning she searches \"chiropractor Kitsilano\", sees a chain's directory page and a clinic open seven days, and books there before work. A block away, Etio Health, which specialises in getting accident patients back to sport, is closed for the day. (Illustration.)",
+ "nochange": "Patients keep finding the bigger clinics first, and their review counts keep growing. Your reputation spreads by word of mouth only, one patient at a time.",
+ "created": "2026-11-13"
+}

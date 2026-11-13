@@ -1,0 +1,128 @@
+{
+ "slug": "restorative-pt-del-mar",
+ "business": "Restorative Physical Therapy and Pelvic Health",
+ "area": "Del Mar, CA",
+ "headline": {
+  "number": "4 – 0",
+  "title": "We searched \"pelvic floor physical therapy Del Mar\". Four of your booking pages appeared, and not one page of your own website.",
+  "detail": "A Jane booking page shows dates and times, but nothing about your approach, your Pilates training or what mothers say about you. Another pelvic health practice that shares your address appeared right after you."
+ },
+ "summary": "Restorative PT has 33 five-star reviews from mothers who say your care is gentle, deeply knowledgeable and truly restorative. Google already shows you first for pelvic floor therapy in Del Mar, but only through booking pages, so women land on a calendar instead of a reason to choose you.",
+ "you": {
+  "rating": "5.0",
+  "reviews": "33",
+  "website": "",
+  "mobile": "",
+  "booking": "yes",
+  "notes": "Pelvic health PT + Pilates; open 7 days 9–5"
+ },
+ "competitors": [
+  {
+   "name": "Pink Physical Therapy",
+   "rating": "5.0",
+   "reviews": "28",
+   "website": "",
+   "mobile": "",
+   "booking": "",
+   "notes": "Solana Beach; weekdays"
+  },
+  {
+   "name": "Pelvic Health by Crystal",
+   "rating": "5.0",
+   "reviews": "27",
+   "website": "",
+   "mobile": "",
+   "booking": "",
+   "notes": "Same building as you; closed weekends"
+  },
+  {
+   "name": "Source Pelvic Health",
+   "rating": "5.0",
+   "reviews": "26",
+   "website": "",
+   "mobile": "",
+   "booking": "",
+   "notes": "Encinitas; weekdays"
+  },
+  {
+   "name": "PelviTone Physical Therapy",
+   "rating": "5.0",
+   "reviews": "10",
+   "website": "",
+   "mobile": "",
+   "booking": "",
+   "notes": "Solana Beach; postpartum focus"
+  }
+ ],
+ "search": [
+  {
+   "query": "pelvic floor physical therapy Del Mar",
+   "result": "Your Jane booking pages took four of the top six spots, with a San Diego Lineup listing and Pelvic Health by Crystal in between. Your own website (sandiegorestorativept.com) did not appear.",
+   "meaning": "Google sees you as the answer, but women land on a calendar, not on the story that would make them trust you with something so personal."
+  }
+ ],
+ "visibility": "In our search for pelvic floor physical therapy in Del Mar, your booking pages led the results, a great position. But without your own website among them, women see dates, not why to choose you.",
+ "lead": [
+  "Open seven days a week, which no nearby pelvic health practice in our search matched.",
+  "Classical Pilates training plus pelvic health PT: a rare combination.",
+  "Mothers describe support from early pregnancy through postpartum."
+ ],
+ "lose": [
+  "Four other five-star pelvic health practices are within a few miles; at a glance you all look alike.",
+  "Women can't read what a first session involves before booking, so the nervous ones hesitate.",
+  "Your seven-day schedule isn't visible as an advantage."
+ ],
+ "gaps": [
+  {
+   "title": "A calendar isn't reassurance",
+   "detail": "Pelvic health is personal. Women want to know what happens in a session before they book, and a booking page can't tell them."
+  },
+  {
+   "title": "Your biggest advantage is hidden",
+   "detail": "Open every day is huge for new mothers, but nobody comparing practices can see it."
+  },
+  {
+   "title": "Pregnancy patients could become postpartum patients",
+   "detail": "Without a timed follow-up after the due date, mothers you helped in pregnancy may not come back after birth."
+  }
+ ],
+ "actions": [
+  {
+   "title": "Create a page for pregnancy and postpartum",
+   "why": "What a session involves, who it's for and mothers' own words turn a nervous search into a booking."
+  },
+  {
+   "title": "Follow up after due dates automatically",
+   "why": "A gentle message offering postpartum recovery keeps mothers with you."
+  },
+  {
+   "title": "Add your seven-day hours and Pilates to your Google profile",
+   "why": "Doable today: it's your clearest difference from every nearby practice."
+  }
+ ],
+ "plan": [
+  {
+   "when": "Week 1",
+   "title": "Your own website with booking",
+   "detail": "Your approach, Pilates studio and pregnancy and postpartum care, with booking built in."
+  },
+  {
+   "when": "Week 2",
+   "title": "Postpartum follow-ups",
+   "detail": "Timed, gentle messages to pregnancy clients after their due date."
+  },
+  {
+   "when": "Week 3",
+   "title": "Review requests",
+   "detail": "Happy clients asked for a review at the right moment."
+  },
+  {
+   "when": "Week 4",
+   "title": "Your first monthly report",
+   "detail": "Bookings and how you compare with North County pelvic health practices."
+  }
+ ],
+ "scenario": "Three weeks after giving birth, a new mom in Carmel Valley searches \"pelvic floor physical therapy Del Mar\" at 10pm. She finds a booking page with times but no explanation, feels unsure, and opens another practice's site that explains what to expect. She books there, for a weekday she'll struggle to make. (Illustration.)",
+ "nochange": "Google keeps sending women your way, and some keep leaving because a calendar can't reassure them. Practices that explain themselves win the mothers you'd serve best.",
+ "created": "2026-11-13"
+}
