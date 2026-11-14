@@ -56,5 +56,6 @@ require_once __DIR__ . '/_inbox.php';
 try { $ir = inbox_relay(); if ($ir !== 'no new email') echo date('c') . " inbox: $ir\n"; } catch (Throwable $e) { echo date('c') . ' inbox failed: ' . $e->getMessage() . "\n"; }
 try { $br = leads_daily_backup(); if ($br !== 'backup already done today') echo date('c') . " $br\n"; } catch (Throwable $e) { echo date('c') . ' backup failed: ' . $e->getMessage() . "\n"; }
 $GLOBALS['sbm_actor'] = 'auto-send';
+try { require_once __DIR__ . '/_autopersonal.php'; $pr = auto_personal_tick(); if ($pr !== 'nothing to send') echo date('c') . " personal/report: $pr\n"; } catch (Throwable $e) { echo date('c') . ' personal/report failed: ' . $e->getMessage() . "\n"; }
 try { $res = autosend_tick($force); write_json('cron_heartbeat.json', $hb + ['result' => $res, 'at' => time()]); echo date('c') . ' ' . $res . "\n"; }
 catch (Throwable $e) { fwrite(STDERR, 'Auto-send error: ' . $e->getMessage() . "\n"); write_json('cron_heartbeat.json', $hb + ['error' => $e->getMessage()]); exit(1); }
