@@ -166,7 +166,7 @@ function lead_followup_text(array $r, string $channel, string $kind): string {
            . "Would a 15-minute call to walk you through it be helpful? You can pick a time here:\n$book";
     } elseif ($kind === 'rfollow2') {
         $t = "$hi,\n\nA quick thought after our analysis of $biz. The report ends with what our team would do in your first 30 days: your own website with online booking, automatic review requests and reminders, promotions to past clients, and a monthly report like the one we sent.\n\n"
-           . "We work as a growth team, so you don't have to manage any of it yourself, and you see your new site before you pay anything.\n\n"
+           . "We work as a growth team, so you don't have to manage any of it yourself. And there's no upfront cost: we build and run it, and you only pay for new clients who actually book through it.\n\n"
            . "Your analysis: $rep\nHappy to talk it through: $book";
     } elseif ($kind === 'rfollow3') {
         $t = "$hi,\n\nI'll leave it here so I don't fill your " . ($ig ? 'messages' : 'inbox') . ". Your competitive analysis and homepage concept stay online if you'd like to come back to them:\n$rep\n\n"
@@ -175,10 +175,10 @@ function lead_followup_text(array $r, string $channel, string $kind): string {
         // No website "issue" is repeated here: claims about a site must be checked the same day (owner's rule, 7 Nov 2026), and this goes out a week later.
         $t = "$hi,\n\nOne more thought on $biz. We don't just build websites: we work as a growth team for businesses like yours, looking after the website, customer data, marketing automation, reminders and promotions, and regular reports on how you compare with competitors, so you can focus on your clients.\n\n"
            . "The homepage idea we made for you is a first step:\n$link\n\n"
-           . "A good place to start is a free competitive analysis comparing $biz with a few local competitors. If that would be useful, just reply \"yes\".";
+           . "And there's no upfront cost: we build and run it, and you only pay for new clients who actually book through it. If you'd like to hear how that works, just reply here.";
     } else {
         $t = "$hi,\n\nI'll leave it here so I don't fill your " . ($ig ? 'messages' : 'inbox') . ". The homepage idea we made for $biz stays online if you'd like another look:\n$link\n\n"
-           . "Whenever you'd like a hand with your website, marketing or customer follow-up, just reply here. We're happy to be your growth team, and you see your new site before you pay anything.";
+           . "Whenever you'd like a hand with your website, marketing or customer follow-up, just reply here. We're happy to be your growth team, with no upfront cost: you only pay for new clients who book through it.";
     }
     return $t . ($ig ? "\n\nMostafa, Sites By MS" : "\n\nBest regards,\nMostafa\nSites By MS\nhello@sitesbyms.com · WhatsApp +44 7405 760048");
 }
