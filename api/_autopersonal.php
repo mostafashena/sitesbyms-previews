@@ -7,7 +7,7 @@
 function ap_open_now(array $lead): bool {
     $now = new DateTime('now', new DateTimeZone(lead_tz($lead)));
     $h = (int)$now->format('G'); $dow = (int)$now->format('N');
-    return $dow <= 6 && $h >= 8 && $h < 19;
+    return $dow <= 5 && $h >= 8 && $h < 19;
 }
 function ap_prev_mid(int $row): ?string {
     foreach (outreach_all() as $o) if ((int)$o['row'] === $row && !empty($o['mid']) && $o['channel'] === 'Email') return $o['mid'];
