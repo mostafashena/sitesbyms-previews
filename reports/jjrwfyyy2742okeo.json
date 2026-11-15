@@ -1,0 +1,128 @@
+{
+ "slug": "empower-physiotherapy-regina",
+ "business": "Empower Physiotherapy",
+ "area": "East Regina",
+ "headline": {
+  "number": "40 vs 335",
+  "title": "Alpha Center in east Regina has 335 reviews. You have 40, every one of them five stars.",
+  "detail": "In our search for physiotherapy in east Regina, a Medimap page about you came first, but your own website didn't appear. Brownstone Health (212 reviews), OrthoFlex (159) and a national chain all compete for the same patients."
+ },
+ "summary": "Empower Physiotherapy has 40 five-star reviews from patients who say Dr Fichter earns their trust quickly. But nearby clinics have four to eight times as many reviews, and in our search your own website didn't appear.",
+ "you": {
+  "rating": "5.0",
+  "reviews": "40",
+  "website": "",
+  "mobile": "",
+  "booking": "yes",
+  "notes": "Physio; evenings Tue/Thu; closed weekends"
+ },
+ "competitors": [
+  {
+   "name": "Alpha Center",
+   "rating": "4.8",
+   "reviews": "335",
+   "website": "",
+   "mobile": "",
+   "booking": "",
+   "notes": "Park St; to 7pm Tue/Thu"
+  },
+  {
+   "name": "Brownstone Health",
+   "rating": "4.9",
+   "reviews": "212",
+   "website": "",
+   "mobile": "",
+   "booking": "",
+   "notes": "Rose St; chiro, physio, pelvic health"
+  },
+  {
+   "name": "OrthoFlex Physiotherapy",
+   "rating": "5.0",
+   "reviews": "159",
+   "website": "",
+   "mobile": "",
+   "booking": "",
+   "notes": "Gordon Rd; to 7pm Tue/Thu"
+  },
+  {
+   "name": "Restore360 Physiotherapy",
+   "rating": "5.0",
+   "reviews": "57",
+   "website": "",
+   "mobile": "",
+   "booking": "",
+   "notes": "Albert St; Saturdays"
+  }
+ ],
+ "search": [
+  {
+   "query": "physiotherapy Regina east",
+   "result": "A Medimap page about Empower came first, then Arcola Physiotherapy, CBI Health and directory pages. Your booking page appeared further down; your own website did not appear.",
+   "meaning": "Google already sends people your way, but they land on a directory, not on your story."
+  }
+ ],
+ "visibility": "In our search for physiotherapy in east Regina, a directory page about you came first. Your own website didn't appear, and several clinics with far more reviews compete nearby.",
+ "lead": [
+  "40 reviews, all five stars.",
+  "Patients say Dr Fichter earns trust fast and practises with zero arrogance.",
+  "Evening appointments on Tuesdays and Thursdays."
+ ],
+ "lose": [
+  "Clinics nearby have 159 to 335 reviews.",
+  "Restore360 opens on Saturdays.",
+  "First-time patients can't read about your approach before booking."
+ ],
+ "gaps": [
+  {
+   "title": "The review gap",
+   "detail": "You have perfect ratings but far fewer reviews; at a glance, bigger clinics look safer."
+  },
+  {
+   "title": "First-timers need reassurance",
+   "detail": "Many patients are new to physio. A page that explains what happens at the first visit would win them."
+  },
+  {
+   "title": "Weekend searchers",
+   "detail": "Saturday injuries get booked at the clinic that's open."
+  }
+ ],
+ "actions": [
+  {
+   "title": "Ask every patient for a review automatically",
+   "why": "The fastest way to close the gap with larger clinics."
+  },
+  {
+   "title": "Create a 'your first visit' page",
+   "why": "Reassures people new to physio, your strongest audience."
+  },
+  {
+   "title": "Complete your Google profile",
+   "why": "Doable today: photos, services and evening hours."
+  }
+ ],
+ "plan": [
+  {
+   "when": "Week 1",
+   "title": "Your new website with booking built in",
+   "detail": "Your team, specialties and reviews on one page, with one-tap booking from any phone."
+  },
+  {
+   "when": "Week 2",
+   "title": "Automatic review requests",
+   "detail": "A friendly message after each visit, so happy patients become five-star reviews."
+  },
+  {
+   "when": "Week 3",
+   "title": "Reminders and recall",
+   "detail": "Follow-up and maintenance reminders that go out by themselves."
+  },
+  {
+   "when": "Week 4",
+   "title": "Your first monthly report",
+   "detail": "Where you stand against nearby clinics, and what to do next."
+  }
+ ],
+ "scenario": "A retiree in east Regina has new knee pain. She searches \"physiotherapy Regina east\" and sees a clinic with 335 reviews and one with 40. She chooses the bigger number, never learning the smaller clinic has a perfect record and a doctor patients trust instantly. (Illustration.)",
+ "nochange": "Your patients stay loyal, but new ones keep choosing the clinics with more reviews. The gap grows a little every month.",
+ "created": "2026-11-13"
+}

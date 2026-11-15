@@ -1,0 +1,128 @@
+{
+ "slug": "anatomy-physiotherapy-westboro",
+ "business": "Anatomy Physiotherapy Clinic – Westboro",
+ "area": "Westboro, Ottawa",
+ "headline": {
+  "number": "7 – 0",
+  "title": "We searched \"physiotherapy Westboro Ottawa\". A competitor appeared seven times. Anatomy Physiotherapy appeared zero times.",
+  "detail": "Ottawa Physiotherapy & Sport Clinics took Medimap, Poyst, Sports Clinic Finder and more; Physiocare appeared twice. Patients searching for exactly what you do met them, not the clinic with 333 five-star reviews."
+ },
+ "summary": "Anatomy Physiotherapy Westboro has 333 five-star reviews and patients who say your physios explain every step. But in our search for physiotherapy in Westboro you didn't appear once, while a clinic a few blocks away appeared seven times and another with 513 reviews is open seven days.",
+ "you": {
+  "rating": "5.0",
+  "reviews": "333",
+  "website": "",
+  "mobile": "",
+  "booking": "yes",
+  "notes": "Physio + vestibular; 7am–7:30pm weekdays; closed weekends"
+ },
+ "competitors": [
+  {
+   "name": "Ottawa Physiotherapy & Sport Clinics – Westboro",
+   "rating": "4.9",
+   "reviews": "389",
+   "website": "",
+   "mobile": "",
+   "booking": "",
+   "notes": "Churchill Ave; to 8pm, Saturdays"
+  },
+  {
+   "name": "Physiocare Physiotherapy & Rehab – Westboro",
+   "rating": "4.9",
+   "reviews": "513",
+   "website": "",
+   "mobile": "",
+   "booking": "",
+   "notes": "Wellington St W; open 7 days"
+  },
+  {
+   "name": "Core Connections Physiotherapy",
+   "rating": "5.0",
+   "reviews": "87",
+   "website": "",
+   "mobile": "",
+   "booking": "",
+   "notes": "Richmond Rd; pelvic health"
+  },
+  {
+   "name": "Flip Physiotherapy Centre",
+   "rating": "5.0",
+   "reviews": "73",
+   "website": "",
+   "mobile": "",
+   "booking": "",
+   "notes": "Churchill Ave; kids and athletes"
+  }
+ ],
+ "search": [
+  {
+   "query": "physiotherapy Westboro Ottawa",
+   "result": "Ottawa Physiotherapy & Sport Clinics – Westboro appeared seven times (Medimap, Poyst, Sports Clinic Finder and others); Physiocare appeared twice. Anatomy Physiotherapy did not appear.",
+   "meaning": "On your own street, the clinics people find are your neighbours."
+  }
+ ],
+ "visibility": "In our search for physiotherapy in Westboro you did not appear. Two nearby clinics filled most of the results through directories.",
+ "lead": [
+  "333 reviews, all five stars.",
+  "Vestibular rehab for vertigo, with compassionate assessments.",
+  "Open from 7am to 7:30pm on weekdays."
+ ],
+ "lose": [
+  "Closed at weekends; a clinic nearby is open seven days.",
+  "Neighbours appear seven times in search; you appear zero times.",
+  "Your vertigo expertise isn't visible to people searching for it."
+ ],
+ "gaps": [
+  {
+   "title": "Invisible in your own neighbourhood",
+   "detail": "People in Westboro searching for physio find your neighbours first, again and again."
+  },
+  {
+   "title": "Vertigo patients don't find you",
+   "detail": "Vestibular rehab is a specialty people search for specifically, and today nothing points them to you."
+  },
+  {
+   "title": "Weekend injuries go elsewhere",
+   "detail": "Saturday and Sunday searchers find the clinic that's open and often stay."
+  }
+ ],
+ "actions": [
+  {
+   "title": "Create a vertigo and dizziness page",
+   "why": "Specific searches bring specific patients ready to book."
+  },
+  {
+   "title": "Claim and complete your directory listings",
+   "why": "Medimap and others are where your neighbours win; your 333 reviews should be there too."
+  },
+  {
+   "title": "Ask every patient for a review automatically",
+   "why": "Doable today, and it keeps your lead in reviews."
+  }
+ ],
+ "plan": [
+  {
+   "when": "Week 1",
+   "title": "Your new website with booking built in",
+   "detail": "Your team, specialties and reviews on one page, with one-tap booking from any phone."
+  },
+  {
+   "when": "Week 2",
+   "title": "Automatic review requests",
+   "detail": "A friendly message after each visit, so happy patients become five-star reviews."
+  },
+  {
+   "when": "Week 3",
+   "title": "Reminders and recall",
+   "detail": "Follow-up and maintenance reminders that go out by themselves."
+  },
+  {
+   "when": "Week 4",
+   "title": "Your first monthly report",
+   "detail": "Where you stand against nearby clinics, and what to do next."
+  }
+ ],
+ "scenario": "A woman in Westboro wakes up with the room spinning. She searches \"vertigo physiotherapy Westboro\", finds a directory listing for the clinic down the street, and books there, never knowing the clinic around the corner has a vestibular specialist with glowing reviews. (Illustration.)",
+ "nochange": "Your patients keep raving about you, but new ones keep finding your neighbours first. The clinics that appear everywhere keep growing.",
+ "created": "2026-11-13"
+}

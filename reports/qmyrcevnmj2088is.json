@@ -1,0 +1,128 @@
+{
+ "slug": "waterdown-physiotherapy",
+ "business": "Waterdown Physiotherapy",
+ "area": "Waterdown, Ontario",
+ "headline": {
+  "number": "5 × 5.0",
+  "title": "Waterdown has at least five physiotherapy clinics rated 5.0, and Trend Physio has 350 reviews to your 250.",
+  "detail": "In our search for physiotherapy in Waterdown, directory pages about you came first, but not your own website. Movement Solutions opens until 8pm, and pt Health (a national chain) took several spots."
+ },
+ "summary": "Waterdown Physiotherapy has 250 five-star reviews and patients who say Trupti explains the why behind every treatment. But Waterdown is crowded: at least four other clinics are rated 5.0, one has 350 reviews, and a national chain appears repeatedly in search.",
+ "you": {
+  "rating": "5.0",
+  "reviews": "250",
+  "website": "",
+  "mobile": "",
+  "booking": "yes",
+  "notes": "Physio + RMT; to 7:30pm Tue/Thu; Saturday mornings"
+ },
+ "competitors": [
+  {
+   "name": "Trend Physio",
+   "rating": "5.0",
+   "reviews": "350",
+   "website": "",
+   "mobile": "",
+   "booking": "",
+   "notes": "Mallard Trail; physio, chiro, osteopathy; Saturdays"
+  },
+  {
+   "name": "Movement Solutions Physiotherapy",
+   "rating": "5.0",
+   "reviews": "189",
+   "website": "",
+   "mobile": "",
+   "booking": "",
+   "notes": "Rockhaven Lane; to 8pm"
+  },
+  {
+   "name": "ALTA Spine and Sports Therapy",
+   "rating": "5.0",
+   "reviews": "147",
+   "website": "",
+   "mobile": "",
+   "booking": "",
+   "notes": "Hamilton St N; shockwave, chiro"
+  },
+  {
+   "name": "Grindstone Physiotherapy",
+   "rating": "5.0",
+   "reviews": "104",
+   "website": "",
+   "mobile": "",
+   "booking": "",
+   "notes": "Clappison Ave; to 8pm Tue/Thu"
+  }
+ ],
+ "search": [
+  {
+   "query": "physiotherapy Waterdown",
+   "result": "Medimap's page about you came first, then Complete Concussions listings, Grindstone's booking page and several pt Health and Lifemark (chain) pages. Your own website did not appear.",
+   "meaning": "You lead the directories, but patients never reach a page where you explain why to choose you over four other five-star clinics."
+  }
+ ],
+ "visibility": "In our search for physiotherapy in Waterdown you appeared first through Medimap, a good sign. But your own website didn't appear, and a national chain took several spots.",
+ "lead": [
+  "250 reviews, all five stars.",
+  "Quick appointments, even same-day, praised in reviews.",
+  "Printed home exercises and clear explanations."
+ ],
+ "lose": [
+  "Trend Physio has 350 reviews and offers osteopathy and chiropractic too.",
+  "Movement Solutions and Grindstone stay open until 8pm.",
+  "When everyone is rated 5.0, patients choose on what they can read, and you have no page of your own in search."
+ ],
+ "gaps": [
+  {
+   "title": "When everyone is 5.0, the story decides",
+   "detail": "Five clinics with perfect ratings look identical on a map. The one that explains itself wins."
+  },
+  {
+   "title": "Your quick-appointment strength is hidden",
+   "detail": "Same-day appointments are a huge reason to choose you, but nobody comparing can see it."
+  },
+  {
+   "title": "Post-surgery patients are a natural niche",
+   "detail": "Reviews mention neck surgery and knee recovery, but there's no page for people searching for it."
+  }
+ ],
+ "actions": [
+  {
+   "title": "Lead with quick appointments",
+   "why": "In a town full of 5.0 clinics, speed is the reason to pick you."
+  },
+  {
+   "title": "Create a post-surgery rehab page",
+   "why": "People search for it before and after surgery."
+  },
+  {
+   "title": "Keep asking every patient for a review",
+   "why": "Doable today: closes the gap with Trend Physio."
+  }
+ ],
+ "plan": [
+  {
+   "when": "Week 1",
+   "title": "Your new website with booking built in",
+   "detail": "Your team, specialties and reviews on one page, with one-tap booking from any phone."
+  },
+  {
+   "when": "Week 2",
+   "title": "Automatic review requests",
+   "detail": "A friendly message after each visit, so happy patients become five-star reviews."
+  },
+  {
+   "when": "Week 3",
+   "title": "Reminders and recall",
+   "detail": "Follow-up and maintenance reminders that go out by themselves."
+  },
+  {
+   "when": "Week 4",
+   "title": "Your first monthly report",
+   "detail": "Where you stand against nearby clinics, and what to do next."
+  }
+ ],
+ "scenario": "A man in Waterdown has knee surgery scheduled. His surgeon says to find a physio. He searches and sees five clinics, all 5.0. One has a page about post-surgery rehab with patient stories, and he books there. (Illustration.)",
+ "nochange": "Waterdown keeps getting more crowded with excellent clinics, and the ones that explain themselves best keep winning the patients who can't tell you apart.",
+ "created": "2026-11-13"
+}

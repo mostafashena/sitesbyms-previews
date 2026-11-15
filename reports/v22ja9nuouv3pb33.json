@@ -1,0 +1,110 @@
+{
+ "slug": "thrive-physiotherapy-hamilton",
+ "business": "Thrive Physiotherapy",
+ "area": "Locke Street, Hamilton",
+ "headline": {
+  "number": "224 vs 133",
+  "title": "Two blocks up Locke Street, Function101 has 224 five-star reviews and opens at 7am.",
+  "detail": "In our search for physiotherapy on Locke Street, Medimap pages about you and Regent Health Centre filled the results; your own website didn't appear. Three clinics compete for the same street."
+ },
+ "summary": "Thrive Physiotherapy has 133 reviews at 4.9 and patients who say Nupur and Nikita bring relief from the very first visit. But Locke Street has three strong clinics within a few hundred metres, Function101 has 224 five-star reviews, and in our search your own website did not appear.",
+ "you": {
+  "rating": "4.9",
+  "reviews": "133",
+  "website": "",
+  "mobile": "",
+  "booking": "yes",
+  "notes": "Physio + RMT; to 8pm weekdays, Saturdays"
+ },
+ "competitors": [
+  {
+   "name": "Function101 Chiro + Physio",
+   "rating": "5.0",
+   "reviews": "224",
+   "website": "",
+   "mobile": "",
+   "booking": "",
+   "notes": "101 Locke St S; 7am–8pm, Saturdays"
+  },
+  {
+   "name": "Regent Health Centre",
+   "rating": "4.9",
+   "reviews": "59",
+   "website": "",
+   "mobile": "",
+   "booking": "",
+   "notes": "150 Locke St S; open 7 days"
+  }
+ ],
+ "search": [
+  {
+   "query": "physiotherapy Hamilton Locke Street",
+   "result": "Medimap pages for Regent Health Centre and Thrive Physiotherapy filled the results, with Fresha directory pages below. Your own website (thrivephysio.com) did not appear.",
+   "meaning": "People find you through a directory that lists you next to your neighbours, not through your own page."
+  }
+ ],
+ "visibility": "In our search for physiotherapy on Locke Street you appeared only through Medimap. A clinic two blocks away has more reviews and opens earlier.",
+ "lead": [
+  "Open until 8pm on weekdays and on Saturdays.",
+  "Patients describe relief from the very first visit.",
+  "Sciatica treatment that brings people in from Facebook."
+ ],
+ "lose": [
+  "Function101, two blocks away, has 224 five-star reviews and opens at 7am.",
+  "Regent Health Centre is open on Sundays.",
+  "In search, you only appear through a directory."
+ ],
+ "gaps": [
+  {
+   "title": "The review gap on your own street",
+   "detail": "When patients compare three clinics on Locke Street, the one with 224 reviews looks safest."
+  },
+  {
+   "title": "Your sciatica success isn't on a page",
+   "detail": "Your Facebook ad brings people in, but there's no page that tells the sciatica story to people searching for it."
+  },
+  {
+   "title": "Directory-only visibility",
+   "detail": "Medimap lists you next to your neighbours; your own page would let you make your case."
+  }
+ ],
+ "actions": [
+  {
+   "title": "Build a sciatica page and send your ads to it",
+   "why": "A page that tells your story turns ad clicks into bookings."
+  },
+  {
+   "title": "Ask every patient for a review automatically",
+   "why": "Closes the gap with Function101."
+  },
+  {
+   "title": "Keep your Medimap profile complete",
+   "why": "Doable today: photos, hours and services where patients already compare."
+  }
+ ],
+ "plan": [
+  {
+   "when": "Week 1",
+   "title": "Your new website with booking built in",
+   "detail": "Your team, specialties and reviews on one page, with one-tap booking from any phone."
+  },
+  {
+   "when": "Week 2",
+   "title": "Automatic review requests",
+   "detail": "A friendly message after each visit, so happy patients become five-star reviews."
+  },
+  {
+   "when": "Week 3",
+   "title": "Reminders and recall",
+   "detail": "Follow-up and maintenance reminders that go out by themselves."
+  },
+  {
+   "when": "Week 4",
+   "title": "Your first monthly report",
+   "detail": "Where you stand against nearby clinics, and what to do next."
+  }
+ ],
+ "scenario": "A gardener in Kirkendall throws out his back on Saturday. He searches \"physio Locke Street\", sees three clinics, and books the one with 224 reviews that opens at 7am on Monday, two blocks from you. (Illustration.)",
+ "nochange": "Locke Street keeps getting more competitive, and the clinic with more reviews keeps winning the comparison.",
+ "created": "2026-11-13"
+}

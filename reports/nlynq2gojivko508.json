@@ -1,0 +1,119 @@
+{
+ "slug": "the-physiotherapy-place-edinburgh",
+ "business": "The Physiotherapy Place",
+ "area": "Portobello, Edinburgh",
+ "headline": {
+  "number": "6am–10pm",
+  "title": "Health by Science in Leith takes bookings from 6am to 10pm, seven days a week. You close at 3–4pm on Mondays and Fridays.",
+  "detail": "In our search for physiotherapy in Portobello your own site appeared, which is a strong start. But people choosing at 8pm or on a Sunday see the clinics that are open, and Leith has two with long hours and strong reviews."
+ },
+ "summary": "The Physiotherapy Place is one of the best-reviewed physios in east Edinburgh: 241 five-star reviews in Portobello and 146 in Musselburgh. The risk is the hours race: Leith clinics open from 6–7am until 8–10pm, and patients who can only come after work or at weekends drift towards them.",
+ "you": {
+  "rating": "5.0",
+  "reviews": "241",
+  "website": "",
+  "mobile": "",
+  "booking": "yes",
+  "notes": "Portobello + Musselburgh; Mon/Fri close 3–4pm"
+ },
+ "competitors": [
+  {
+   "name": "Health by Science Physiotherapy",
+   "rating": "4.9",
+   "reviews": "156",
+   "website": "",
+   "mobile": "",
+   "booking": "",
+   "notes": "Giles Street, Leith; 6am–10pm, 7 days"
+  },
+  {
+   "name": "The Physiotherapy Clinics – Leith",
+   "rating": "5.0",
+   "reviews": "82",
+   "website": "",
+   "mobile": "",
+   "booking": "",
+   "notes": "Ocean Drive; 7am–8pm weekdays, Saturdays"
+  },
+  {
+   "name": "The Manual Therapy Clinic",
+   "rating": "5.0",
+   "reviews": "165",
+   "website": "",
+   "mobile": "",
+   "booking": "",
+   "notes": "West End; to 7pm, Saturdays"
+  }
+ ],
+ "search": [
+  {
+   "query": "physiotherapy Portobello Edinburgh",
+   "result": "A Fresha directory page came first, then WhatClinic, then your own site and booking page. Fresha and WhatClinic list other clinics next to you.",
+   "meaning": "You are found, but the first thing many people see is a directory that offers them alternatives."
+  }
+ ],
+ "visibility": "In our search for physiotherapy in Portobello your own site appeared near the top, a great position. The first result, though, was a directory page that lists other clinics alongside you.",
+ "lead": [
+  "241 five-star reviews in Portobello and 146 in Musselburgh.",
+  "Two seaside locations and strong support for runners.",
+  "Patients who had bad experiences elsewhere say they finally felt safe."
+ ],
+ "lose": [
+  "Leith clinics take bookings until 8–10pm and on Sundays; you close at 3–4pm on Mondays and Fridays.",
+  "The first search result is a directory that shows patients other options before you.",
+  "One review mentions two price rises, so value needs explaining clearly."
+ ],
+ "gaps": [
+  {
+   "title": "After-work patients go to Leith",
+   "detail": "People who can only come after 6pm or at weekends find clinics that are open, and book there."
+  },
+  {
+   "title": "Directories sit between you and patients",
+   "detail": "When Fresha or WhatClinic comes first, patients compare you with others before they ever reach your page."
+  },
+  {
+   "title": "Your two clinics aren't working together online",
+   "detail": "Musselburgh and Portobello each have strong reviews, but a patient searching one area rarely learns about the other."
+  }
+ ],
+ "actions": [
+  {
+   "title": "Make evening and Saturday slots easy to find and book",
+   "why": "Even a few later slots, clearly bookable online, stop after-work patients drifting to Leith."
+  },
+  {
+   "title": "Ask every patient for a review automatically",
+   "why": "Keeps you ahead as Leith clinics grow their reviews."
+  },
+  {
+   "title": "Show both locations on your Google profiles",
+   "why": "Doable today: link Portobello and Musselburgh so each one sends patients to the other."
+  }
+ ],
+ "plan": [
+  {
+   "when": "Week 1",
+   "title": "Your new website with booking built in",
+   "detail": "Your team, specialties and reviews on one page, with one-tap booking from any phone."
+  },
+  {
+   "when": "Week 2",
+   "title": "Automatic review requests",
+   "detail": "A friendly message after each visit, so happy patients become five-star reviews."
+  },
+  {
+   "when": "Week 3",
+   "title": "Reminders and recall",
+   "detail": "Follow-up and maintenance reminders that go out by themselves."
+  },
+  {
+   "when": "Week 4",
+   "title": "Your first monthly report",
+   "detail": "Where you stand against nearby clinics, and what to do next."
+  }
+ ],
+ "scenario": "A teacher in Joppa hurts her knee on Saturday's parkrun. On Sunday evening she searches \"physio near me\", sees you closed, and finds a Leith clinic taking bookings until 10pm. She books for Monday at 7am and becomes their patient. (Illustration.)",
+ "nochange": "Your reviews stay excellent, but patients who need early, late or weekend appointments keep finding clinics in Leith. Over time those clinics catch up on reviews too.",
+ "created": "2026-11-13"
+}
