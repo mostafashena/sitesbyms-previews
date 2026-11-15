@@ -80,6 +80,7 @@ function autosend_tick(bool $force = false): string {
     $due = [];
     foreach (array_keys($zones) as $z) {
         $now = new DateTime('now', new DateTimeZone($z)); $local = $now->format('Y-m-d');
+        if (!$force && (int)$now->format('N') >= 6) continue;   // owner-run clinics read business email on weekdays: no automatic sends on Saturday/Sunday local time (15 Nov 2026)
         if (($done[$z] ?? '') === $local && !$force) continue;
         $start = (clone $now)->setTime($h, $m); $end = (clone $start)->modify('+4 hours');
         if ($force || ($now >= $start && $now <= $end)) $due[$z] = $local;
