@@ -1,0 +1,119 @@
+{
+ "slug": "sunset-performance-pt",
+ "business": "Sunset Performance Physical Therapy",
+ "area": "Point Loma, San Diego",
+ "headline": {
+  "number": "0 of 20",
+  "title": "We searched \"physical therapy Point Loma San Diego\". Your own website appeared in none of the 20 results.",
+  "detail": "You appeared once, as a listing on a local directory. RISE, Nexus, Catalyst and Rehab United each appeared two or three times. A patient choosing a PT in Point Loma meets them first."
+ },
+ "summary": "Sunset Performance has 26 five-star reviews from patients who say Dr Noora takes real time, explains the why, and never rushes, including rare pelvic floor and facial-injury care. But in our search your own website didn't appear, while nearby clinics with 119–141 reviews filled the page.",
+ "you": {
+  "rating": "5.0",
+  "reviews": "26",
+  "website": "",
+  "mobile": "",
+  "booking": "yes",
+  "notes": "One-to-one DPT; pelvic floor; Saturday mornings"
+ },
+ "competitors": [
+  {
+   "name": "Catalyst Performance Center",
+   "rating": "5.0",
+   "reviews": "141",
+   "website": "",
+   "mobile": "",
+   "booking": "",
+   "notes": "W Point Loma Blvd; 7am–7:30pm weekdays"
+  },
+  {
+   "name": "RISE Physical Therapy",
+   "rating": "4.8",
+   "reviews": "119",
+   "website": "",
+   "mobile": "",
+   "booking": "",
+   "notes": "Liberty Station; from 7am weekdays"
+  },
+  {
+   "name": "Nexus Physical Therapy",
+   "rating": "4.9",
+   "reviews": "29",
+   "website": "",
+   "mobile": "",
+   "booking": "",
+   "notes": "Sports Arena Blvd; from 7am weekdays"
+  }
+ ],
+ "search": [
+  {
+   "query": "physical therapy Point Loma San Diego",
+   "result": "RISE, Nexus, Catalyst and Rehab United appeared two or three times each (their own pages and listings). Sunset Performance appeared once, as a directory listing in 11th place. Your own website did not appear.",
+   "meaning": "People looking for a PT in your area see four other clinics several times before they see you once."
+  }
+ ],
+ "visibility": "In our search for physical therapy in Point Loma, your own website did not appear and your one listing came halfway down the page. Clinics nearby with more reviews took most of the results.",
+ "lead": [
+  "26 reviews, all five stars, praising time, personal attention and clear explanations.",
+  "Pelvic floor therapy and complex post-injury rehab (scar tissue, facial fracture) are rare specialisms.",
+  "Saturday morning appointments; most nearby clinics are closed on Saturdays."
+ ],
+ "lose": [
+  "Nearby clinics have 119–141 reviews, so on a map they look like the safer choice.",
+  "In our search your own website did not appear; theirs did, several times.",
+  "Several competitors open at 7am on weekdays; you open at 8am."
+ ],
+ "gaps": [
+  {
+   "title": "Pelvic floor patients can't find the specialist",
+   "detail": "Pelvic floor care is a reason to travel across town, but someone searching for it in Point Loma sees general clinics first."
+  },
+  {
+   "title": "The review gap does the deciding",
+   "detail": "On a map, 26 reviews next to 141 makes the bigger clinic look safer, even when your care is more personal."
+  },
+  {
+   "title": "Your Saturday hours are invisible",
+   "detail": "Most nearby clinics are closed on Saturdays. Nobody searching on a Friday evening learns that you are open."
+  }
+ ],
+ "actions": [
+  {
+   "title": "Give pelvic floor care its own page and search listing",
+   "why": "A clear page for pelvic floor therapy in Point Loma reaches the patients who are actively looking for exactly what you do."
+  },
+  {
+   "title": "Ask every patient for a review automatically",
+   "why": "Closing the gap from 26 towards 100+ changes how you look next to bigger clinics."
+  },
+  {
+   "title": "Add your Saturday hours and booking link to every listing",
+   "why": "Doable today: make sure the Saturday 8–11am slots show wherever people see you."
+  }
+ ],
+ "plan": [
+  {
+   "when": "Week 1",
+   "title": "Your new website with booking built in",
+   "detail": "Your team, specialties and reviews on one page, with one-tap booking from any phone."
+  },
+  {
+   "when": "Week 2",
+   "title": "Automatic review requests",
+   "detail": "A friendly message after each visit, so happy patients become five-star reviews."
+  },
+  {
+   "when": "Week 3",
+   "title": "Reminders and recall",
+   "detail": "Follow-up and maintenance reminders that go out by themselves."
+  },
+  {
+   "when": "Week 4",
+   "title": "Your first monthly report",
+   "detail": "Where you stand against nearby clinics, and what to do next."
+  }
+ ],
+ "scenario": "A new mum in Ocean Beach finally decides to deal with pelvic floor problems. On Thursday night she searches \"pelvic floor physical therapy Point Loma\", sees bigger clinics with more reviews, and books one of them. She never learns that the specialist with the most personal care was on Kenyon Street. (Illustration.)",
+ "nochange": "Your patients keep loving you, but new patients keep choosing the clinics they see first. The review gap grows a little every month.",
+ "created": "2026-11-16"
+}

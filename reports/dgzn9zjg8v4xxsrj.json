@@ -1,0 +1,119 @@
+{
+ "slug": "cedar-and-sage-physiotherapy",
+ "business": "Cedar & Sage Physiotherapy",
+ "area": "Quadra Street, Victoria",
+ "headline": {
+  "number": "15 vs 744",
+  "title": "A clinic up Quadra Street has 744 Google reviews; Apollo Performance Therapy has 164. Cedar & Sage has 15.",
+  "detail": "Every one of your reviews is five stars, and one patient flew in from California. But on a map, 15 reviews next to hundreds makes the bigger clinic look like the safer choice."
+ },
+ "summary": "Cedar & Sage offers rare care (ConnectTherapy, vestibular and concussion rehab, TMJ and rib cage pain) and every review is five stars. In our search for physiotherapy on Quadra, though, your own website did not appear, and nearby clinics with 10 to 50 times more reviews looked stronger.",
+ "you": {
+  "rating": "5.0",
+  "reviews": "15",
+  "website": "",
+  "mobile": "",
+  "booking": "yes",
+  "notes": "ConnectTherapy, vestibular, TMJ; 7am starts"
+ },
+ "competitors": [
+  {
+   "name": "Synergy Health Centre",
+   "rating": "4.8",
+   "reviews": "744",
+   "website": "",
+   "mobile": "",
+   "booking": "",
+   "notes": "Quadra St; 7am–8pm, Saturdays"
+  },
+  {
+   "name": "Apollo Performance Therapy",
+   "rating": "5.0",
+   "reviews": "164",
+   "website": "",
+   "mobile": "",
+   "booking": "",
+   "notes": "Quadra St (downtown); to 7pm weekdays"
+  },
+  {
+   "name": "Agile Integrated Health (Quadra St)",
+   "rating": "4.9",
+   "reviews": "12",
+   "website": "",
+   "mobile": "",
+   "booking": "",
+   "notes": "Quadra St; to 7pm weekdays"
+  }
+ ],
+ "search": [
+  {
+   "query": "physiotherapy Victoria BC Quadra",
+   "result": "Your Medimap listings appeared three times and your booking page once, but your own website did not appear. Lifemark pages appeared three times, and Apollo and South Island Physiotherapy also showed.",
+   "meaning": "People find directory listings about you, which place other clinics right next to yours, instead of your own story."
+  }
+ ],
+ "visibility": "In our search for physiotherapy on Quadra, directories showed your listing but your own website didn't appear. Larger clinics nearby appeared with their own pages.",
+ "lead": [
+  "Every review is five stars, describing chronic pain finally understood and relieved.",
+  "Rare specialisms: ConnectTherapy, vestibular and concussion rehab, TMJ and rib cage pain.",
+  "7am starts Monday to Thursday, and a warm clinic (patients mention Molly by name)."
+ ],
+ "lose": [
+  "15 reviews next to 164 and 744 on the same street.",
+  "Your own website didn't appear in our search; directories did, listing other clinics too.",
+  "Closed Saturdays, while the largest clinic nearby opens 8am–4pm."
+ ],
+ "gaps": [
+  {
+   "title": "Patients with dizziness or jaw pain don't know you exist",
+   "detail": "Your rarest specialisms are exactly what people search for when nothing else has worked, and nothing of yours appears for them."
+  },
+  {
+   "title": "The big clinic looks safer",
+   "detail": "On a map, a 744-review centre wins most first-time decisions, even when the care you offer is more specialised."
+  },
+  {
+   "title": "Directories frame you as one of many",
+   "detail": "When Medimap shows you, it lists alternatives alongside you."
+  }
+ ],
+ "actions": [
+  {
+   "title": "Give your specialisms their own pages",
+   "why": "Vestibular, concussion and TMJ patients search for those words and travel for the right clinician."
+  },
+  {
+   "title": "Ask every patient for a review automatically",
+   "why": "Each new review narrows the gap that decides first impressions on the map."
+  },
+  {
+   "title": "Link your own website from every listing",
+   "why": "Doable today: send people to your story, not a directory page."
+  }
+ ],
+ "plan": [
+  {
+   "when": "Week 1",
+   "title": "Your new website with booking built in",
+   "detail": "Your team, specialties and reviews on one page, with one-tap booking from any phone."
+  },
+  {
+   "when": "Week 2",
+   "title": "Automatic review requests",
+   "detail": "A friendly message after each visit, so happy patients become five-star reviews."
+  },
+  {
+   "when": "Week 3",
+   "title": "Reminders and recall",
+   "detail": "Follow-up and maintenance reminders that go out by themselves."
+  },
+  {
+   "when": "Week 4",
+   "title": "Your first monthly report",
+   "detail": "Where you stand against nearby clinics, and what to do next."
+  }
+ ],
+ "scenario": "A man in Oaklands has had dizziness since a concussion. On a Tuesday evening he searches \"vestibular physiotherapy Victoria\", sees large clinics with hundreds of reviews, and books the first one. The team on Quadra trained for exactly his problem is never on his screen. (Illustration.)",
+ "nochange": "The patients who find you stay and recommend you. Patients searching for the problems you're best at keep going to the clinics they see first.",
+ "created": "2026-11-16"
+}

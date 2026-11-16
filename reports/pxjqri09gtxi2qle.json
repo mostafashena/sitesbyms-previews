@@ -1,0 +1,128 @@
+{
+ "slug": "mcinnes-physiotherapy",
+ "business": "McInnes Physiotherapy",
+ "area": "Nutana, Saskatoon",
+ "headline": {
+  "number": "4 – 0",
+  "title": "We searched \"physiotherapy Saskatoon Nutana\". Holistic Physiotherapy appeared 4 times. McInnes Physiotherapy appeared 0 times.",
+  "detail": "Directories, job boards and other clinics filled the 17 results. Nearby clinics also take bookings in the evenings and on Saturdays; you close at 4:30pm on weekdays."
+ },
+ "summary": "McInnes Physiotherapy has loyal patients who've trusted Mitch for years, from CrossFit athletes to car-accident recovery. But in our search for physiotherapy in Nutana you didn't appear at all, and clinics a few blocks away offer evening and weekend appointments.",
+ "you": {
+  "rating": "4.9",
+  "reviews": "23",
+  "website": "",
+  "mobile": "",
+  "booking": "yes",
+  "notes": "Mitch McInnes and team; weekdays 8am–4:30pm"
+ },
+ "competitors": [
+  {
+   "name": "Revitalize Physiotherapy & Rehab",
+   "rating": "5.0",
+   "reviews": "188",
+   "website": "",
+   "mobile": "",
+   "booking": "",
+   "notes": "8th Street E; to 7pm weekdays, Saturdays"
+  },
+  {
+   "name": "Holistic Physiotherapy & Wellness",
+   "rating": "5.0",
+   "reviews": "190",
+   "website": "",
+   "mobile": "",
+   "booking": "",
+   "notes": "4th Ave N; open 7 days"
+  },
+  {
+   "name": "Summit Sports and Health Broadway",
+   "rating": "4.8",
+   "reviews": "89",
+   "website": "",
+   "mobile": "",
+   "booking": "",
+   "notes": "Broadway Ave; to 7pm weekdays, Saturdays"
+  },
+  {
+   "name": "Still Physio",
+   "rating": "5.0",
+   "reviews": "13",
+   "website": "",
+   "mobile": "",
+   "booking": "",
+   "notes": "Broadway Ave; Saturday mornings"
+  }
+ ],
+ "search": [
+  {
+   "query": "physiotherapy Saskatoon Nutana",
+   "result": "Holistic Physiotherapy appeared four times (directory listings and its own pages). Fresha, PainHero, job boards and a provincial health page took most other spots. McInnes Physiotherapy did not appear in the 17 results.",
+   "meaning": "Someone looking for a physio in your neighbourhood finds another clinic four times and you not at all."
+  }
+ ],
+ "visibility": "In our search for physiotherapy in Nutana, your clinic did not appear. Patients who already know Mitch find you, but new patients choosing by area meet other clinics first.",
+ "lead": [
+  "Long-term loyalty: patients describe years of care and monthly tune-ups.",
+  "Broad experience: sports and CrossFit injuries, accidents, migraines.",
+  "Reviews praise honesty, respect and programmes that progress logically."
+ ],
+ "lose": [
+  "Nearby clinics have 89–190 reviews; you have 23.",
+  "They take bookings until 7pm and on Saturdays; you close at 4:30pm on weekdays.",
+  "In our search you didn't appear; Holistic appeared four times."
+ ],
+ "gaps": [
+  {
+   "title": "After-work patients go elsewhere",
+   "detail": "People who can't leave work before 5pm book with clinics open until 7pm or on Saturdays."
+  },
+  {
+   "title": "New patients never meet you",
+   "detail": "Searching by neighbourhood shows other clinics, so your loyal-patient reputation never reaches newcomers."
+  },
+  {
+   "title": "The review gap",
+   "detail": "On a map, 23 reviews next to 188 makes the decision for many people."
+  }
+ ],
+ "actions": [
+  {
+   "title": "Make your booking and hours easy to find online",
+   "why": "A clear page with online booking turns people searching in Nutana into patients."
+  },
+  {
+   "title": "Ask every patient for a review automatically",
+   "why": "Your loyal patients are your best asset; a gentle automatic request turns that loyalty into reviews."
+  },
+  {
+   "title": "Consider one later or Saturday slot",
+   "why": "Doable without us: even one evening a week reaches the patients who now go elsewhere."
+  }
+ ],
+ "plan": [
+  {
+   "when": "Week 1",
+   "title": "Your new website with booking built in",
+   "detail": "Your team, specialties and reviews on one page, with one-tap booking from any phone."
+  },
+  {
+   "when": "Week 2",
+   "title": "Automatic review requests",
+   "detail": "A friendly message after each visit, so happy patients become five-star reviews."
+  },
+  {
+   "when": "Week 3",
+   "title": "Reminders and recall",
+   "detail": "Follow-up and maintenance reminders that go out by themselves."
+  },
+  {
+   "when": "Week 4",
+   "title": "Your first monthly report",
+   "detail": "Where you stand against nearby clinics, and what to do next."
+  }
+ ],
+ "scenario": "A nurse in Nutana hurts her back lifting a patient. She can't leave work before 5pm, so that evening she searches \"physio near me\", sees clinics open until 7pm and on Saturdays, and books one. McInnes, five minutes away, never appears. (Illustration.)",
+ "nochange": "Your loyal patients keep coming back. But the people moving into Nutana, or injured for the first time, keep finding the clinics they see first.",
+ "created": "2026-11-16"
+}

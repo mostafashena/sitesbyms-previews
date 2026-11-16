@@ -1,0 +1,119 @@
+{
+ "slug": "arlo-physical-therapy",
+ "business": "Arlo Physical Therapy & Wellness",
+ "area": "Minneapolis",
+ "headline": {
+  "number": "0 of 17",
+  "title": "We searched \"pelvic floor physical therapy Minneapolis\". Arlo appeared in none of the 17 results.",
+  "detail": "Mayo Clinic, Luna's home physical therapy, an Edina pelvic specialist and several other clinics took the page. Patients looking for exactly what you do never meet you."
+ },
+ "summary": "Arlo has 21 five-star reviews describing life-changing pelvic floor, pregnancy and hypermobility care, plus something almost no competitor offers: Sunday appointments. But in our search for pelvic floor physical therapy in Minneapolis, you didn't appear at all.",
+ "you": {
+  "rating": "5.0",
+  "reviews": "21",
+  "website": "",
+  "mobile": "",
+  "booking": "yes",
+  "notes": "Pelvic floor + EDS/hypermobility; Sunday hours"
+ },
+ "competitors": [
+  {
+   "name": "Bethany Hansen, LLC (pelvic floor PT)",
+   "rating": "5.0",
+   "reviews": "74",
+   "website": "",
+   "mobile": "",
+   "booking": "",
+   "notes": "Edina; weekdays to 6pm"
+  },
+  {
+   "name": "Realign Pelvic Health",
+   "rating": "5.0",
+   "reviews": "45",
+   "website": "",
+   "mobile": "",
+   "booking": "",
+   "notes": "Plymouth; weekdays"
+  },
+  {
+   "name": "Sakura Pelvic Health",
+   "rating": "5.0",
+   "reviews": "27",
+   "website": "",
+   "mobile": "",
+   "booking": "",
+   "notes": "Grand Ave, St Paul; weekdays to 4pm"
+  }
+ ],
+ "search": [
+  {
+   "query": "pelvic floor physical therapy Minneapolis",
+   "result": "Mayo Clinic (twice), Luna home PT (twice), Bethany Hansen's pelvic floor practice (twice), The Good Mvmt and others. Arlo did not appear in the 17 results.",
+   "meaning": "People searching for the care you specialise in find hospitals, an app-based home service and other specialists, not you."
+  }
+ ],
+ "visibility": "In our search for pelvic floor physical therapy in Minneapolis, Arlo did not appear. Your booking pages are there for people who already know your name, but new patients searching by need don't reach them.",
+ "lead": [
+  "Sunday appointments; the pelvic specialists we compared are weekday-only.",
+  "Rare depth in hypermobility, EDS and C-section scar care.",
+  "Every review is five stars and describes care without judgement."
+ ],
+ "lose": [
+  "Specialists in Edina and Plymouth have 45–74 reviews and appear in searches; you don't.",
+  "Hospitals and Luna take the top of the page for pelvic floor searches.",
+  "Your Sunday hours, a real advantage, aren't visible to people comparing clinics."
+ ],
+ "gaps": [
+  {
+   "title": "Searchers find Mayo or an app first",
+   "detail": "Someone ready to book pelvic floor PT sees a hospital or a home-visit app and chooses one of them."
+  },
+  {
+   "title": "Sunday hours go unseen",
+   "detail": "Working parents who can only come at weekends don't know that you are open on Sundays."
+  },
+  {
+   "title": "Your specialisms aren't searchable",
+   "detail": "Hypermobility and EDS patients search for those words; nothing of yours appears for them."
+  }
+ ],
+ "actions": [
+  {
+   "title": "Create a clear pelvic floor page for Minneapolis",
+   "why": "Patients search by need. A focused page with your Sunday hours gives them a reason to choose you."
+  },
+  {
+   "title": "Ask every patient for a review automatically",
+   "why": "Moving from 21 towards 75 puts you level with the specialists who now appear first."
+  },
+  {
+   "title": "Show your Sunday hours everywhere you're listed",
+   "why": "Doable today: it's your clearest advantage over weekday-only clinics."
+  }
+ ],
+ "plan": [
+  {
+   "when": "Week 1",
+   "title": "Your new website with booking built in",
+   "detail": "Your team, specialties and reviews on one page, with one-tap booking from any phone."
+  },
+  {
+   "when": "Week 2",
+   "title": "Automatic review requests",
+   "detail": "A friendly message after each visit, so happy patients become five-star reviews."
+  },
+  {
+   "when": "Week 3",
+   "title": "Reminders and recall",
+   "detail": "Follow-up and maintenance reminders that go out by themselves."
+  },
+  {
+   "when": "Week 4",
+   "title": "Your first monthly report",
+   "detail": "Where you stand against nearby clinics, and what to do next."
+  }
+ ],
+ "scenario": "A woman in Northeast Minneapolis, 30 weeks pregnant, wants pelvic floor help but can only come at weekends. On Saturday night she searches \"pelvic floor physical therapy Minneapolis\", sees Mayo and weekday clinics, and gives up until after the birth. Arlo's Sunday slot, ten minutes away, stays empty. (Illustration.)",
+ "nochange": "Patients who already know you stay. Those searching for the care you specialise in keep finding hospitals, apps and other specialists.",
+ "created": "2026-11-16"
+}
