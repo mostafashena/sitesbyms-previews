@@ -131,7 +131,7 @@ function autosend_tick(bool $force = false): string {
 function auto_zone_name(string $z): string {
     return ['Europe/London' => 'UK', 'Europe/Dublin' => 'Ireland', 'Asia/Dubai' => 'UAE', 'Pacific/Auckland' => 'New Zealand', 'America/New_York' => 'US East', 'America/Chicago' => 'US Central',
             'America/Denver' => 'US Mountain', 'America/Phoenix' => 'Arizona', 'America/Los_Angeles' => 'US West', 'America/Toronto' => 'Canada East', 'America/Vancouver' => 'Canada West',
-            'America/Edmonton' => 'Alberta', 'Australia/Sydney' => 'Australia East', 'Australia/Brisbane' => 'Queensland', 'Australia/Adelaide' => 'Adelaide', 'Australia/Perth' => 'Perth'][$z] ?? $z;
+            'America/Edmonton' => 'Alberta', 'Australia/Sydney' => 'Australia East', 'Australia/Brisbane' => 'Queensland', 'Australia/Adelaide' => 'Adelaide', 'Australia/Perth' => 'Perth', 'America/Halifax' => 'Atlantic Canada', 'America/Regina' => 'Saskatchewan', 'America/Winnipeg' => 'Manitoba', 'America/St_Johns' => 'Newfoundland'][$z] ?? $z;
 }
 
 /** Instagram DMs the team still has to send by hand today. */

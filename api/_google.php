@@ -220,8 +220,16 @@ function lead_tz(array $r): string {
         if (preg_match('/chicago|houston|dallas|austin|san antonio|minneapolis|nashville|new orleans|kansas city|\b(tx|il|mn|tn|la|mo)\b|texas|illinois/', $loc)) return 'America/Chicago';
         return 'America/New_York';
     }
-    if ($cc === 'CA') return preg_match('/vancouver|victoria|british columbia|\bbc\b/', $loc) ? 'America/Vancouver' : (preg_match('/calgary|edmonton|alberta/', $loc) ? 'America/Edmonton' : 'America/Toronto');
-    if ($cc === 'AU') return preg_match('/perth|western australia/', $loc) ? 'Australia/Perth' : (preg_match('/brisbane|queensland|gold coast/', $loc) ? 'Australia/Brisbane' : (preg_match('/adelaide/', $loc) ? 'Australia/Adelaide' : 'Australia/Sydney'));
+    if ($cc === 'CA') {
+        if (preg_match('/vancouver|victoria|british columbia|\bbc\b/', $loc)) return 'America/Vancouver';
+        if (preg_match('/calgary|edmonton|alberta|\bab\b/', $loc)) return 'America/Edmonton';
+        if (preg_match('/saskatoon|regina|saskatchewan|\bsk\b/', $loc)) return 'America/Regina';
+        if (preg_match('/winnipeg|manitoba|\bmb\b/', $loc)) return 'America/Winnipeg';
+        if (preg_match('/halifax|dartmouth|nova scotia|\bns\b|new brunswick|\bnb\b|\bpe\b|charlottetown/', $loc)) return 'America/Halifax';
+        if (preg_match("/st\\.? john's|newfoundland|\bnl\b/", $loc)) return 'America/St_Johns';
+        return 'America/Toronto';
+    }
+    if ($cc === 'AU') return preg_match('/perth|western australia/', $loc) ? 'Australia/Perth' : (preg_match('/brisbane|queensland|gold coast|\bqld\b/', $loc) ? 'Australia/Brisbane' : (preg_match('/adelaide/', $loc) ? 'Australia/Adelaide' : 'Australia/Sydney'));
     return ['AE' => 'Asia/Dubai', 'IE' => 'Europe/Dublin', 'NZ' => 'Pacific/Auckland'][$cc] ?? 'Europe/London';
 }
 const BUSINESS_ADDRESS = '114a Maida Vale, London W9 1PT, United Kingdom';
