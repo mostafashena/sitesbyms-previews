@@ -1,0 +1,128 @@
+{
+ "slug": "coastal-sports-wellness-halifax",
+ "business": "Coastal Sports & Wellness",
+ "area": "North End, Halifax",
+ "headline": {
+  "number": "679 vs 87",
+  "title": "A clinic six blocks away on Gladstone Street has 679 Google reviews. Coastal Sports & Wellness has 87.",
+  "detail": "In our search for physiotherapy in Halifax's North End, that clinic came first and second. You appeared once, as a booking page; your own website did not appear."
+ },
+ "summary": "Coastal Sports & Wellness has 87 five-star reviews, a huge team and long hours, including Saturdays until 5pm. But in our search a neighbouring clinic with 679 reviews took the top two spots, and your own website didn't appear.",
+ "you": {
+  "rating": "5.0",
+  "reviews": "87",
+  "website": "",
+  "mobile": "",
+  "booking": "yes",
+  "notes": "Physio, pelvic health, chiro, osteo, RMT; Sat to 5pm"
+ },
+ "competitors": [
+  {
+   "name": "MEND|RX Halifax",
+   "rating": "5.0",
+   "reviews": "679",
+   "website": "",
+   "mobile": "",
+   "booking": "",
+   "notes": "Gladstone St; 7am–8:30pm, Saturdays"
+  },
+  {
+   "name": "Brickyard Health",
+   "rating": "4.9",
+   "reviews": "139",
+   "website": "",
+   "mobile": "",
+   "booking": "",
+   "notes": "Maitland St; to 8pm weekdays"
+  },
+  {
+   "name": "Forte Physical Therapy",
+   "rating": "5.0",
+   "reviews": "64",
+   "website": "",
+   "mobile": "",
+   "booking": "",
+   "notes": "Bloomfield St; to 8pm, Saturdays"
+  },
+  {
+   "name": "Boost Health Clinic",
+   "rating": "5.0",
+   "reviews": "31",
+   "website": "",
+   "mobile": "",
+   "booking": "",
+   "notes": "Young St; open 7 days"
+  }
+ ],
+ "search": [
+  {
+   "query": "physiotherapy North End Halifax",
+   "result": "MEND|RX came first and second (Medimap listings). Fresha, PainHero and other clinics followed. Your booking page appeared once; your website (coastalsportsandwellness.com) did not appear.",
+   "meaning": "Someone searching for a physio in your neighbourhood sees a competitor twice before they see you once."
+  }
+ ],
+ "visibility": "In our search for physiotherapy in the North End, a nearby clinic took the top two spots and your own website didn't appear. Your booking page appeared once, further down.",
+ "lead": [
+  "Every review is five stars, praising clear explanations and realistic timelines.",
+  "One of the broadest teams in Halifax: physio, pelvic health, chiro, osteopathy, acupuncture, RMT, dietitian.",
+  "Saturday hours until 5pm, later than most neighbours."
+ ],
+ "lose": [
+  "A clinic six blocks away has 679 reviews to your 87.",
+  "It appeared first and second in our search; your website didn't appear.",
+  "Several neighbours open until 8–8:30pm on Fridays; you close at 5pm."
+ ],
+ "gaps": [
+  {
+   "title": "The review gap decides on the map",
+   "detail": "Next to 679 reviews, 87 makes the bigger clinic look like the safe choice for a first visit."
+  },
+  {
+   "title": "Your breadth is invisible",
+   "detail": "Patients searching for pelvic health physio or osteopathy in Halifax don't learn that you offer both under one roof."
+  },
+  {
+   "title": "Two locations, one story",
+   "detail": "Halifax and Bedford patients search separately, and nothing connects them to both clinics."
+  }
+ ],
+ "actions": [
+  {
+   "title": "Ask every patient for a review automatically",
+   "why": "Your patients clearly love you; a gentle request after each visit closes the gap fastest."
+  },
+  {
+   "title": "Give pelvic health and osteopathy their own pages",
+   "why": "Specialist searches bring patients who are ready to book and willing to travel."
+  },
+  {
+   "title": "Link your website from every listing",
+   "why": "Doable today: make sure Medimap and others send people to your own page."
+  }
+ ],
+ "plan": [
+  {
+   "when": "Week 1",
+   "title": "Your new website with booking built in",
+   "detail": "Your team, specialties and reviews on one page, with one-tap booking from any phone."
+  },
+  {
+   "when": "Week 2",
+   "title": "Automatic review requests",
+   "detail": "A friendly message after each visit, so happy patients become five-star reviews."
+  },
+  {
+   "when": "Week 3",
+   "title": "Reminders and recall",
+   "detail": "Follow-up and maintenance reminders that go out by themselves."
+  },
+  {
+   "when": "Week 4",
+   "title": "Your first monthly report",
+   "detail": "Where you stand against nearby clinics, and what to do next."
+  }
+ ],
+ "scenario": "A new mum in the North End wants pelvic health physio. On Thursday night she searches \"pelvic physio Halifax North End\", sees the clinic with 679 reviews twice at the top, and books there. She never learns that the team on Cunard Street has a pelvic health physio and Saturday hours. (Illustration.)",
+ "nochange": "Your patients keep giving you five stars, but the clinic up the road keeps pulling ahead in reviews and in search. The gap widens every month.",
+ "created": "2026-11-16"
+}

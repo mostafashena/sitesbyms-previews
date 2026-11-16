@@ -1,0 +1,101 @@
+{
+ "slug": "marda-loop-physiotherapy",
+ "business": "Marda Loop Physiotherapy",
+ "area": "Marda Loop, Calgary",
+ "headline": {
+  "number": "578 vs 242",
+  "title": "Peak Health Marda, around the corner on 14th Street, has 578 Google reviews. Marda Loop Physiotherapy has 242.",
+  "detail": "They take bookings until 8pm Tuesday to Thursday and until 4pm on Saturdays; you close at 7pm and 1pm. In our search your directory listings appeared six times, but your own website not once."
+ },
+ "summary": "Marda Loop Physiotherapy is one of Calgary's best-reviewed clinics, with 242 five-star reviews and eleven physios offering pelvic health, vestibular care and IMS. But a clinic around the corner has more than twice the reviews and longer hours, and in our search your own website didn't appear.",
+ "you": {
+  "rating": "5.0",
+  "reviews": "242",
+  "website": "",
+  "mobile": "",
+  "booking": "yes",
+  "notes": "11 physios; pelvic health, vestibular, IMS"
+ },
+ "competitors": [
+  {
+   "name": "Peak Health Marda",
+   "rating": "5.0",
+   "reviews": "578",
+   "website": "",
+   "mobile": "",
+   "booking": "",
+   "notes": "14th St SW; to 8pm Tue–Thu, Saturdays to 4pm"
+  }
+ ],
+ "search": [
+  {
+   "query": "physiotherapy Marda Loop Calgary",
+   "result": "Your Medimap, Jane and Sports Clinic Finder listings appeared six times, and Peak Health Marda four times (Cortico, Medimap, Poyst). Your own website (mardaloopphysio.com) did not appear in the 17 results.",
+   "meaning": "You're everywhere on directories, which list other clinics next to you, but nowhere with your own story."
+  }
+ ],
+ "visibility": "In our search for physiotherapy in Marda Loop, your listings appeared often but your own website didn't. The clinic around the corner appeared almost as often.",
+ "lead": [
+  "242 reviews, all five stars.",
+  "Eleven physios with pelvic health, vestibular, IMS, GLA:D and concussion training.",
+  "Open 7am–7pm every weekday."
+ ],
+ "lose": [
+  "Peak Health Marda has 578 reviews, more than twice yours.",
+  "They're open until 8pm Tuesday to Thursday and until 4pm on Saturdays.",
+  "Your own website didn't appear in our search; directory pages did."
+ ],
+ "gaps": [
+  {
+   "title": "Directories frame you as one of many",
+   "detail": "When Medimap or Sports Clinic Finder shows you, it lists alternatives right beside you."
+  },
+  {
+   "title": "Saturday afternoon and late-evening patients walk around the corner",
+   "detail": "Anyone who can only come after 7pm or on Saturday afternoon finds a clinic that's open."
+  },
+  {
+   "title": "Your specialists are hidden",
+   "detail": "Pelvic health and vestibular patients search for those words, and your physios with that training don't appear."
+  }
+ ],
+ "actions": [
+  {
+   "title": "Give pelvic health and vestibular care their own pages",
+   "why": "These patients search by condition and travel for the right clinician."
+  },
+  {
+   "title": "Ask every patient for a review automatically",
+   "why": "Closing the gap with the clinic around the corner matters most when you share a neighbourhood."
+  },
+  {
+   "title": "Point every directory listing to your own website",
+   "why": "Doable today: turn six directory appearances into six ways to reach you."
+  }
+ ],
+ "plan": [
+  {
+   "when": "Week 1",
+   "title": "Your new website with booking built in",
+   "detail": "Your team, specialties and reviews on one page, with one-tap booking from any phone."
+  },
+  {
+   "when": "Week 2",
+   "title": "Automatic review requests",
+   "detail": "A friendly message after each visit, so happy patients become five-star reviews."
+  },
+  {
+   "when": "Week 3",
+   "title": "Reminders and recall",
+   "detail": "Follow-up and maintenance reminders that go out by themselves."
+  },
+  {
+   "when": "Week 4",
+   "title": "Your first monthly report",
+   "detail": "Where you stand against nearby clinics, and what to do next."
+  }
+ ],
+ "scenario": "A teacher in Altadore wakes up with vertigo. That evening she searches \"vestibular physio Marda Loop\", sees the clinic with 578 reviews and evening hours, and books there. Two of your physios are trained in vestibular rehab, two blocks away, but she never found that out. (Illustration.)",
+ "nochange": "Your patients keep giving you five stars. The clinic around the corner keeps collecting more reviews and later bookings, and the gap keeps growing.",
+ "created": "2026-11-16"
+}

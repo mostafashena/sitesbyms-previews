@@ -1,0 +1,101 @@
+{
+ "slug": "rome-physio-bristol",
+ "business": "ROME Physio Clinic",
+ "area": "St George, Bristol",
+ "headline": {
+  "number": "0 of 16",
+  "title": "We searched \"physiotherapy St George Bristol\". Your own website appeared in none of the 16 results.",
+  "detail": "A national chain's St George clinic, rated 3.9 from 12 reviews, came first. You have 370 five-star reviews and appeared once, as a booking page. Directories took most of the rest."
+ },
+ "summary": "ROME Physio has 370 reviews, all five stars, and is open seven days from 7am, which is rare anywhere in Bristol. But in our search for physiotherapy in St George, a chain clinic with 12 reviews came first and your own website didn't appear at all.",
+ "you": {
+  "rating": "5.0",
+  "reviews": "370",
+  "website": "",
+  "mobile": "",
+  "booking": "yes",
+  "notes": "7 days; 7am–8pm weekdays; Sunday mornings"
+ },
+ "competitors": [
+  {
+   "name": "Ascenti Physio Bristol (St George Health Centre)",
+   "rating": "3.9",
+   "reviews": "12",
+   "website": "",
+   "mobile": "",
+   "booking": "",
+   "notes": "National chain; Bellevue Rd"
+  }
+ ],
+ "search": [
+  {
+   "query": "physiotherapy St George Bristol",
+   "result": "Ascenti's St George clinic came first. Your booking page appeared third. Fresha, WhatClinic, Nuffield Health, Bodyset and other directories filled most of the remaining spots. Your website (romephysiorehab.com) did not appear.",
+   "meaning": "The best-reviewed clinic in the area is the hardest to reach from a search. People meet a chain and directories first."
+  }
+ ],
+ "visibility": "In our search for physiotherapy in St George, your booking page appeared, but your own website didn't. A chain clinic came first, and directories that list many clinics took most of the page.",
+ "lead": [
+  "370 reviews, all five stars: far more than any clinic we found in St George.",
+  "Open seven days, 7am–8pm on weekdays and on Sunday mornings.",
+  "Next-day appointments and Tecar therapy come up again and again in reviews."
+ ],
+ "lose": [
+  "In our search a chain clinic with 12 reviews came first; your website didn't appear.",
+  "Directories (Fresha, WhatClinic) show patients other clinics before they reach you.",
+  "Your Sunday and early-morning hours aren't visible to someone comparing clinics."
+ ],
+ "gaps": [
+  {
+   "title": "The best clinic is the hardest to find",
+   "detail": "People searching by area meet a chain and directories first, even though your reviews are far stronger."
+  },
+  {
+   "title": "Your seven-day hours go unseen",
+   "detail": "Someone injured on Saturday evening who wants a Sunday appointment doesn't learn that you have one."
+  },
+  {
+   "title": "Women's health and Feldenkrais are hidden",
+   "detail": "Specialist services that patients search for by name don't appear for you."
+  }
+ ],
+ "actions": [
+  {
+   "title": "Make your own website the first thing people find",
+   "why": "With 370 five-star reviews, being found is the only thing between you and more new patients."
+  },
+  {
+   "title": "Put 'open 7 days, from 7am' everywhere",
+   "why": "Doable today: it's your strongest difference and almost nobody else offers it."
+  },
+  {
+   "title": "Keep the reviews coming automatically",
+   "why": "An automatic request after each visit keeps your lead as other clinics grow."
+  }
+ ],
+ "plan": [
+  {
+   "when": "Week 1",
+   "title": "Your new website with booking built in",
+   "detail": "Your team, specialties and reviews on one page, with one-tap booking from any phone."
+  },
+  {
+   "when": "Week 2",
+   "title": "Automatic review requests",
+   "detail": "A friendly message after each visit, so happy patients become five-star reviews."
+  },
+  {
+   "when": "Week 3",
+   "title": "Reminders and recall",
+   "detail": "Follow-up and maintenance reminders that go out by themselves."
+  },
+  {
+   "when": "Week 4",
+   "title": "Your first monthly report",
+   "detail": "Where you stand against nearby clinics, and what to do next."
+  }
+ ],
+ "scenario": "A builder in Redfield tweaks his back on Saturday afternoon. That evening he searches \"physio St George Bristol\", sees a chain clinic and a list of directories, and books a Tuesday slot across town. ROME, with a Sunday 7am appointment ten minutes away, never comes up. (Illustration.)",
+ "nochange": "Your patients keep giving you five stars. But new patients searching in St George keep meeting chains and directories first.",
+ "created": "2026-11-16"
+}
