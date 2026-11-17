@@ -19,7 +19,9 @@ function auto_problem(array $r, string $text, string $to, string $subject): ?str
     if (trim($subject) === '') return 'No subject in column P.';
     if (mb_strlen(trim($text)) < 60) return 'The message is empty or too short.';
     if (preg_match('/\[(ADD|TODO|NAME|INSERT)|\{\{|\bTODO\b|lorem ipsum/i', $text)) return 'The message still has a placeholder.';
-    if (!str_contains($text, 'sitesbyms.com/' . $r['slug'])) return 'The message does not contain this business\'s concept link.';
+    // 17 Nov 2026, test 4 B: the first email asks permission ("Would you like me to send it over?") and has no link on purpose.
+    $noLinkOk = str_contains((string)$r['notes'], '[Test 4 B]') && $text === (string)$r['message'];
+    if (!$noLinkOk && !str_contains($text, 'sitesbyms.com/' . $r['slug'])) return 'The message does not contain this business\'s concept link.';
     return null;
 }
 
