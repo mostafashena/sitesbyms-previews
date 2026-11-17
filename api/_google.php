@@ -163,13 +163,14 @@ function lead_followup_text(array $r, string $channel, string $kind): string {
     if ($kind === 'rfollow1') {
         $t = "$hi,\n\nI wanted to check you received the competitive analysis we prepared for $biz:\n$rep\n\n"
            . "The section most owners find useful is \"What this is costing you\": the moments when people who are looking for a business like yours end up choosing someone else. Most of it can be fixed quickly.\n\n"
+           . "Your homepage concept is on the same page, or here: $link\n\n"
            . "Would a 15-minute call to walk you through it be helpful? You can pick a time here:\n$book";
     } elseif ($kind === 'rfollow2') {
         $t = "$hi,\n\nA quick thought after our analysis of $biz. The report ends with what our team would do in your first 30 days: your own website with online booking, automatic review requests and reminders, promotions to past clients, and a monthly report like the one we sent.\n\n"
            . "We work as a growth team, so you don't have to manage any of it yourself. And there's no upfront cost: we build and run it, and you only pay for new clients who actually book through it.\n\n"
-           . "Your analysis: $rep\nHappy to talk it through: $book";
+           . "Your analysis: $rep\nYour homepage concept: $link\nHappy to talk it through: $book";
     } elseif ($kind === 'rfollow3') {
-        $t = "$hi,\n\nI'll leave it here so I don't fill your " . ($ig ? 'messages' : 'inbox') . ". Your competitive analysis and homepage concept stay online if you'd like to come back to them:\n$rep\n\n"
+        $t = "$hi,\n\nI'll leave it here so I don't fill your " . ($ig ? 'messages' : 'inbox') . ". Your competitive analysis and homepage concept stay online if you'd like to come back to them:\n$rep\n$link\n\n"
            . "Whenever the timing is right, just reply and our team will pick it up from there.";
     } elseif ($kind === 'followup2') {
         // No website "issue" is repeated here: claims about a site must be checked the same day (owner's rule, 7 Nov 2026), and this goes out a week later.
