@@ -241,7 +241,9 @@ function wa_none_numbers(): array {
     return $set;
 }
 function lead_wa(array $r): string {
-    $n = wa_number($r['phone'], lead_cc($r['country'] ?? ''));
+    $cc = lead_cc($r['country'] ?? '');
+    if ($cc === 'US' || $cc === 'CA') return '';   // 18 Nov 2026: 58 of 60 "no WhatsApp" marks were US/Canada clinic landlines; WhatsApp is not used there
+    $n = wa_number($r['phone'], $cc);
     if ($n !== '' && isset(wa_none_numbers()[substr(preg_replace('/\D/', '', $n), -9)])) return '';
     return $n;
 }
