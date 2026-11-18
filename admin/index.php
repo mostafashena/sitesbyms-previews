@@ -465,7 +465,7 @@ if ($page === 'outreach') {
         $waAll = wa_due($rows, $log);
         $waToday = count(array_filter($log, fn($o) => $o['kind'] === 'wa' && substr((string)($o['at'] ?? $o['sent_at'] ?? ''), 0, 10) === gmdate('Y-m-d')));
         $waList = array_slice($waAll, 0, max(0, WA_PER_DAY - $waToday));
-        $ws = warm_slugs(); $warmDone = []; foreach ($log as $o) if ($o['kind'] === 'warm') $warmDone[$o['slug']] = true;
+        $ws = warm_slugs(); $warmDone = []; foreach ($log as $o) if ($o['kind'] === 'warm' || $o['kind'] === 'wa-none') $warmDone[$o['slug']] = true;
         $warmList = array_values(array_filter($rows, fn($r) => $r['slug'] !== '' && isset($ws[$r['slug']]) && !isset($warmDone[$r['slug']])));
         usort($warmList, fn($x, $y) => strtotime($ws[$y['slug']]['last']) <=> strtotime($ws[$x['slug']]['last']));
         echo '<div class="tabs2"><a href="#warm">Warm <i>' . count($warmList) . '</i></a><a href="#ready">Ready to send <i>' . count($first) . '</i></a><a href="#wa">WhatsApp <i>' . count($waList) . '</i></a><a href="#followups">Follow-ups due <i>' . count($follow) . '</i></a><a href="#sent">Sent</a></div>';

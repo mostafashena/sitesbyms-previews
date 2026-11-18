@@ -234,7 +234,17 @@ function lead_tz(array $r): string {
     return ['AE' => 'Asia/Dubai', 'IE' => 'Europe/Dublin', 'NZ' => 'Pacific/Auckland'][$cc] ?? 'Europe/London';
 }
 const BUSINESS_ADDRESS = '114a Maida Vale, London W9 1PT, United Kingdom';
-function lead_wa(array $r): string { return wa_number($r['phone'], lead_cc($r['country'] ?? '')); }
+/** Numbers the team marked "no WhatsApp on this number" (18 Nov 2026): never offered for WhatsApp again, on any row or list. */
+function wa_none_numbers(): array {
+    static $set = null;
+    if ($set === null) { $set = []; try { foreach (outreach_all() as $o) if (($o['kind'] ?? '') === 'wa-none') { $d = preg_replace('/\D/', '', (string)($o['to'] ?? '')); if (strlen($d) >= 7) $set[substr($d, -9)] = true; } } catch (Throwable $e) {} }
+    return $set;
+}
+function lead_wa(array $r): string {
+    $n = wa_number($r['phone'], lead_cc($r['country'] ?? ''));
+    if ($n !== '' && isset(wa_none_numbers()[substr(preg_replace('/\D/', '', $n), -9)])) return '';
+    return $n;
+}
 /** WhatsApp text: $first = no email/DM was sent before (WhatsApp is the first touch). Short, personal, with an easy way out. */
 function lead_wa_text(array $r, bool $first): string {
     $hi = lead_greeting($r); $biz = $r['company']; $link = tracked_links('https://sitesbyms.com/' . $r['slug'] . '/', 'wa');

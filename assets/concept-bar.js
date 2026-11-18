@@ -11,7 +11,11 @@
   if (/[?&]embed=1/.test(location.search)) return;   // small preview inside the report page
   var name = me.getAttribute('data-name') || 'your business';
   var slug = (me.getAttribute('data-slug') || '').replace(/[^a-z0-9-]/g, '');
-  var oneClick = me.getAttribute('data-ab') === 'b';   // test group B (11 Nov): the analysis is requested with one tap, no form and no pop-up
+  var oneClick = me.getAttribute('data-ab') === 'b';
+  // 18 Nov 2026: email security scanners open every link (including #report) and "click" in under a second.
+  // A one-tap request only counts after a real human gesture on the page.
+  var t0 = Date.now(), human = false;
+  ['pointerdown', 'keydown', 'touchstart', 'wheel'].forEach(function (ev) { window.addEventListener(ev, function (e) { if (e.isTrusted) human = true; }, { passive: true, capture: true }); });   // test group B (11 Nov): the analysis is requested with one tap, no form and no pop-up
   var q = '?b=' + encodeURIComponent(name) + (slug ? '&s=' + slug : '');
 
   function store(k, v) { try { if (v === undefined) return localStorage.getItem(k); localStorage.setItem(k, v); } catch (e) { return null; } }
@@ -302,9 +306,15 @@
     hideNudge(); track('report_open', from || '');
     var sh = sheet('Free competitive analysis for ' + name, 'Prepared by the Sites By MS team · ready within 24 hours');
     if (asked) { sh.body.innerHTML = '<div class="sbm-done"><b>You\'ve already asked for it 👍</b><p>Our team is preparing your analysis and will send it within 24 hours.</p></div>'; return; }
+    if (oneClick && (!human || Date.now() - t0 < 2500)) {
+      track('report_wait', from || '');
+      sh.body.innerHTML = '<p class="sbm-lead">Our team compares <b>' + esc(name) + '</b> with 4–5 local competitors and shows where you may be losing customers.</p><p><button type="button" class="sbm-btn sbm-book sbm-go">Yes, send me the analysis</button></p>';
+      sh.body.querySelector('.sbm-go').onclick = function (e) { if (!e.isTrusted) return; human = true; t0 = 0; sh.close(); openReport('confirm'); };
+      return;
+    }
     if (oneClick) {
       sh.body.innerHTML = '<div class="sbm-done"><b>Sending your request…</b></div>';
-      fetch('/api/report-request.php', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ slug: slug, business: name, contact: '', oneclick: 1 }) })
+      fetch('/api/report-request.php', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ slug: slug, business: name, contact: '', oneclick: 1, h: human ? 1 : 0 }) })
         .then(function (r) { return r.json().catch(function () { return { ok: false }; }); })
         .then(function (j) {
           if (!j.ok) throw new Error(j.error || 'Something went wrong. Please try again.');
