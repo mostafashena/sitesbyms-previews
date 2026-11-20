@@ -1,0 +1,112 @@
+{
+ "business": "Nail'd It",
+ "area": "St Andrew Square",
+ "headline": {
+  "number": "160 vs 249",
+  "title": "The Nail Yard, 2.7 km away, has 249 Google reviews. Nail'd It has 160.",
+  "detail": "Your rating is 4.9, as high or higher than theirs. The quality is there; the volume isn't yet. On a map, people comparing nail salons often pick the bigger number."
+ },
+ "summary": "Nail'd It has 160 Google reviews at 4.9, and reviews praise gel manicures that last without chipping. We compared you with the 3 nearest independent nail salons, and the gap is not quality but how easily new clients can find, trust and book you.",
+ "you": {
+  "rating": "4.9",
+  "reviews": "160",
+  "website": "",
+  "mobile": "",
+  "booking": "",
+  "notes": "Weekdays until 7pm; open Sundays"
+ },
+ "competitors": [
+  {
+   "name": "House Of Nails",
+   "rating": "4.8",
+   "reviews": "156",
+   "website": "",
+   "mobile": "",
+   "booking": "",
+   "notes": "Weekdays until 6:30pm; closed Sundays"
+  },
+  {
+   "name": "The Nail Yard",
+   "rating": "4.8",
+   "reviews": "249",
+   "website": "",
+   "mobile": "",
+   "booking": "",
+   "notes": "Weekdays until 7pm; closed Sundays"
+  },
+  {
+   "name": "Studio N Nails",
+   "rating": "5.0",
+   "reviews": "10",
+   "website": "",
+   "mobile": "",
+   "booking": "",
+   "notes": "Weekdays until 9pm; open Sundays"
+  }
+ ],
+ "visibility": "We compared Nail'd It with the 3 nearest independent nail salons on Google Maps (ratings, review counts and opening hours as shown today).",
+ "lead": [
+  "160 Google reviews at 4.9: more than 2 of the 3 nail salons nearby we compared.",
+  "Reviews praise gel manicures that last without chipping.",
+  "Open on Sundays, when some nearby nail salons are closed."
+ ],
+ "lose": [
+  "1 of the 3 nail salons nearby has more reviews, up to 249 (The Nail Yard).",
+  "Studio N Nails is open until 9pm on weekdays; you close at 7pm.",
+  "New clients who don't know you yet compare nail salons on a phone in seconds; without your own booking-ready page, your best reviews stay buried in the listing."
+ ],
+ "gaps": [
+  {
+   "title": "The comparison happens before anyone calls",
+   "detail": "People choosing a salon look at the map, the review count and a website, then book wherever it's easiest. Being the best isn't enough if it isn't visible."
+  },
+  {
+   "title": "Your strongest story is hidden",
+   "detail": "Reviews praise gel manicures that last without chipping. But someone new only sees a star rating, not why people love you."
+  },
+  {
+   "title": "Every appointment without a follow-up is a missed review",
+   "detail": "Happy clients rarely leave a review unless someone asks at the right moment. That's how bigger nail salons pull ahead."
+  }
+ ],
+ "actions": [
+  {
+   "title": "Get a page that turns visitors into bookings",
+   "why": "Your reviews, treatments, hours and one-tap booking or WhatsApp on one fast page for phones."
+  },
+  {
+   "title": "Ask every client for a review automatically",
+   "why": "A short message after each appointment; the quickest way to close the gap with nail salons that have more reviews."
+  },
+  {
+   "title": "Reply to every new review this week",
+   "why": "Doable today, without us: it shows new visitors a real person who cares, and they notice."
+  }
+ ],
+ "plan": [
+  {
+   "when": "Week 1",
+   "title": "Your new website with booking built in",
+   "detail": "Your treatments, team and reviews on one page, with one-tap booking or WhatsApp from any phone."
+  },
+  {
+   "when": "Week 2",
+   "title": "Automatic review requests",
+   "detail": "A friendly message after each appointment, so happy clients become five-star reviews."
+  },
+  {
+   "when": "Week 3",
+   "title": "Offers and win-back messages",
+   "detail": "Intro offers for new clients and gentle reminders for those who haven't booked in a while."
+  },
+  {
+   "when": "Week 4",
+   "title": "Your first monthly report",
+   "detail": "Where you stand against the nail salons nearby, and what to do next."
+  }
+ ],
+ "scenario": "Someone new to St Andrew Square wants to book a appointment this week. On Sunday evening they open Maps, see a few nail salons and tap the one with the most reviews and an easy booking page. Nail'd It, with 160 reviews at 4.9, is close by, but they never get past the listing. (Illustration.)",
+ "nochange": "Your regular clients keep coming back. New clients keep choosing whichever salon looks easiest to book on their phone.",
+ "slug": "naild-it-edinburgh",
+ "created": "2026-11-20"
+}

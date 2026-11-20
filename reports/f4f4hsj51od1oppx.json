@@ -1,0 +1,110 @@
+{
+ "business": "The Reformr",
+ "area": "Al Reem Island",
+ "headline": {
+  "number": "261",
+  "title": "More Google reviews than the 3 nearest studios we compared.",
+  "detail": "The Reformr has 261 reviews at 4.9. That's a real advantage, but only if new members who search find a page that turns that reputation into a booking."
+ },
+ "summary": "The Reformr has 261 Google reviews at 4.9, and reviews praise engaging classes and attentive instructors. We compared you with the 3 nearest independent studios, and the gap is not quality but how easily new members can find, trust and book you.",
+ "you": {
+  "rating": "4.9",
+  "reviews": "261",
+  "website": "",
+  "mobile": "",
+  "booking": "",
+  "notes": "Weekdays until 9:30pm; open Sundays"
+ },
+ "competitors": [
+  {
+   "name": "Aura Wellness",
+   "rating": "4.8",
+   "reviews": "198",
+   "website": "",
+   "mobile": "",
+   "booking": "",
+   "notes": "Weekdays until 10pm; from 6:30am; open Sundays"
+  },
+  {
+   "name": "Verra Wellness",
+   "rating": "5.0",
+   "reviews": "146",
+   "website": "",
+   "mobile": "",
+   "booking": "",
+   "notes": "Weekdays until 9pm; from 6:30am; open Sundays"
+  },
+  {
+   "name": "Reform Fitness Studio",
+   "rating": "4.5",
+   "reviews": "35",
+   "website": "",
+   "mobile": "",
+   "booking": "",
+   "notes": "Weekdays until 10pm; from 2am; open Sundays"
+  }
+ ],
+ "visibility": "We compared The Reformr with the 3 nearest independent studios on Google Maps (ratings, review counts and opening hours as shown today).",
+ "lead": [
+  "261 Google reviews at 4.9: more than 3 of the 3 studios nearby we compared.",
+  "Reviews praise engaging classes and attentive instructors."
+ ],
+ "lose": [
+  "Aura Wellness is open until 10pm on weekdays; you close at 9:30pm.",
+  "New members who don't know you yet compare studios on a phone in seconds; without your own booking-ready page, your best reviews stay buried in the listing."
+ ],
+ "gaps": [
+  {
+   "title": "The comparison happens before anyone calls",
+   "detail": "People choosing a studio look at the map, the review count and a website, then book wherever it's easiest. Being the best isn't enough if it isn't visible."
+  },
+  {
+   "title": "Your strongest story is hidden",
+   "detail": "Reviews praise engaging classes and attentive instructors. But someone new only sees a star rating, not why people love you."
+  },
+  {
+   "title": "Every class without a follow-up is a missed review",
+   "detail": "Happy members rarely leave a review unless someone asks at the right moment. That's how bigger studios pull ahead."
+  }
+ ],
+ "actions": [
+  {
+   "title": "Get a page that turns visitors into bookings",
+   "why": "Your reviews, classes, hours and one-tap booking or WhatsApp on one fast page for phones."
+  },
+  {
+   "title": "Ask every member for a review automatically",
+   "why": "A short message after each class keeps you ahead of the studios nearby."
+  },
+  {
+   "title": "Reply to every new review this week",
+   "why": "Doable today, without us: it shows new visitors a real person who cares, and they notice."
+  }
+ ],
+ "plan": [
+  {
+   "when": "Week 1",
+   "title": "Your new website with booking built in",
+   "detail": "Your classes, team and reviews on one page, with one-tap booking or WhatsApp from any phone."
+  },
+  {
+   "when": "Week 2",
+   "title": "Automatic review requests",
+   "detail": "A friendly message after each class, so happy members become five-star reviews."
+  },
+  {
+   "when": "Week 3",
+   "title": "Offers and win-back messages",
+   "detail": "Intro offers for new members and gentle reminders for those who haven't booked in a while."
+  },
+  {
+   "when": "Week 4",
+   "title": "Your first monthly report",
+   "detail": "Where you stand against the studios nearby, and what to do next."
+  }
+ ],
+ "scenario": "Someone new to Al Reem Island wants to book a class this week. On Sunday evening they open Maps, see a few studios and tap the one with the most reviews and an easy booking page. The Reformr, with 261 reviews at 4.9, is close by, but they never get past the listing. (Illustration.)",
+ "nochange": "Your regular members keep coming back. New members keep choosing whichever studio looks easiest to book on their phone.",
+ "slug": "the-reformr-al-reem",
+ "created": "2026-11-20"
+}
