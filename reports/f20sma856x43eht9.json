@@ -1,0 +1,121 @@
+{
+ "business": "Balans",
+ "area": "Dubai Marina",
+ "headline": {
+  "number": "199 vs 311",
+  "title": "The PAD, 5.2 km away, has 311 Google reviews. Balans has 199.",
+  "detail": "Your rating is 4.8, close to theirs. The quality is there; the volume isn't yet. On a map, people comparing studios often pick the bigger number."
+ },
+ "summary": "Balans has 199 Google reviews at 4.8, and reviews praise well-structured classes, attentive instructors and even the coffee. We compared you with the 4 nearest independent studios, and the gap is not quality but how easily new members can find, trust and book you.",
+ "you": {
+  "rating": "4.8",
+  "reviews": "199",
+  "website": "",
+  "mobile": "",
+  "booking": "",
+  "notes": "Weekdays until 9pm; open Sundays"
+ },
+ "competitors": [
+  {
+   "name": "Airone Pilates Boutique",
+   "rating": "5.0",
+   "reviews": "22",
+   "website": "",
+   "mobile": "",
+   "booking": "",
+   "notes": "Weekdays until 9pm; from 7am; open Sundays"
+  },
+  {
+   "name": "Jeanique Pilates Boutique",
+   "rating": "4.8",
+   "reviews": "25",
+   "website": "",
+   "mobile": "",
+   "booking": "",
+   "notes": "Weekdays until 6pm; from 7am; closed Sundays"
+  },
+  {
+   "name": "Mojo Reformer Pilates",
+   "rating": "4.2",
+   "reviews": "162",
+   "website": "",
+   "mobile": "",
+   "booking": "",
+   "notes": "Weekdays until 9:30pm; from 6:30am; open Sundays"
+  },
+  {
+   "name": "The PAD",
+   "rating": "4.9",
+   "reviews": "311",
+   "website": "",
+   "mobile": "",
+   "booking": "",
+   "notes": "Weekdays until 9pm; from 7am; open Sundays"
+  }
+ ],
+ "visibility": "We compared Balans with the 4 nearest independent studios on Google Maps (ratings, review counts and opening hours as shown today).",
+ "lead": [
+  "199 Google reviews at 4.8: more than 3 of the 4 studios nearby we compared.",
+  "Reviews praise well-structured classes, attentive instructors and even the coffee.",
+  "Open on Sundays, when some nearby studios are closed."
+ ],
+ "lose": [
+  "1 of the 4 studios nearby has more reviews, up to 311 (The PAD).",
+  "Mojo Reformer Pilates is open until 9:30pm on weekdays; you close at 9pm.",
+  "New members who don't know you yet compare studios on a phone in seconds; without your own booking-ready page, your best reviews stay buried in the listing."
+ ],
+ "gaps": [
+  {
+   "title": "The comparison happens before anyone calls",
+   "detail": "People choosing a studio look at the map, the review count and a website, then book wherever it's easiest. Being the best isn't enough if it isn't visible."
+  },
+  {
+   "title": "Your strongest story is hidden",
+   "detail": "Reviews praise well-structured classes, attentive instructors and even the coffee. But someone new only sees a star rating, not why people love you."
+  },
+  {
+   "title": "Every class without a follow-up is a missed review",
+   "detail": "Happy members rarely leave a review unless someone asks at the right moment. That's how bigger studios pull ahead."
+  }
+ ],
+ "actions": [
+  {
+   "title": "Get a page that turns visitors into bookings",
+   "why": "Your reviews, classes, hours and one-tap booking or WhatsApp on one fast page for phones."
+  },
+  {
+   "title": "Ask every member for a review automatically",
+   "why": "A short message after each class; the quickest way to close the gap with studios that have more reviews."
+  },
+  {
+   "title": "Reply to every new review this week",
+   "why": "Doable today, without us: it shows new visitors a real person who cares, and they notice."
+  }
+ ],
+ "plan": [
+  {
+   "when": "Week 1",
+   "title": "Your new website with booking built in",
+   "detail": "Your classes, team and reviews on one page, with one-tap booking or WhatsApp from any phone."
+  },
+  {
+   "when": "Week 2",
+   "title": "Automatic review requests",
+   "detail": "A friendly message after each class, so happy members become five-star reviews."
+  },
+  {
+   "when": "Week 3",
+   "title": "Offers and win-back messages",
+   "detail": "Intro offers for new members and gentle reminders for those who haven't booked in a while."
+  },
+  {
+   "when": "Week 4",
+   "title": "Your first monthly report",
+   "detail": "Where you stand against the studios nearby, and what to do next."
+  }
+ ],
+ "scenario": "Someone new to Dubai Marina wants to book a class this week. On Sunday evening they open Maps, see a few studios and tap the one with the most reviews and an easy booking page. Balans, with 199 reviews at 4.8, is close by, but they never get past the listing. (Illustration.)",
+ "nochange": "Your regular members keep coming back. New members keep choosing whichever studio looks easiest to book on their phone.",
+ "slug": "balans-studios-marina",
+ "created": "2026-11-20"
+}
